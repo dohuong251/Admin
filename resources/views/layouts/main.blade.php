@@ -2,8 +2,8 @@
 <head lang="vi">
     <title>@yield('title')</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}"/>
 
     <style>
         #loader {
@@ -58,8 +58,9 @@
             }
         }
     </style>
-
-    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="/css/dist/style.css" type="text/css" rel="stylesheet">
+    <link href="/css/dist/sidebar.css" rel="stylesheet">
     @yield('css')
 
 
@@ -104,7 +105,7 @@
                     <div class="peer">
                         <div class="mobile-toggle sidebar-toggle">
                             <a href="" class="td-n">
-                                <i class="ti-arrow-circle-left"></i>
+                                <i class="ti-arrow-circle-left c-white"></i>
                             </a>
                         </div>
                     </div>
@@ -122,7 +123,7 @@
                 </li>
                 <li class="nav-item dropdown {{request()->segment(2) == 'livestreamplayer'?'active':''}}">
 
-                    <a class="dropdown-toggle sidebar-link ">
+                    <a class="dropdown-toggle">
                     <span class="icon-holder ">
                         <i class="fa fa-home" aria-hidden="true"></i>
                     </span>
@@ -135,26 +136,26 @@
                     <ul class="dropdown-menu">
                         <li class="{{request()->segment(3)  == 'users'?'active':''}}">
 
-                            <a class="sidebar-link" href="{{route('admin.livestreamplayer.users')}}">
+                            <a class="sidebar-link" href="{{route('admin.lsp.users')}}">
                                 <span class="title">Users</span>
                             </a>
 
                         </li>
                         <li class="{{request() -> segment(3)  == 'stream'?'active':''}}">
 
-                            <a class="sidebar-link" href="{{route('admin.livestreamplayer.streams')}}">
+                            <a class="sidebar-link" href="{{route('admin.lsp.streams')}}">
                                 <span class="title">Streams</span>
                             </a>
 
                         </li>
                         <li class="{{request() -> segment(3)  == 'message'?'active':''}}">
-                            <a class="sidebar-link" href="{{route('admin.livestreamplayer.message')}}">
+                            <a class="sidebar-link" href="{{route('admin.lsp.message')}}">
                                 <span class="title ">Messages</span>
                             </a>
 
                         </li>
                         <li class="{{request() -> segment(3)  == 'analytic'?'active':''}}">
-                            <a class="sidebar-link" href="{{route('admin.livestreamplayer.analytic')}}">
+                            <a class="sidebar-link" href="{{route('admin.lsp.analytic')}}">
                                 <span class="title">Analytics</span>
                             </a>
 
@@ -164,7 +165,7 @@
                 </li>
 
                 <li class="nav-item dropdown {{request()->segment(2) == 'sales'?'active':''}}">
-                    <a class="dropdown-toggle sidebar-link">
+                    <a class="dropdown-toggle">
                         <span class="icon-holder ">
                             <i class="fa fa-home" aria-hidden="true"></i>
                         </span>
@@ -199,7 +200,7 @@
 
                 </li>
                 <li class="nav-item dropdown {{request() ->segment(2) == 'tools'? 'active':'' }}">
-                    <a class="dropdown-toggle sidebar-link">
+                    <a class="dropdown-toggle">
                                     <span class="icon-holder ">
                                        <i class="fa fa-home" aria-hidden="true"></i>
                                     </span>
@@ -255,7 +256,6 @@
                 <ul class="nav-left w-100 pr-3">
                     <li>
                         <a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);"><i class="ti-menu"></i></a>
-
                     </li>
 
                     <li class="float-right">
@@ -282,15 +282,9 @@
 </div>
 
 @include('layouts.script.jquery')
-<script type="text/javascript" src="/js/admin/vendor.js"></script>
-<script type="text/javascript" src="/js/admin/bundle.js"></script>
-<script>
-    $(document).ready(function(){
-       $('#sidebar-toggle').click(function(){
-           $('body').toggleClass('is-collapsed');
-       }) ;
-    });
-</script>
+<script type="text/javascript" src="/js/dist/vendor.js"></script>
+<script type="text/javascript" src="/js/dist/bundle.js"></script>
+<script type="text/javascript" src="/js/dist/main.js"></script>
 @yield('script')
 
 </body>

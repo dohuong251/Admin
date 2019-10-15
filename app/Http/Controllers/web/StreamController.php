@@ -16,11 +16,11 @@ class StreamController extends Controller
 //        foreach ($song as $song){
 //            $song->Owner=$song->Users->value('Nickname');
 //        }
-        return view('layouts.livestreamplayer.stream',['songs' => $songs]);
+        return view('layouts.lsp.stream',['songs' => $songs]);
     }
 
     public function show($songId){
         $song = Song::find($songId);
-        return view('layouts.livestreamplayer.song_detail', ['song'=> $song]);
+        return view('layouts.lsp.song_detail', ['song'=> $song]);
     }
 }

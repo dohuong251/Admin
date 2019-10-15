@@ -1,0 +1,113 @@
+* {
+    margin: 0;
+    padding: 0;
+    font-size: 13px !important;
+}
+
+@-webkit-keyframes sk-scaleout {
+    0% {
+        -webkit-transform: scale(0)
+    }
+    100% {
+        -webkit-transform: scale(1);
+        opacity: 0
+    }
+}
+
+@keyframes sk-scaleout {
+    0% {
+        -webkit-transform: scale(0);
+        transform: scale(0)
+    }
+    100% {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 0
+    }
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    -webkit-background-size: cover;
+    -ms-background-size: cover;
+    -o-background-size: cover;
+    -moz-background-size: cover;
+    background: url(/images/backgroud/bg_login.jpg) no-repeat fixed center;
+
+}
+
+h2 {
+    color: #fff;
+    font-size: 28px !important;
+    font-weight: 300;
+    text-align: center;
+    letter-spacing: 3px;
+    text-shadow: 3px 3px 4px #000;
+    margin: 0 !important;
+}
+
+.box {
+    width: 350px;
+    background: rgba(255, 255, 255, 0.1);
+    -webkit-box-shadow: 0 6px 12px 0 rgb(37, 37, 37);
+    -moz-box-shadow: 0 6px 12px 0 rgb(37, 37, 37);
+    box-shadow: 0 6px 43px 0 rgba(0, 0, 0, 0.4);
+}
+
+.logo {
+    border-top-right-radius: 4px;
+    border-top-left-radius: 4px;
+    width: 100%;
+    height: 120px;
+}
+
+.logo div {
+    background: url(/images/icon/ico_user.png) no-repeat center center;
+    background-size: 80px;
+    height: 100%;
+}
+
+label {
+    font-size: 16px !important;
+    color: white;
+}
+
+input {
+    background: white;
+    border: 1px solid #dadada;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: #000000;
+    opacity: 0.8;
+    /*margin-bottom: 20px;*/
+
+}
+
+.btn-pink {
+    background-color: #00c6d7 !important;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    padding: .375rem .75rem;
+    display: inline-block;
+    cursor: pointer;
+    color: #ffffff !important;
+    text-decoration: none;
+    margin-top: 1.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.btn-pink:hover, .btn-pink:focus {
+    color: white !important;
+}
+
+button[type="submit"] {
+    border-radius: 4px !important;
+}
+

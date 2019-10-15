@@ -40,11 +40,9 @@ class LoginController extends Controller
     public function getLogin()
     {
 //        return view('auth.login');
-
-        if(Auth::guard('web') ->check()){
+        if (Auth::guard('web')->check()) {
             return redirect()->route('admin.home');
-        }
-        else {
+        } else {
             return view('auth.login');
         }
 
@@ -53,13 +51,12 @@ class LoginController extends Controller
     public function postLogin(Request $request)
     {
         $validateRules = [
-            'email' => 'required|string|email',
+            'username' => 'required|string',
             'password' => 'required|string'
         ];
         $validateMess = [
             'required' => 'Vui lòng điền :attribute',
-            'string' => ':attribute phải là chuỗi kí tự',
-            'email' => 'Email không đúng định dạng'
+            'string' => ':attribute phải là chuỗi kí tự'
         ];
         $validator = Validator::make($request->all(), $validateRules, $validateMess);
 
@@ -67,15 +64,12 @@ class LoginController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
             $user_data = array(
-                'email' => $request->get('email'),
+                'username' => $request->get('username'),
                 'password' => $request->get('password'),
-
             );
 
             if (Auth::guard('web')->attempt($user_data)) {
-
                 return redirect()->route('admin.home');
-
             } else {
                 $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
                 return redirect()->back()->withInput()->withErrors($errors);

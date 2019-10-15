@@ -9,6 +9,6 @@ class AnalyticController extends Controller
 {
     //
     public function index(){
-        return view('layouts.livestreamplayer.analytic');
+        return view('layouts.lsp.analytic');
     }
 }

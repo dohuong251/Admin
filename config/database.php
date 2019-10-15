@@ -63,13 +63,13 @@ return [
             ]) : [],
         ],
 
-        'mysqllivestreamplayer' => [
+        'mysql_lsp_connection' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST_SECOND'),
-            'port' => env('DB_PORT_SECOND'),
-            'database' => env('DB_DATABASE_SECOND'),
-            'username' => env('DB_USERNAME_SECOND'),
-            'password' => env('DB_PASSWORD_SECOND'),
+            'host' => env('LSP_DB_HOST'),
+            'port' => env('LSP_DB_PORT'),
+            'database' => env('LSP_DB_DATABASE'),
+            'username' => env('LSP_DB_USERNAME'),
+            'password' => env('LSP_DB_PASSWORD'),
             'charset' => 'utf8',
             'collation' => 'utf8_unicode_ci',
             'prefix' => '',

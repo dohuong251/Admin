@@ -1,5 +1,5 @@
 @if ($paginator->hasPages())
-    <ul class="pagination justify-content-end" role="navigation">
+    <ul class="pagination justify-content-sm-end" role="navigation">
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
             <li class="disabled page-item"><span>Previous</span></li>

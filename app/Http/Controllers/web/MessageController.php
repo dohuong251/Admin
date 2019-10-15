@@ -9,6 +9,6 @@ class MessageController extends Controller
 {
     //
     public function index(){
-        return view('layouts.livestreamplayer.message');
+        return view('layouts.lsp.message');
     }
 }

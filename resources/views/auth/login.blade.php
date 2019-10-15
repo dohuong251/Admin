@@ -5,14 +5,9 @@
     <title>Login</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="{{ asset('css/styles.css') }}" type="text/css" media="screen">
-   >
-
+    <link rel="stylesheet" href="/css/auth/login.css" type="text/css" media="screen">
 </head>
 
 <body class="app flew-row align-items-center d-flex min-vh-100">
@@ -40,18 +35,18 @@
                 <h2>LOGIN</h2>
 
                 <div class="form-group text-left mt-4">
-                    <label>Email</label>
-                    <input class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}" type="email"
-                           placeholder="Email" name="email" value="{{ old('email') }}" required>
+                    <label>Username</label>
+                    <input class="form-control {{ $errors->has('username') ? 'is-invalid' : '' }}" type="text"
+                           placeholder="Tên đăng nhập" name="username" value="{{ old('username') }}" required>
                 </div>
 
                 <div class="form-group text-left mt-4">
                     <label>Password</label>
-                    <input class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                    <input type="password" class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
                            placeholder="Password" name="password" required>
 
                 </div>
-                <button class="btn btn-pink w-100" type="submit">
+                <button class="btn btn-success mt-4 w-100" type="submit">
                     Login
                 </button>
             </form>
@@ -59,7 +54,8 @@
     </div>
 
 </div>
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
-
 </html>

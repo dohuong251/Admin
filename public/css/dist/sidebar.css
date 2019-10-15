@@ -1,0 +1,168 @@
+@media screen and (max-width: 1439px) {
+    .sidebar:hover .sidebar-logo a .logo, .is-collapsed .sidebar-logo a .logo {
+        height: 65px;
+        background: url('/images/icon/logo2.png') no-repeat center center !important;
+        width: 100% !important;
+        background-size: contain !important;
+    }
+
+    .sidebar .sidebar-logo a .logo {
+        background: url('/images/icon/logo2.png') no-repeat center center;
+        /*background-size: 45px;*/
+    }
+    .sidebar-logo a h5.logo-text{
+        color: #ffffff;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .sidebar:hover .sidebar-logo a .logo, .sidebar .sidebar-logo a .logo, .is-collapsed .sidebar:hover .sidebar-logo a .logo {
+        background: url('/images/icon/logo2.png') no-repeat center center;
+        width: 100% !important;
+        background-size: contain !important;
+    }
+
+    .is-collapsed .sidebar-logo a .logo{
+        height: 65px;
+        background: url('/images/icon/logo2.png') no-repeat center center;
+        /*background-size: 45px !important;*/
+    }
+}
+
+.sidebar-logo {
+    border-bottom: 0 !important;
+}
+
+.sidebar-logo a .logo img {
+    visibility: hidden !important;
+}
+
+.sidebar-menu > li > a .title,  .sidebar-menu > li > a .fa, .sidebar-menu > li > a .ti-angle-right{
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+.sidebar-menu li:hover .title, .sidebar-menu li:hover .fa, .sidebar-menu li:hover .ti-angle-right{
+    color: white !important;
+}
+
+.sidebar-menu > li.open > a, .sidebar-menu li.open a:hover{
+    background: #2d363f;
+}
+
+.sidebar-menu >li.open > a .title, .sidebar-menu >li.open > a .fa, .sidebar-menu >li.open > a .ti-angle-right{
+    color: white !important;
+}
+
+.sidebar-menu > li.open > a{
+    background: #333e48;
+}
+.sidebar-menu >li.open > .dropdown-menu > li > a:hover{
+    background: #2d363f !important;
+}
+.sidebar-menu li .dropdown-menu li a {
+    background: #333e48;
+}
+
+/*.sidebar-menu li.open a:hover{*/
+/*    background: #2d363f;*/
+/*}*/
+/*.dropdown-menu > li:hover{*/
+/*    background: #2d363f;*/
+/*}*/
+
+.sidebar-menu > li.open > .dropdown-menu > li > a .title{
+    color: rgba(255, 255, 255, 0.5) !important;
+}
+
+
+.sidebar-menu li.active a, .sidebar-menu li.active a:hover{
+    /*background: #00c6d7;*/
+    background: #00acc1;
+    /*color: white !important;*/
+}
+
+.sidebar-menu > li.active .title, .sidebar-menu > li.active .fa, .sidebar-menu > li.active .ti-angle-right {
+    color: white !important;
+}
+
+.sidebar-menu li .dropdown-menu li.active a .title{
+    color: white !important;
+}
+
+/*body:after {*/
+/*    display: none;*/
+/*    !*content: url('/images/icon/ico_dashboard_hover.png') url('/images/icon/ico_dashboard_hover.png') url('/images/icon/ico_dashboard_hover.png') url('/images/icon/ico_dashboard_hover.png') url('/images/icon/ico_dashboard_hover.png');*!*/
+/*}*/
+
+/*.sidebar-menu > li > a img.sidebar-home {*/
+/*    background: url('/images/icon/ico_dashboard.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li.active > a img.sidebar-home{*/
+/*    background: url('/images/icon/ico_dashboard_selected.png') left top no-repeat;*/
+
+/*}*/
+
+/*.sidebar-menu > li:not(.active):hover > a img.sidebar-home {*/
+/*    background: url('/images/icon/ico_dashboard_hover.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li > a img.sidebar-user {*/
+/*    background: url('/images/icon/ico_dashboard.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li.active > a img.sidebar-user {*/
+/*    background: url('/images/icon/ico_dashboard_selected.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li:not(.active):hover > a img.sidebar-user {*/
+/*    background: url('/images/icon/ico_dashboard_hover.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li > a img.sidebar-news {*/
+/*    background: url('/image/icon/ico_news_manager.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li.active > a img.sidebar-news {*/
+/*    background: url('/image/icon/ico_news_manager_selected.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li:not(.active):hover > a img.sidebar-news {*/
+/*    background: url('/image/icon/ico_news_manager_hover.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li > a img.sidebar-course {*/
+/*    background: url('/image/icon/ico_course.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li.active > a img.sidebar-course {*/
+/*    background: url('/image/icon/ico_course_selected.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li:not(.active):hover > a img.sidebar-course {*/
+/*    background: url('/image/icon/ico_course_hover.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li > a img.sidebar-premium {*/
+/*    background: url('/image/icon/ico_purchased.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li.active > a img.sidebar-premium {*/
+/*    background: url('/image/icon/ico_purchased_selected.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li:not(.active):hover > a img.sidebar-premium {*/
+/*    background: url('/image/icon/ico_purchased_hover.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li > a img.sidebar-notification {*/
+/*    background: url('/image/icon/ico_notification.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li.active > a img.sidebar-notification {*/
+/*    background: url('/image/icon/ico_notification_selected.png') left top no-repeat;*/
+/*}*/
+
+/*.sidebar-menu > li:not(.active):hover > a img.sidebar-notification {*/
+/*    background: url('/image/icon/ico_notification_hover.png') left top no-repeat;*/
+/*}*/
