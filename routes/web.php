@@ -39,7 +39,7 @@ Route::prefix('admin')->group(function () {
                     Route::delete('/users', 'web\UserController@destroy');
 //                Route::delete('/user/{userId}', 'web\UserController@delete')->name('user.delete');
 
-
+                    Route::get('/stream/dashboard','web\StreamController@filter')->name('stream_dashboard');
                     Route::get('/streams', 'web\StreamController@index')->name('streams');
                     Route::get('/streams/{songId}', 'web\StreamController@show')->name('stream');
 

@@ -84,20 +84,14 @@ class UserController extends Controller
                 // đã duyệt hết số lượng user có stream
                 if ($streamUsers->count() == 0) {
                     $nonStreamUsers = Users::select('users.*')
-                        ->leftJoin('songs', function ($join) {
-                            $join->on('songs.UserId', '=', 'users.UserId');
-                        })
-                        ->whereNull('songs.UserId')
+                        ->whereNotIn('UserId',Songs::distinct('UserId')->select('UserId'))
                         ->limit($record_per_page)
                         ->offset(($page - ceil($totalStreamUsers / $record_per_page) - 1) * $record_per_page + ($record_per_page - $totalStreamUsers % $record_per_page))
                         ->orderBy('UserId', $order)
                         ->get();
                 } else {
                     $nonStreamUsers = Users::select('users.*')
-                        ->leftJoin('songs', function ($join) {
-                            $join->on('songs.UserId', '=', 'users.UserId');
-                        })
-                        ->whereNull('songs.UserId')
+                        ->whereNotIn('UserId',Songs::distinct('UserId')->select('UserId'))
                         ->limit($record_per_page - ($streamUsers->count()))
                         ->offset(0)
                         ->orderBy('UserId', $order)
@@ -108,10 +102,7 @@ class UserController extends Controller
             $remain_none_stream_user = $totalNonStreamUsers - ($page - 1) * $record_per_page;
             if ($remain_none_stream_user > 0) {
                 $nonStreamUsers = Users::select('users.*')
-                    ->leftJoin('songs', function ($join) {
-                        $join->on('songs.UserId', '=', 'users.UserId');
-                    })
-                    ->whereNull('songs.UserId')
+                    ->whereNotIn('UserId',Songs::distinct('UserId')->select('UserId'))
                     ->limit($record_per_page)
                     ->offset(($page - 1) * $record_per_page)
                     ->orderBy('UserId', $order)

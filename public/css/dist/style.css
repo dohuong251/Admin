@@ -22,7 +22,7 @@
 }
 
 .zoom-90, #mainContent > div.full-container > nav[aria-label="breadcrumb"], .container-fluid {
-    zoom: 90%;
+    /*zoom: 90%;*/
 }
 
 .ladda-button[data-style=expand-right][data-loading] {
@@ -407,6 +407,10 @@ table.dataTable tbody th, table.dataTable tbody td {
 /* element */
 p, label {
     margin-bottom: 0 !important;
+}
+
+span, i{
+    vertical-align: middle;
 }
 
 /* custom css*/

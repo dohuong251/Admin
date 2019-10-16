@@ -103,5 +103,9 @@
     <orderEntry type="library" name="sweetalert2.all" level="application" />
     <orderEntry type="library" name="spin" level="application" />
     <orderEntry type="library" name="ladda" level="application" />
+    <orderEntry type="library" name="apexcharts" level="application" />
+    <orderEntry type="library" name="moment" level="application" />
+    <orderEntry type="library" name="vi" level="application" />
+    <orderEntry type="library" name="daterangepicker" level="application" />
   </component>
 </module>

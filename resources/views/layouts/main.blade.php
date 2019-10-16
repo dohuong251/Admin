@@ -125,7 +125,8 @@
 
                     <a class="dropdown-toggle">
                     <span class="icon-holder ">
-                        <i class="fa fa-home" aria-hidden="true"></i>
+                        <img src="http://www.mdcgate.com/apps/upload/images/LSP/LSP.png"
+                             style="width: 24px;height: 24px;">
                     </span>
                         <span class="title">Live Stream Player</span>
                         <span class="arrow">
@@ -167,7 +168,7 @@
                 <li class="nav-item dropdown {{request()->segment(2) == 'sales'?'active':''}}">
                     <a class="dropdown-toggle">
                         <span class="icon-holder ">
-                            <i class="fa fa-home" aria-hidden="true"></i>
+                            <i class="fa fa-money" aria-hidden="true"></i>
                         </span>
                         <span class="title">Sales</span>
                         <span class="arrow">
@@ -202,7 +203,7 @@
                 <li class="nav-item dropdown {{request() ->segment(2) == 'tools'? 'active':'' }}">
                     <a class="dropdown-toggle">
                                     <span class="icon-holder ">
-                                       <i class="fa fa-home" aria-hidden="true"></i>
+                            <i class="fa fa-cog" aria-hidden="true"></i>
                                     </span>
                         <span class="title">Tools</span>
                         <span class="arrow">
@@ -259,7 +260,7 @@
                     </li>
 
                     <li class="float-right">
-                        <a href="{{route('admin.logout')}}" style="font-size: 16px">Log Out</a>
+                        <a href="{{route('admin.logout')}}">Log Out</a>
                     </li>
                 </ul>
             </div>

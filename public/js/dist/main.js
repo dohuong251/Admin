@@ -5,3 +5,6 @@ $(document).ready(function () {
         }
     });
 });
+
+let locacleDateFormat = "DD/MM/YYYY";
+let serverDateFormat = "YYYY-MM-DD";
