@@ -7,8 +7,8 @@
     <script src="/js/lsp/delete.js"></script>
     <script src="/js/vendors/datatables.min.js"></script>
     <script src="/js/vendors/datatable_plugins/input.js"></script>
-    @include('layouts.script.sweetalert')
-    @include('layouts.script.ladda')
+    @include('script.sweetalert')
+    @include('script.ladda')
 @endsection
 @section('css')
     {{--    thư viện animation css--}}

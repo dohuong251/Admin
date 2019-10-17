@@ -282,7 +282,7 @@
 
 </div>
 
-@include('layouts.script.jquery')
+@include('script.jquery')
 <script type="text/javascript" src="/js/dist/vendor.js"></script>
 <script type="text/javascript" src="/js/dist/bundle.js"></script>
 <script type="text/javascript" src="/js/dist/main.js"></script>
