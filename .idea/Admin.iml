@@ -107,5 +107,6 @@
     <orderEntry type="library" name="moment" level="application" />
     <orderEntry type="library" name="vi" level="application" />
     <orderEntry type="library" name="daterangepicker" level="application" />
+    <orderEntry type="library" name="sweetalert" level="application" />
   </component>
 </module>

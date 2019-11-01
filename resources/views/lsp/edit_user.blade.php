@@ -1,4 +1,4 @@
-<form id="editForm" class="card-body" action="{{route('admin.lsp.user', $user ->UserId)}}" method="post">
+<form id="editForm" class="card-body" action="{{route('admin.lsp.user.index', $user ->UserId)}}" method="post">
     @method('PUT')
     {{csrf_field()}}
     <div class="edtName ml-15 d-none">

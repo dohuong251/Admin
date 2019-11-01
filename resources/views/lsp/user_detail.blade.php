@@ -1,59 +1,59 @@
 @extends('layouts.main')
 @section('title', 'User')
 @section('css')
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css"/>
     <link rel="stylesheet" href="/css/vendors/animate.min.css"/>
-    <link rel="stylesheet" href="/css/vendors/datatables.min.css"/>
-    <link rel="stylesheet" href="/css/vendors/jquery.dataTables.min.css"/>
-    <link rel="stylesheet" type="text/css" href="/css/lsp/user.css">
 @endsection
-@section('script')
-    <script src="/js/vendors/datatables.min.js"></script>
-    <script src="/js/vendors/datatable_plugins/input.js"></script>
+@section('js')
+    <script src="/js/vendors/moment.min.js"></script>
+    <script src="/js/vendors/moment_vi.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
+    <script src="/js/vendors/jquery.stickytableheaders.min.js"></script>
+    <script src="/js/vendors/jquery.dataTables.min.js"></script>
     <script src="/js/lsp/user.js"></script>
-    <script src="/js/lsp/confirm_submit_delete.js"></script>
+    <script src="/js/dist/delete.js"></script>
 @endsection
 @section('content')
-
     <nav>
         <ol class="breadcrumb bg-white border-bottom rounded-0">
             <li class="breadcrumb-item justify-content-center">
-                <a href="{{route('admin.lsp.users')}}">Management User</a>
+                <a href="{{route('admin.lsp.user.index')}}">Management User</a>
             </li>
 
             <li class="breadcrumb-item active">
-                <div>{{$user -> Nickname}}</div>
+                {{$user -> Nickname}}
             </li>
 
-            <li class="breadcrumb-menu ml-auto mr-2">
-                <form action="{{route('admin.lsp.user', $user->UserId)}}" method="post"
+            <li class="breadcrumb-menu ml-auto mr-2 d-flex c-white">
+                <a class="btn btn-primary mr-2" href="{{route('admin.lsp.messages.index',['userid'=>$user->UserId])}}">
+                    <i class="fa fa-fw fa-commenting-o"></i>
+                </a>
+                <form action="{{route('admin.lsp.user.destroy', $user->UserId)}}" method="post"
                       onsubmit="return confirmDelete(this)">
                     @method('DELETE')
                     {{csrf_field()}}
-                    <button class="btn btn-danger" type="submit">Delete</button>
+                    <button class="btn btn-danger" type="submit">
+                        <i class="fa fa-fw fa-trash"></i>
+                    </button>
                 </form>
             </li>
         </ol>
 
     </nav>
 
-    <div class="container-fluid">
-        @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                    <span>
-                        @foreach($errors->all() as $error)
-                            <strong>{{ $error }}</strong>
-                        @endforeach
-                    </span>
-            </div>
-        @endif
+    <div>
         @if($user)
             <div class="profile">
                 <div class="card mx-auto mb-3">
                     <div class="row no-gutters">
-                        <div class="col-sm-3 bg-secondary">
-                            <img src="{{$user->Avatar??'/images/icon/avatar.png'}}" class="image-fit" alt="avatar">
+                        <div class="col-sm-3">
+                            {{--                            <img src="{{$user->Avatar??'/images/icon/avatar.png'}}" class="w-100 img-fluid rounded-circle centerXY-sm pos-a-sm" alt="avatar">--}}
+                            <img src="{{$user->Avatar}}" class="user-avatar image-fit" alt="avatar" onerror="onLoadAvatarError(this)">
                         </div>
-                        <div class="d-flex overflow-hidden col-sm-9 col-12 py-2">
+                        <div class="d-flex overflow-hidden col-sm-9 col-12 py-2 {{count($errors)>0?'justify-content-end':''}}">
+
                             <div class="col-12 toggle-display-des information animated slideInLeft fast">
                                 <div class="float-right actionBtn mr-2">
                                     <button type="button" class="btn-secondary-custom toggle-display">
@@ -180,12 +180,12 @@
                             {{-- edit form --}}
 
                             <form
-                                class="col-12 w-0 toggle-display-des information animated slideInRight fastmain position-relative"
-                                action="{{route('admin.lsp.user', $user ->UserId)}}"
+                                class="col-12 w-0 toggle-display-des information animated slideInRight fast position-relative"
+                                action="{{route('admin.lsp.user.update', $user ->UserId)}}"
                                 method="post">
                                 @method('PUT')
                                 {{csrf_field()}}
-                                <div class="col-12 clearfix">
+                                <div class="col-12 card-title clearfix">
                                     <button type="button" class="float-right btn-danger-custom toggle-display">
                                         <i class="fa fa-times" style="font-size: 14px !important;"></i>
                                     </button>
@@ -194,9 +194,9 @@
                                     </button>
 
                                     <label for="nickname">Nick Name:&nbsp;</label>
-                                    <input id="nickname" class="card-title form-control w-auto d-inline"
-                                           style="padding-left: 15px" type="text"
-                                           value="{{$user->Nickname}}" name="Nickname" placeholder="Nhập nickname">
+                                    <input id="nickname" class="form-control w-auto d-inline" type="text"
+                                           value="{{old('Nickname',$user->Nickname)}}" name="Nickname" placeholder="Nhập nickname">
+                                    <div class="text-danger">{{ $errors->first('Nickname') }}</div>
                                 </div>
                                 <div class="d-flex information-form">
                                     <div class="col-12 col-sm-6">
@@ -207,8 +207,9 @@
                                                     Email:
                                                 </label>
                                             </div>
-                                            <input id="email" name="Email" value="{{$user -> Email}}"
+                                            <input type="email" id="email" name="Email" value="{{old('Email',$user->Email)}}"
                                                    class="form-control w-auto" placeholder="Nhập email">
+                                            <div class="text-danger">{{ $errors->first('Email') }}</div>
                                         </div>
 
                                         <div>
@@ -229,9 +230,10 @@
                                                     Full name:
                                                 </label>
                                             </div>
-                                            <input id="fullname" value="{{$user -> Fullname}}"
+                                            <input id="fullname" value="{{old('Fullname',$user->Fullname)}}"
                                                    class="form-control w-auto" name="Fullname"
                                                    placeholder="Nhập Fullname">
+                                            <div class="text-danger">{{ $errors->first('Fullname') }}</div>
                                         </div>
 
                                         <div>
@@ -241,9 +243,10 @@
                                                     Số Điện thoại:
                                                 </label>
                                             </div>
-                                            <input id="phone" value="{{$user -> Phone}}"
+                                            <input id="phone" value="{{old('Phone',$user->Phone)}}"
                                                    class="form-control w-auto" name="Phone"
                                                    placeholder="Nhập Số Điện Thoại">
+                                            <div class="text-danger">{{ $errors->first('Phone') }}</div>
                                         </div>
                                     </div>
 
@@ -255,9 +258,10 @@
                                                     Birthday:
                                                 </label>
                                             </div>
-                                            <input id="birthday" value="{{$user -> Birthday}}"
+                                            <input id="birthday" value="{{old('Birthday',$user->Birthday)}}"
                                                    class="form-control w-auto" name="Birthday"
                                                    placeholder="Nhập Ngày Sinh">
+                                            <div class="text-danger">{{ $errors->first('Birthday') }}</div>
                                         </div>
 
                                         <div>
@@ -268,9 +272,10 @@
                                                 </label>
                                             </div>
                                             <select id="status" class="form-control w-auto" name="Status">
-                                                <option value="0" {{$user -> Status==0?'selected':''}}>0</option>
-                                                <option value="1" {{$user -> Status==1?'selected':''}}>1</option>
+                                                <option value="0" {{old('Status', $user->Status)==0?'selected':''}}>0</option>
+                                                <option value="1" {{old('Status', $user->Status)==1?'selected':''}}>1</option>
                                             </select>
+                                            <div class="text-danger">{{ $errors->first('Status') }}</div>
                                         </div>
 
                                         <div>
@@ -281,9 +286,10 @@
                                                 </label>
                                             </div>
                                             <select id="type" class="form-control w-auto" name="Type">
-                                                <option value="0" {{$user -> Type==0?'selected':''}}>Email</option>
-                                                <option value="1" {{$user -> Type==1?'selected':''}}>Facebook</option>
+                                                <option value="0" {{old('Type', $user->Type)==0?'selected':''}}>Email</option>
+                                                <option value="1" {{old('Type', $user->Type)==1?'selected':''}}>Facebook</option>
                                             </select>
+                                            <div class="text-danger">{{ $errors->first('Type') }}</div>
                                         </div>
 
                                         <div>
@@ -294,9 +300,10 @@
                                                 </label>
                                             </div>
                                             <select id="role" class="form-control w-auto" name="Role">
-                                                <option value="0" {{$user -> Role==0?'selected':''}}>Admin</option>
-                                                <option value="1" {{$user -> Role==1?'selected':''}}>User</option>
+                                                <option value="0" {{old('Role', $user->Role)==0?'selected':''}}>Admin</option>
+                                                <option value="1" {{old('Role', $user->Role)==1?'selected':''}}>User</option>
                                             </select>
+                                            <div class="text-danger">{{ $errors->first('Role') }}</div>
                                         </div>
                                     </div>
 
@@ -310,8 +317,8 @@
                 </div>
             </div>
 
-            <div class="list">
-                <table class="w-100 table table-hover table-responsive-sm w-100" id="song-table" data-table-source="{{route('admin.lsp.user_streams',$user->UserId)}}">
+            <div class="list table-responsive-sm">
+                <table class="w-100 table table-hover w-100" id="song-table" data-table-source="{{route('admin.lsp.user.streams',$user->UserId)}}">
                     <thead>
                     <tr>
                         <th scope="col">
@@ -330,4 +337,5 @@
 
         @endif
     </div>
+    @include('layouts.deleteButton')
 @endsection

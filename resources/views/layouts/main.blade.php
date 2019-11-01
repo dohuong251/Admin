@@ -1,25 +1,23 @@
 <!doctype html>
-<head lang="vi">
-    <title>@yield('title')</title>
+<html>
+<head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {{--    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">--}}
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
-
+    <title>@yield('title', 'Admin')</title>
     <style>
         #loader {
             transition: all .3s ease-in-out;
             opacity: 1;
             visibility: visible;
             position: fixed;
-            top: 0;
-            left: 0;
             height: 100vh;
             width: 100%;
             background: #fff;
             z-index: 90000
         }
 
-        #loader.done {
+        #loader.fadeOut {
             opacity: 0;
             visibility: hidden
         }
@@ -59,32 +57,30 @@
         }
     </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/css/dist/style.css" type="text/css" rel="stylesheet">
-    <link href="/css/dist/sidebar.css" rel="stylesheet">
+    <link href="/css/dist/style.css" rel="stylesheet">
     @yield('css')
-
-
 </head>
-<body class="app ck-content">
+<body class="app">
 <div id="loader">
     <div class="spinner"></div>
 </div>
-
 <script>
     window.addEventListener('load', function load() {
         const loader = document.getElementById('loader');
         setTimeout(function () {
-            loader.classList.add('done');
+            loader.classList.add('fadeOut');
         }, 300);
-        $('img.lazyload').each(function () {
-            $(this).attr('src', $(this).attr('data-src'));
-        });
     });
-</script>
+
+    // thay ảnh avatar của user thành mặc định nếu load lỗi
+    function onLoadAvatarError(element) {
+        element.src = "/images/icon/avatar.png";
+        element.className += " bg-secondary";
+        element.onerror = null;
+    }</script>
 <div>
-    <div class="sidebar" style="background: #4f5f6f;">
+    <div class="sidebar">
         <div class="sidebar-inner">
-            {{--            --}}{{--sidebar header--}}
             <div class="sidebar-logo">
                 <div class="peers ai-c fxw-nw">
                     <div class="peer peer-greed">
@@ -92,159 +88,92 @@
                             <div class="peers ai-c fxw-nw">
                                 <div class="peer">
                                     <div class="logo">
-                                        <img src="/images/icon/logo2.png" alt="">
+                                        <img style="width: 65px;height: 65px;object-fit: contain;" src="/images/icon/mdc.png" alt="">
                                     </div>
                                 </div>
-
-                                <div class="peer peer-greed">
-                                    <h5 class="logo-text">Adminator</h5>
-                                </div>
+                                <div class="peer peer-greed"><h5 class="lh-1 mB-0 logo-text">Adminator</h5></div>
                             </div>
                         </a>
                     </div>
                     <div class="peer">
                         <div class="mobile-toggle sidebar-toggle">
                             <a href="" class="td-n">
-                                <i class="ti-arrow-circle-left c-white"></i>
+                                <i class="ti-arrow-circle-left"></i>
                             </a>
                         </div>
                     </div>
                 </div>
             </div>
-
             <ul class="sidebar-menu scrollable pos-r">
-                <li class="nav-item mT-30 {{request()->segment(2) == 'home'?'active':''}}">
+                <li class="nav-item mT-30 actived">
                     <a class="sidebar-link" href="{{route('admin.home')}}">
-                    <span class="icon-holder">
-                        <i class="fa fa-home" aria-hidden="true"></i>
-                    </span>
-                        <span class="title" style="text-align: center">Dashboard</span>
+                        <span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span>
+                        <span class="title">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item dropdown {{request()->segment(2) == 'livestreamplayer'?'active':''}}">
-
-                    <a class="dropdown-toggle">
-                    <span class="icon-holder ">
-                        <img src="http://www.mdcgate.com/apps/upload/images/LSP/LSP.png"
-                             style="width: 24px;height: 24px;">
-                    </span>
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span>
                         <span class="title">Live Stream Player</span>
-                        <span class="arrow">
-                            <i class="ti-angle-right" aria-hidden="true"></i>
-                        </span>
+                        <span class="arrow"><i class="ti-angle-right"></i></span>
                     </a>
-
                     <ul class="dropdown-menu">
-                        <li class="{{request()->segment(3)  == 'users'?'active':''}}">
-
-                            <a class="sidebar-link" href="{{route('admin.lsp.users')}}">
-                                <span class="title">Users</span>
-                            </a>
-
+                        <li>
+                            <a class="sidebar-link" href="{{route('admin.lsp.user.index')}}">Users</a>
                         </li>
-                        <li class="{{request() -> segment(3)  == 'stream'?'active':''}}">
-
-                            <a class="sidebar-link" href="{{route('admin.lsp.streams')}}">
-                                <span class="title">Streams</span>
-                            </a>
-
+                        <li>
+                            <a class="sidebar-link" href="{{route('admin.lsp.streams.index')}}">Streams</a>
                         </li>
-                        <li class="{{request() -> segment(3)  == 'message'?'active':''}}">
-                            <a class="sidebar-link" href="{{route('admin.lsp.message')}}">
-                                <span class="title ">Messages</span>
-                            </a>
-
+                        <li>
+                            <a class="sidebar-link" href="{{route('admin.lsp.messages.index')}}">Messages</a>
                         </li>
-                        <li class="{{request() -> segment(3)  == 'analytic'?'active':''}}">
-                            <a class="sidebar-link" href="{{route('admin.lsp.analytic')}}">
-                                <span class="title">Analytics</span>
-                            </a>
-
+                        <li>
+                            <a class="sidebar-link" href="{{route('admin.lsp.analytic')}}">Analytics</a>
                         </li>
-
                     </ul>
                 </li>
-
-                <li class="nav-item dropdown {{request()->segment(2) == 'sales'?'active':''}}">
-                    <a class="dropdown-toggle">
-                        <span class="icon-holder ">
-                            <i class="fa fa-money" aria-hidden="true"></i>
-                        </span>
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder"><i class="c-purple-500 ti-map"></i> </span>
                         <span class="title">Sales</span>
-                        <span class="arrow">
-                            <i class="ti-angle-right" aria-hidden="true"></i>
-                        </span>
+                        <span class="arrow"><i class="ti-angle-right"></i></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="{{request()->segment(3)  == 'order'?'active':''}}">
-
-                            <a class="sidebar-link" href="{{route('admin.sales.order')}}">
-                                <span class="title">Orders</span>
-                            </a>
-
+                        <li>
+                            <a href="{{route('admin.sales.order')}}">Orders</a>
                         </li>
-                        <li class="{{request() -> segment(3)  == 'subscription'?'active':''}}">
-
-                            <a class="sidebar-link" href="{{route('admin.sales.subscription')}}">
-                                <span class="title">Subscription</span>
-                            </a>
-
+                        <li>
+                            <a href="{{route('admin.sales.subscription')}}">Subscription</a>
                         </li>
-                        <li class="{{request() -> segment(3)  == 'license'?'active':''}}">
-                            <a class="sidebar-link" href="{{route('admin.sales.license')}}">
-                                <span class="title">License</span>
-                            </a>
-
+                        <li>
+                            <a href="{{route('admin.sales.license')}}">License</a>
                         </li>
-
                     </ul>
-
                 </li>
-                <li class="nav-item dropdown {{request() ->segment(2) == 'tools'? 'active':'' }}">
-                    <a class="dropdown-toggle">
-                                    <span class="icon-holder ">
-                            <i class="fa fa-cog" aria-hidden="true"></i>
-                                    </span>
+                <li class="nav-item dropdown">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
+                        <span class="icon-holder"><i class="c-red-500 ti-files"></i> </span>
                         <span class="title">Tools</span>
-                        <span class="arrow">
-                                            <i class="ti-angle-right" aria-hidden="true"></i>
-                                        </span>
+                        <span class="arrow"><i class="ti-angle-right"></i></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="{{request()->segment(3) == 'config'?'active':''}}">
-                            <a class="sidebar-link" href="{{route('admin.tools.config')}}">
-                                <span class="title">Configs</span>
-                            </a>
-
+                        <li>
+                            <a class="sidebar-link" href="{{route('admin.tools.config')}}">Configs</a>
                         </li>
-                        <li class="{{request()->segment(3) == 'sendBroadcast'?'active':''}}">
-                            <a class="sidebar-link" href="{{route('admin.tools.sendBroadcast')}}">
-                                <span class="title">Send Broadcast</span>
-                            </a>
-
+                        <li>
+                            <a class="sidebar-link" href="{{route('admin.tools.sendBroadcast')}}">Send Broadcast</a>
                         </li>
-                        <li class="{{request()->segment(3) == 'notification'?'active':''}}">
-                            <a class="sidebar-link" href="{{route('admin.tools.notification')}}">
-                                <span class="title">Notifications</span>
-                            </a>
-
+                        <li>
+                            <a class="sidebar-link" href="{{route('admin.tools.notification')}}">Notification</a>
                         </li>
-                        <li class="{{request()->segment(3) == 'testRule'?'active':''}}">
-
-                            <a class="sidebar-link" href="{{route('admin.tools.testRule')}}">
-                                <span class="title">Test Rules</span>
-                            </a>
-
+                        <li>
+                            <a class="sidebar-link" href="{{route('admin.tools.testRule')}}">Test Rules</a>
                         </li>
-
                     </ul>
                 </li>
-
-                <li class="nav-item {{request()->segment(2) == 'app'?'active':''}}">
+                <li class="nav-item">
                     <a class="sidebar-link" href="{{route('admin.app')}}">
-                                    <span class="icon-holder">
-                                       <i class="fa fa-home" aria-hidden="true"></i>
-                                    </span>
+                        <span class="icon-holder"><i class="c-brown-500 ti-email"></i> </span>
                         <span class="title">Apps</span>
                     </a>
                 </li>
@@ -253,39 +182,44 @@
     </div>
     <div class="page-container">
         <div class="header navbar">
-            <div class="header-container zoom-90">
-                <ul class="nav-left w-100 pr-3">
+            <div class="header-container">
+                <ul class="nav-left">
                     <li>
-                        <a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);"><i class="ti-menu"></i></a>
+                        <a id="sidebar-toggle" class="sidebar-toggle" href="javascript:void(0);">
+                            <i class="ti-menu"></i>
+                        </a>
                     </li>
-
-                    <li class="float-right">
-                        <a href="{{route('admin.logout')}}">Log Out</a>
+                    <li class="search-box">
+                        <a class="search-toggle no-pdd-right" href="javascript:void(0);">
+                            <i class="search-icon ti-search pdd-right-10"></i>
+                            <i class="search-icon-close ti-close pdd-right-10"></i>
+                        </a>
+                    </li>
+                    <li class="search-input">
+                        <form action="{{url()->current()}}" method="get">
+                            {{--                            @csrf--}}
+                            <input class="form-control" name="query" type="text" placeholder="Search...">
+                        </form>
                     </li>
                 </ul>
             </div>
         </div>
-
-        <main class="main-content">
+        <main class="main-content bgc-grey-100">
             <div id="mainContent">
-                <div class="full-container bgc-grey-100">
+                <div class="container-fluid bg-white bd">
                     @yield('content')
-                    <footer class=" mt-4 bdT ta-c p-30 lh-0 fsz-sm bg-white zoom-90">
-                        <span>
-                            Copyright © 2019 Designed by MDC. All rights reserved.
-                        </span>
-                    </footer>
                 </div>
             </div>
         </main>
+        <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
+            <span>Copyright © 2017 Designed by <a href="http://www.mdcgate.com/apps/" target="_blank" title="">MDC</a>. All rights reserved.</span>
+        </footer>
     </div>
-
 </div>
-
-@include('script.jquery')
+<script src="/js/vendors/jquery.min.js"></script>
 <script type="text/javascript" src="/js/dist/vendor.js"></script>
 <script type="text/javascript" src="/js/dist/bundle.js"></script>
-<script type="text/javascript" src="/js/dist/main.js"></script>
-@yield('script')
-
+<script src="/js/dist/main.js"></script>
+@yield('js')
 </body>
+</html>

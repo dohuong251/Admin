@@ -2,12 +2,12 @@
 
 /*
 |--------------------------------------------------------------------------
-| Web Routes
+| lsp Routes
 |--------------------------------------------------------------------------
 |
-| Here is where you can register web routes for your application. These
+| Here is where you can register lsp routes for your application. These
 | routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
+| contains the "lsp" middleware group. Now create something great!
 |
 */
 
@@ -15,63 +15,83 @@ Route::get('/', function () {
     return view('layouts.blank');
 });
 
-Route::prefix('admin')->group(function () {
-    Route::name('admin.')->group(function () {
 
-        Auth::routes();
-        Route::get('/login', 'Auth\LoginController@getLogin')->name('login');
+Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
-        Route::post('/login', 'Auth\LoginController@postLogin');
+    Auth::routes();
+    Route::get('/login', 'Auth\LoginController@getLogin')->name('login');
 
-        Route::middleware('auth')->group(function () {
-            Route::get('/logout', 'Auth\LoginController@logOut')->name('logout');
-            Route::get('/home', 'HomeController@index')->name('home');
-            //        live stream layer
+    Route::post('/login', 'Auth\LoginController@postLogin');
 
-            Route::prefix('livestreamplayer')->group(function () {
-                Route::name('lsp.')->group(function () {
-                    Route::get('/users', 'web\UserController@index')->name('users');
-//                Route::get('/users-source','web\UserController@datatable_source')->name('users_source');
-                    Route::get('/user/{userId}/streams-source', 'web\UserController@streams')->name('user_streams');
-                    Route::get('/user/{userId}', 'web\UserController@show')->name('user');
-                    Route::put('/user/{userId}', 'web\UserController@update');
-                    Route::delete('/users', 'web\UserController@destroy');
-//                Route::delete('/user/{userId}', 'web\UserController@delete')->name('user.delete');
+    Route::middleware('auth')->group(function () {
+        Route::get('/logout', 'Auth\LoginController@logOut')->name('logout');
+        Route::get('/home', 'HomeController@index')->name('home');
 
-                    Route::get('/stream/dashboard', 'web\StreamController@filter')->name('stream_dashboard');
-                    Route::get('/streams', 'web\StreamController@index')->name('streams');
-                    Route::get('/streams/{songId}', 'web\StreamController@show')->name('stream');
-
-
-                    Route::get('/message', 'web\MessageController@index')->name('message');
-                    Route::get('/analytic', 'web\AnalyticController@index')->name('analytic');
-                });
-            });
-//        sales
-
-            Route::prefix('sales')->group(function () {
-                Route::name('sales.')->group(function () {
-                    Route::get('/order', 'web\OrderController@index')->name('order');
-                    Route::get('/subscription', 'web\SubscriptionController@index')->name('subscription');
-                    Route::get('/license', 'web\LicenseController@index')->name('license');
-                });
+        /**
+         * https://laravel.com/docs/5.7/controllers#resource-controllers
+         * index: show tất cả record
+         * show: hiển thị thông tin 1 record
+         * create: trang tạo
+         * store: post request tạo mới record
+         * edit: trang chỉnh sửa
+         * update: put request chứa thông tin chỉnh sửa của record
+         * destroy: xóa 1 record
+         * delete: xóa nhiều record
+         *
+         */
+        // live stream layer
+        Route::group(['as' => 'lsp.', 'prefix' => 'livestreamplayer'], function () {
+            // users
+            Route::group(['as' => 'user.', 'prefix' => 'users'], function () {
+                Route::get('/', 'lsp\UserController@index')->name('index');
+                Route::get('/{userId}/streams', 'lsp\UserController@streams')->name('streams');
+                Route::get('/{userId}', 'lsp\UserController@show')->name('show');
+                Route::put('/{userId}', 'lsp\UserController@update')->name('update');
+                Route::delete('/{userId}', 'lsp\UserController@destroy')->name('destroy');
+                Route::delete('/', 'lsp\UserController@delete')->name('delete');
             });
 
-//        tools
-
-            Route::prefix('tools')->group(function () {
-                Route::name('tools.')->group(function () {
-                    Route::get('/config', 'web\ConfigController@index')->name('config');
-                    Route::get('/notification', 'web\NotificationController@index')->name('notification');
-                    Route::get('/sendBroadcast', 'web\SendBroadcastController@index')->name('sendBroadcast');
-                    Route::get('/testRule', 'web\TestRuleController@index')->name('testRule');
-                });
+            // streams
+            Route::group(['as' => 'streams.', 'prefix' => 'streams'], function () {
+                Route::get('/', 'lsp\StreamController@index')->name('index');
+                Route::get('/create', 'lsp\StreamController@create')->name('create');
+                Route::post('/', 'lsp\StreamController@store')->name('store');
+                Route::get('/complain', 'lsp\StreamController@complain')->name('complain');
+                Route::post('/suspend', 'lsp\StreamController@suspend')->name('suspend')    ;
+                Route::get('/features', 'lsp\StreamController@feature')->name('feature');
+                Route::get('/{songId}', 'lsp\StreamController@show')->name('show');
+                Route::put('/{songId}', 'lsp\StreamController@update')->name('update');
+                Route::delete('/{songId}', 'lsp\StreamController@destroy')->name('destroy');
             });
-//        app
-            Route::get('/app', 'web\AppController@index')->name('app');
+
+            // messages
+            Route::group(['as' => 'messages.', 'prefix' => 'messages'], function () {
+                Route::get('/', 'lsp\MessageController@index')->name('index');
+                Route::post('/', 'lsp\MessageController@store')->name('store');
+                Route::delete('/', 'lsp\MessageController@delete')->name('delete');
+            });
+
+            Route::get('/analytic', 'lsp\AnalyticController@index')->name('analytic');
         });
 
+//        sales
+        Route::group(['as' => 'sales.', 'prefix' => 'sales'], function () {
+            Route::get('/order', 'lsp\OrderController@index')->name('order');
+            Route::get('/subscription', 'lsp\SubscriptionController@index')->name('subscription');
+            Route::get('/license', 'lsp\LicenseController@index')->name('license');
+        });
+
+//        tools
+        Route::group(['as' => 'tools.', 'prefix' => 'tools'], function () {
+            Route::get('/config', 'lsp\ConfigController@index')->name('config');
+            Route::get('/notification', 'lsp\NotificationController@index')->name('notification');
+            Route::get('/sendBroadcast', 'lsp\SendBroadcastController@index')->name('sendBroadcast');
+            Route::get('/testRule', 'lsp\TestRuleController@index')->name('testRule');
+        });
+//        app
+        Route::get('/app', 'lsp\AppController@index')->name('app');
     });
+
 });
 
 

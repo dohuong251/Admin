@@ -1,0 +1,15 @@
+<?php
+
+namespace App\Http\Controllers\lsp;
+
+use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+
+class TestRuleController extends Controller
+{
+    //
+    public function index(){
+
+        return view('tools.test_rule');
+    }
+}

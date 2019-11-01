@@ -1,29 +1,28 @@
 $(document).ready(function () {
-    $('.toggle-display').click(function () {
-        let toggleView = $('.toggle-display-des');
-        toggleView.first().before(toggleView.last());
-        if (toggleView.first().prop("tagName").toLowerCase() === "div") {
-            toggleView.first().addClass('slideInLeft');
-        } else {
-            toggleView.first().addClass('slideInRight');
+    // khởi tạo date picker
+    $('#birthday').daterangepicker({
+        "singleDatePicker": true,
+        "startDate": moment($('#birthday').val(), "YYYY-MM-DD"),
+        "opens": "center",
+        locale: {
+            format: 'YYYY-MM-DD'
         }
     });
 
     let dataTable = $('#song-table');
-    dataTable.DataTable({
+    let dataTableOptions = {
         processing: true,
         serverSide: true,
-        // "pagingType": "input",
-        // "pagingType": "full_numbers",
         ajax: dataTable.attr('data-table-source'),
         order: [[5, 'desc']],
         // select: true,
         columns: [
+            // data: tên trường trong dữ liệu json gửi về
             {data: 'SongId'},
             {data: 'ImageURL'},
             {data: 'Code'},
             {data: 'Name'},
-            {data: 'RateCount'},
+            {data: 'AverageRating'},
             {data: 'ViewByAll'},
         ],
         columnDefs: [
@@ -32,7 +31,7 @@ $(document).ready(function () {
                 orderable: false,
                 searchable: false,
                 render: function (data, type, row) {
-                    return `<input type="checkbox" class="select-stream select-checkbox" class="align-middle" data-href="${row.manage_url}">`
+                    return `<input type="checkbox" class="select-row" class="align-middle" data-href="${row.manage_url}">`
                 }
             },
             {
@@ -40,22 +39,17 @@ $(document).ready(function () {
                 orderable: false,
                 searchable: false,
                 render: function (data, type, row) {
-                    return `<img src='${data}' alt="channel_thumb" class="image-fit image-thumb">`;
+                    if (data) return `<img src='${data}' alt="channel_thumb" class="image-fit image-thumb img-thumbnail">`;
+                    else return '';
+                }
+            },
+            {
+                targets: [5],
+                render: function (data, type, row) {
+                    return Number(data).toLocaleString();
                 }
             },
         ],
-        "drawCallback": function (settings) {
-            $('#song-table tbody tr td:not(:first-child)').click(function (e) {
-                // if (e.target.type !== 'checkbox') {
-                window.location.href = $(this).parent().find('.select-stream').attr('data-href');
-                // }
-            });
-            $('#song-table tbody tr td:first-child').click(function (e) {
-                if (e.target.type !== 'checkbox') {
-                    let checkbox = $(this).find("input[type='checkbox']");
-                    checkbox.prop('checked', !checkbox.prop('checked'));
-                }
-            });
-        },
-    });
+    };
+    initDatatable(dataTable, dataTableOptions);
 });

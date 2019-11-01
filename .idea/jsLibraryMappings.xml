@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="JavaScriptLibraryMappings">
-    <file url="PROJECT" libraries="{apexcharts, bootstrap, daterangepicker, jquery, ladda, moment, spin, sweetalert2.all, vi}" />
+    <file url="PROJECT" libraries="{apexcharts, bootstrap, daterangepicker, jquery, ladda, moment, spin, sweetalert, sweetalert2.all, vi}" />
   </component>
 </project>

@@ -80,7 +80,6 @@ $(document).ready(function () {
                 }
             };
             chart.updateOptions(options);
-            // chart.updateSeries(options.series);
         })
     });
     inputDatePicker.trigger("apply.daterangepicker");
@@ -141,7 +140,3 @@ $(document).ready(function () {
 
     chart.render();
 });
-
-function parseServerDate(date) {
-    return moment(date, serverDateFormat);
-}

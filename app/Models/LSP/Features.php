@@ -13,4 +13,9 @@ class Features extends Base
     {
         return $this->belongsTo('App\Models\LSP\Songs', 'SongId');
     }
+
+    public function likes()
+    {
+        return $this->hasManyThrough('App\Models\LSP\Likes', 'App\Models\LSP\Songs', 'SongId', 'TargetId', 'SongId');
+    }
 }
