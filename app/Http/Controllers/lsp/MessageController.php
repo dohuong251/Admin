@@ -2,33 +2,26 @@
 
 namespace App\Http\Controllers\lsp;
 
+use App\Http\Controllers\Controller;
 use App\Models\LSP\Messages;
 use App\Models\LSP\Users;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Validation\Rule;
 
 class MessageController extends Controller
 {
     //
     public function index(Request $request)
     {
-//        dd(Messages::find(98623),date_format(date_create(Messages::find(98623)->Time),'H:i d/m/Y'));
         $userId = $request->get('userid', 15);
         $user = Users::find($userId);
-//        $conversations = Messages::with('sendUser', 'receiveUser')->where('FromUserId', $userId)
-//            ->orWhere('ToUserId', $userId)
-//            ->orderBy('Time', 'asc')
-//            ->get();
 
-        $conversations = Messages::with('sendUser', 'receiveUser')->select('FromUserId', 'ToUserId')->where('FromUserId', $userId)
+        $conversations = Messages::with('sendUser', 'receiveUser')
+            ->select('FromUserId', 'ToUserId')
+            ->where('FromUserId', $userId)
             ->orWhere('ToUserId', $userId)
-            ->groupBy('FromUserId', 'ToUserId')
             ->orderBy('Time', 'desc')
             ->get();
-//        dd($conversations->map(function ($conversation) {
-//            return [$conversation->sendUser, $conversation->receiveUser];
-//        })->flatten()->unique());
+
         return view('lsp.message', [
             'user' => $user,
 //            'conversationUsers' => $conversations->pluck('sendUser')->merge($conversations->pluck('receiveUser'))->unique(),
@@ -75,12 +68,22 @@ class MessageController extends Controller
 
     }
 
-    public function delete(Request $request)
+
+    protected function getDeleteClass()
     {
-        if (Messages::destroy($request->get('Id'))) {
-            return;
-        } else {
-            return abort(500);
-        }
+        // TODO: Implement getDeleteClass() method.
+        return Messages::class;
+    }
+
+    /**
+     * @return array các tham số share cho tất cả các view trả về bởi controller
+     */
+    protected function getViewShareArray()
+    {
+        // TODO: Implement getViewShareArray() method.
+        return array(
+            "deleteUrl" => route('admin.lsp.messages.delete'),
+//            "recordName" => "Thành Viên",
+        );
     }
 }

@@ -65,4 +65,9 @@ class Songs extends Base
         return $this->hasOne('App\Models\LSP\Views', 'SongId');
     }
 
+    public function complains()
+    {
+        return $this->hasMany('App\Models\LSP\Complain', 'ChannelCode', 'Code');
+    }
+
 }

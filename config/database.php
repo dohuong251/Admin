@@ -81,6 +81,24 @@ return [
             ]) : [],
         ],
 
+        'mysql_mdc_apps_connection' => [
+            'driver' => 'mysql',
+            'host' => env('APPS_DB_HOST'),
+            'port' => env('APPS_DB_PORT'),
+            'database' => env('APPS_DB_DATABASE'),
+            'username' => env('APPS_DB_USERNAME'),
+            'password' => env('APPS_DB_PASSWORD'),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => false,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),

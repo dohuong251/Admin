@@ -7,6 +7,8 @@
     <title>@yield('title', 'Admin')</title>
     <style>
         #loader {
+            top: 0;
+            left: 0;
             transition: all .3s ease-in-out;
             opacity: 1;
             visibility: visible;
@@ -14,7 +16,7 @@
             height: 100vh;
             width: 100%;
             background: #fff;
-            z-index: 90000
+            z-index: 90000;
         }
 
         #loader.fadeOut {
@@ -60,7 +62,7 @@
     <link href="/css/dist/style.css" rel="stylesheet">
     @yield('css')
 </head>
-<body class="app">
+<body class="app ovY-a pr-0">
 <div id="loader">
     <div class="spinner"></div>
 </div>
@@ -172,7 +174,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-                    <a class="sidebar-link" href="{{route('admin.app')}}">
+                    <a class="sidebar-link" href="{{route('admin.apps.index')}}">
                         <span class="icon-holder"><i class="c-brown-500 ti-email"></i> </span>
                         <span class="title">Apps</span>
                     </a>
@@ -219,7 +221,15 @@
 <script src="/js/vendors/jquery.min.js"></script>
 <script type="text/javascript" src="/js/dist/vendor.js"></script>
 <script type="text/javascript" src="/js/dist/bundle.js"></script>
+<script src="/js/vendors/lazyload.min.js"></script>
 <script src="/js/dist/main.js"></script>
+<script>
+    let deleteOptions = {
+        deleteUrl: "{!! $deleteUrlDetailPage ?? $deleteUrl ?? ""!!}",
+        recordName: "{!! $recordNameDetailPage ?? $recordName ?? "" !!}",
+
+    }
+</script>
 @yield('js')
 </body>
 </html>

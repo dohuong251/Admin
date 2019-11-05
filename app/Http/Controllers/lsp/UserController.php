@@ -2,24 +2,21 @@
 
 namespace App\Http\Controllers\lsp;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\mảng;
 use App\Models\LSP\Songs;
 use App\Models\LSP\Users;
 use Config;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Pagination\LengthAwarePaginator;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Input;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
+use View;
 use Yajra\DataTables\Facades\DataTables;
-use Illuminate\Support\Collection;
-use function foo\func;
 
 
 class UserController extends Controller
 {
+
 
     /**
      * @param Request $request
@@ -164,10 +161,11 @@ class UserController extends Controller
     public function show($userId)
     {
         $user = Users::find($userId);
-//        $songs=Song::paginate(30);
-        $song = $user->Songs;
-//        dd($user->UserId);
-        return view('lsp.user_detail', ['user' => $user, 'song' => $song]);
+        return view('lsp.user_detail', [
+            'user' => $user,
+            "deleteUrlDetailPage" => route('admin.lsp.streams.delete'),
+            "recordNameDetailPage" => "Streams"
+        ]);
     }
 
     public function streams($userId)
@@ -219,8 +217,21 @@ class UserController extends Controller
         return redirect()->back();
     }
 
-    public function delete(Request $request)
+    protected function getDeleteClass()
     {
-        return Users::find($request->get('UserId'))->delete();
+        // TODO: Implement getDeleteMethod() method.
+        return Users::class;
+    }
+
+    /**
+     * @return array các tham số share cho tất cả các view trả về bởi controller
+     */
+    protected function getViewShareArray()
+    {
+        // TODO: Implement getViewShareArray() method.
+        return array(
+            "deleteUrl" => route('admin.lsp.user.delete'),
+            "recordName" => "Thành Viên",
+        );
     }
 }

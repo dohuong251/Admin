@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers\lsp;
 
-use App;
+use App\Http\Controllers\Controller;
 use App\Models\LSP\Complain;
-use App\Models\LSP\Copyrightstreams;
 use App\Models\LSP\Features;
 use App\Models\LSP\Messages;
 use App\Models\LSP\Songs;
 use Config;
 use DB;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Yajra\DataTables\Facades\DataTables;
 
 class StreamController extends Controller
 {
@@ -75,7 +72,7 @@ class StreamController extends Controller
     public function complain()
     {
         $record_per_page = Config::get('constant.PAGINATION_RECORD_PER_PAGE');
-        $complainStreams = Complain::selectRaw('*, count(*) as Num')->orderBy('Time', 'desc')->groupBy('ChannelCode')->paginate($record_per_page);
+        $complainStreams = Complain::with('song')->selectRaw('*, count(*) as Num')->orderBy('Time', 'desc')->groupBy('ChannelCode')->paginate($record_per_page);
         return view('lsp.stream_complain', ['complainStreams' => $complainStreams]);
     }
 
@@ -148,11 +145,6 @@ class StreamController extends Controller
         }
     }
 
-    public function delete(Request $request)
-    {
-
-    }
-
     public function feature()
     {
         $record_per_page = Config::get('constant.PAGINATION_RECORD_PER_PAGE');
@@ -178,5 +170,23 @@ class StreamController extends Controller
                 ->groupBy('PublishedDate')
                 ->orderBy('PublishedDate', 'asc')
                 ->get());
+    }
+
+    protected function getDeleteClass()
+    {
+        // TODO: Implement getDeleteClass() method.
+        return Songs::class;
+    }
+
+    /**
+     * @return array các tham số share cho tất cả các view trả về bởi controller
+     */
+    protected function getViewShareArray()
+    {
+        // TODO: Implement getViewShareArray() method.
+        return array(
+            "deleteUrl" => route("admin.lsp.streams.delete"),
+            "recordName" => "Stream",
+        );
     }
 }

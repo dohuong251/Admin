@@ -1,3 +1,6 @@
+let images = document.querySelectorAll("img");
+lazyload(images);
+
 let locacleDateFormat = "DD/MM/YYYY";
 let serverDateFormat = "YYYY-MM-DD";
 

@@ -1,13 +1,19 @@
 @extends('layouts.main')
 @section('title', 'Streams')
 @section('css')
+    <link rel="stylesheet" href="/css/vendors/ladda.min.css"/>
+    <link rel="stylesheet" href="/css/vendors/animate.min.css"/>
 @endsection
 
 @section('js')
+    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+    <script src="/js/vendors/spin.min.js"></script>
+    <script src="/js/vendors/ladda.min.js"></script>
     <script src="/js/vendors/clipboard.min.js"></script>
     <script src="/js/vendors/popper.min.js"></script>
     <script src="/js/vendors/bootstrap.min.js"></script>
     <script src="/js/vendors/jquery.stickytableheaders.min.js"></script>
+    <script src="/js/dist/delete.js"></script>
     <script src="/js/lsp/streams.js"></script>
 @endsection
 
@@ -52,7 +58,7 @@
                     <tr data-href="{{route('admin.lsp.streams.show',$song->SongId)}}" @if($song->Copyright==1)class="danger"@endif>
                         {{--                    <tr>--}}
                         <th scope="row" class="align-middle">
-                            <input type="checkbox" class="align-middle select-row">
+                            <input type="checkbox" class="align-middle select-row" data-id="{{$song->SongId}}">
                         </th>
                         <td>
                             <img src="{{$song->ImageURL}}" class="image-thumb image-fit img-thumbnail">
@@ -89,8 +95,8 @@
 
         </div>
         {{$songs->links('vendor.pagination.custom')}}
+        @include('layouts.deleteButton')
+{{--        @include('layouts.deleteGroupButton')--}}
     @endif
-
-
 
 @endsection

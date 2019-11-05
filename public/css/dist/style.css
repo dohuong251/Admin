@@ -21,6 +21,27 @@
 @media (min-width: 1200px) {
 }
 
+/* commonn */
+.whs-pl {
+    white-space: pre-line !important
+}
+
+.bgc-black {
+    background: black;
+}
+
+.mh-50 {
+    max-height: 50% !important;
+}
+
+.mw-50 {
+    max-width: 50% !important;
+}
+
+.pt-100p {
+    padding-top: 100%;
+}
+
 .zoom-90, #mainContent > div.full-container > nav[aria-label="breadcrumb"], .container-fluid {
     /*zoom: 90%;*/
 }
@@ -31,7 +52,7 @@
 
 .fa {
     font-size: 20px !important;
-    vertical-align: initial !important;
+    /*vertical-align: initial !important;*/
 }
 
 /*.dropdown-menu {*/
@@ -66,28 +87,6 @@
 
 :-moz-placeholder {
     opacity: 0.3 !important;
-}
-
-div.ck * {
-    line-height: normal;
-    letter-spacing: normal;
-}
-
-/*tr td:not(:last-child){*/
-/*white-space: nowrap !important;*/
-/*width: 1% !important;*/
-/*}*/
-
-a.avatar {
-    width: 210px;
-    height: 80px;
-    padding: .25rem;
-    border: 1px solid #dee2e6;
-    border-radius: .25rem;
-    -webkit-background-size: cover !important;
-    -moz-background-size: cover !important;
-    -o-background-size: cover !important;
-    background-size: cover !important;
 }
 
 img[src=""] {
@@ -131,6 +130,28 @@ textarea.noresize {
 
 .td-u-hover:hover, .td-u-focus:focus {
     text-decoration: underline;
+}
+
+div.ck * {
+    line-height: normal;
+    letter-spacing: normal;
+}
+
+/*tr td:not(:last-child){*/
+/*white-space: nowrap !important;*/
+/*width: 1% !important;*/
+/*}*/
+
+a.avatar {
+    width: 210px;
+    height: 80px;
+    padding: .25rem;
+    border: 1px solid #dee2e6;
+    border-radius: .25rem;
+    -webkit-background-size: cover !important;
+    -moz-background-size: cover !important;
+    -o-background-size: cover !important;
+    background-size: cover !important;
 }
 
 .text-value {
@@ -266,7 +287,7 @@ a.btn:focus {
     background-color: #f24537 !important;
     -moz-border-radius: 4px;
     -webkit-border-radius: 4px;
-    border-radius: 4px !important;
+    border-radius: 4px;
     border: 1px solid #d02718 !important;
     display: inline-block;
     cursor: pointer;
@@ -499,15 +520,15 @@ tr.warning:hover {
 }
 
 /* element */
-span, i {
-    vertical-align: middle;
-}
+/*span, i {*/
+/*    vertical-align: middle;*/
+/*}*/
 
 label {
     margin-bottom: 0 !important;
 }
 
-/* message */
+/* lsp messages page */
 .message-box {
     max-width: 80%;
 }
@@ -524,6 +545,20 @@ label {
     background: #F2F6F9;
 }
 
+.message-guest + .message-host, .message-host + .message-guest {
+    margin-top: 8px !important;
+    margin-top: 0.5rem !important;
+}
+
+.message-host + .message-host, .message-guest + .message-guest {
+    margin-top: 2px !important
+}
+
+.message-box > div {
+    min-height: 32px;
+    min-height: 2rem
+}
+
 .messenger {
     background: rgba(240, 244, 248, 0.75);
 }
@@ -538,6 +573,15 @@ label {
 
 .select2 {
     width: 100% !important;
+}
+
+/* app index page */
+.app-card {
+    transition: all .2s ease-in-out;
+}
+
+.app-card:hover {
+    transform: scale(1.1);
 }
 
 /* spinner */

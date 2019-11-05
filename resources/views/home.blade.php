@@ -17,7 +17,7 @@
 @section('content')
     <div id="lsp-dashboard">
         <input type="text" id="lsp-date-picker" class="form-control w-auto text-center mx-auto mt-3"
-               data-url="{{route('admin.lsp.stream_dashboard')}}">
+               data-url="{{route('admin.lsp.streams.dashboard')}}">
 
         <div id="lsp-chart"></div>
     </div>

@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="/css/vendors/animate.min.css"/>
 @endsection
 @section('js')
+    <script src="/js/vendors/sweetalert2.all.min.js"></script>
     <script src="/js/vendors/moment.min.js"></script>
     <script src="/js/vendors/moment_vi.js"></script>
     <script
@@ -22,23 +23,25 @@
                 <a href="{{route('admin.lsp.user.index')}}">Management User</a>
             </li>
 
-            <li class="breadcrumb-item active">
-                {{$user -> Nickname}}
-            </li>
+            @if($user)
+                <li class="breadcrumb-item active">
+                    {{$user -> Nickname}}
+                </li>
 
-            <li class="breadcrumb-menu ml-auto mr-2 d-flex c-white">
-                <a class="btn btn-primary mr-2" href="{{route('admin.lsp.messages.index',['userid'=>$user->UserId])}}">
-                    <i class="fa fa-fw fa-commenting-o"></i>
-                </a>
-                <form action="{{route('admin.lsp.user.destroy', $user->UserId)}}" method="post"
-                      onsubmit="return confirmDelete(this)">
-                    @method('DELETE')
-                    {{csrf_field()}}
-                    <button class="btn btn-danger" type="submit">
-                        <i class="fa fa-fw fa-trash"></i>
-                    </button>
-                </form>
-            </li>
+                <li class="breadcrumb-menu ml-auto mr-2 d-flex c-white">
+                    <a class="btn btn-primary mr-2" href="{{route('admin.lsp.messages.index',['userid'=>$user->UserId])}}">
+                        <i class="fa fa-fw fa-commenting-o"></i>
+                    </a>
+                    <form action="{{route('admin.lsp.user.destroy', $user->UserId)}}" method="post"
+                          onsubmit="return confirmDelete(this)">
+                        @method('DELETE')
+                        {{csrf_field()}}
+                        <button class="btn btn-danger" type="submit">
+                            <i class="fa fa-fw fa-trash"></i>
+                        </button>
+                    </form>
+                </li>
+            @endif
         </ol>
 
     </nav>
@@ -333,8 +336,10 @@
                     </thead>
                 </table>
             </div>
-
-
+        @else
+            <div class="mb-2">
+                <b>Thành viên không tồn tại</b>
+            </div>
         @endif
     </div>
     @include('layouts.deleteButton')

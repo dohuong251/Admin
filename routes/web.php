@@ -46,7 +46,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::get('/', 'lsp\UserController@index')->name('index');
                 Route::get('/{userId}/streams', 'lsp\UserController@streams')->name('streams');
                 Route::get('/{userId}', 'lsp\UserController@show')->name('show');
+
                 Route::put('/{userId}', 'lsp\UserController@update')->name('update');
+
                 Route::delete('/{userId}', 'lsp\UserController@destroy')->name('destroy');
                 Route::delete('/', 'lsp\UserController@delete')->name('delete');
             });
@@ -55,13 +57,18 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             Route::group(['as' => 'streams.', 'prefix' => 'streams'], function () {
                 Route::get('/', 'lsp\StreamController@index')->name('index');
                 Route::get('/create', 'lsp\StreamController@create')->name('create');
-                Route::post('/', 'lsp\StreamController@store')->name('store');
+                Route::get('/dashboard', 'lsp\StreamController@filter')->name('dashboard');
                 Route::get('/complain', 'lsp\StreamController@complain')->name('complain');
-                Route::post('/suspend', 'lsp\StreamController@suspend')->name('suspend')    ;
                 Route::get('/features', 'lsp\StreamController@feature')->name('feature');
                 Route::get('/{songId}', 'lsp\StreamController@show')->name('show');
+
+                Route::post('/', 'lsp\StreamController@store')->name('store');
+                Route::post('/suspend', 'lsp\StreamController@suspend')->name('suspend');
+
                 Route::put('/{songId}', 'lsp\StreamController@update')->name('update');
+
                 Route::delete('/{songId}', 'lsp\StreamController@destroy')->name('destroy');
+                Route::delete('/', 'lsp\StreamController@delete')->name('delete');
             });
 
             // messages
@@ -83,13 +90,17 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
 //        tools
         Route::group(['as' => 'tools.', 'prefix' => 'tools'], function () {
-            Route::get('/config', 'lsp\ConfigController@index')->name('config');
-            Route::get('/notification', 'lsp\NotificationController@index')->name('notification');
-            Route::get('/sendBroadcast', 'lsp\SendBroadcastController@index')->name('sendBroadcast');
-            Route::get('/testRule', 'lsp\TestRuleController@index')->name('testRule');
+            Route::get('/config', 'tool\ConfigController@index')->name('config');
+            Route::get('/notification', 'tool\NotificationController@index')->name('notification');
+            Route::get('/sendBroadcast', 'tool\SendBroadcastController@index')->name('sendBroadcast');
+            Route::get('/testRule', 'tool\TestRuleController@index')->name('testRule');
         });
 //        app
-        Route::get('/app', 'lsp\AppController@index')->name('app');
+        Route::group(['as' => 'apps.', 'prefix' => 'apps'], function () {
+            Route::get('/', 'app\AppController@index')->name('index');
+
+            Route::get('/{appId}','app\AppController@show')->name('show');
+        });
     });
 
 });

@@ -1,15 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\lsp;
+namespace App\Http\Controllers\tool;
 
 use App\Http\Controllers\Controller;
 
-class OrderController extends Controller
+class SendBroadcastController extends Controller
 {
     //
     public function index()
     {
-        return view('sales.order');
+        return view('tools.send_broadcast');
     }
 
     protected function getDeleteClass()

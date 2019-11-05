@@ -24,6 +24,12 @@
             <li class="breadcrumb-item">
                 <a href="{{route('admin.lsp.user.show',$user->UserId)}}">{{$user -> Nickname}}</a>
             </li>
+
+            <li class="ml-auto">
+                <a href="" class="td-n c-grey-900 cH-blue-500 fsz-md" title="Gửi tin nhắn" data-toggle="modal" data-target="#exampleModal">
+                    <i class="fa fa-commenting-o align-baseline"></i>
+                </a>
+            </li>
         </ol>
 
     </nav>
@@ -73,11 +79,9 @@
                 </div>
             </div>
         </div>
-        <script>let conversationUsers = [];</script>
         <div class="peer peer-greed" id="chat-box">
             @foreach($conversationUsers as $conversationUser)
                 @if($conversationUser)
-                    <script>conversationUsers.push({!! json_encode($conversationUser) !!})</script>
                     <div class="layers h-100 message-content d-none" id="mess-{{$conversationUser->UserId}}">
                         <div class="layer w-100 shadow-sm">
                             <div class="peers fxw-nw jc-sb ai-c pY-20 pX-30 bgc-white">
@@ -102,11 +106,11 @@
                                     </div>
                                 </div>
 
-                                <div class="peers">
-                                    <a href="" class="peer td-n c-grey-900 cH-blue-500 fsz-md" title="Gửi tin nhắn" data-toggle="modal" data-target="#exampleModal">
-                                        <i class="fa fa-commenting-o align-baseline"></i>
-                                    </a>
-                                </div>
+{{--                                <div class="peers">--}}
+{{--                                    <a href="" class="peer td-n c-grey-900 cH-blue-500 fsz-md" title="Gửi tin nhắn" data-toggle="modal" data-target="#exampleModal">--}}
+{{--                                        <i class="fa fa-commenting-o align-baseline"></i>--}}
+{{--                                    </a>--}}
+{{--                                </div>--}}
 
                             </div>
                         </div>
@@ -132,7 +136,7 @@
                                                 <div class="layers ai-fe gapY-10">
                                                     <div class="layer message-box">
                                                         <div class="peers fxw-nw ai-c pY-3 pX-10  bdrs-2 lh-3/2" data-toggle="tooltip" data-placement="right" title="" data-original-title="{{date_format(date_create($message->Time),'H:i d/m/Y')}}">
-                                                            <span class="text-break">{{$message->Message}}</span>
+                                                            <span class="text-break whs-pl">{{$message->Message}}</span>
                                                             <i class="fa fa-trash text-danger fsz-xs ml-2 cur-p delete-message" data-id="{{$message->MessageId}}"></i>
                                                         </div>
                                                     </div>
@@ -152,10 +156,8 @@
                                                 <div class="layers ai-fs gapY-5">
                                                     <div class="layer message-box">
                                                         <div class="peers fxw-nw ai-c pY-3 pX-10 bdrs-2 lh-3/2" data-toggle="tooltip" data-placement="right" title="" data-original-title="{{date_format(date_create($message->Time),'H:i d/m/Y')}}">
-                                                            <div class="peer-greed">
-                                                                <i class="fa fa-trash text-danger fsz-xs mr-2 cur-p delete-message" data-id="{{$message->MessageId}}"></i>
-                                                                <span class="text-break">{{$message->Message}}</span>
-                                                            </div>
+                                                            <i class="fa fa-trash text-danger fsz-xs mr-2 cur-p delete-message" data-id="{{$message->MessageId}}"></i>
+                                                            <span class="text-break whs-pl">{{$message->Message}}</span>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -186,8 +188,7 @@
             @endforeach
         </div>
     </div>
-    <script>let adminAvatar = "{!! \App\Models\LSP\Users::find(15)->Avatar !!}",
-            deleteUrl = "{!! route('admin.lsp.messages.delete') !!}"</script>
+    <script>let adminAvatar = "{!! \App\Models\LSP\Users::find(15)->Avatar !!}";</script>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

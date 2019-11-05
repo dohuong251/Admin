@@ -2,14 +2,28 @@
 
 namespace App\Http\Controllers\lsp;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class LicenseController extends Controller
 {
     //
-    public function index(){
-
+    public function index()
+    {
         return view('sales.license');
+    }
+
+    protected function getDeleteClass()
+    {
+        // TODO: Implement getDeleteClass() method.
+        return null;
+    }
+
+    /**
+     * @return array các tham số share cho tất cả các view trả về bởi controller
+     */
+    protected function getViewShareArray()
+    {
+        // TODO: Implement getViewShareArray() method.
+        return null;
     }
 }

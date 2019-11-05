@@ -25,4 +25,22 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    /**
+     * @return array các tham số share cho tất cả các view trả về bởi controller
+     */
+    protected function getViewShareArray()
+    {
+        // TODO: Implement getViewShareArray() method.
+        return null;
+    }
+
+    /**
+     * @return model sẽ thực hiện xóa hàng loạt trong hàm delete
+     */
+    protected function getDeleteClass()
+    {
+        // TODO: Implement getDeleteClass() method.
+        return null;
+    }
 }

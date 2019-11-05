@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\model;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -87,4 +88,21 @@ class LoginController extends Controller
         return redirect()->route('admin.login');
     }
 
+    /**
+     * @return array các tham số share cho tất cả các view trả về bởi controller
+     */
+    protected function getViewShareArray()
+    {
+        // TODO: Implement getViewShareArray() method.
+        return null;
+    }
+
+    /**
+     * @return model sẽ thực hiện xóa hàng loạt trong hàm delete
+     */
+    protected function getDeleteClass()
+    {
+        // TODO: Implement getDeleteClass() method.
+        return null;
+    }
 }

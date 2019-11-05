@@ -126,11 +126,6 @@
         {{--                    {{$users->links()}}--}}
         {{$users->links('vendor.pagination.custom')}}
         @include('layouts.deleteButton')
-        <script>
-            let deleteOptions = {
-                url: "{!! route('admin.lsp.user.delete') !!}"
-            }
-        </script>
     @else
         <strong>Không tìm thấy thành viên</strong>
     @endif

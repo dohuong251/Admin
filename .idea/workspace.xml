@@ -2,94 +2,66 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/MessageController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/StreamController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/UserController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/lsp/message.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/lsp/streams.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/404.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/500.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/errors/minimal.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/layouts/language_select.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lsp/layout_modal_suspend_stream.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lsp/stream_complain.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lsp/stream_create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lsp/stream_feature.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Admin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/app/AppController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/tool/ConfigController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/tool/NotificationController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/tool/SendBroadcastController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/tool/TestRuleController.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/AppDownloadDay.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/AppResources.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/AppVersion.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/Base.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/Category.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/Comment.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/Config.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/Contacts.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/GCM.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/Platform.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/User.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Models/APPS/UserApp.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/public/js/app/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/apps/app_detail.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/apps/apps.blade.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/deleteGroupButton.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/AnalyticController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/AnalyticController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/AppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/AppController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/ConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/ConfigController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/LicenseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/LicenseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/MessageController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/NotificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/NotificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/SendBroadcastController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/SendBroadcastController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/StreamController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/SubscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/SubscriptionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/TestRuleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/TestRuleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/web/UserController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/Authenticate.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/HomeController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/AnalyticController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/AnalyticController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/AppController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/ConfigController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/LicenseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/LicenseController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/MessageController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/NotificationController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/OrderController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/SendBroadcastController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/StreamController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/StreamController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/SubscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/SubscriptionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/TestRuleController.php" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/lsp/UserController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Models/LSP/Complain.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LSP/Complain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Features.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LSP/Features.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Songs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/LSP/Songs.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/247a9830fbbb38076a44667877b0966e.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/3a7c71af0a2a54c13b306ad96110cb2d.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/fonts/icons/fontawesome/FontAwesome.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/fonts/icons/fontawesome/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/fonts/icons/fontawesome/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/fonts/icons/fontawesome/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/fonts/icons/fontawesome/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/fonts/icons/fontawesome/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/fonts/icons/themify/themify.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/fonts/icons/themify/themify.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/fonts/icons/themify/themify.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/fonts/icons/themify/themify.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/images/404.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/images/500.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/images/bg.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/images/datatables/sort_asc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/images/datatables/sort_asc_disabled.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/images/datatables/sort_both.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/images/datatables/sort_desc.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/images/datatables/sort_desc_disabled.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/images/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/assets/static/images/logo.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/app.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/css/dist/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/dist/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/lsp/streams.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/lsp/user.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/lsp/users.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icon/Logo_mini.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icon/logo.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/images/icon/logo_transparent.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/dashboard/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/dashboard/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/dist/delete.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/dist/delete.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/dist/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/lsp/ajax_setup.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/lsp/confirm_submit_delete.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/lsp/delete.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/dist/delete.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/lsp/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lsp/message.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/lsp/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lsp/user.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/lsp/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lsp/users.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/home.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/home.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/blank.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/blank.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/deleteButton.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/deleteButton.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/blank1.blade.php" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/edit_user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/edit_user.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/lsp/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/message.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_complain.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_complain.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/lsp/streams.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/streams.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/lsp/user_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/user_detail.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/lsp/users.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/users.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/script/jquery.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/script/ladda.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/script/sweetalert.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/pagination/custom.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/pagination/custom.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tools/config.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/config.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tools/notification.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/notification.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tools/send_broadcast.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/broadcast.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tools/test_rule.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/test_rule.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -125,8 +97,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Blade" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -253,10 +225,11 @@
   </component>
   <component name="ProjectId" id="1PPDizZXpYHfPtmALFaGDApoWea" />
   <component name="PropertiesComponent">
+    <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="CSS&#10;JavaScript" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/errors" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="MySQL&#10;CSS&#10;JavaScript" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/tool" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -267,22 +240,23 @@
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
     <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\MDCAdmin\Admin\resources\views\errors" />
-      <recent name="E:\MDCAdmin\Admin\public\js\dist" />
-      <recent name="E:\MDCAdmin\Admin\resources\views\lsp" />
+      <recent name="E:\MDCAdmin\Admin\resources\views\tool" />
+      <recent name="E:\MDCAdmin\Admin\resources\views\apps" />
+      <recent name="E:\MDCAdmin\Admin\app\Models\APPS" />
       <recent name="E:\MDCAdmin\Admin\resources\views\layouts" />
-      <recent name="E:\MDCAdmin\Admin\public\js\lsp" />
+      <recent name="E:\MDCAdmin\Admin\resources\views\errors" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\tool" />
+      <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\app" />
+      <recent name="E:\MDCAdmin\Admin\app\Models" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\lsp" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers" />
-      <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\web\lsp" />
-      <recent name="E:\MDCAdmin\Admin\public\js\dist" />
-      <recent name="E:\MDCAdmin\Admin\resources\views" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -309,6 +283,16 @@
       <item itemvalue="PHP Web Page.debug laravel" />
       <item itemvalue="PHPUnit.phpunit.xml" />
     </list>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="allServicesViewState">
+      <serviceView>
+        <treeState>
+          <expand />
+          <select />
+        </treeState>
+      </serviceView>
+    </option>
   </component>
   <component name="StructureViewFactory">
     <option name="ACTIVE_ACTIONS" value=",ALPHA_COMPARATOR" />
@@ -379,7 +363,9 @@
       <workItem from="1572347366893" duration="1856000" />
       <workItem from="1572401128539" duration="22399000" />
       <workItem from="1572487520856" duration="21014000" />
-      <workItem from="1572574318138" duration="20992000" />
+      <workItem from="1572574318138" duration="21186000" />
+      <workItem from="1572834261730" duration="26350000" />
+      <workItem from="1572919502311" duration="14563000" />
     </task>
     <servers />
   </component>

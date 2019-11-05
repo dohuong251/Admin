@@ -1,3 +1,4 @@
+let dataTable;
 $(document).ready(function () {
     // khởi tạo date picker
     $('#birthday').daterangepicker({
@@ -9,7 +10,7 @@ $(document).ready(function () {
         }
     });
 
-    let dataTable = $('#song-table');
+    dataTable = $('#song-table');
     let dataTableOptions = {
         processing: true,
         serverSide: true,
@@ -31,7 +32,7 @@ $(document).ready(function () {
                 orderable: false,
                 searchable: false,
                 render: function (data, type, row) {
-                    return `<input type="checkbox" class="select-row" class="align-middle" data-href="${row.manage_url}">`
+                    return `<input type="checkbox" class="select-row" class="align-middle" data-href="${row.manage_url}" data-id="${data}">`
                 }
             },
             {
