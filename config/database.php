@@ -99,6 +99,24 @@ return [
             ]) : [],
         ],
 
+        'mysql_tool_connection' => [
+            'driver' => 'mysql',
+            'host' => env('TOOL_DB_HOST'),
+            'port' => env('TOOL_DB_PORT'),
+            'database' => env('TOOL_DB_DATABASE'),
+            'username' => env('TOOL_DB_USERNAME'),
+            'password' => env('TOOL_DB_PASSWORD'),
+            'charset' => 'utf8',
+            'collation' => 'utf8_unicode_ci',
+            'prefix' => '',
+            'prefix_indexes' => true,
+            'strict' => false,
+            'engine' => null,
+            'options' => extension_loaded('pdo_mysql') ? array_filter([
+                PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
+            ]) : [],
+        ],
+
         'pgsql' => [
             'driver' => 'pgsql',
             'url' => env('DATABASE_URL'),

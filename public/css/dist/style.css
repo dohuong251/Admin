@@ -7,6 +7,45 @@
 
 /* Small devices (landscape phones, 576px and up)*/
 @media (min-width: 576px) {
+    .border-sm {
+        border: 1px solid rgba(0, 0, 0, .0625) !important
+    }
+
+    .border-top-sm {
+        border-top: 1px solid rgba(0, 0, 0, .0625) !important
+    }
+
+    .border-right-sm {
+        border-right: 1px solid rgba(0, 0, 0, .0625) !important
+    }
+
+    .border-bottom-sm {
+        border-bottom: 1px solid rgba(0, 0, 0, .0625) !important
+    }
+
+    .border-left-sm {
+        border-left: 1px solid rgba(0, 0, 0, .0625) !important
+    }
+
+    .border-0-sm {
+        border: 1px solid rgba(0, 0, 0, .0625) !important
+    }
+
+    .border-top-0-sm {
+        border-top: 1px solid rgba(0, 0, 0, .0625) !important
+    }
+
+    .border-right-0-sm {
+        border-right: 1px solid rgba(0, 0, 0, .0625) !important
+    }
+
+    .border-bottom-0-sm {
+        border-bottom: 1px solid rgba(0, 0, 0, .0625) !important
+    }
+
+    .border-left-0-sm {
+        border-left: 1px solid rgba(0, 0, 0, .0625) !important
+    }
 }
 
 /*Medium devices (tablets, 768px and up)*/
@@ -21,7 +60,84 @@
 @media (min-width: 1200px) {
 }
 
+/* loadding top right progress*/
+.loading-icon {
+    display: block;
+    position: fixed;
+    z-index: 2000;
+    top: 15px;
+    right: 15px;
+    width: 14px;
+    height: 14px;
+    border: solid 2px transparent;
+    border-top-color: #29d;
+    border-left-color: #29d;
+    border-radius: 10px;
+    -webkit-animation: loading-progress 400ms linear infinite;
+    -moz-animation: loading-progress 400ms linear infinite;
+    -ms-animation: loading-progress 400ms linear infinite;
+    -o-animation: loading-progress 400ms linear infinite;
+    animation: loading-progress 400ms linear infinite;
+}
+
+/*! CSS Used keyframes */
+@-webkit-keyframes loading-progress {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-moz-keyframes loading-progress {
+    0% {
+        -moz-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -moz-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-o-keyframes loading-progress {
+    0% {
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -o-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@-ms-keyframes loading-progress {
+    0% {
+        -ms-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        -ms-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes loading-progress {
+    0% {
+        transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
 /* commonn */
+
 .whs-pl {
     white-space: pre-line !important
 }
@@ -50,9 +166,49 @@
     padding-right: 56px !important;
 }
 
-.fa {
-    font-size: 20px !important;
+.fa, .fa5 {
+    /*font-size: 20px !important;*/
     /*vertical-align: initial !important;*/
+}
+
+.word-break-all {
+    word-break: break-all !important;
+    word-wrap: break-word !important;
+}
+
+.transition-normal {
+    transition: all .2s ease-in-out;
+}
+
+.slide-up {
+    -webkit-animation: slide-up .3s ease-in-out;
+    -moz-animation: slide-up .3s ease-in-out;
+}
+
+@-webkit-keyframes slide-up {
+    0% {
+        opacity: 0;
+        -webkit-transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        -webkit-transform: translateY(0);
+    }
+}
+
+@-moz-keyframes slide-up {
+    0% {
+        opacity: 0;
+        -moz-transform: translateY(100%);
+    }
+    100% {
+        opacity: 1;
+        -moz-transform: translateY(0);
+    }
+}
+
+.cur-m {
+    cursor: move;
 }
 
 /*.dropdown-menu {*/
@@ -95,6 +251,10 @@ img[src=""] {
 
 textarea.noresize {
     resize: none;
+}
+
+.resize-vertical {
+    resize: vertical;
 }
 
 .ellipsis {
@@ -195,10 +355,6 @@ th input[type="checkbox"], td input[type="checkbox"] {
 
 .mr-15 {
     margin-right: 15px;
-}
-
-.cell-inline {
-    white-space: nowrap;
 }
 
 .cell-fitcontent {
@@ -559,15 +715,15 @@ label {
     min-height: 2rem
 }
 
-.messenger {
+.config-name, .messenger {
     background: rgba(240, 244, 248, 0.75);
 }
 
-.messenger:hover {
+.config-name:hover, .messenger:hover {
     background: rgba(220, 241, 250, 0.75);
 }
 
-.messenger.active, .messenger.active:hover {
+.config-name.active, .messenger.active, .config-name.active:hover, .messenger.active:hover {
     background: rgba(199, 237, 252, 0.75) !important;
 }
 
@@ -583,6 +739,7 @@ label {
 .app-card:hover {
     transform: scale(1.1);
 }
+
 
 /* spinner */
 @keyframes lds-spinner {

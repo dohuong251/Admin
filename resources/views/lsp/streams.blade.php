@@ -44,7 +44,7 @@
                     </th>
                     <th scope="col">Thumbnail</th>
                     <th scope="col">Code</th>
-                    <th scope="col" class="cell-inline">Channel Name</th>
+                    <th scope="col" class="text-nowrap">Channel Name</th>
                     <th scope="col">URL</th>
                     <th scope="col">Owner</th>
                     <th scope="col">Views</th>

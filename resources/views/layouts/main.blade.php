@@ -129,8 +129,19 @@
                         <li>
                             <a class="sidebar-link" href="{{route('admin.lsp.messages.index')}}">Messages</a>
                         </li>
-                        <li>
-                            <a class="sidebar-link" href="{{route('admin.lsp.analytic')}}">Analytics</a>
+                        <li class="nav-item dropdown">
+                            <a href="javascript:void(0);">
+                                <span>Analytics</span>
+                                <span class="arrow"><i class="ti-angle-right"></i></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="{{route('admin.lsp.analytic.statistics')}}">Statistics</a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);">Realtime</a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
                 </li>
@@ -179,6 +190,12 @@
                         <span class="title">Apps</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="sidebar-link" href="{{route('admin.promotions.index')}}">
+                        <span class="icon-holder"><i class="c-brown-500 ti-package"></i> </span>
+                        <span class="title">Promo</span>
+                    </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -209,6 +226,7 @@
         <main class="main-content bgc-grey-100">
             <div id="mainContent">
                 <div class="container-fluid bg-white bd">
+                    <div class="loading-icon" style="display: none"></div>
                     @yield('content')
                 </div>
             </div>

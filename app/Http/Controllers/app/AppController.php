@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\app;
+namespace App\Http\Controllers\App;
 
 use App\Http\Controllers\Controller;
-use App\Models\APPS\Apps;
-use App\Models\APPS\Category;
+use App\Models\Apps\Apps;
+use App\Models\Apps\Category;
 use function foo\func;
 
 class AppController extends Controller
@@ -12,13 +12,6 @@ class AppController extends Controller
     //
     public function index()
     {
-//        Apps::select('app'.'app_id', 'app_version'.'icon_url', 'app_version'.'app_version_name')
-
-//        foreach(Apps::with(['appVersions' => function ($query) {
-//            $query->orderBy('last_update', 'desc');
-//        }])->orderBy('show', 'desc')->get() as $app){
-//            dump($app->appVersions);
-//        }
         return view('apps.apps', [
             'apps' => Apps::join('app_version', function ($join) {
                 $join->on('app_version.app_id', '=', 'app.app_id');

@@ -73,11 +73,12 @@ $(document).ready(function () {
                                 data: data
                             });
                         },
-                        error: () => {
+                        error: (xhr) => {
                             // xóa thất bại
                             deleteLadda.stop();
                             resolve({
                                 success: false,
+                                data: xhr.responseText
                             });
                         },
                     });
@@ -90,7 +91,7 @@ $(document).ready(function () {
                     Swal.fire({
                         title: 'Đã Xóa',
                         text: `Đã xóa ${response.value.data} ${deleteOptions.recordName}`,
-                        type: 'success',
+                        icon: 'success',
                         confirmButtonClass: 'btn btn-success',
                         cancelButtonClass: 'btn btn-danger',
                         buttonsStyling: false,
@@ -105,8 +106,8 @@ $(document).ready(function () {
                     // fail
                     Swal.fire({
                         title: 'Lỗi!',
-                        text: `Có lỗi xảy ra`,
-                        type: 'error',
+                        text: response.value.data||`Có lỗi xảy ra`,
+                        icon: 'error',
                         confirmButtonClass: 'btn btn-success',
                         cancelButtonClass: 'btn btn-danger',
                         buttonsStyling: false,

@@ -33,25 +33,7 @@
         </ol>
 
     </nav>
-    {{--    <button class="btn btn-primary mb-3 mX-15">--}}
-    {{--        <i class="fa fa-commenting-o align-baseline"></i>--}}
-    {{--        Gửi Tin Nhắn--}}
-    {{--    </button>--}}
 
-    {{--    <div class="d-flex flex-wrap">--}}
-    {{--        @foreach($conversationUsers as $conversationUser)--}}
-    {{--            @if($conversationUser)--}}
-    {{--                <div class="message-box p-2 col-12 col-sm-3 position-relative">--}}
-    {{--                    <div class="position-absolute h-6r w-6r">--}}
-    {{--                        <div class="rounded-circle h-100 w-100 bg-secondary">--}}
-    {{--                            <img class="image-fit" src="{{$conversationUser->Avatar??'/images/icon/avatar.png'}}">--}}
-    {{--                        </div>--}}
-    {{--                        <b>{{$conversationUser->Nickname}}</b>--}}
-    {{--                    </div>--}}
-    {{--                </div>--}}
-    {{--            @endif--}}
-    {{--        @endforeach--}}
-    {{--    </div>--}}
     <div class="peers fxw-nw pos-r">
         <div class="peer bdR" id="chat-sidebar">
             <div class="layers h-100">
@@ -118,7 +100,7 @@
                             {{--                            <div class="p-20 gapY-15">--}}
                             <div class="p-20">
                                 @foreach(
-                                \App\Models\LSP\Messages::where([['FromUserId',$conversationUser->UserId],['ToUserId',$user->UserId]])
+                                \App\Models\Lsp\Messages::where([['FromUserId',$conversationUser->UserId],['ToUserId',$user->UserId]])
                                  ->orWhere([['ToUserId',$conversationUser->UserId],['FromUserId',$user->UserId]])
                                  ->orderBy('Time','asc')
                                  ->get() as $message
@@ -188,7 +170,7 @@
             @endforeach
         </div>
     </div>
-    <script>let adminAvatar = "{!! \App\Models\LSP\Users::find(15)->Avatar !!}";</script>
+    <script>let adminAvatar = "{!! \App\Models\Lsp\Users::find(15)->Avatar !!}";</script>
 
     <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">

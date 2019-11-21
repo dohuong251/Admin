@@ -206,7 +206,7 @@
                                         </label>
                                     </div>
                                     <select id="categoryId" name="CategoryId" class="form-control w-auto">
-                                        @foreach(\App\Models\LSP\Categories::all() as $category)
+                                        @foreach(\App\Models\Lsp\Categories::all() as $category)
                                             <option value="{{$category->CategoryId}}" {{$category->CategoryId==old('CategoryId',$song->CategoryId)?'selected':''}}>{{$category->CategoryName}}</option>
                                         @endforeach
                                     </select>
@@ -282,7 +282,7 @@
     {{--                </th>--}}
     {{--                <th scope="col">Reason</th>--}}
     {{--                <th scope="col">Reporter</th>--}}
-    {{--                <th scope="col" class="cell-inline">Time</th>--}}
+    {{--                <th scope="col" class="text-nowrap">Time</th>--}}
     {{--                <th scope="col">Rate</th>--}}
     {{--                <th scope="col">Views</th>--}}
     {{--            </tr>--}}

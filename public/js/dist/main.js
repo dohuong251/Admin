@@ -1,4 +1,4 @@
-let images = document.querySelectorAll("img");
+let images = document.querySelectorAll("img"), loadingIcon = $('.loading-icon');
 lazyload(images);
 
 let locacleDateFormat = "DD/MM/YYYY";
@@ -42,6 +42,12 @@ $(document).ready(function () {
         } else {
             toggleView.first().addClass('slideInRight');
         }
+    });
+
+    $('.chat-sidebar-toggle').click(e => {
+        // ẩn hiện menu chat (màn hình nhỏ)
+        $('#chat-sidebar').toggleClass('open');
+        e.preventDefault();
     });
 });
 
@@ -119,4 +125,9 @@ function initDatatable(table, options, selectable = true, stickyHeader = true) {
     } catch (e) {
         console.warn(e);
     }
+}
+
+function toggleLoadingProgress(isShow) {
+    if (isShow) loadingIcon.show();
+    else loadingIcon.hide()
 }

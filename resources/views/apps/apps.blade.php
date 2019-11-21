@@ -7,7 +7,7 @@
     <script src="/js/app/index.js"></script>
 @endsection
 @section('content')
-    <nav class="mX-15">
+    <nav>
         <ol class="breadcrumb bg-white border-bottom rounded-0">
             <li class="breadcrumb-item justify-content-center">
                 Apps

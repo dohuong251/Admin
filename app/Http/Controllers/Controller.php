@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\LSP\Users;
+use App\Models\Lsp\Users;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -38,7 +38,7 @@ abstract class Controller extends BaseController
     // xóa hàng loạt bản ghi (request ajax)
     public function delete(Request $request)
     {
-        if ($this->getDeleteClass() == null) return view('errors.500', ['message' => 'getDeleteMethod required']);
+        if ($this->getDeleteClass() == null) return response('getDeleteClass required',500);
         $request->validate([
             "Id" => "required"
         ]);

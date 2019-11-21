@@ -1,10 +1,4 @@
 $(document).ready(function () {
-    $('.chat-sidebar-toggle').click(e => {
-        // toggle button mobile screen
-        $('#chat-sidebar').toggleClass('open');
-        e.preventDefault();
-    });
-
     // select user to send new message in modal
     $('.select2-multiple').select2({
         closeOnSelect: false,
@@ -71,7 +65,7 @@ $(document).ready(function () {
             } else {
                 $(this).addClass('d-none').removeClass('peers');
             }
-        });
+        }).parent().scrollTop(0);
     });
 
     // admin gửi tin nhắn cho user bằng ô input trong phần tin nhắn
@@ -124,7 +118,7 @@ $(document).ready(function () {
                         Swal.fire({
                             title: 'Đã Xóa',
                             text: 'Tin nhắn đã được xóa',
-                            type: 'success',
+                            icon: 'success',
                             confirmButtonClass: 'btn btn-success',
                             cancelButtonClass: 'btn btn-danger',
                             buttonsStyling: false,
@@ -137,7 +131,7 @@ $(document).ready(function () {
                         Swal.fire({
                             title: 'Lỗi!',
                             text: 'Có lỗi xảy ra, tin nhắn chưa được xóa',
-                            type: 'error',
+                            icon: 'error',
                             confirmButtonClass: 'btn btn-success',
                             cancelButtonClass: 'btn btn-danger',
                             buttonsStyling: false,

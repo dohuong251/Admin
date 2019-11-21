@@ -31,7 +31,7 @@
 
     @if(isset($complainStreams))
         <div class="list table-responsive-sm ovX-a">
-            <table class="table table-hover cell-inline" id="content">
+            <table class="table table-hover text-nowrap" id="content">
                 <thead>
                 <tr>
                     {{--                    <th scope="col">--}}

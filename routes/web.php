@@ -78,7 +78,12 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::delete('/', 'lsp\MessageController@delete')->name('delete');
             });
 
-            Route::get('/analytic', 'lsp\AnalyticController@index')->name('analytic');
+            Route::group(['as' => 'analytic.', 'prefix' => 'analytic'], function () {
+                Route::get('/statistics', 'lsp\StatisticsController@index')->name('statistics');
+                Route::get('/statistics/filter', 'lsp\StatisticsController@filter')->name('statistics.filter');
+                Route::get('/statistics/search', 'lsp\StatisticsController@search')->name('statistics.search');
+                Route::get('/realtime', 'lsp\RealtimeAnalyticController@index')->name('realtime');
+            });
         });
 
 //        sales
@@ -91,15 +96,31 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 //        tools
         Route::group(['as' => 'tools.', 'prefix' => 'tools'], function () {
             Route::get('/config', 'tool\ConfigController@index')->name('config');
+            Route::post('/config', 'tool\ConfigController@store')->name('store');
+            Route::put('/config', 'tool\ConfigController@update')->name('update');
+
             Route::get('/notification', 'tool\NotificationController@index')->name('notification');
+            Route::post('/notification', 'tool\NotificationController@store')->name('notification.store');
+            Route::get('/notification/create', 'tool\NotificationController@create')->name('notification.create');
+            Route::get('/notification/{notificationId}', 'tool\NotificationController@show')->name('notification.show');
+            Route::put('/notification/{notificationId}', 'tool\NotificationController@update')->name('notification.update');
+            Route::delete('/notification', 'tool\NotificationController@delete')->name('notification.delete');
+
             Route::get('/sendBroadcast', 'tool\SendBroadcastController@index')->name('sendBroadcast');
+
             Route::get('/testRule', 'tool\TestRuleController@index')->name('testRule');
+            Route::post('/testRule', 'tool\TestRuleController@decryptUrl')->name('decrypt_url');
+            Route::put('/testRule', 'tool\TestRuleController@updateRule')->name('testRule.update_rule');
         });
 //        app
         Route::group(['as' => 'apps.', 'prefix' => 'apps'], function () {
             Route::get('/', 'app\AppController@index')->name('index');
 
-            Route::get('/{appId}','app\AppController@show')->name('show');
+            Route::get('/{appId}', 'app\AppController@show')->name('show');
+        });
+
+        Route::group(['as' => 'promotions.', 'prefix' => 'promotions'], function () {
+            Route::get('/', 'promotion\PromotionController@index')->name('index');
         });
     });
 
