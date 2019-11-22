@@ -12,6 +12,6 @@ class Complain extends Base
 
     public function song()
     {
-        return $this->belongsTo('App\Models\LSP\Songs', 'ChannelCode', 'Code');
+        return $this->belongsTo('App\Models\Lsp\Songs', 'ChannelCode', 'Code');
     }
 }

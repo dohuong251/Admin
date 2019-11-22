@@ -11,11 +11,11 @@ class Notifications extends Base
 
     public function sendUser()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'SenderId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'SenderId');
     }
 
     public function receiveUser()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'ReceiverId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'ReceiverId');
     }
 }

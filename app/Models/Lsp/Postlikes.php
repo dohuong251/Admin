@@ -18,8 +18,8 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 //    protected static function loadMorphMap()
 //    {
 //        Relation::morphMap([
-//            0 => 'App\Models\LSP\Posts',
-//            1 => 'App\Models\LSP\Comments'
+//            0 => 'App\Models\Lsp\Posts',
+//            1 => 'App\Models\Lsp\Comments'
 //        ]);
 //    }
 //}
@@ -32,7 +32,7 @@ class Postlikes extends Base
 
     public function users()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'UserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'UserId');
     }
 
 //    public function likeable()
@@ -43,9 +43,9 @@ class Postlikes extends Base
     public function target()
     {
         if ($this->TargetType == 0) {
-            return $this->belongsTo('App\Models\LSP\Posts', 'TargetId');
+            return $this->belongsTo('App\Models\Lsp\Posts', 'TargetId');
         } else if ($this->TargetType == 1) {
-            return $this->belongsTo('App\Models\LSP\Comments', 'TargetId');
+            return $this->belongsTo('App\Models\Lsp\Comments', 'TargetId');
         }
     }
 }

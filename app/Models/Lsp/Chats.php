@@ -11,11 +11,11 @@ class Chats extends Base
 
     public function users()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'UserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'UserId');
     }
 
     public function songs()
     {
-        return $this->belongsTo('APp\Models\LSP\Songs', 'StreamId');
+        return $this->belongsTo('App\Models\Lsp\Songs', 'StreamId');
     }
 }

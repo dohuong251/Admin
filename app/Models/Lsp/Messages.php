@@ -11,11 +11,11 @@ class Messages extends Base
 
     public function sendUser()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'FromUserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'FromUserId');
     }
 
     public function receiveUser()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'ToUserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'ToUserId');
     }
 }

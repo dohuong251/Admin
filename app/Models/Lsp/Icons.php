@@ -11,7 +11,7 @@ class Icons extends Base
 
     public function songs()
     {
-        return $this->belongsTo('App\Models\LSP\Songs', 'SongId');
+        return $this->belongsTo('App\Models\Lsp\Songs', 'SongId');
     }
 
 }

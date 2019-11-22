@@ -11,26 +11,26 @@ class Posts extends Base
 
     public function users()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'UserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'UserId');
     }
 
     public function group()
     {
-        return $this->belongsTo('App\Models\LSP\Groups', 'GroupId');
+        return $this->belongsTo('App\Models\Lsp\Groups', 'GroupId');
     }
 
     public function songs()
     {
-        return $this->belongsTo('App\Models\LSP\Songs', 'StreamId');
+        return $this->belongsTo('App\Models\Lsp\Songs', 'StreamId');
     }
 
     public function likes()
     {
-        return $this->hasMany('App\Models\LSP\PostLikes', 'TargetId');
+        return $this->hasMany('App\Models\Lsp\PostLikes', 'TargetId');
     }
 
     public function comments()
     {
-        return $this->hasMany('App\Models\LSP\Comments', 'TargetId');
+        return $this->hasMany('App\Models\Lsp\Comments', 'TargetId');
     }
 }

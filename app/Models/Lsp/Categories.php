@@ -11,6 +11,6 @@ class Categories extends Base
 
     public function songs()
     {
-        return $this->hasMany('App\Models\LSP\Songs', 'CategoryId');
+        return $this->hasMany('App\Models\Lsp\Songs', 'CategoryId');
     }
 }

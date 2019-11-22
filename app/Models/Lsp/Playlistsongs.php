@@ -11,11 +11,11 @@ class Playlistsongs extends Base
 
     public function playlists()
     {
-        return $this->belongsTo('App\Models\LSP\Playlists', 'PlaylistId');
+        return $this->belongsTo('App\Models\Lsp\Playlists', 'PlaylistId');
     }
 
     public function songs()
     {
-        return $this->belongsTo('App\Models\LSP\Songs', 'SongId');
+        return $this->belongsTo('App\Models\Lsp\Songs', 'SongId');
     }
 }

@@ -11,15 +11,15 @@ class Playlists extends Base
 
     public function users()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'UserId', 'UserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'UserId', 'UserId');
     }
 
     public function likes()
     {
-        return $this->hasMany('App\Models\LSP\Likes', 'TargetId');
+        return $this->hasMany('App\Models\Lsp\Likes', 'TargetId');
     }
 
     public function playlistSongs(){
-        return $this->hasMany('App\Models\LSP\Playlistsongs','PlaylistId');
+        return $this->hasMany('App\Models\Lsp\Playlistsongs','PlaylistId');
     }
 }

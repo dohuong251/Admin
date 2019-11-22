@@ -12,62 +12,62 @@ class Songs extends Base
 
     public function users()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'UserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'UserId');
     }
 
     public function likes()
     {
-        return $this->hasMany('App\Models\LSP\Likes', 'TargetId');
+        return $this->hasMany('App\Models\Lsp\Likes', 'TargetId');
     }
 
     public function playlistSongs()
     {
-        return $this->hasMany('App\Models\LSP\Playlistsongs', 'SongId');
+        return $this->hasMany('App\Models\Lsp\Playlistsongs', 'SongId');
     }
 
     public function icon()
     {
-        return $this->hasOne('App\Models\LSP\Icons', 'SongId');
+        return $this->hasOne('App\Models\Lsp\Icons', 'SongId');
     }
 
     public function posts()
     {
-        return $this->hasMany('App\Models\LSP\Posts', 'SongId');
+        return $this->hasMany('App\Models\Lsp\Posts', 'SongId');
     }
 
     public function feature()
     {
-        return $this->hasOne('App\Models\LSP\Features', 'SongId');
+        return $this->hasOne('App\Models\Lsp\Features', 'SongId');
     }
 
     public function copyrightStreams()
     {
-        return $this->hasMany('App\Models\LSP\Copyrightstreams', 'SongId');
+        return $this->hasMany('App\Models\Lsp\Copyrightstreams', 'SongId');
     }
 
     public function groupsongs()
     {
-        return $this->hasMany('App\Models\LSP\Groupsongs', 'SongId');
+        return $this->hasMany('App\Models\Lsp\Groupsongs', 'SongId');
     }
 
     public function chats()
     {
-        return $this->hasMany('App\Models\LSP\Chats', 'StreamId');
+        return $this->hasMany('App\Models\Lsp\Chats', 'StreamId');
     }
 
     public function category()
     {
-        return $this->belongsTo('App\Models\LSP\Categories', 'CategoryId');
+        return $this->belongsTo('App\Models\Lsp\Categories', 'CategoryId');
     }
 
     public function view()
     {
-        return $this->hasOne('App\Models\LSP\Views', 'SongId');
+        return $this->hasOne('App\Models\Lsp\Views', 'SongId');
     }
 
     public function complains()
     {
-        return $this->hasMany('App\Models\LSP\Complain', 'ChannelCode', 'Code');
+        return $this->hasMany('App\Models\Lsp\Complain', 'ChannelCode', 'Code');
     }
 
 }

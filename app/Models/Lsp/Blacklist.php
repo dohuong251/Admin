@@ -11,6 +11,6 @@ class Blacklist extends Base
 
     public function users()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'UserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'UserId');
     }
 }

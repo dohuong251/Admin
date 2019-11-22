@@ -11,6 +11,6 @@ class ReportChannel extends Base
 
     public function users()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'ReportedUserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'ReportedUserId');
     }
 }

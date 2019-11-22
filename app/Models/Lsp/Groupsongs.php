@@ -11,11 +11,11 @@ class Groupsongs extends Base
 
     public function groups()
     {
-        return $this->belongsTo('App\Models\LSP\Groups', 'GroupId');
+        return $this->belongsTo('App\Models\Lsp\Groups', 'GroupId');
     }
 
     public function songs()
     {
-        return $this->belongsTo('App\Models\LSP\Songs', 'SongId');
+        return $this->belongsTo('App\Models\Lsp\Songs', 'SongId');
     }
 }

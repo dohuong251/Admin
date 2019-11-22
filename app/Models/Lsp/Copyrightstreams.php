@@ -12,17 +12,17 @@ class Copyrightstreams extends Base
     // user phát stream bị report
     public function reportedUsers()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'UserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'UserId');
     }
 
     // user report stream
     public function reporter()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'OwnerId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'OwnerId');
     }
 
     public function songs()
     {
-        return $this->belongsTo('App\Models\LSP\Songs', 'SongId');
+        return $this->belongsTo('App\Models\Lsp\Songs', 'SongId');
     }
 }

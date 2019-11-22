@@ -12,6 +12,6 @@ class Autoblock extends Base
 
     public function users()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'OwnerId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'OwnerId');
     }
 }

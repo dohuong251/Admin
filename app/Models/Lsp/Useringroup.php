@@ -11,10 +11,10 @@ class Useringroup extends Base
 
     public function user()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'UserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'UserId');
     }
 
     public function group(){
-        return $this->belongsTo('App\Models\LSP\Groups','GroupId');
+        return $this->belongsTo('App\Models\Lsp\Groups','GroupId');
     }
 }

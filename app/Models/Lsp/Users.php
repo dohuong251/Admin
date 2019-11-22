@@ -12,116 +12,116 @@ class Users extends Base
 
     public function songs()
     {
-        return $this->hasMany('App\Models\LSP\Songs', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Songs', 'UserId');
     }
 
     public function playlists()
     {
-        return $this->hasMany('App\Models\LSP\Playlists', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Playlists', 'UserId');
     }
 
     public function rating()
     {
-        return $this->hasMany('App\Models\LSP\Rating', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Rating', 'UserId');
     }
 
     public function chats()
     {
-        return $this->hasMany('App\Models\LSP\Chats', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Chats', 'UserId');
     }
 
     public function likedSong()
     {
-        return $this->hasMany('App\Models\LSP\Likes', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Likes', 'UserId');
     }
 
     // stream bị report
     public function streamReported()
     {
-        return $this->hasMany('App\Models\LSP\Copyrightstreams', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Copyrightstreams', 'UserId');
     }
 
     // stream đã report
     public function reportStream()
     {
-        return $this->hasMany('App\Models\LSP\Copyrightstreams', 'OwnerId');
+        return $this->hasMany('App\Models\Lsp\Copyrightstreams', 'OwnerId');
     }
 
     public function posts()
     {
-        return $this->hasMany('App\Models\LSP\Posts', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Posts', 'UserId');
     }
 
     public function sendNotifications()
     {
-        return $this->hasMany('App\Models\LSP\Notifications', 'SenderId');
+        return $this->hasMany('App\Models\Lsp\Notifications', 'SenderId');
     }
 
     public function receivedNotifications()
     {
-        return $this->hasMany('App\Models\LSP\Notifications', 'ReceiverId');
+        return $this->hasMany('App\Models\Lsp\Notifications', 'ReceiverId');
     }
 
     public function broadcasts()
     {
-        return $this->hasMany('App\Models\LSP\Broadcasts', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Broadcasts', 'UserId');
     }
 
     public function cloudtokens()
     {
-        return $this->hasMany('App\Models\LSP\Cloudtokens', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Cloudtokens', 'UserId');
     }
 
     public function apnTokens()
     {
-        return $this->hasMany('App\Models\LSP\APNTokens', 'UserId');
+        return $this->hasMany('App\Models\Lsp\APNTokens', 'UserId');
     }
 
     public function comments()
     {
-        return $this->hasMany('App\Models\LSP\Comments', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Comments', 'UserId');
     }
 
     public function likedPost()
     {
-        return $this->hasMany('App\Models\LSP\Postlikes', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Postlikes', 'UserId');
     }
 
     public function reportChannel()
     {
-        return $this->hasMany('App\Models\LSP\ReportChannel', 'ReportedUserId');
+        return $this->hasMany('App\Models\Lsp\ReportChannel', 'ReportedUserId');
     }
 
     public function blacklist()
     {
-        return $this->hasOne('App\Models\LSP\Blacklist', 'UserId');
+        return $this->hasOne('App\Models\Lsp\Blacklist', 'UserId');
     }
 
     public function autoblock()
     {
-        return $this->hasMany('App\Models\LSP\Autoblock', 'OwnerId');
+        return $this->hasMany('App\Models\Lsp\Autoblock', 'OwnerId');
     }
 
     public function group()
     {
-        return $this->hasMany('App\Models\LSP\Groups', 'UserId');
+        return $this->hasMany('App\Models\Lsp\Groups', 'UserId');
     }
 
     public function sendMessages()
     {
-        return $this->hasMany('App\Models\LSP\Messages', 'FromUserId');
+        return $this->hasMany('App\Models\Lsp\Messages', 'FromUserId');
     }
 
     public function receiveMessages()
     {
-        return $this->hasMany('App\Models\LSP\Messages', 'ToUserId');
+        return $this->hasMany('App\Models\Lsp\Messages', 'ToUserId');
     }
 
     public function subscriber(){
-        return $this->hasMany('App\Models\LSP\Subscribe','UserId');
+        return $this->hasMany('App\Models\Lsp\Subscribe','UserId');
     }
 
     public function subscribing(){
-        return $this->hasMany('App\Models\LSP\Subscribe','TargetUserId');
+        return $this->hasMany('App\Models\Lsp\Subscribe','TargetUserId');
     }
 }

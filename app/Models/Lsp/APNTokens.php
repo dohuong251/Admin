@@ -10,6 +10,6 @@ class APNTokens extends Base
     protected $primaryKey = '';
     public function users()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'UserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'UserId');
     }
 }

@@ -11,11 +11,11 @@ class Subscribe extends Base
 
     public function user()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'UserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'UserId');
     }
 
     public function targetUser()
     {
-        return $this->belongsTo('App\Models\LSP\Users', 'TargetUserId');
+        return $this->belongsTo('App\Models\Lsp\Users', 'TargetUserId');
     }
 }

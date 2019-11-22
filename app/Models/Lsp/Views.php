@@ -11,6 +11,6 @@ class Views extends Base
 
     public function song()
     {
-        return $this->belongsTo('App\Models\LSP\Songs', 'SongId');
+        return $this->belongsTo('App\Models\Lsp\Songs', 'SongId');
     }
 }

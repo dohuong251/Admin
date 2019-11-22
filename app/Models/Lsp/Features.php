@@ -11,11 +11,11 @@ class Features extends Base
 
     public function songs()
     {
-        return $this->belongsTo('App\Models\LSP\Songs', 'SongId');
+        return $this->belongsTo('App\Models\Lsp\Songs', 'SongId');
     }
 
     public function likes()
     {
-        return $this->hasManyThrough('App\Models\LSP\Likes', 'App\Models\LSP\Songs', 'SongId', 'TargetId', 'SongId');
+        return $this->hasManyThrough('App\Models\Lsp\Likes', 'App\Models\Lsp\Songs', 'SongId', 'TargetId', 'SongId');
     }
 }
