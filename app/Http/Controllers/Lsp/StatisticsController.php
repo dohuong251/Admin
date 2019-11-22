@@ -70,7 +70,7 @@ class StatisticsController extends Controller
                         "failCount" => 0
                     );
                 }
-                $totalStreamView += $streamView->success;
+                $totalStreamView += $streamView->success_count;
                 $totalStreamPlaybackDuration += $streamView->playback_duration;
                 $totalStreamBufferDuration += $streamView->buffer_duration;
 
@@ -150,7 +150,7 @@ class StatisticsController extends Controller
                             "failCount" => 0
                         );
                     }
-                    $totalStreamView += $streamView->success;
+                    $totalStreamView += $streamView->success_count;
                     $totalStreamPlaybackDuration += $streamView->playback_duration;
                     $totalStreamBufferDuration += $streamView->buffer_duration;
 
@@ -238,7 +238,7 @@ class StatisticsController extends Controller
                         "failCount" => 0
                     );
                 }
-                $totalStreamView += $streamView->success;
+                $totalStreamView += $streamView->success_count;
                 $totalStreamPlaybackDuration += $streamView->playback_duration;
                 $totalStreamBufferDuration += $streamView->buffer_duration;
 
