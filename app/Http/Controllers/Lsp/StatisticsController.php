@@ -53,8 +53,8 @@ class StatisticsController extends Controller
 
                     // đếm số lượng view của 1 stream cụ thể trong khoảng thời gian từ startTime đến endTime
                     $totalStreamView += $view->success;
-                    $totalStreamPlaybackDuration += $view->playback_duration;
-                    $totalStreamBufferDuration += $view->buffer_duration;
+                    $totalStreamPlaybackDuration += $view->playback_duration??0;
+                    $totalStreamBufferDuration += $view->buffer_duration??0;
 
                     // đếm số lượng view success và fail trong khoảng thời gian từ startTime đến endTime
                     $viewsByDay[$key]["successCount"] += $view->success;
@@ -71,8 +71,8 @@ class StatisticsController extends Controller
                     );
                 }
                 $totalStreamView += $streamView->success_count;
-                $totalStreamPlaybackDuration += $streamView->playback_duration;
-                $totalStreamBufferDuration += $streamView->buffer_duration;
+                $totalStreamPlaybackDuration += $streamView->playback_duration??0;
+                $totalStreamBufferDuration += $streamView->buffer_duration??0;
 
                 $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success_count;
                 $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail_count;
@@ -133,8 +133,8 @@ class StatisticsController extends Controller
 
                         // đếm số lượng view của 1 stream cụ thể trong khoảng thời gian từ startTime đến endTime
                         $totalStreamView += $view->success;
-                        $totalStreamPlaybackDuration += $view->playback_duration;
-                        $totalStreamBufferDuration += $view->buffer_duration;
+                        $totalStreamPlaybackDuration += $view->playback_duration??0;
+                        $totalStreamBufferDuration += $view->buffer_duration??0;
 
                         // đếm số lượng view success và fail trong khoảng thời gian từ startTime đến endTime
                         $viewsByDay[$key]["successCount"] += $view->success;
@@ -151,8 +151,8 @@ class StatisticsController extends Controller
                         );
                     }
                     $totalStreamView += $streamView->success_count;
-                    $totalStreamPlaybackDuration += $streamView->playback_duration;
-                    $totalStreamBufferDuration += $streamView->buffer_duration;
+                    $totalStreamPlaybackDuration += $streamView->playback_duration??0;
+                    $totalStreamBufferDuration += $streamView->buffer_duration??0;
 
                     $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success_count;
                     $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail_count;
@@ -221,8 +221,8 @@ class StatisticsController extends Controller
 
                     // đếm số lượng view của 1 stream cụ thể trong khoảng thời gian từ startTime đến endTime
                     $totalStreamView += $view->success;
-                    $totalStreamPlaybackDuration += $view->playback_duration;
-                    $totalStreamBufferDuration += $view->buffer_duration;
+                    $totalStreamPlaybackDuration += $view->playback_duration??0;
+                    $totalStreamBufferDuration += $view->buffer_duration??0;
 
                     // đếm số lượng view success và fail trong khoảng thời gian từ startTime đến endTime
                     $viewsByDay[$key]["successCount"] += $view->success;
@@ -239,8 +239,8 @@ class StatisticsController extends Controller
                     );
                 }
                 $totalStreamView += $streamView->success_count;
-                $totalStreamPlaybackDuration += $streamView->playback_duration;
-                $totalStreamBufferDuration += $streamView->buffer_duration;
+                $totalStreamPlaybackDuration += $streamView->playback_duration??0;
+                $totalStreamBufferDuration += $streamView->buffer_duration??0;
 
                 $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success_count;
                 $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail_count;

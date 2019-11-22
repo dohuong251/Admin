@@ -172,7 +172,19 @@ let loadDataRequest, MAX_STREAM_DISPLAY = 50,
     rankStreamTemplate = Handlebars.compile(document.getElementById("stream-rank-template").innerHTML),
     rankUserTemplate = Handlebars.compile(document.getElementById("user-rank-template").innerHTML);
 
+Handlebars.registerHelper('number_format_duration', function (duration) {
+
+    if (duration) {
+        try {
+            return new Handlebars.SafeString((duration / 1000).toLocaleString().split(".")[0]);
+        } catch (e) {
+            console.error('parse duration error');
+        }
+    } else return duration;
+});
+
 Handlebars.registerHelper('number_format', function (str) {
+    console.log(str);
     if (str) return new Handlebars.SafeString(str.toLocaleString());
     else return str;
 });

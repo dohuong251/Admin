@@ -52,8 +52,8 @@
                     <td>{{Owner}}</td>
                     {{/if}}
                     <td>{{number_format successViews}}</td>
-                    <td>{{number_format PlaybackDuration}}</td>
-                    <td>{{number_format BufferDuration}}</td>
+                    <td>{{number_format_duration PlaybackDuration}}</td>
+                    <td>{{number_format_duration BufferDuration}}</td>
                 </tr>
                 {{/topStreams}}
                 </tbody>
@@ -78,8 +78,8 @@
                     <td>{{Nickname}}</td>
                     <td>{{number_format successViews}}</td>
                     <td>{{number_format Streams}}</td>
-                    <td>{{number_format PlaybackDuration}}</td>
-                    <td>{{number_format BufferDuration}}</td>
+                    <td>{{number_format_duration PlaybackDuration}}</td>
+                    <td>{{number_format_duration BufferDuration}}</td>
                 </tr>
                 {{/topUsers}}
                 </tbody>

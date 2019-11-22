@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="" />
+    <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/lsp/statistics.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lsp/statistics.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/analytic_statistics.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/analytic_statistics.blade.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,7 +336,7 @@
       <workItem from="1574129859913" duration="24157000" />
       <workItem from="1574215932632" duration="20398000" />
       <workItem from="1574301925696" duration="25103000" />
-      <workItem from="1574388756452" duration="16790000" />
+      <workItem from="1574388756452" duration="19302000" />
     </task>
     <servers />
   </component>
@@ -351,6 +357,25 @@
     </option>
   </component>
   <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php</url>
+          <line>241</line>
+          <option name="timeStamp" value="7" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php</url>
+          <line>123</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php</url>
+          <line>135</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
     <watches-manager>
       <configuration name="server.php">
         <watch expression="$stage" language="PHP" />
@@ -365,6 +390,8 @@
         <watch expression="$request-&gt;get('start', &quot;1971-01-01&quot;)" language="PHP" />
         <watch expression="$streamView-&gt;last_update" language="PHP" />
         <watch expression="$request-&gt;get('startTime')" language="PHP" />
+        <watch expression="$streamView-&gt;days_view" language="PHP" />
+        <watch expression="$streamView" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

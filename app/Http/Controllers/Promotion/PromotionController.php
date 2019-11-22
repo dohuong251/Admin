@@ -8,11 +8,13 @@ use DOMDocument;
 use DOMXPath;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use PDO;
 
 class PromotionController extends Controller
 {
     public function index()
     {
+        DB::connection('mysql_lsp_connection')->getPdo()->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
         dd(DB::connection('mysql_lsp_connection')->getPdo());
         $doc = new DOMDocument();
         $doc->validateOnParse = true;
