@@ -2,117 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/RealtimeAnalyticController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Models/Tool/Notification.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/css/dist/fontawesome5.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/dist/ajax_setup_loading.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/lsp/statistics.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/tool/config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/tool/notification_edit.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/public/js/tool/test_rule.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lsp/analytic_realtime.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/lsp/analytic_statistics.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/promotions/index.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/tools/notification_create.blade.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/views/tools/notification_edit.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Admin.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/webServers.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Controller.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/app/AppController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/app/AppController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/AnalyticController.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/LicenseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/LicenseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/MessageController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/MessageController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/StreamController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StreamController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/SubscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/SubscriptionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/lsp/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/tool/ConfigController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tool/ConfigController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/tool/NotificationController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tool/NotificationController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/tool/SendBroadcastController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tool/SendBroadcastController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/tool/TestRuleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Tool/TestRuleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/AppDownloadDay.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/AppDownloadDay.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/AppResources.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/AppResources.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/AppVersion.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/AppVersion.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/Apps.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/Apps.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/Base.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/Category.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/Category.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/Config.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/Contacts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/Contacts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/GCM.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/GCM.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/Platform.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/Platform.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/APPS/UserApp.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Apps/UserApp.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/APNTokens.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/APNTokens.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Autoblock.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Autoblock.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Base.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Base.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Blacklist.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Blacklist.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Broadcasts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Broadcasts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Categories.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Categories.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Channel_icon.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Channel_icon.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Chats.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Chats.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Cloudtokens.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Cloudtokens.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Comments.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Comments.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Complain.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Complain.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Copyrightstreams.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Copyrightstreams.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/DeletedTokens.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/DeletedTokens.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Features.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Features.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Followings.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Followings.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Follows.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Follows.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Groups.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Groups.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Groupsongs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Groupsongs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Groupusers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Groupusers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/IP2CTRY.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/IP2CTRY.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Icons.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Icons.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Ip_to_country.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Ip_to_country.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Likes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Likes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Logs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Logs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Messages.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Messages.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Notifications.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Notifications.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Notifications_queue.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Notifications_queue.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Playlists.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Playlists.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Playlistsongs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Playlistsongs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Postlikes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Postlikes.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Posts.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Posts.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Rating.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Rating.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/ReportChannel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/ReportChannel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Sessions.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Sessions.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Songs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Songs.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Statistic.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Statistic.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Subscribe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Test.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Test.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Useringroup.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Useringroup.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Users.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Users.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/LSP/Views.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Views.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/css/dist/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/dist/style.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/dist/delete.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/dist/delete.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/dist/main.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/lsp/message.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lsp/message.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/vendors/sweetalert2.all.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/vendors/sweetalert2.all.min.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/apps/app_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/apps/app_detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/apps/apps.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/apps/apps.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/analytic.blade.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/message.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_complain.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_complain.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_create.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_feature.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_feature.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/streams.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/streams.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/user_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/user_detail.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tools/config.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/config.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tools/notification.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/notification.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/tools/test_rule.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/test_rule.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -283,7 +177,7 @@
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
@@ -441,7 +335,8 @@
       <workItem from="1574044373162" duration="11656000" />
       <workItem from="1574129859913" duration="24157000" />
       <workItem from="1574215932632" duration="20398000" />
-      <workItem from="1574301925696" duration="23937000" />
+      <workItem from="1574301925696" duration="25103000" />
+      <workItem from="1574388756452" duration="3319000" />
     </task>
     <servers />
   </component>

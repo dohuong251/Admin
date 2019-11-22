@@ -10,6 +10,14 @@
           <option name="port" value="2233" />
         </fileTransfer>
       </webServer>
+      <webServer id="9cd141f2-0aa2-4bb9-beee-8cc8dbd6881f" name="live.mdcgate.com" url="http://live.mdcgate.com">
+        <fileTransfer host="live.mdcgate.com" port="2233" rootFolder="/home/www" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="2233" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

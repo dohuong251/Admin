@@ -14,7 +14,8 @@
         "guzzlehttp/guzzle": "^6.4",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "yajra/laravel-datatables-oracle": "~9.0"
+        "yajra/laravel-datatables-oracle": "~9.0",
+        "ext-dom": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",
