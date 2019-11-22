@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="" />
+    <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/database.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/database.php" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -330,7 +335,7 @@
       <workItem from="1574129859913" duration="24157000" />
       <workItem from="1574215932632" duration="20398000" />
       <workItem from="1574301925696" duration="25103000" />
-      <workItem from="1574388756452" duration="4585000" />
+      <workItem from="1574388756452" duration="16538000" />
     </task>
     <servers />
   </component>
@@ -355,9 +360,16 @@
       <configuration name="server.php">
         <watch expression="$stage" language="PHP" />
         <watch expression="$request-&gt;all()" language="PHP" />
-        <watch expression="$request-&gt;get('rule')" language="PHP" />
         <watch expression="gettype($request-&gt;get('rule'))" language="PHP" />
+        <watch expression="strtotime(&quot;2019-11-22&quot;)" language="PHP" />
+        <watch expression="strtotime(&quot;2019-11-22&quot;) &gt;= $startTime &amp;&amp; strtotime(&quot;2019-11-22&quot;) &lt;= $endTime" language="PHP" />
         <watch expression="Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'parser_rules']])" language="PHP" />
+        <watch expression="$lastUpdate &gt;= $startTime" language="PHP" />
+        <watch expression="$lastUpdate" language="PHP" />
+        <watch expression="$startTime" language="PHP" />
+        <watch expression="$request-&gt;get('start', &quot;1971-01-01&quot;)" language="PHP" />
+        <watch expression="$streamView-&gt;last_update" language="PHP" />
+        <watch expression="$request-&gt;get('startTime')" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

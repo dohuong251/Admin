@@ -74,8 +74,8 @@ class StatisticsController extends Controller
                 $totalStreamPlaybackDuration += $streamView->playback_duration;
                 $totalStreamBufferDuration += $streamView->buffer_duration;
 
-                $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success;
-                $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail;
+                $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success_count;
+                $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail_count;
             }
             // sắp xếp theo thời gian
             uksort($viewsByDay, function ($a, $b) {
@@ -154,8 +154,8 @@ class StatisticsController extends Controller
                     $totalStreamPlaybackDuration += $streamView->playback_duration;
                     $totalStreamBufferDuration += $streamView->buffer_duration;
 
-                    $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success;
-                    $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail;
+                    $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success_count;
+                    $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail_count;
                 }
 
                 if ($totalStreamView > 0) {
@@ -199,11 +199,8 @@ class StatisticsController extends Controller
         $startTime = $request->get('start', date_format(now(), "Y-m-d"));
         $endTime = $request->get('end', date_format(now(), "Y-m-d"));
 
-//        $streamViews = cache('lsp_statistic2') ? cache('lsp_statistic2') : Views::with('song.users')->where('last_update', '>', $startTime)->whereNotNull('days_view')->get();
         $streamViews = Views::with('song.users')->where('last_update', '>', $startTime)->whereNotNull('days_view')->get();
-//        Cache::put('lsp_statistic2', $streamViews, 10 * 60);
-//        Cache::forever('lsp_statistic2', $streamViews);
-//        dd(cache('lsp_statistic2'));
+
         $startTime = strtotime($startTime);
         $endTime = strtotime($endTime);
         $viewsByDay = array();
@@ -245,8 +242,8 @@ class StatisticsController extends Controller
                 $totalStreamPlaybackDuration += $streamView->playback_duration;
                 $totalStreamBufferDuration += $streamView->buffer_duration;
 
-                $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success;
-                $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail;
+                $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success_count;
+                $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail_count;
             }
 
             if ($totalStreamView > 0) {
