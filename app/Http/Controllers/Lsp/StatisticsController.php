@@ -111,7 +111,7 @@ class StatisticsController extends Controller
             $endTime = strtotime($endTime);
             $viewsByDay = array();
             $user = Users::with(['songs' => function ($query) {
-                $query->select(['SongId', 'Code', 'Name']);
+                $query->select(['SongId', 'Code', 'Name','UserId']);
             }, 'songs.view'])->find($userId);
             if (!$user) return abort(500);
 
