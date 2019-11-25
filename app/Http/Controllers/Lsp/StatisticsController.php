@@ -9,6 +9,7 @@ use App\Models\Lsp\Views;
 use Cache;
 use DB;
 use Illuminate\Http\Request;
+use function foo\func;
 
 class StatisticsController extends Controller
 {
@@ -53,8 +54,8 @@ class StatisticsController extends Controller
 
                     // đếm số lượng view của 1 stream cụ thể trong khoảng thời gian từ startTime đến endTime
                     $totalStreamView += $view->success;
-                    $totalStreamPlaybackDuration += $view->playback_duration??0;
-                    $totalStreamBufferDuration += $view->buffer_duration??0;
+                    $totalStreamPlaybackDuration += $view->playback_duration ?? 0;
+                    $totalStreamBufferDuration += $view->buffer_duration ?? 0;
 
                     // đếm số lượng view success và fail trong khoảng thời gian từ startTime đến endTime
                     $viewsByDay[$key]["successCount"] += $view->success;
@@ -71,8 +72,8 @@ class StatisticsController extends Controller
                     );
                 }
                 $totalStreamView += $streamView->success_count;
-                $totalStreamPlaybackDuration += $streamView->playback_duration??0;
-                $totalStreamBufferDuration += $streamView->buffer_duration??0;
+                $totalStreamPlaybackDuration += $streamView->playback_duration ?? 0;
+                $totalStreamBufferDuration += $streamView->buffer_duration ?? 0;
 
                 $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success_count;
                 $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail_count;
@@ -133,8 +134,8 @@ class StatisticsController extends Controller
 
                         // đếm số lượng view của 1 stream cụ thể trong khoảng thời gian từ startTime đến endTime
                         $totalStreamView += $view->success;
-                        $totalStreamPlaybackDuration += $view->playback_duration??0;
-                        $totalStreamBufferDuration += $view->buffer_duration??0;
+                        $totalStreamPlaybackDuration += $view->playback_duration ?? 0;
+                        $totalStreamBufferDuration += $view->buffer_duration ?? 0;
 
                         // đếm số lượng view success và fail trong khoảng thời gian từ startTime đến endTime
                         $viewsByDay[$key]["successCount"] += $view->success;
@@ -151,8 +152,8 @@ class StatisticsController extends Controller
                         );
                     }
                     $totalStreamView += $streamView->success_count;
-                    $totalStreamPlaybackDuration += $streamView->playback_duration??0;
-                    $totalStreamBufferDuration += $streamView->buffer_duration??0;
+                    $totalStreamPlaybackDuration += $streamView->playback_duration ?? 0;
+                    $totalStreamBufferDuration += $streamView->buffer_duration ?? 0;
 
                     $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success_count;
                     $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail_count;
@@ -199,7 +200,11 @@ class StatisticsController extends Controller
         $startTime = $request->get('start', date_format(now(), "Y-m-d"));
         $endTime = $request->get('end', date_format(now(), "Y-m-d"));
 
-        $streamViews = Views::with('song.users')->where('last_update', '>', $startTime)->whereNotNull('days_view')->get();
+        $streamViews = Views::with(['song' => function ($query) {
+            $query->select(['SongId', 'Code', 'Name']);
+        }, 'song.users' => function ($query) {
+            $query->select(['UserId', 'Nickname']);
+        }])->where('last_update', '>', $startTime)->whereNotNull('days_view')->get();
 
         $startTime = strtotime($startTime);
         $endTime = strtotime($endTime);
@@ -221,8 +226,8 @@ class StatisticsController extends Controller
 
                     // đếm số lượng view của 1 stream cụ thể trong khoảng thời gian từ startTime đến endTime
                     $totalStreamView += $view->success;
-                    $totalStreamPlaybackDuration += $view->playback_duration??0;
-                    $totalStreamBufferDuration += $view->buffer_duration??0;
+                    $totalStreamPlaybackDuration += $view->playback_duration ?? 0;
+                    $totalStreamBufferDuration += $view->buffer_duration ?? 0;
 
                     // đếm số lượng view success và fail trong khoảng thời gian từ startTime đến endTime
                     $viewsByDay[$key]["successCount"] += $view->success;
@@ -239,8 +244,8 @@ class StatisticsController extends Controller
                     );
                 }
                 $totalStreamView += $streamView->success_count;
-                $totalStreamPlaybackDuration += $streamView->playback_duration??0;
-                $totalStreamBufferDuration += $streamView->buffer_duration??0;
+                $totalStreamPlaybackDuration += $streamView->playback_duration ?? 0;
+                $totalStreamBufferDuration += $streamView->buffer_duration ?? 0;
 
                 $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success_count;
                 $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail_count;
@@ -325,15 +330,21 @@ class StatisticsController extends Controller
 
     public function search(Request $request)
     {
+        $record_per_request = 10;
         $query = $request->get('query');
         if ($request->get('type', 1) == 1) {
             //search stream
             if ($request->has('userId')) {
-                $results = Songs::where([['UserId', $request->get('userId')], ['Name', 'like', "%$query%"]])->select(['Name as text', 'SongId as id'])->orderBy('ViewByAll', 'desc')->paginate(10);
+                $results = Songs::where([['UserId', $request->get('userId')], ['Name', 'like', "%$query%"]])->select(['Name as text', 'SongId as id'])->orderBy('ViewByAll', 'desc')->paginate($record_per_request);
             } else {
-                $results = Songs::where('Name', 'like', "%$query%")->select(['Name as text', 'SongId as id'])->orderBy('ViewByAll', 'desc')->paginate(10);
+                $results = Songs::where('Name', 'like', "%$query%")->select(['Name as text', 'SongId as id'])->orderBy('ViewByAll', 'desc')->paginate($record_per_request);
             }
-
+            return array(
+                "results" => $results->items(),
+                "pagination" => array(
+                    "more" => $results->hasMorePages()
+                )
+            );
         } else {
             // search user
             if ((int)$request->get('query')) {
@@ -343,23 +354,26 @@ class StatisticsController extends Controller
                     ->select(['Nickname as text', 'users.UserId as id'])
                     ->groupBy('users.UserId')
                     ->orderByRaw('sum(songs.ViewByAll) desc')
-                    ->paginate(10);
+                    ->limit($record_per_request)
+                    ->offset(($request->get('page', 1) - 1) * $record_per_request)
+                    ->get();
             } else {
                 $results = Users::where('Nickname', 'like', "%$query%")
                     ->leftJoin('songs', 'users.UserId', '=', 'songs.UserId')
                     ->select(['Nickname as text', 'users.UserId as id'])
                     ->groupBy('users.UserId')
                     ->orderByRaw('sum(songs.ViewByAll) desc')
-                    ->paginate(10);
+                    ->limit($record_per_request)
+                    ->offset(($request->get('page', 1) - 1) * $record_per_request)
+                    ->get();
             }
+            return array(
+                "results" => $results,
+                "pagination" => array(
+                    "more" => $results->count() == $record_per_request ? true : false
+                )
+            );
         }
-
-        return array(
-            "results" => $results->items(),
-            "pagination" => array(
-                "more" => $results->hasMorePages()
-            )
-        );
     }
 
     protected function getDeleteClass()
