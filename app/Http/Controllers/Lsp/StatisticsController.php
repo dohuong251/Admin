@@ -9,6 +9,7 @@ use App\Models\Lsp\Views;
 use Cache;
 use DB;
 use Illuminate\Http\Request;
+use PDO;
 use function foo\func;
 
 class StatisticsController extends Controller
