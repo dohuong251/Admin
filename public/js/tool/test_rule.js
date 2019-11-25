@@ -228,7 +228,7 @@ Handlebars.registerHelper('is_step_exception', function (str, options) {
     } else {
         return options.inverse(this);
     }
-});m
+});
 Handlebars.registerHelper('stringify_json_step_value', function (value) {
     if (typeof value === "object") return JSON.stringify(value);
     else return value;
