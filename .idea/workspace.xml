@@ -4,6 +4,7 @@
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AppServiceProvider.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -335,7 +336,7 @@
       <workItem from="1574215932632" duration="20398000" />
       <workItem from="1574301925696" duration="25103000" />
       <workItem from="1574388756452" duration="19459000" />
-      <workItem from="1574648525750" duration="3805000" />
+      <workItem from="1574648525750" duration="11108000" />
     </task>
     <servers />
   </component>
@@ -356,20 +357,6 @@
     </option>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php</url>
-          <line>124</line>
-          <option name="timeStamp" value="10" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="php">
-          <url>file://$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php</url>
-          <line>136</line>
-          <option name="timeStamp" value="11" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
     <watches-manager>
       <configuration name="server.php">
         <watch expression="$stage" language="PHP" />
