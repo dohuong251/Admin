@@ -184,7 +184,6 @@ Handlebars.registerHelper('number_format_duration', function (duration) {
 });
 
 Handlebars.registerHelper('number_format', function (str) {
-    console.log(str);
     if (str) return new Handlebars.SafeString(str.toLocaleString());
     else return str;
 });

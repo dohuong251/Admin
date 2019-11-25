@@ -206,7 +206,7 @@ class StatisticsController extends Controller
         $endTime = $request->get('end', date_format(now(), "Y-m-d"));
 
         $streamViewsChunk = Views::with(['song' => function ($query) {
-            $query->select(['SongId', 'Code', 'Name']);
+            $query->select(['SongId', 'Code', 'Name', 'UserId']);
         }, 'song.users' => function ($query) {
             $query->select(['UserId', 'Nickname']);
         }])->where('last_update', '>=', $startTime)->whereNotNull('days_view');
@@ -282,22 +282,24 @@ class StatisticsController extends Controller
                         $currentUserId = -1;
                     }
 
-                    if (array_key_exists($currentUserId, $topUsers)) {
-                        $topUsers[$currentUserId]["successViews"] += $totalStreamView;
-                        $topUsers[$currentUserId]["PlaybackDuration"] += $totalStreamPlaybackDuration;
-                        $topUsers[$currentUserId]["BufferDuration"] += $totalStreamBufferDuration;
-                        $topUsers[$currentUserId]["Streams"]++;
+                    if ($currentUserId != -1) {
+                        if (array_key_exists($currentUserId, $topUsers)) {
+                            $topUsers[$currentUserId]["successViews"] += $totalStreamView;
+                            $topUsers[$currentUserId]["PlaybackDuration"] += $totalStreamPlaybackDuration;
+                            $topUsers[$currentUserId]["BufferDuration"] += $totalStreamBufferDuration;
+                            $topUsers[$currentUserId]["Streams"]++;
 
-                    } else {
-                        $topUsers[$currentUserId] = array(
-                            "UserId" => $currentUserId,
-                            "StreamView" => $streamView,
+                        } else {
+                            $topUsers[$currentUserId] = array(
+                                "UserId" => $currentUserId,
+                                "StreamView" => $streamView,
 //                        "Nickname" => $streamView->song->users->Nickname ?? "",
-                            "successViews" => $totalStreamView,
-                            "Streams" => 1,
-                            "PlaybackDuration" => $totalStreamPlaybackDuration,
-                            "BufferDuration" => $totalStreamBufferDuration,
-                        );
+                                "successViews" => $totalStreamView,
+                                "Streams" => 1,
+                                "PlaybackDuration" => $totalStreamPlaybackDuration,
+                                "BufferDuration" => $totalStreamBufferDuration,
+                            );
+                        }
                     }
                 }
             }
