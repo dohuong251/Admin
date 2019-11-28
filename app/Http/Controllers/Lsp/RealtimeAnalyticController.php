@@ -7,362 +7,191 @@ use App\Models\Lsp\Songs;
 use App\Models\Lsp\Users;
 use App\Models\Lsp\Views;
 use Cache;
+use Carbon\Carbon;
 use DB;
+use Exception;
 use Illuminate\Http\Request;
+use Memcache;
 
 class RealtimeAnalyticController extends Controller
 {
     //
     public function index()
     {
-//        dd(Songs::find(412832)->Code);
-        return view('lsp.analytic_statistics');
+        return view('lsp.analytic_realtime');
     }
 
     public function filter(Request $request)
     {
-        $startTime = $request->get('start', "1970-01-01");
-        $endTime = $request->get('end', date_format(now(), "Y-m-d"));
-        $userId = $request->get('userId');
-        $streamId = $request->get('streamId');
-
-        $topStreams = array();
-        $topUsers = array();
-        /**
-         * thông tin về view của 1 stream cụ thể
-         */
-        if ($streamId) {
-            $startTime = strtotime($startTime);
-            $endTime = strtotime($endTime);
-            $viewsByDay = array();
-            $totalStreamView = 0;
-            $totalStreamPlaybackDuration = 0;
-            $totalStreamBufferDuration = 0;
-
-            $streamView = Views::with(['song', 'song.users'])->find($streamId);
-            if (!$streamView) return abort(500);
-            foreach (json_decode($streamView->days_view) as $key => $view) {
-                $currentDate = strtotime($key);
-                if ($currentDate >= $startTime && $currentDate <= $endTime) {
-                    if (!array_key_exists($key, $viewsByDay)) {
-                        $viewsByDay[$key] = array(
-                            "successCount" => 0,
-                            "failCount" => 0
-                        );
-                    }
-
-                    // đếm số lượng view của 1 stream cụ thể trong khoảng thời gian từ startTime đến endTime
-                    $totalStreamView += $view->success;
-                    $totalStreamPlaybackDuration += $view->playback_duration;
-                    $totalStreamBufferDuration += $view->buffer_duration;
-
-                    // đếm số lượng view success và fail trong khoảng thời gian từ startTime đến endTime
-                    $viewsByDay[$key]["successCount"] += $view->success;
-                    $viewsByDay[$key]["failCount"] += $view->fail;
-                }
-            }
-
-            $lastUpdate = strtotime($streamView->last_update);
-            if ($lastUpdate >= $startTime && $lastUpdate <= $endTime) {
-                if (!array_key_exists($streamView->last_update, $viewsByDay)) {
-                    $viewsByDay[$streamView->last_update] = array(
-                        "successCount" => 0,
-                        "failCount" => 0
-                    );
-                }
-                $totalStreamView += $streamView->success;
-                $totalStreamPlaybackDuration += $streamView->playback_duration;
-                $totalStreamBufferDuration += $streamView->buffer_duration;
-
-                $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success;
-                $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail;
-            }
-            // sắp xếp theo thời gian
-            uksort($viewsByDay, function ($a, $b) {
-                return strtotime($a) <= strtotime($b);
-            });
-
-            return array(
-                "viewByDays" => $viewsByDay,
-                "topStreams" => array(array(
-                    "SongId" => $streamId,
-                    "successViews" => $totalStreamView,
-                    "PlaybackDuration" => $totalStreamPlaybackDuration,
-                    "BufferDuration" => $totalStreamBufferDuration,
-//                    "StreamUrl" => $streamView->song->SongId ?? null ? route('admin.lsp.streams.show', $streamView->song->SongId) : null,
-                    "Code" => $streamView->song->Code ?? "",
-                    "Name" => $streamView->song->Name ?? "",
-                    "Owner" => $streamView->song->users->Nickname ?? "",
-//                    "OwnerUrl" => $streamView->song->users->UserId ?? null ? route('admin.lsp.user.show', $streamView->song->users->UserId) : null,
-                )),
-                "user" => $streamView->song->users ?? null,
+        $data = Songs::select(['SongId', 'Name', 'Code'])
+            ->where('LastOnline', '>=', Carbon::now())
+            ->get();
+        $data_channels = array();
+        foreach ($data as $item) {
+            $data_channels[$item->SongId] = array(
+                'Name' => $item->Name,
+                'Code' => $item->Code
             );
         }
 
-        /**
-         * thông tin về view của 1 user cụ thể
-         */
-        if ($userId) {
-            $startTime = strtotime($startTime);
-            $endTime = strtotime($endTime);
-            $viewsByDay = array();
-            $user = Users::with(['songs', 'songs.view'])->find($userId);
-            if (!$user) return abort(500);
+        $memcache = new Memcache;
+        $memcache->connect('localhost', 11211) or die('Could not conect to Memcache server');
 
-            array_push($topUsers, $user->makeHidden(['songs', 'songs.view'])->toArray());
-            $topUsers[0]["successViews"] = 0;
-            $topUsers[0]["PlaybackDuration"] = 0;
-            $topUsers[0]["BufferDuration"] = 0;
+        $listkeys = $this->getMemcacheKeysV2('localhost', 11211);
 
-            foreach ($user->songs as $stream) {
-                if (!$stream || !$stream->view || !$stream->view->days_view) continue;
-                $streamView = $stream->view;
-                $totalStreamView = 0;
-                $totalStreamPlaybackDuration = 0;
-                $totalStreamBufferDuration = 0;
+        $dataStreams = $this->getDatastream($memcache, $listkeys);
 
-                foreach (json_decode($streamView->days_view) as $key => $view) {
-                    $currentDate = strtotime($key);
-                    if ($currentDate >= $startTime && $currentDate <= $endTime) {
-                        if (!array_key_exists($key, $viewsByDay)) {
-                            $viewsByDay[$key] = array(
-                                "successCount" => 0,
-                                "failCount" => 0
-                            );
-                        }
-
-                        // đếm số lượng view của 1 stream cụ thể trong khoảng thời gian từ startTime đến endTime
-                        $totalStreamView += $view->success;
-                        $totalStreamPlaybackDuration += $view->playback_duration;
-                        $totalStreamBufferDuration += $view->buffer_duration;
-
-                        // đếm số lượng view success và fail trong khoảng thời gian từ startTime đến endTime
-                        $viewsByDay[$key]["successCount"] += $view->success;
-                        $viewsByDay[$key]["failCount"] += $view->fail;
-                    }
-                }
-
-                $lastUpdate = strtotime($streamView->last_update);
-                if ($lastUpdate >= $startTime && $lastUpdate <= $endTime) {
-                    if (!array_key_exists($streamView->last_update, $viewsByDay)) {
-                        $viewsByDay[$streamView->last_update] = array(
-                            "successCount" => 0,
-                            "failCount" => 0
-                        );
-                    }
-                    $totalStreamView += $streamView->success;
-                    $totalStreamPlaybackDuration += $streamView->playback_duration;
-                    $totalStreamBufferDuration += $streamView->buffer_duration;
-
-                    $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success;
-                    $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail;
-                }
-
-                if ($totalStreamView > 0) {
-                    array_push($topStreams, array(
-                        "SongId" => $stream->SongId,
-                        "successViews" => $totalStreamView,
-                        "PlaybackDuration" => $totalStreamPlaybackDuration,
-                        "BufferDuration" => $totalStreamBufferDuration,
-//                        "StreamUrl" => route('admin.lsp.streams.show', $stream->SongId),
-                        "Code" => $stream->Code,
-                        "Name" => $stream->Name,
-                        "Owner" => $user->Nickname,
-//                        "OwnerUrl" => route('admin.lsp.user.show', $user->UserId),
-                    ));
-                    $topUsers[0]["successViews"] += $totalStreamView;
-                    $topUsers[0]["PlaybackDuration"] += $totalStreamPlaybackDuration;
-                    $topUsers[0]["BufferDuration"] += $totalStreamBufferDuration;
-                }
+        $channels = array();
+        foreach ($dataStreams as $key => $value) {
+            $code = $value['Code'];
+            $name = 'Channel Name';
+            if (array_key_exists($key, $data_channels)) {
+                $name = $data_channels[$key]['Name'];
             }
-            $topUsers[0]["Streams"] = count($topStreams);
-            // sắp xếp stream theo successViews giảm dần
-            usort($topStreams, function ($a, $b) {
-                return $a['successViews'] <= $b['successViews'];
-            });
-            // sắp xếp theo thời gian
-            uksort($viewsByDay, function ($a, $b) {
-                return strtotime($a) <= strtotime($b);
-            });
 
-            return array(
-                "viewByDays" => $viewsByDay,
-                "topStreams" => $topStreams,
-                "topUsers" => $topUsers,
+            $channels[] = array(
+                'StreamId' => $key,
+                'Code' => $code,
+                'Name' => $name,
+                'PLAYING' => $value['PLAYING'],
+                'BUFFERING' => $value['BUFFERING'],
+                'CONNECTING' => $value['CONNECTING'],
+                'IOS' => $value['IOS'],
+                'Android' => $value['Android']
             );
         }
 
-
-        /**
-         * thông tin chung lọc theo ngày
-         */
-        $startTime = $request->get('start', date_format(now(), "Y-m-d"));
-        $endTime = $request->get('end', date_format(now(), "Y-m-d"));
-
-//        $streamViews = cache('lsp_statistic2') ? cache('lsp_statistic2') : Views::with('song.users')->where('last_update', '>', $startTime)->whereNotNull('days_view')->get();
-        $streamViews = Views::with('song.users')->where('last_update', '>', $startTime)->whereNotNull('days_view')->get();
-//        Cache::put('lsp_statistic2', $streamViews, 10 * 60);
-//        Cache::forever('lsp_statistic2', $streamViews);
-//        dd(cache('lsp_statistic2'));
-        $startTime = strtotime($startTime);
-        $endTime = strtotime($endTime);
-        $viewsByDay = array();
-        $TOP_RECORD_LIMIT = 10;
-        foreach ($streamViews as $streamView) {
-            $totalStreamView = 0;
-            $totalStreamPlaybackDuration = 0;
-            $totalStreamBufferDuration = 0;
-            foreach (json_decode($streamView->days_view) as $key => $view) {
-                $currentDate = strtotime($key);
-                if ($currentDate >= $startTime && $currentDate <= $endTime) {
-                    if (!array_key_exists($key, $viewsByDay)) {
-                        $viewsByDay[$key] = array(
-                            "successCount" => 0,
-                            "failCount" => 0
-                        );
-                    }
-
-                    // đếm số lượng view của 1 stream cụ thể trong khoảng thời gian từ startTime đến endTime
-                    $totalStreamView += $view->success;
-                    $totalStreamPlaybackDuration += $view->playback_duration;
-                    $totalStreamBufferDuration += $view->buffer_duration;
-
-                    // đếm số lượng view success và fail trong khoảng thời gian từ startTime đến endTime
-                    $viewsByDay[$key]["successCount"] += $view->success;
-                    $viewsByDay[$key]["failCount"] += $view->fail;
-                }
-            }
-
-            $lastUpdate = strtotime($streamView->last_update);
-            if ($lastUpdate >= $startTime && $lastUpdate <= $endTime) {
-                if (!array_key_exists($streamView->last_update, $viewsByDay)) {
-                    $viewsByDay[$streamView->last_update] = array(
-                        "successCount" => 0,
-                        "failCount" => 0
-                    );
-                }
-                $totalStreamView += $streamView->success;
-                $totalStreamPlaybackDuration += $streamView->playback_duration;
-                $totalStreamBufferDuration += $streamView->buffer_duration;
-
-                $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success;
-                $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail;
-            }
-
-            if ($totalStreamView > 0) {
-                array_push($topStreams, array(
-                    "SongId" => $streamView->SongId,
-                    "successViews" => $totalStreamView,
-                    "PlaybackDuration" => $totalStreamPlaybackDuration,
-                    "BufferDuration" => $totalStreamBufferDuration,
-                    "StreamView" => $streamView,
-//                    "StreamUrl" => $streamView->song->SongId ?? null ? route('admin.lsp.streams.show', $streamView->song->SongId) : null,
-//                    "Code" => $streamView->song->Code ?? "",
-//                    "Name" => $streamView->song->Name ?? "",
-//                    "Owner" => $streamView->song->users->Nickname ?? "",
-//                    "OwnerUrl" => $streamView->song->users->UserId ?? null ? route('admin.lsp.user.show', $streamView->song->users->UserId) : null,
-                ));
-
-                usort($topStreams, function ($a, $b) {
-                    return $a['successViews'] <= $b['successViews'];
-                });
-                $topStreams = array_slice($topStreams, 0, $TOP_RECORD_LIMIT);
-
-                if ($streamView->song && $streamView->song->users) {
-                    $currentUserId = $streamView->song->users->UserId;
-                } else {
-                    $currentUserId = -1;
-                }
-
-                if (array_key_exists($currentUserId, $topUsers)) {
-                    $topUsers[$currentUserId]["successViews"] += $totalStreamView;
-                    $topUsers[$currentUserId]["PlaybackDuration"] += $totalStreamPlaybackDuration;
-                    $topUsers[$currentUserId]["BufferDuration"] += $totalStreamBufferDuration;
-                    $topUsers[$currentUserId]["Streams"]++;
-
-                } else {
-                    $topUsers[$currentUserId] = array(
-                        "UserId" => $currentUserId,
-                        "StreamView" => $streamView,
-//                        "Nickname" => $streamView->song->users->Nickname ?? "",
-                        "successViews" => $totalStreamView,
-                        "Streams" => 1,
-                        "PlaybackDuration" => $totalStreamPlaybackDuration,
-                        "BufferDuration" => $totalStreamBufferDuration,
-                    );
-                }
-            }
-        }
-        // sắp xếp theo successViews giảm dần
-        usort($topUsers, function ($a, $b) {
-            return $a['successViews'] <= $b['successViews'];
-        });
-        $topUsers = array_slice($topUsers, 0, $TOP_RECORD_LIMIT);
-
-        // thêm các trường trước khi gửi về client
-        foreach ($topUsers as &$topUser) {
-            $streamView = $topUser["StreamView"];
-            $topUser["Nickname"] = $streamView->song->users->Nickname ?? "";
-            unset($topUser["StreamView"]);
-        }
-
-        foreach ($topStreams as &$topStream) {
-            $streamView = $topStream["StreamView"];
-            $topStream["Code"] = $streamView->song->Code ?? "";
-            $topStream["Name"] = $streamView->song->Name ?? "";
-            $topStream["Owner"] = $streamView->song->users->Nickname ?? "";
-            unset($topStream["StreamView"]);
-        }
-
-        // sắp xếp theo thời gian
-        uksort($viewsByDay, function ($a, $b) {
-            return strtotime($a) <= strtotime($b);
-        });
-
+        $memcache->close();
+        $sort = $request->get('sort', 'PLAYING');
+        $sortType = strtolower($request->get('order', 'desc'));
+        $channels = $this->array_sort($channels, $sort, $sortType == 'desc' ? SORT_DESC : SORT_ASC);
+        $count_total = count($listkeys);
         return array(
-            "viewByDays" => $viewsByDay,
-            "topStreams" => $topStreams,
-            "topUsers" => $topUsers,
+            "channels" => $channels,
+            "totalViews" => count($dataStreams),
+            "sort" => array(
+                "name" => $sort,
+                "type" => $sortType
+            )
         );
     }
 
-    public function search(Request $request)
+    function getMemcacheKeysV2($server, $port, $limit = 10000)
     {
-        $query = $request->get('query');
-        if ($request->get('type', 1) == 1) {
-            //search stream
-            if ($request->has('userId')) {
-                $results = Songs::where([['UserId', $request->get('userId')], ['Name', 'like', "%$query%"]])->select(['Name as text', 'SongId as id'])->orderBy('ViewByAll', 'desc')->paginate(10);
-            } else {
-                $results = Songs::where('Name', 'like', "%$query%")->select(['Name as text', 'SongId as id'])->orderBy('ViewByAll', 'desc')->paginate(10);
+        $keysFound = array();
+        $memcache = new Memcache;
+        $memcache->connect($server, $port = 11211, 5);
+
+        $slabs = $memcache->getExtendedStats('slabs');
+        foreach ($slabs as $serverSlabs) {
+            foreach ($serverSlabs as $slabId => $slabMeta) {
+                try {
+                    $cacheDump = $memcache->getExtendedStats('cachedump', (int)$slabId, 1000);
+                } catch (Exception $e) {
+                    continue;
+                }
+
+                if (!is_array($cacheDump)) {
+                    continue;
+                }
+
+                foreach ($cacheDump as $dump) {
+
+                    if (!is_array($dump)) {
+                        continue;
+                    }
+
+                    foreach ($dump as $key => $value) {
+                        $keysFound[] = $key;
+
+                        if (count($keysFound) == $limit) {
+                            return $keysFound;
+                        }
+                    }
+                }
+            }
+        }
+        $memcache->close();
+
+        return $keysFound;
+    }
+
+    function getDatastream($memcache, $keys)
+    {
+        $dataStream = array();
+
+        foreach ($keys as $key) {
+            if ($memcache->get($key)) {
+                $item = $memcache->get($key);
+                if (isset($item['Type']) && $item['Type'] == "PlayerState") {
+                    if (array_key_exists($item['StreamId'], $dataStream)) {
+                        if (strcmp($item['ApplicationId'], "com.mdcmedia.liveplayer.ios") == 0) $dataStream[$item['StreamId']]['IOS'] = $dataStream[$item['StreamId']]['IOS'] + 1;
+                        if (strcmp($item['ApplicationId'], "com.liveplayer.android") == 0) $dataStream[$item['StreamId']]['Android'] = $dataStream[$item['StreamId']]['Android'] + 1;
+                        if ($item['State'] == 'PLAYING') {
+                            $dataStream[$item['StreamId']]['PLAYING'] = $dataStream[$item['StreamId']]['PLAYING'] + 1;
+                        }
+                        if ($item['State'] == 'BUFFERING') {
+                            $dataStream[$item['StreamId']]['BUFFERING'] = $dataStream[$item['StreamId']]['BUFFERING'] + 1;
+                        }
+                        if ($item['State'] == 'CONNECTING') {
+                            $dataStream[$item['StreamId']]['CONNECTING'] = $dataStream[$item['StreamId']]['CONNECTING'] + 1;
+                        }
+                    } else {
+                        $playing = $buffering = $connecting = 0;
+                        if ($item['State'] == 'PLAYING') {
+                            $playing = 1;
+                        } else if ($item['State'] == 'BUFFERING') {
+                            $buffering = 1;
+                        } else  $connecting = 1;
+                        $dataStream[$item['StreamId']] = array(
+                            'Code' => $item['StreamCode'],
+                            'PLAYING' => $playing,
+                            'BUFFERING' => $buffering,
+                            'CONNECTING' => $connecting,
+                            'IOS' => 0,
+                            'Android' => 0
+                        );
+                    }
+                }
+
+            }
+        }
+        return $dataStream;
+    }
+
+    public function array_sort($array, $on, $order = SORT_ASC)
+    {
+        $new_array = array();
+        $sortable_array = array();
+
+        if (count($array) > 0) {
+            foreach ($array as $k => $v) {
+                if (is_array($v)) {
+                    foreach ($v as $k2 => $v2) {
+                        if ($k2 == $on) {
+                            $sortable_array[$k] = $v2;
+                        }
+                    }
+                } else {
+                    $sortable_array[$k] = $v;
+                }
             }
 
-        } else {
-            // search user
-            if ((int)$request->get('query')) {
-                $results = Users::where('Nickname', 'like', "%$query%")
-                    ->orWhere('users.UserId', $request->get('query'))
-                    ->leftJoin('songs', 'users.UserId', '=', 'songs.UserId')
-                    ->select(['Nickname as text', 'users.UserId as id'])
-                    ->groupBy('users.UserId')
-                    ->orderByRaw('sum(songs.ViewByAll) desc')
-                    ->paginate(10);
-            } else {
-                $results = Users::where('Nickname', 'like', "%$query%")
-                    ->leftJoin('songs', 'users.UserId', '=', 'songs.UserId')
-                    ->select(['Nickname as text', 'users.UserId as id'])
-                    ->groupBy('users.UserId')
-                    ->orderByRaw('sum(songs.ViewByAll) desc')
-                    ->paginate(10);
+            switch ($order) {
+                case SORT_ASC:
+                    asort($sortable_array);
+                    break;
+                case SORT_DESC:
+                    arsort($sortable_array);
+                    break;
+            }
+
+            foreach ($sortable_array as $k => $v) {
+                $new_array[$k] = $array[$k];
             }
         }
 
-        return array(
-            "results" => $results->items(),
-            "pagination" => array(
-                "more" => $results->hasMorePages()
-            )
-        );
+        return $new_array;
     }
 
     protected function getDeleteClass()

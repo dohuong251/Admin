@@ -69,7 +69,7 @@
     <script src="/js/dist/ajax_setup_loading.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonlint/1.6.0/jsonlint.min.js"></script>
     <script src="/js/vendors/sweetalert2.all.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js"></script>
+    <script src="/js/vendors/handlebars.min.js"></script>
     <script src="/js/tool/config.js"></script>
 @endsection
 @section('content')

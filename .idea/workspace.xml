@@ -2,8 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/lsp/analytic_realtime.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/deployment.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/RealtimeAnalyticController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/RealtimeAnalyticController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/tool/test_rule.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/tool/test_rule.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/analytic_realtime.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/analytic_realtime.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/analytic_statistics.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/analytic_statistics.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promotions/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promotions/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tools/config.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/config.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tools/test_rule.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/test_rule.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -38,8 +50,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="CSS File" />
-        <option value="JavaScript File" />
         <option value="Blade" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -334,7 +346,11 @@
       <workItem from="1574215932632" duration="20398000" />
       <workItem from="1574301925696" duration="25103000" />
       <workItem from="1574388756452" duration="19459000" />
-      <workItem from="1574648525750" duration="14475000" />
+      <workItem from="1574648525750" duration="22684000" />
+      <workItem from="1574733854000" duration="11608000" />
+      <workItem from="1574820839219" duration="10517000" />
+      <workItem from="1574840195088" duration="5050000" />
+      <workItem from="1574910936534" duration="2062000" />
     </task>
     <servers />
   </component>

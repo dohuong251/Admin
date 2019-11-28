@@ -15,10 +15,14 @@ use function foo\func;
 class StatisticsController extends Controller
 {
     //
-    public function index()
+    public function index(Request $request)
     {
-//        dd(Songs::find(412832)->Code);
-        return view('lsp.analytic_statistics');
+        if ($request->get('streamId')) {
+            $stream = Songs::find($request->get('streamId'));
+        }
+        return view('lsp.analytic_statistics', [
+            'stream' => $stream ?? null
+        ]);
     }
 
     public function filter(Request $request)
@@ -111,7 +115,7 @@ class StatisticsController extends Controller
             $endTime = strtotime($endTime);
             $viewsByDay = array();
             $user = Users::with(['songs' => function ($query) {
-                $query->select(['SongId', 'Code', 'Name','UserId']);
+                $query->select(['SongId', 'Code', 'Name', 'UserId']);
             }, 'songs.view'])->find($userId);
             if (!$user) return abort(500);
 

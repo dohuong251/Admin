@@ -139,7 +139,7 @@
                                     <a href="{{route('admin.lsp.analytic.statistics')}}">Statistics</a>
                                 </li>
                                 <li>
-                                    <a href="javascript:void(0);">Realtime</a>
+                                    <a href="{{route('admin.lsp.analytic.realtime')}}">Realtime</a>
                                 </li>
                             </ul>
                         </li>

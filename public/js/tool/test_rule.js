@@ -109,55 +109,67 @@ $(document).ready(function () {
             .siblings('.step-result-text').toggleClass('ellipsis');
     }).on('click', '#update-rule', function () {
         if (!$('#match')[0].reportValidity() || !$('#name')[0].reportValidity()) return;
-        let addRule = false;
-        let newRule = getRule();
-        if (selectedRuleIndex != null) {
-            if (selectedRuleIndex === -1) {
-                defaultConfig.Rules.push(newRule);
-                addRule = true;
-            } else {
-                defaultConfig.Rules[selectedRuleIndex] = newRule;
-            }
-        }
-        updateRuleRequest = $.ajax({
-            url: $(this).attr('data-url'),
-            type: "PUT",
-            data: {
-                rule: JSON.stringify(defaultConfig)
-            },
-            beforeSend: function () {
-                if (updateRuleRequest != null) {
-                    updateRuleRequest.abort();
-                }
-            },
-            success: (data) => {
-                if (data != 0) {
-                    Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                    }).fire({
-                        icon: 'success',
-                        title: 'Rule Update!'
-                    });
-                    if(addRule){
-                        var newOption = new Option(newRule.Match, newRule.Match, false, false);
-                        $('#select-page-rule').append(newOption).trigger('change');
+
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Đồng bộ luật với config hiện tại ?",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Xác Nhận',
+            cancelButtonText:'Hủy'
+        }).then((result) => {
+            if (result.value) {
+                let addRule = false;
+                let newRule = getRule();
+                if (selectedRuleIndex != null) {
+                    if (selectedRuleIndex === -1) {
+                        defaultConfig.Rules.push(newRule);
+                        addRule = true;
+                    } else {
+                        defaultConfig.Rules[selectedRuleIndex] = newRule;
                     }
-                } else {
-                    Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                    }).fire({
-                        icon: 'error',
-                        title: 'Rule Update Failed Or Not Changed!'
-                    });
                 }
+                updateRuleRequest = $.ajax({
+                    url: $(this).attr('data-url'),
+                    type: "PUT",
+                    data: {
+                        rule: JSON.stringify(defaultConfig)
+                    },
+                    beforeSend: function () {
+                        if (updateRuleRequest != null) {
+                            updateRuleRequest.abort();
+                        }
+                    },
+                    success: (data) => {
+                        if (data != 0) {
+                            Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                            }).fire({
+                                icon: 'success',
+                                title: 'Rule Update!'
+                            });
+                            if(addRule){
+                                var newOption = new Option(newRule.Match, newRule.Match, false, false);
+                                $('#select-page-rule').append(newOption).trigger('change');
+                            }
+                        } else {
+                            Swal.mixin({
+                                toast: true,
+                                position: 'top-end',
+                                showConfirmButton: false,
+                                timer: 3000,
+                                timerProgressBar: true,
+                            }).fire({
+                                icon: 'error',
+                                title: 'Rule Update Failed Or Not Changed!'
+                            });
+                        }
+                    }
+                });
             }
         });
     });

@@ -24,23 +24,6 @@
         </ul>
     </nav>
     <div class="list">
-        <table class="table table-hover" id="content">
-            <thead>
-            <tr>
-                <th scope="col">
-                    <input type="checkbox" id="selectAll" class="align-middle">
-                </th>
-                <th scope="col"></th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr data-href="{{''}}">
-                <th scope="row" class="align-middle">
-                    <input type="checkbox" class="align-middle select-row" data-id="{{''}}">
-                </th>
-                <td></td>
-            </tr>
-            </tbody>
-        </table>
+
     </div>
 @endsection

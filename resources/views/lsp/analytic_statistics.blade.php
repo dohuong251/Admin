@@ -88,7 +88,7 @@
     @endverbatim
     <script>
         let ajaxUrl = "{!! route('admin.lsp.analytic.statistics.filter') !!}",
-            ajaxSearchUrl = "{!! route('admin.lsp.analytic.statistics.search') !!}"
+            ajaxSearchUrl = "{!! route('admin.lsp.analytic.statistics.search') !!}";
     </script>
     <script src="/js/dist/ajax_setup_loading.js"></script>
     <script src="/js/vendors/sweetalert2.all.min.js"></script>
@@ -98,7 +98,7 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
     <script src="/js/vendors/select2.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.min.js"></script>
+    <script src="/js/vendors/handlebars.min.js"></script>
     <script src="/js/lsp/statistics.js"></script>
 @endsection
 @section('content')
@@ -120,11 +120,19 @@
                     <input class="form-control border-left-0 border-top-0 border-bottom-0 border-right col-4" id="date-picker">
                     <div class="col-4 px-0 border-right">
                         <select class="custom-select w-auto rounded-0" id="userSearch">
-                            <option value="9545">Seder Maza</option>
+                            @if(isset($stream) && $stream==null)
+                                <option value="{{$stream->users->UserId??""}}">{{$stream->users->Nickname??""}}</option>
+                            @else
+                                <option value="9545">Seder Maza</option>
+                            @endif
                         </select>
                     </div>
                     <div class="col-4 px-0">
-                        <select class="custom-select w-auto rounded-0" id="streamSearch"></select>
+                        <select class="custom-select w-auto rounded-0" id="streamSearch">
+                            @if(isset($stream) && $stream)
+                                <option value="{{$stream->SongId??""}}">{{$stream->Name??""}}</option>
+                            @endif
+                        </select>
                     </div>
                 </div>
             </div>
