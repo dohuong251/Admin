@@ -24,7 +24,7 @@ class RealtimeAnalyticController extends Controller
     public function filter(Request $request)
     {
         $data = Songs::select(['SongId', 'Name', 'Code'])
-            ->where('LastOnline', '>=', Carbon::now())
+            ->where('LastOnline', '>=', DB::raw('curdate()'))
             ->get();
         $data_channels = array();
         foreach ($data as $item) {
