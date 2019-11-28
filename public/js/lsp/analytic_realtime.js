@@ -128,7 +128,7 @@ $(document).ready(function () {
     let sort = "PLAYING", order = "desc";
     $(document).on('click', '.sort', function () {
         sort = $(this).attr('data-sort');
-        if ($(this).find('.fa-caret-down')) order = "asc";
+        if ($(this).find('.fa-caret-down').length) order = "asc";
         else order = "desc";
         loadData();
     });

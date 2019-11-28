@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/RealtimeAnalyticController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/RealtimeAnalyticController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/lsp/analytic_realtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lsp/analytic_realtime.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -338,7 +337,7 @@
       <workItem from="1574733854000" duration="11608000" />
       <workItem from="1574820839219" duration="10517000" />
       <workItem from="1574840195088" duration="5050000" />
-      <workItem from="1574910936534" duration="3322000" />
+      <workItem from="1574910936534" duration="3569000" />
     </task>
     <servers />
   </component>
