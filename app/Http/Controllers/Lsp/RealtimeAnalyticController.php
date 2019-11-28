@@ -67,8 +67,8 @@ class RealtimeAnalyticController extends Controller
         $channels = $this->array_sort($channels, $sort, $sortType == 'desc' ? SORT_DESC : SORT_ASC);
         $count_total = count($listkeys);
         return array(
-            "channels" => $channels,
-            "totalViews" => count($dataStreams),
+            "channels" => collect()->merge($channels),
+            "totalViews" => $count_total,
             "sort" => array(
                 "name" => $sort,
                 "type" => $sortType

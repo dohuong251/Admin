@@ -8,8 +8,8 @@
         <script id="stream-list-template" type="text/x-handlebars-template">
             <div class="row jc-fe mx-0">
                 <span class="badge badge-primary mx-2 mb-2 cur-p td-u-hover sort" data-sort="PLAYING">Playing{{order_type "PLAYING" sort}}</span>
-                <span class="badge badge-warning mx-2 mb-2 cur-p td-u-hover sort" data-sort="BUFFERING">Buffering</span>
-                <span class="badge badge-danger mx-2 mb-2 cur-p td-u-hover sort" data-sort="CONNECTING">Connecting</span>
+                <span class="badge badge-warning mx-2 mb-2 cur-p td-u-hover sort" data-sort="BUFFERING">Buffering{{order_type "BUFFERING" sort}}</span>
+                <span class="badge badge-danger mx-2 mb-2 cur-p td-u-hover sort" data-sort="CONNECTING">Connecting{{order_type "CONNECTING" sort}}</span>
             </div>
             <ul class="list-group">
                 {{#each channels}}
