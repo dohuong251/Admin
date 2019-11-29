@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Promotion;
 
 use App\Http\Controllers\model;
+use App\Models\Promotion;
 use App\Models\Tool\Config;
 use DB;
 use DOMDocument;
@@ -24,52 +25,50 @@ class PromotionController extends Controller
 
     public function index()
     {
-        return view('promotions.promotion');
+        return view('promotions.promotion', [
+            'current' => Promotion::orderBy('id', 'desc')->first()
+        ]);
     }
 
     public function startPromo(Request $request)
     {
         if ($request->get("com_liveplayer_android")["title"] || $request->get("com_liveplayer_android")["imageUrl"]) {
-            $lspConfig = Config::where([['id_application', 'com.liveplayer.android'], ['name', 'message_web'], ['device', 3]])->get()->first();
-
-            if (json_decode($lspConfig->value)) {
-                $jsonValue = json_decode($lspConfig->value);
-                if ($request->get("com_liveplayer_android")["title"]) $jsonValue->title = $request->get("com_liveplayer_android")["title"];
-                if ($request->get("com_liveplayer_android")["imageUrl"]) {
-                    $imageUrl = $request->get("com_liveplayer_android")["imageUrl"];
-                    $jsonValue->text = "<!DOCTYPE html><html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"http://edge.mdcgate.com/sales/subscription/buy.php?HiddenButton=1&ApplicationId=Live%20Media%20Player&mode=licensekey\"><img  src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
-                }
-                $lspConfig->value = json_encode($jsonValue);
-                Config::where([['id_application', 'com.liveplayer.android'], ['name', 'message_web'], ['device', 3]])
-                    ->update(['value' => $lspConfig->value]);
+            $promoConfig = array(
+                'button' =>
+                    array(
+                        'title' => 'View',
+                        'link' => 'http://edge.mdcgate.com/sales/subscription/buy.php?HiddenButton=1&ApplicationId=Live%20Media%20Player&mode=licensekey',
+                    ),
+            );
+            if ($request->get("com_liveplayer_android")["title"]) $promoConfig["title"] = $request->get("com_liveplayer_android")["title"];
+            if ($request->get("com_liveplayer_android")["imageUrl"]) {
+                $imageUrl = $request->get("com_liveplayer_android")["imageUrl"];
+                $promoConfig["text"] = "<!DOCTYPE html><html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"http://edge.mdcgate.com/sales/subscription/buy.php?HiddenButton=1&ApplicationId=Live%20Media%20Player&mode=licensekey\"><img  src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
             }
+            Config::where([['id_application', 'com.liveplayer.android'], ['name', 'message_web'], ['device', 3]])
+                ->update(['value' => json_encode($promoConfig)]);
         }
 
         if ($request->get('com_mdc_iptvplayer_ios')['imageUrl']) {
-            $iptvConfig = Config::where([['id_application', 'com.mdc.iptvplayer.ios'], ['name', 'message'], ['device', 0]])->get()->first();
-            if (json_decode($iptvConfig->value)) {
-                $jsonValue = json_decode($iptvConfig->value);
+            $promoConfig = array(
+                'type' => 1,
+            );
+            $imageUrl = $request->get("com_mdc_iptvplayer_ios")["imageUrl"];
+            $promoConfig["text"] = " <!DOCTYPE html>\r\n<html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"> <a href=\"iptv://?action=upgrade\"><img src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
 
-                if ($request->get("com_mdc_iptvplayer_ios")["imageUrl"]) {
-                    $imageUrl = $request->get("com_mdc_iptvplayer_ios")["imageUrl"];
-                    $jsonValue->text = " <!DOCTYPE html>\r\n<html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"> <a href=\"iptv://?action=upgrade\"><img src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
-                }
-                $iptvConfig->value = json_encode($jsonValue);
-                Config::where([['id_application', 'com.mdc.iptvplayer.ios'], ['name', 'message'], ['device', 0]])
-                    ->update(['value' => $iptvConfig->value]);
-            }
+            Config::where([['id_application', 'com.mdc.iptvplayer.ios'], ['name', 'message'], ['device', 0]])
+                ->update(['value' => json_encode($promoConfig)]);
         }
 
         if ($request->get('com_mdcmedia_liveplayer_ios')['imageUrl']) {
-            $livePlayerConfig = Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'message']])->get()->first();
-            if (json_decode($livePlayerConfig->value)) {
-                $jsonValue = json_decode(($livePlayerConfig->value));
-                $imageUrl = $request->get('com_mdcmedia_liveplayer_ios')['imageUrl'];
-                $jsonValue->html = "<!DOCTYPE html>\r\n<html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"lsp://?action=upgrade\"><img src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
-                $livePlayerConfig->value = json_encode($jsonValue);
-                Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'message']])
-                    ->update(['value' => $livePlayerConfig->value]);
-            }
+            $promoConfig = array(
+                'text' => 'Dear Users ,
+We have just released a brand new IPTV application - IPTV Player. Please support us by downloading this application now !',
+            );
+            $imageUrl = $request->get('com_mdcmedia_liveplayer_ios')['imageUrl'];
+            $promoConfig["html"] = "<!DOCTYPE html>\r\n<html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"lsp://?action=upgrade\"><img src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
+            Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'message']])
+                ->update(['value' => json_encode($promoConfig)]);
         }
 
         if ($request->get('com_mdcmedia_liveplayer_ios')['promoBgUrl']) {
@@ -82,16 +81,31 @@ class PromotionController extends Controller
         }
 
         if ($request->get('com_ustv_player')['imageUrl']) {
-            $ustvConfig = Config::where([['id_application', 'com.ustv.player'], ['name', 'message_web'], ['device', 0]])->get()->first();
-            if (json_decode($ustvConfig->value)) {
-                $jsonValue = json_decode(($ustvConfig->value));
-                $imageUrl = $request->get('com_ustv_player')['imageUrl'];
-                $jsonValue->html = "<!DOCTYPE html>\r\n<html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"ustvupgrade://?action=upgrade\"><img  style='border-radius: 10px;' src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
-                $ustvConfig->value = json_encode($jsonValue);
-                Config::where([['id_application', 'com.ustv.player'], ['name', 'message_web'], ['device', 0]])
-                    ->update(['value' => $ustvConfig->value]);
-            }
+            $promoConfig = array();
+            $imageUrl = $request->get('com_ustv_player')['imageUrl'];
+            $promoConfig["html"] = "<!DOCTYPE html>\r\n<html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"ustvupgrade://?action=upgrade\"><img  style='border-radius: 10px;' src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
+            Config::where([['id_application', 'com.ustv.player'], ['name', 'message_web'], ['device', 0]])
+                ->update(['value' => json_encode($promoConfig)]);
         }
+
+        Promotion::query()->delete();
+        $prmotion = new Promotion();
+        $prmotion->content = json_encode($request->except('_token'));
+        $prmotion->save();
+
+        return back();
+    }
+
+    public function stopPromo(Request $request)
+    {
+        Config::where([['id_application', 'com.liveplayer.android'], ['name', 'message_web'], ['device', 3]])
+            ->orWhere([['id_application', 'com.mdc.iptvplayer.ios'], ['name', 'message'], ['device', 0]])
+            ->orWhere([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'message']])
+            ->orWhere([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'promo_background']])
+            ->orWhere([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'promo_text']])
+            ->orWhere([['id_application', 'com.ustv.player'], ['name', 'message_web'], ['device', 0]])
+            ->update(['value' => '']);
+        Promotion::query()->delete();
         return back();
     }
     //
