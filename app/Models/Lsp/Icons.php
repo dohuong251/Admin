@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Icons extends Base
 {
     //
-    protected $primaryKey = '';
+    protected $primaryKey = null;
 
     public function songs()
     {

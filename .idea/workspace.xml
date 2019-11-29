@@ -2,8 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/public/js/promo/promo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/resources/views/promotions/promotion.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/RealtimeAnalyticController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/RealtimeAnalyticController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StreamController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StreamController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Lsp/APNTokens.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/APNTokens.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Lsp/Blacklist.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Blacklist.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Lsp/Features.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Features.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Lsp/Groupsongs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Groupsongs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Lsp/Groupusers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Groupusers.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Lsp/Icons.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Icons.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Lsp/Playlistsongs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Playlistsongs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Lsp/Postlikes.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Postlikes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Lsp/Songs.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Songs.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tool/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tool/Config.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/dist/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/public/css/dist/style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/dist/main.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/dist/main.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/lsp/streams.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lsp/streams.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/lsp/user.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lsp/user.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/layout_modal_suspend_stream.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/layout_modal_suspend_stream.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_complain.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_complain.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_feature.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_feature.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/streams.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/streams.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/user_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/user_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promotions/index.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promotions/index.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tools/notification.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/notification.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -181,7 +208,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript&#10;MySQL&#10;CSS" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/tools" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/promotions" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -197,11 +224,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\MDCAdmin\Admin\resources\views\promotions" />
       <recent name="E:\MDCAdmin\Admin\resources\views\tools" />
       <recent name="E:\MDCAdmin\Admin\app\Models\Tool" />
       <recent name="E:\MDCAdmin\Admin\resources\views\lsp" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\Lsp" />
-      <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\Tool" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\tool" />
@@ -338,7 +365,8 @@
       <workItem from="1574733854000" duration="11608000" />
       <workItem from="1574820839219" duration="10517000" />
       <workItem from="1574840195088" duration="5050000" />
-      <workItem from="1574910936534" duration="4912000" />
+      <workItem from="1574910936534" duration="20835000" />
+      <workItem from="1574993205901" duration="20667000" />
     </task>
     <servers />
   </component>
@@ -375,6 +403,8 @@
         <watch expression="$request-&gt;get('startTime')" language="PHP" />
         <watch expression="$streamView-&gt;days_view" language="PHP" />
         <watch expression="$streamView" language="PHP" />
+        <watch expression="$suspendStream-&gt;Code" language="PHP" />
+        <watch expression="Complain::where('ChannelCode', $suspendStream-&gt;Code)-&gt;get()" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

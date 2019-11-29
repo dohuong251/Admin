@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Blacklist extends Base
 {
     //
-    protected $primaryKey = '';
+    protected $primaryKey = null;
 
     public function users()
     {

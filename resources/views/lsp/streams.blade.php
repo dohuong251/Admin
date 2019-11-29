@@ -51,6 +51,7 @@
                     <th scope="col">Rate</th>
                     <th scope="col">Language</th>
                     <th scope="col">Likes</th>
+                    <th scope="col"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -61,7 +62,7 @@
                             <input type="checkbox" class="align-middle select-row" data-id="{{$song->SongId}}">
                         </th>
                         <td>
-                            <img src="{{$song->ImageURL}}" class="image-thumb image-fit img-thumbnail">
+                            <img data-src="{{$song->ImageURL}}" class="image-thumb image-fit img-thumbnail">
                         </td>
                         <td>{{$song->Code}}</td>
                         <td class="ellipsis-cell" title="{{$song->Name}}">
@@ -70,10 +71,10 @@
                         </td>
                         <td>
                             <div class="d-flex">
-                                <span class="ellipsis-text" id="clipboard-{{$song->Code}}">{{$song->URL}}</span>
+                                <span class="ellipsis-text" id="clipboard-{{$song->Code}}" title="{{$song->URL}}">{{$song->URL}}</span>
                                 <span class="except-redirect">
                                 <button class="btn clipboard" type="button" data-clipboard-demo="" data-clipboard-target="#clipboard-{{$song->Code}}">
-                                    <img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard">
+                                    <img data-src="/images/icon/clippy.svg" width="13" alt="Copy to clipboard">
                                 </button>
                             </span>
                             </div>
@@ -87,6 +88,9 @@
                         <td>{{$song->AverageRating}}</td>
                         <td>{{$song->Language}}</td>
                         <td>{{number_format($song->likes_count)}}</td>
+                        <td class="except-redirect" data-toggle="modal" data-target="#suspendModal" data-id="{{$song->SongId}}" title="suspend stream">
+                            <i class="fa fa-ban"></i>
+                        </td>
                     </tr>
                 @endforeach
                 </tbody>
@@ -95,6 +99,7 @@
 
         </div>
         {{$songs->links('vendor.pagination.custom')}}
+        @include('lsp.layout_modal_suspend_stream')
         @include('layouts.deleteButton')
 {{--        @include('layouts.deleteGroupButton')--}}
     @endif

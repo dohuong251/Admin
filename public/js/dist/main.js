@@ -99,6 +99,7 @@ function initDatatable(table, options, selectable = true, stickyHeader = true) {
     try {
         if (selectable) {
             options.drawCallback = function (settings) {
+                lazyload(document.querySelectorAll("img"));
                 table.find('tbody').addClass('cur-p');
                 if (stickyHeader) {
                     // initTableStickyHeader(table);

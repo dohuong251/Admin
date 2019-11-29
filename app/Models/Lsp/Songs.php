@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Songs extends Base
 {
     protected $table = 'songs';
+    protected $fillable=['Name','UserId','Description','URL','PublishedDate','LastOnline','Code','Language','CategoryId'];
 
     protected $primaryKey = 'SongId';
 

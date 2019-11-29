@@ -40,7 +40,7 @@ $(document).ready(function () {
                 orderable: false,
                 searchable: false,
                 render: function (data, type, row) {
-                    if (data) return `<img src='${data}' alt="channel_thumb" class="image-fit image-thumb img-thumbnail">`;
+                    if (data) return `<img data-src='${data}' alt="channel_thumb" class="image-fit image-thumb img-thumbnail">`;
                     else return '';
                 }
             },
@@ -52,5 +52,5 @@ $(document).ready(function () {
             },
         ],
     };
-    initDatatable(dataTable, dataTableOptions);
+    setTimeout(()=>{initDatatable(dataTable, dataTableOptions);},300);
 });

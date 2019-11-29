@@ -32,7 +32,7 @@
     @if($notifications)
         <div>
             <div class="list">
-                <table class="table table-hover" id="content">
+                <table class="table table-hover table-responsive" id="content">
                     <thead>
                     <tr>
                         <th scope="col">
@@ -72,7 +72,7 @@
                                 @endswitch
                             </td>
                             <td>{{$notification->Platform}}</td>
-                            <td>{{$notification->Notification}}</td>
+                            <td class="text-break">{{$notification->Notification}}</td>
                             <td class="text-nowrap">{{$notification->StartDate}}</td>
                             <td>{{$notification->ExpiredDate}}</td>
                         </tr>

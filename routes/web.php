@@ -123,6 +123,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         Route::group(['as' => 'promotions.', 'prefix' => 'promotions'], function () {
             Route::get('/', 'Promotion\PromotionController@index')->name('index');
+            Route::post('/','Promotion\PromotionController@startPromo')->name('start');
         });
     });
 

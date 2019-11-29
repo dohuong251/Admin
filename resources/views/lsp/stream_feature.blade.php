@@ -48,26 +48,25 @@
                             <input type="checkbox" class="align-middle select-row">
                         </th>
                         <td>
-                            <img src="{{$feature->songs->ImageURL}}" class="image-thumb image-fit img-thumbnail">
+                            <img data-src="{{$feature->songs->ImageURL??""}}" class="image-thumb image-fit img-thumbnail">
                         </td>
-                        <td>{{$feature->songs->Code}}</td>
-                        <td class="ellipsis-cell" title="{{$feature->songs->Name}}">
-                            {{$feature->songs->Name}}
-                            {{--                            <a href="{{route('admin.lsp.stream',$feature->SongId)}}">{{$feature->Name}}</a>--}}
+                        <td>{{$feature->songs->Code??""}}</td>
+                        <td class="ellipsis-cell" title="{{$feature->songs->Name??""}}">
+                            {{$feature->songs->Name??""}}
                         </td>
                         <td>
                             <div class="d-flex">
-                                <span class="ellipsis-text" id="clipboard-{{$feature->songs->Code}}">{{$feature->songs->URL}}</span>
+                                <span class="ellipsis-text" id="clipboard-{{$feature->songs->Code??""}}" title="{{$feature->songs->URL??""}}">{{$feature->songs->URL??""}}</span>
                                 <span class="except-redirect">
                                 <button class="btn clipboard" type="button" data-clipboard-demo="" data-clipboard-target="#clipboard-{{$feature->Code}}">
-                                    <img src="https://clipboardjs.com/assets/images/clippy.svg" width="13" alt="Copy to clipboard">
+                                    <img data-src="/images/icon/clippy.svg" width="13" alt="Copy to clipboard">
                                 </button>
                             </span>
                             </div>
                         </td>
-                        <td>{{number_format($feature->songs->ViewByAll)}}</td>
-                        <td>{{$feature->songs->AverageRating}}</td>
-                        <td>{{$feature->songs->Language}}</td>
+                        <td>{{number_format($feature->songs->ViewByAll??0)}}</td>
+                        <td>{{$feature->songs->AverageRating??""}}</td>
+                        <td>{{$feature->songs->Language??""}}</td>
                         <td>{{number_format($feature->likes_count)}}</td>
                     </tr>
                 @endforeach

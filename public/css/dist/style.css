@@ -28,23 +28,23 @@
     }
 
     .border-0-sm {
-        border: 1px solid rgba(0, 0, 0, .0625) !important
+        border: 0 !important
     }
 
     .border-top-0-sm {
-        border-top: 1px solid rgba(0, 0, 0, .0625) !important
+        border-top: 0 !important
     }
 
     .border-right-0-sm {
-        border-right: 1px solid rgba(0, 0, 0, .0625) !important
+        border-right: 0 !important
     }
 
     .border-bottom-0-sm {
-        border-bottom: 1px solid rgba(0, 0, 0, .0625) !important
+        border-bottom: 0 !important
     }
 
     .border-left-0-sm {
-        border-left: 1px solid rgba(0, 0, 0, .0625) !important
+        border-left: 0 !important
     }
 }
 

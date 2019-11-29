@@ -28,7 +28,7 @@ class Postlikes extends Base
 {
 //    use MorphMap;
     //
-    protected $primaryKey = '';
+    protected $primaryKey = null;
 
     public function users()
     {

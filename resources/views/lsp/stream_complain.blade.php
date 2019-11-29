@@ -60,7 +60,7 @@
                         <td>{{$complain->Reason}}</td>
                         <td>{{$complain->Time}}</td>
                         <td>{{$complain->Num}}</td>
-                        <td data-toggle="modal" data-target="#exampleModal" data-id="{{$complain->song?$complain->Song->SongId:''}}" title="suspend stream">
+                        <td data-toggle="modal" data-target="#suspendModal" data-id="{{$complain->song?$complain->Song->SongId:''}}" title="suspend stream">
                             <i class="fa fa-ban"></i>
                         </td>
                     </tr>

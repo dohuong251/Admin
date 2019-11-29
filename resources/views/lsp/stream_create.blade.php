@@ -42,7 +42,7 @@
                             <label for="nickname">Name:&nbsp;</label>
                             <input id="nickname" class="form-control w-auto d-inline"
                                    style="padding-left: 15px" type="text"
-                                   value="{{old('Name')}}" name="Name" placeholder="Nhập tên kênh">
+                                   value="{{old('Name')}}" name="Name" placeholder="Nhập tên kênh" required>
                             <div class="text-danger">{{ $errors->first('Name') }}</div>
                         </div>
                         <div class="d-flex information-form">
@@ -112,7 +112,7 @@
                                             URL:
                                         </label>
                                     </div>
-                                    <textarea id="url" class="form-control" name="URL">{{old('URL')}}</textarea>
+                                    <textarea id="url" class="form-control" name="URL" required>{{old('URL')}}</textarea>
                                     <div class="text-danger">{{ $errors->first('URL') }}</div>
                                 </div>
 

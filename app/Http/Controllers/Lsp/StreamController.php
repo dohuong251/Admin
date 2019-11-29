@@ -7,6 +7,7 @@ use App\Models\Lsp\Complain;
 use App\Models\Lsp\Features;
 use App\Models\Lsp\Messages;
 use App\Models\Lsp\Songs;
+use Carbon\Carbon;
 use Config;
 use DB;
 use Illuminate\Http\Request;
@@ -61,12 +62,23 @@ class StreamController extends Controller
 
     public function store(Request $request)
     {
+//        Songs::where('Code', 0)->delete();
         $validateRules = [
             'Name' => 'required',
             'URL' => 'required'
         ];
+
         $request->validate($validateRules);
-        return back();
+
+        $addStream = new Songs();
+        $addStream->fill($request->except('_token'));
+        $addStream->PublishedDate = Carbon::now();
+        $addStream->LastOnline = Carbon::now();
+        if ($addStream->save()) {
+            return redirect()->route('admin.lsp.streams.show', $addStream->SongId);
+        } else {
+            return back()->withInput()->with('insertErr', 'Insert Stream Error');
+        }
     }
 
     public function complain()
@@ -90,7 +102,7 @@ class StreamController extends Controller
         $request->validate($validateRules);
 
         $suspendStream = Songs::find($request->get('SongId'));
-        if ($suspendStream != null && $suspendStream->Copyright == 0) {
+        if ($suspendStream != null) {
             DB::transaction(function () use ($request, $suspendStream) {
                 $suspendStream->Copyright = 1;
                 $suspendStream->save();
@@ -122,7 +134,7 @@ class StreamController extends Controller
                     'order' => $suspendStream->order,
                     'Language' => $suspendStream->Language,
                     'OwnerId' => 15,
-                    'DeleteDate' => now(),
+                    'DeleteDate' => Carbon::now(),
                     'Reason' => $request->get("Reason"),
                     'Comment' => $request->get('Message'),
                 ]);

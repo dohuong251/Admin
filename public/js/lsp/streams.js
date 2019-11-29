@@ -28,6 +28,10 @@ $(document).ready(function () {
             $(btn).tooltip('hide');
         }, 1000);
     }
+
+    $('.modal').on('shown.bs.modal', function (e) {
+        $(this).find('input[name=SongId]').val($(e.relatedTarget).attr('data-id'));
+    });
 });
 
 // let deleteConfig = {

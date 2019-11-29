@@ -36,6 +36,11 @@
     </nav>
 
     <div class="profile">
+        @if (session('status'))
+            <div class="text-danger text-center">
+                <b>{{ session('insertErr') }}</b>
+            </div>
+        @endif
         <div class="card mx-auto mb-3">
             <div class="row no-gutters">
                 <div class="col-sm-3 {{$song->ImageURL?'':' bg-secondary'}}">
@@ -63,8 +68,8 @@
                                     </div>
                                     <div class="pl-sm-4"
                                          title="{{$song -> users -> Nickname ?? Config::get('constant.ATTRIBUTE_NULL')}}">
-                                        <a href="{{route('admin.lsp.user.show',$song->users->UserId)}}">
-                                            {{$song -> users -> Nickname ?? Config::get('constant.ATTRIBUTE_NULL')}}
+                                        <a href="{{route('admin.lsp.user.show',$song->users->UserId??0)}}">
+                                            {{$song -> users -> Nickname ?? ""}}
                                         </a>
                                     </div>
                                 </div>
@@ -183,7 +188,7 @@
                                             Owner:
                                         </label>
                                     </div>
-                                    <input id="owner" value="{{$song->users->Nickname}}"
+                                    <input id="owner" value="{{$song->users->Nickname??""}}"
                                            class="form-control w-auto" disabled>
                                 </div>
 

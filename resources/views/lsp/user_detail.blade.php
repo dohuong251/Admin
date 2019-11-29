@@ -4,8 +4,11 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css"/>
     <link rel="stylesheet" href="/css/vendors/animate.min.css"/>
+    <link rel="stylesheet" href="/css/vendors/ladda.min.css"/>
 @endsection
 @section('js')
+    <script src="/js/vendors/spin.min.js"></script>
+    <script src="/js/vendors/ladda.min.js"></script>
     <script src="/js/vendors/sweetalert2.all.min.js"></script>
     <script src="/js/vendors/moment.min.js"></script>
     <script src="/js/vendors/moment_vi.js"></script>

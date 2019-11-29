@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class APNTokens extends Base
 {
     //
-    protected $primaryKey = '';
+    protected $primaryKey = null;
     public function users()
     {
         return $this->belongsTo('App\Models\Lsp\Users', 'UserId');
