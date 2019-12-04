@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -177,6 +178,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
@@ -337,6 +339,7 @@
       <workItem from="1575254440138" duration="21232000" />
       <workItem from="1575338626172" duration="19639000" />
       <workItem from="1575425410390" duration="15210000" />
+      <workItem from="1575447761433" duration="4000" />
     </task>
     <servers />
   </component>
@@ -437,24 +440,24 @@
   <component name="XDebuggerManager">
     <watches-manager>
       <configuration name="server.php">
-        <watch expression="$stage" language="PHP" />
-        <watch expression="$request-&gt;all()" language="PHP" />
-        <watch expression="gettype($request-&gt;get('rule'))" language="PHP" />
-        <watch expression="strtotime(&quot;2019-11-22&quot;)" language="PHP" />
-        <watch expression="strtotime(&quot;2019-11-22&quot;) &gt;= $startTime &amp;&amp; strtotime(&quot;2019-11-22&quot;) &lt;= $endTime" language="PHP" />
-        <watch expression="Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'parser_rules']])" language="PHP" />
-        <watch expression="$lastUpdate &gt;= $startTime" language="PHP" />
-        <watch expression="$lastUpdate" language="PHP" />
-        <watch expression="$startTime" language="PHP" />
-        <watch expression="$request-&gt;get('start', &quot;1971-01-01&quot;)" language="PHP" />
-        <watch expression="$streamView-&gt;last_update" language="PHP" />
-        <watch expression="$request-&gt;get('startTime')" language="PHP" />
-        <watch expression="$streamView-&gt;days_view" language="PHP" />
-        <watch expression="$streamView" language="PHP" />
-        <watch expression="$suspendStream-&gt;Code" language="PHP" />
-        <watch expression="Complain::where('ChannelCode', $suspendStream-&gt;Code)-&gt;get()" language="PHP" />
-        <watch expression="$this-&gt;ustvUpgradeGreetImg" language="PHP" />
-        <watch expression="$this-&gt;ustvUpgradeGreetImg.&quot;upgrade_greet.jpg&quot;" language="PHP" />
+        <watch expression="$stage" />
+        <watch expression="$request-&gt;all()" />
+        <watch expression="gettype($request-&gt;get('rule'))" />
+        <watch expression="strtotime(&quot;2019-11-22&quot;)" />
+        <watch expression="strtotime(&quot;2019-11-22&quot;) &gt;= $startTime &amp;&amp; strtotime(&quot;2019-11-22&quot;) &lt;= $endTime" />
+        <watch expression="Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'parser_rules']])" />
+        <watch expression="$lastUpdate &gt;= $startTime" />
+        <watch expression="$lastUpdate" />
+        <watch expression="$startTime" />
+        <watch expression="$request-&gt;get('start', &quot;1971-01-01&quot;)" />
+        <watch expression="$streamView-&gt;last_update" />
+        <watch expression="$request-&gt;get('startTime')" />
+        <watch expression="$streamView-&gt;days_view" />
+        <watch expression="$streamView" />
+        <watch expression="$suspendStream-&gt;Code" />
+        <watch expression="Complain::where('ChannelCode', $suspendStream-&gt;Code)-&gt;get()" />
+        <watch expression="$this-&gt;ustvUpgradeGreetImg" />
+        <watch expression="$this-&gt;ustvUpgradeGreetImg.&quot;upgrade_greet.jpg&quot;" />
       </configuration>
     </watches-manager>
   </component>

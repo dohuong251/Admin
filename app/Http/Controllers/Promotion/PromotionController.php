@@ -158,7 +158,6 @@ We have just released a brand new IPTV application - IPTV Player. Please support
             $promoConfig["footerRightImg"] = $request->get('mdc_store')['rightImgUrl'];
             $promoConfig["mobileKey"]["salePrice"] = $request->get('mdc_store')['mobile_sale_price'];
             $promoConfig["desktopKey"]["salePrice"] = $request->get('mdc_store')['desktop_sale_price'];
-            chmod($this->promoConfigFile,0777);
             file_put_contents("$this->promoConfigFile", json_encode($promoConfig, JSON_PRETTY_PRINT));
         }
 
@@ -209,7 +208,6 @@ We have just released a brand new IPTV application - IPTV Player. Please support
         if (file_exists($this->promoConfigFile) && ($fp = file_get_contents($this->promoConfigFile)) !== false) {
             $promoConfig = json_decode($fp, true);
             $promoConfig["promotion"] = false;
-            chmod($this->promoConfigFile,0777);
             file_put_contents("$this->promoConfigFile", json_encode($promoConfig, JSON_PRETTY_PRINT));
         }
 
