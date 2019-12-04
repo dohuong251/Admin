@@ -1,4 +1,6 @@
 $(document).ready(function () {
+    bsCustomFileInput.init();
+
     let confirm = false;
     $('body').on('submit', '#stop-form, #start-form', function (e) {
         if(!confirm){

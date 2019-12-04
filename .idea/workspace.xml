@@ -2,13 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/config/mdcgate_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/'Black" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/'View'" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Admin.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Admin.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Tool/Config.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Tool/Config.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/promo/promo.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/promo/promo.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/promotions/promotion.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promotions/promotion.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -43,6 +46,7 @@
         <option value="CSS File" />
         <option value="Blade" />
         <option value="JavaScript File" />
+        <option value="tsconfig.json" />
       </list>
     </option>
   </component>
@@ -174,6 +178,11 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1PPDizZXpYHfPtmALFaGDApoWea" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -183,8 +192,8 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
-    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="JavaScript&#10;MySQL&#10;CSS" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/promotions" />
+    <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;JSON&#10;JavaScript&#10;MySQL" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -196,16 +205,9 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.smartKeys" />
+    <property name="settings.editor.selected.configurable" value="web-ide.project.structure" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="E:\MDCAdmin\Admin\resources\views\promotions" />
-      <recent name="E:\MDCAdmin\Admin\resources\views\tools" />
-      <recent name="E:\MDCAdmin\Admin\app\Models\Tool" />
-      <recent name="E:\MDCAdmin\Admin\resources\views\lsp" />
-      <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\Lsp" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\tool" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\app" />
@@ -213,18 +215,13 @@
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\lsp" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers" />
     </key>
-  </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\MDCAdmin\Admin" />
+      <recent name="E:\MDCAdmin\Admin\resources\views\promotions" />
+      <recent name="E:\MDCAdmin\Admin\resources\views\tools" />
+      <recent name="E:\MDCAdmin\Admin\app\Models\Tool" />
+      <recent name="E:\MDCAdmin\Admin\resources\views\lsp" />
+    </key>
   </component>
   <component name="RunManager" selected="PHP Web Page.debug laravel">
     <configuration name="phpunit.xml" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -240,13 +237,15 @@
     </list>
   </component>
   <component name="ServiceViewManager">
-    <option name="allServicesViewState">
-      <serviceView>
-        <treeState>
-          <expand />
-          <select />
-        </treeState>
-      </serviceView>
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
     </option>
   </component>
   <component name="StructureViewFactory">
@@ -343,6 +342,9 @@
       <workItem from="1574840195088" duration="5050000" />
       <workItem from="1574910936534" duration="20835000" />
       <workItem from="1574993205901" duration="25940000" />
+      <workItem from="1575254440138" duration="21232000" />
+      <workItem from="1575338626172" duration="19639000" />
+      <workItem from="1575425410390" duration="8646000" />
     </task>
     <servers />
   </component>
@@ -361,6 +363,84 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="444" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575258842490">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="444" y="166" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1366.728@0.0.1366.728" timestamp="1575258842490" />
+    <state width="507" height="438" key="DebuggerActiveHint" timestamp="1575286339651">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="507" height="438" key="DebuggerActiveHint/0.0.1366.728@0.0.1366.728" timestamp="1575286339651" />
+    <state width="1286" height="140" key="GridCell.Tab.0.bottom" timestamp="1575372497636">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1575372497636" />
+    <state width="1286" height="140" key="GridCell.Tab.0.center" timestamp="1575372497635">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1575372497635" />
+    <state width="1286" height="140" key="GridCell.Tab.0.left" timestamp="1575372497635">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1575372497635" />
+    <state width="1286" height="140" key="GridCell.Tab.0.right" timestamp="1575372497636">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1575372497636" />
+    <state width="1286" height="140" key="GridCell.Tab.1.bottom" timestamp="1575372497636">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1575372497636" />
+    <state width="1286" height="140" key="GridCell.Tab.1.center" timestamp="1575372497636">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1575372497636" />
+    <state width="1286" height="140" key="GridCell.Tab.1.left" timestamp="1575372497636">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1575372497636" />
+    <state width="1286" height="140" key="GridCell.Tab.1.right" timestamp="1575372497636">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1575372497636" />
+    <state width="1286" height="140" key="GridCell.Tab.2.bottom" timestamp="1575372497636">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1575372497636" />
+    <state width="1286" height="140" key="GridCell.Tab.2.center" timestamp="1575372497636">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1575372497636" />
+    <state width="1286" height="140" key="GridCell.Tab.2.left" timestamp="1575372497636">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1575372497636" />
+    <state width="1286" height="140" key="GridCell.Tab.2.right" timestamp="1575372497636">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1286" height="140" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1575372497636" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1575257224955">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1575257224955" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1575425439794">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1575425439794" />
+    <state x="366" y="101" width="633" height="526" key="find.popup" timestamp="1575430668111">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="366" y="101" width="633" height="526" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1575430668111" />
+    <state x="339" y="164" key="run.anything.popup" timestamp="1575362169546">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="339" y="164" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1575362169546" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1575430680900">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1575430680900" />
   </component>
   <component name="XDebuggerManager">
     <watches-manager>
@@ -381,6 +461,8 @@
         <watch expression="$streamView" language="PHP" />
         <watch expression="$suspendStream-&gt;Code" language="PHP" />
         <watch expression="Complain::where('ChannelCode', $suspendStream-&gt;Code)-&gt;get()" language="PHP" />
+        <watch expression="$this-&gt;ustvUpgradeGreetImg" language="PHP" />
+        <watch expression="$this-&gt;ustvUpgradeGreetImg.&quot;upgrade_greet.jpg&quot;" language="PHP" />
       </configuration>
     </watches-manager>
   </component>

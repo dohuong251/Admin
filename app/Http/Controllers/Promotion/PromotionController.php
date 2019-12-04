@@ -10,6 +10,7 @@ use DOMDocument;
 use DOMXPath;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Log;
 
 class PromotionController extends Controller
 {
@@ -23,15 +24,42 @@ class PromotionController extends Controller
 //        ]);
 //    }
 
+    /**
+     * @var string
+     */
+    private $promoConfigFile;
+    /**
+     * @var string
+     */
+    private $ustvUpgradeGreetImg;
+
+    public function __construct()
+    {
+        $this->promoConfigFile = base_path() . "/config/mdcgate_config.json";
+        $this->ustvUpgradeGreetImg = "/home/www/edge.mdcgate.com/html/sales/subscription/images/";
+//        $this->ustvUpgradeGreetImg = base_path()."/";
+    }
+
     public function index()
     {
+        if (file_exists($this->promoConfigFile) && ($fp = file_get_contents($this->promoConfigFile)) !== false) {
+            $promoConfig = json_decode($fp);
+        }
         return view('promotions.promotion', [
-            'current' => Promotion::orderBy('id', 'desc')->first()
+            'current' => Promotion::withTrashed()->orderBy('id', 'desc')->first(),
+            'homePagePromotion' => $promoConfig ?? null,
         ]);
     }
 
     public function startPromo(Request $request)
     {
+        $request->validate([
+            "com_ustv_player_greetImg" => "nullable|file|image"
+        ], [
+            "com_ustv_player_greetImg.image" => "Greet image wrong mime type",
+            "com_ustv_player_greetImg.file" => "Greet image isn't file"
+        ]);
+
         if ($request->get("com_liveplayer_android")["title"] || $request->get("com_liveplayer_android")["imageUrl"]) {
             $promoConfig = array(
                 'button' =>
@@ -45,8 +73,15 @@ class PromotionController extends Controller
                 $imageUrl = $request->get("com_liveplayer_android")["imageUrl"];
                 $promoConfig["text"] = "<!DOCTYPE html><html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"http://edge.mdcgate.com/sales/subscription/buy.php?HiddenButton=1&ApplicationId=Live%20Media%20Player&mode=licensekey\"><img  src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
             }
+            if (Config::where(['id_application' => 'com.liveplayer.android', 'name' => 'message_web', 'device' => 3])->count()) {
+                Config::where(['id_application' => 'com.liveplayer.android', 'name' => 'message_web', 'device' => 3])
+                    ->update(['value' => json_encode($promoConfig)]);
+            } else {
+                Config::insert(['id_application' => 'com.liveplayer.android', 'name' => 'message_web', 'device' => 3, 'value' => json_encode($promoConfig)]);
+            }
+        } else {
             Config::where([['id_application', 'com.liveplayer.android'], ['name', 'message_web'], ['device', 3]])
-                ->update(['value' => json_encode($promoConfig)]);
+                ->update(['value' => ""]);
         }
 
         if ($request->get('com_mdc_iptvplayer_ios')['imageUrl']) {
@@ -56,8 +91,15 @@ class PromotionController extends Controller
             $imageUrl = $request->get("com_mdc_iptvplayer_ios")["imageUrl"];
             $promoConfig["text"] = " <!DOCTYPE html>\r\n<html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"> <a href=\"iptv://?action=upgrade\"><img src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
 
+            if (Config::where(['id_application' => 'com.mdc.iptvplayer.ios', 'name' => 'message', 'device' => 0])->count()) {
+                Config::where(['id_application' => 'com.mdc.iptvplayer.ios', 'name' => 'message', 'device' => 0])
+                    ->update(['value' => json_encode($promoConfig)]);
+            } else {
+                Config::insert(['id_application' => 'com.mdc.iptvplayer.ios', 'name' => 'message', 'device' => 0, 'value' => json_encode($promoConfig)]);
+            }
+        } else {
             Config::where([['id_application', 'com.mdc.iptvplayer.ios'], ['name', 'message'], ['device', 0]])
-                ->update(['value' => json_encode($promoConfig)]);
+                ->update(['value' => ""]);
         }
 
         if ($request->get('com_mdcmedia_liveplayer_ios')['imageUrl']) {
@@ -67,31 +109,85 @@ We have just released a brand new IPTV application - IPTV Player. Please support
             );
             $imageUrl = $request->get('com_mdcmedia_liveplayer_ios')['imageUrl'];
             $promoConfig["html"] = "<!DOCTYPE html>\r\n<html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"lsp://?action=upgrade\"><img src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
+
+            if (Config::where(['id_application' => 'com.mdcmedia.liveplayer.ios', 'device' => 0, 'name' => 'message'])->count()) {
+                Config::where(['id_application' => 'com.mdcmedia.liveplayer.ios', 'device' => 0, 'name' => 'message'])
+                    ->update(['value' => json_encode($promoConfig)]);
+            } else {
+                Config::insert(['id_application' => 'com.mdcmedia.liveplayer.ios', 'device' => 0, 'name' => 'message', 'value' => json_encode($promoConfig)]);
+            }
+
+        } else {
             Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'message']])
-                ->update(['value' => json_encode($promoConfig)]);
+                ->update(['value' => ""]);
         }
 
-        if ($request->get('com_mdcmedia_liveplayer_ios')['promoBgUrl']) {
-            Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'promo_background']])
-                ->update(['value' => $request->get('com_mdcmedia_liveplayer_ios')['promoBgUrl']]);
-        }
-        if ($request->get('com_mdcmedia_liveplayer_ios')['promoText']) {
-            Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'promo_text']])
-                ->update(['value' => $request->get('com_mdcmedia_liveplayer_ios')['promoText']]);
-        }
+//        if ($request->get('com_mdcmedia_liveplayer_ios')['promoBgUrl']) {
+        Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'promo_background']])
+            ->update(['value' => $request->get('com_mdcmedia_liveplayer_ios')['promoBgUrl']]);
+//        }
+//        if ($request->get('com_mdcmedia_liveplayer_ios')['promoText']) {
+        Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'promo_text']])
+            ->update(['value' => $request->get('com_mdcmedia_liveplayer_ios')['promoText']]);
+//        }
+        Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'enable_promo']])
+            ->update(['value' => 1]);
 
         if ($request->get('com_ustv_player')['imageUrl']) {
             $promoConfig = array();
             $imageUrl = $request->get('com_ustv_player')['imageUrl'];
             $promoConfig["html"] = "<!DOCTYPE html>\r\n<html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"ustvupgrade://?action=upgrade\"><img  style='border-radius: 10px;' src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
+
+            if (Config::where(['id_application' => 'com.ustv.player', 'name' => 'message_web', 'device' => 0])->count()) {
+                Config::where(['id_application' => 'com.ustv.player', 'name' => 'message_web', 'device' => 0])
+                    ->update(['value' => json_encode($promoConfig)]);
+            } else {
+                Config::insert(['id_application' => 'com.ustv.player', 'name' => 'message_web', 'device' => 0, 'value' => json_encode($promoConfig)]);
+            }
+
+        } else {
             Config::where([['id_application', 'com.ustv.player'], ['name', 'message_web'], ['device', 0]])
-                ->update(['value' => json_encode($promoConfig)]);
+                ->update(['value' => ""]);
+        }
+
+        if (file_exists($this->promoConfigFile) && ($fp = file_get_contents($this->promoConfigFile)) !== false) {
+            $promoConfig = json_decode($fp, true);
+            $promoConfig["promotion"] = true;
+            $promoConfig["footerBackground"] = $request->get('mdc_store')['backgroundUrl'];
+            $promoConfig["footerLeftImg"] = $request->get('mdc_store')['leftImgUrl'];
+            $promoConfig["footerRightImg"] = $request->get('mdc_store')['rightImgUrl'];
+            $promoConfig["mobileKey"]["salePrice"] = $request->get('mdc_store')['mobile_sale_price'];
+            $promoConfig["desktopKey"]["salePrice"] = $request->get('mdc_store')['desktop_sale_price'];
+            file_put_contents("$this->promoConfigFile", json_encode($promoConfig, JSON_PRETTY_PRINT));
+        }
+
+        if ($request->hasFile('com_ustv_player_greetImg')) {
+            if (is_dir($this->ustvUpgradeGreetImg)) {
+                file_put_contents($this->ustvUpgradeGreetImg . "upgrade_greet.jpg", $request->file('com_ustv_player_greetImg')->get());
+            }
         }
 
         Promotion::query()->delete();
         $prmotion = new Promotion();
         $prmotion->content = json_encode($request->except('_token'));
         $prmotion->save();
+
+        $createNotificationRequest = new \GuzzleHttp\Client();
+
+        try {
+            $createNotificationRequest->request('POST', 'http://visearch.net/adminPromo/notification.php', [
+                'auth' => ['bkyiztnapgjblisicaim', 'oolwylifcbezouradtlw'],
+                'form_params' => [
+                    'com_liveplayer_android' => $request->get('com_liveplayer_android'),
+                    'com_mdc_iptvplayer_ios' => $request->get('com_mdc_iptvplayer_ios'),
+                    'com_mdcmedia_liveplayer_ios' => $request->get('com_mdcmedia_liveplayer_ios'),
+                    'com_ustv_player' => $request->get('com_ustv_player')
+                ],
+                'timeout' => 1
+            ]);
+        } catch (\Exception $exception) {
+            error_log($exception->getMessage());
+        }
 
         return back();
     }
@@ -105,8 +201,87 @@ We have just released a brand new IPTV application - IPTV Player. Please support
             ->orWhere([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'promo_text']])
             ->orWhere([['id_application', 'com.ustv.player'], ['name', 'message_web'], ['device', 0]])
             ->update(['value' => '']);
+        Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'enable_promo']])
+            ->update(['value' => 0]);
         Promotion::query()->delete();
+
+        if (file_exists($this->promoConfigFile) && ($fp = file_get_contents($this->promoConfigFile)) !== false) {
+            $promoConfig = json_decode($fp, true);
+            $promoConfig["promotion"] = false;
+            file_put_contents("$this->promoConfigFile", json_encode($promoConfig, JSON_PRETTY_PRINT));
+        }
+
+        if (file_exists($this->ustvUpgradeGreetImg . "upgrade_greet.jpg")) {
+            rename($this->ustvUpgradeGreetImg . "upgrade_greet.jpg", $this->ustvUpgradeGreetImg . "upgrade_greet_" . date('Y_m_d') . ".jpg");
+        }
+
         return back();
+
+        $promoConfigFile = "/home/www/admin.mdcmedia.mobi/config/mdcgate_config.json";
+        if (file_exists($promoConfigFile) && ($fp = file_get_contents($promoConfigFile)) !== false) {
+            $promoConfig = json_decode($fp, true);
+        }
+
+        if (!empty($promoConfig)) {
+            if (array_key_exists("promotion", $promoConfig) && $promoConfig["promotion"]) {
+                echo "<div id=\"hed\">
+
+    <a href=\"http://www.mdcgate.com/apps/pricing\">
+        <div class=\"strip\" style=\"" . (empty($promoConfig["footerBackground"]) ? "" : "background-image: url('" . $promoConfig["footerBackground"] . "'); ") . "background-repeat: no-repeat;background-size:100% 100%;  \">
+            <div>
+                <div style=\" margin: auto; margin-left: 10px; margin-right: 10px;\">"
+                    . (empty($promoConfig["footerLeftImg"]) ? "" : "<img src=\"" . $promoConfig["footerLeftImg"] . "\" style=\"max-height: 50px; \">")
+                    . (empty($promoConfig["footerRightImg"]) ? "" : "<img align=\"right\" src=\"" . $promoConfig["footerRightImg"] . "\" style=\"max-height: 50px; \">") .
+                    "</div>
+            </div>
+        </div>
+    </a>
+</div>";
+            }
+        }
+
+        $priceDiv = "<p class=\"countprice\">$ 4.99</p>";
+        if (!empty($promoConfig)) {
+            if (array_key_exists("promotion", $promoConfig) && $promoConfig["promotion"] && !empty($promoConfig["mobileKey"]["salePrice"])) {
+                $priceDiv = "<p class=\"countprice\"><span style=\"color: #B12704!important;\">$ " . $promoConfig["mobileKey"]["salePrice"] . " <small style=\"text-decoration: line-through; color: #949494;;\">$ " . $promoConfig["mobileKey"]["price"] . "</small></span></p>";
+            }
+        }
+        echo $priceDiv;
+
+        $priceDiv = "<p class=\"countprice\">$19.99</p>";
+        if (!empty($promoConfig)) {
+            if (array_key_exists("promotion", $promoConfig) && $promoConfig["promotion"] && !empty($promoConfig["desktopKey"]["salePrice"])) {
+                $priceDiv = "<p class=\"countprice\"><span style=\"color: #B12704!important;\">$ " . $promoConfig["desktopKey"]["salePrice"] . " <small style=\"text-decoration: line-through; color: #949494;;\">$ " . $promoConfig["desktopKey"]["price"] . "</small></span></p>";
+            }
+        }
+        echo $priceDiv;
+
+        //buy_licensekey.php
+        if ($appType == 0) {
+            $price = "4.99";
+        } else {
+            $price = "19.99";
+        }
+        $promoConfigFile = "/home/www/admin.mdcmedia.mobi/config/mdcgate_config.json";
+        if (file_exists($promoConfigFile) && ($fp = file_get_contents($promoConfigFile)) !== false) {
+            $promoConfig = json_decode($fp, true);
+            if (!empty($promoConfig)) {
+                if (array_key_exists("promotion", $promoConfig) && $promoConfig["promotion"]) {
+
+                    if ($appType == 0) {
+                        if (!empty($promoConfig["mobileKey"]["salePrice"])) {
+                            $price = $promoConfig["mobileKey"]["salePrice"];
+                        }
+                    } else {
+                        if (!empty($promoConfig["desktopKey"]["salePrice"])) {
+                            $price = $promoConfig["desktopKey"]["salePrice"];
+                        }
+                    }
+
+                }
+            }
+        }
+
     }
     //
 
