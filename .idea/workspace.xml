@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/mdcgate_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/mdcgate_config.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -337,7 +336,7 @@
       <workItem from="1574993205901" duration="25940000" />
       <workItem from="1575254440138" duration="21232000" />
       <workItem from="1575338626172" duration="19639000" />
-      <workItem from="1575425410390" duration="14814000" />
+      <workItem from="1575425410390" duration="15210000" />
     </task>
     <servers />
   </component>
