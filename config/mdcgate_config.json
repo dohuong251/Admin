@@ -1,5 +1,5 @@
 {
-    "promotion": false,
+    "promotion": true,
     "footerBackground": "\/public\/images\/backfriday\/background.png",
     "footerLeftImg": "\/public\/images\/backfriday\/left.png",
     "footerRightImg": "\/public\/images\/backfriday\/right.png",
