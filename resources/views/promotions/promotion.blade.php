@@ -43,7 +43,7 @@
         @csrf
         <div class="col-12 col-sm-6 border-bottom border-right-sm bdc-grey-400 pt-3">
             <h5>
-                com.liveplayer.android
+                com.liveplayer.android (Live Stream Player Android)
             </h5>
 
             <div class="form-group">
@@ -71,7 +71,7 @@
 
         <div class="col-12 col-sm-6 border-bottom bdc-grey-400 pt-3">
             <h5>
-                com.mdc.iptvplayer.ios
+                com.mdc.iptvplayer.ios (IPTV iOS)
             </h5>
 
             <div class="form-group">
@@ -94,7 +94,7 @@
 
         <div class="col-12 col-sm-6 border-bottom border-right-sm bdc-grey-400 pt-3">
             <h5>
-                com.mdcmedia.liveplayer.ios
+                com.mdcmedia.liveplayer.ios (Live Player iOS)
             </h5>
 
             <div class="form-group">
@@ -129,7 +129,7 @@
 
         <div class="col-12 col-sm-6 border-bottom bdc-grey-400 pt-3">
             <h5>
-                com.ustv.player
+                com.ustv.player (USTV Android)
             </h5>
 
             <div class="form-group">

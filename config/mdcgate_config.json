@@ -1,8 +1,8 @@
 {
-    "promotion": true,
-    "footerBackground": "\/public\/images\/backfriday\/background.png",
-    "footerLeftImg": "\/public\/images\/backfriday\/left.png",
-    "footerRightImg": "\/public\/images\/backfriday\/right.png",
+    "promotion": false,
+    "footerBackground": "\/apps\/public\/images\/backfriday\/background.png",
+    "footerLeftImg": "\/apps\/public\/images\/backfriday\/left.png",
+    "footerRightImg": "\/apps\/public\/images\/backfriday\/right.png",
     "mobileKey": {
         "price": "4.99",
         "salePrice": "3.49"

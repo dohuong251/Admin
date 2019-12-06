@@ -196,11 +196,16 @@ function getLink(link, rules) {
                                 if (stage.Params.match(/^\$\w+$/)) {
                                     stage.Params = eval(stage.Params.match(/\w+/)[0]);
                                 }
+                                stage.Params = stage.Params.split("::");
 
                                 let postOptions = {
                                     method: 'POST',
                                     uri: stage.Link,
                                     headers: {},
+                                    body: stage.Params.map((value, index) => {
+                                        if (index % 2 === 0) return `${value}=`;
+                                        else return `${value}&`;
+                                    }).join("")
                                 };
 
                                 let postHeaders = stage.Headers;
@@ -261,10 +266,15 @@ function getLink(link, rules) {
                                     stage.GroupId = eval(stage.GroupId.match(/\w+/g)[0]);
                                 }
 
-                                const matchRegex = new RegExp(`${stage.String}`, "g");
-                                if (matchString.match(matchRegex)) tempResult = matchString.match(matchRegex)[stage.MatchId];
-                                else {
-                                    tempResult = stage.Default || "";
+                                tempResult = stage.Default || "";
+                                let matchRegex = new RegExp(`${stage.String}`, "g");
+                                let matchId = 0, match;
+                                while ((match = matchRegex.exec(matchString)) !== null) {
+                                    if (matchId == stage.MatchId) {
+                                        tempResult = match[stage.GroupId];
+                                        break;
+                                    }
+                                    matchId++;
                                 }
 
                                 eval(`${stage.Result.match(/\w+/)[0]} = ${JSON.stringify(tempResult)}`);

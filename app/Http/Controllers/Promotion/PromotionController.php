@@ -62,6 +62,7 @@ class PromotionController extends Controller
 
         if ($request->get("com_liveplayer_android")["title"] || $request->get("com_liveplayer_android")["imageUrl"]) {
             $promoConfig = array(
+                'type' => 1,
                 'button' =>
                     array(
                         'title' => 'View',
@@ -134,7 +135,9 @@ We have just released a brand new IPTV application - IPTV Player. Please support
             ->update(['value' => 1]);
 
         if ($request->get('com_ustv_player')['imageUrl']) {
-            $promoConfig = array();
+            $promoConfig = array(
+                'type' => 1
+            );
             $imageUrl = $request->get('com_ustv_player')['imageUrl'];
             $promoConfig["html"] = "<!DOCTYPE html>\r\n<html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"ustvupgrade://?action=upgrade\"><img  style='border-radius: 10px;' src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
 
@@ -216,72 +219,6 @@ We have just released a brand new IPTV application - IPTV Player. Please support
         }
 
         return back();
-
-        $promoConfigFile = "/home/www/admin.mdcmedia.mobi/config/mdcgate_config.json";
-        if (file_exists($promoConfigFile) && ($fp = file_get_contents($promoConfigFile)) !== false) {
-            $promoConfig = json_decode($fp, true);
-        }
-
-        if (!empty($promoConfig)) {
-            if (array_key_exists("promotion", $promoConfig) && $promoConfig["promotion"]) {
-                echo "<div id=\"hed\">
-
-    <a href=\"http://www.mdcgate.com/apps/pricing\">
-        <div class=\"strip\" style=\"" . (empty($promoConfig["footerBackground"]) ? "" : "background-image: url('" . $promoConfig["footerBackground"] . "'); ") . "background-repeat: no-repeat;background-size:100% 100%;  \">
-            <div>
-                <div style=\" margin: auto; margin-left: 10px; margin-right: 10px;\">"
-                    . (empty($promoConfig["footerLeftImg"]) ? "" : "<img src=\"" . $promoConfig["footerLeftImg"] . "\" style=\"max-height: 50px; \">")
-                    . (empty($promoConfig["footerRightImg"]) ? "" : "<img align=\"right\" src=\"" . $promoConfig["footerRightImg"] . "\" style=\"max-height: 50px; \">") .
-                    "</div>
-            </div>
-        </div>
-    </a>
-</div>";
-            }
-        }
-
-        $priceDiv = "<p class=\"countprice\">$ 4.99</p>";
-        if (!empty($promoConfig)) {
-            if (array_key_exists("promotion", $promoConfig) && $promoConfig["promotion"] && !empty($promoConfig["mobileKey"]["salePrice"])) {
-                $priceDiv = "<p class=\"countprice\"><span style=\"color: #B12704!important;\">$ " . $promoConfig["mobileKey"]["salePrice"] . " <small style=\"text-decoration: line-through; color: #949494;;\">$ " . $promoConfig["mobileKey"]["price"] . "</small></span></p>";
-            }
-        }
-        echo $priceDiv;
-
-        $priceDiv = "<p class=\"countprice\">$19.99</p>";
-        if (!empty($promoConfig)) {
-            if (array_key_exists("promotion", $promoConfig) && $promoConfig["promotion"] && !empty($promoConfig["desktopKey"]["salePrice"])) {
-                $priceDiv = "<p class=\"countprice\"><span style=\"color: #B12704!important;\">$ " . $promoConfig["desktopKey"]["salePrice"] . " <small style=\"text-decoration: line-through; color: #949494;;\">$ " . $promoConfig["desktopKey"]["price"] . "</small></span></p>";
-            }
-        }
-        echo $priceDiv;
-
-        //buy_licensekey.php
-        if ($appType == 0) {
-            $price = "4.99";
-        } else {
-            $price = "19.99";
-        }
-        $promoConfigFile = "/home/www/admin.mdcmedia.mobi/config/mdcgate_config.json";
-        if (file_exists($promoConfigFile) && ($fp = file_get_contents($promoConfigFile)) !== false) {
-            $promoConfig = json_decode($fp, true);
-            if (!empty($promoConfig)) {
-                if (array_key_exists("promotion", $promoConfig) && $promoConfig["promotion"]) {
-
-                    if ($appType == 0) {
-                        if (!empty($promoConfig["mobileKey"]["salePrice"])) {
-                            $price = $promoConfig["mobileKey"]["salePrice"];
-                        }
-                    } else {
-                        if (!empty($promoConfig["desktopKey"]["salePrice"])) {
-                            $price = $promoConfig["desktopKey"]["salePrice"];
-                        }
-                    }
-
-                }
-            }
-        }
-
     }
     //
 

@@ -61,7 +61,7 @@ class TestRuleController extends Controller
                 'form_params' => [
                     'url' => $request->get('url'),
                     'rules' => json_encode(array(
-                        "Rules" => [json_decode($request->get('rules'))]
+                        "Rules" => [json_decode($request->get('rules'), JSON_PRETTY_PRINT)]
                     )),
                 ]
             ])->getBody()->getContents();
@@ -123,7 +123,7 @@ class TestRuleController extends Controller
             'rule' => 'required|json',
         ]);
         return Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'parser_rules']])
-            ->update(['value'=>$request->get('rule')]);
+            ->update(['value' => $request->get('rule')]);
     }
 
     protected function getDeleteClass()
