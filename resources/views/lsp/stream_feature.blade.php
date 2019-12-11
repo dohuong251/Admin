@@ -58,7 +58,7 @@
                             <div class="d-flex">
                                 <span class="ellipsis-text" id="clipboard-{{$feature->songs->Code??""}}" title="{{$feature->songs->URL??""}}">{{$feature->songs->URL??""}}</span>
                                 <span class="except-redirect">
-                                <button class="btn clipboard" type="button" data-clipboard-demo="" data-clipboard-target="#clipboard-{{$feature->Code}}">
+                                <button class="btn clipboard" type="button" data-clipboard-demo="" data-clipboard-target="#clipboard-{{$feature->songs->Code}}">
                                     <img data-src="/images/icon/clippy.svg" width="13" alt="Copy to clipboard">
                                 </button>
                             </span>

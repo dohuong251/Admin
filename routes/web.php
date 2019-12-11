@@ -117,8 +117,11 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 //        app
         Route::group(['as' => 'apps.', 'prefix' => 'apps'], function () {
             Route::get('/', 'App\AppController@index')->name('index');
+            Route::get('/create','App\AppController@create')->name('create');
 
             Route::get('/{appId}', 'App\AppController@show')->name('show');
+            Route::get('/{appId}/addVersion','App\AppController@addVersion')->name('add_version');
+            Route::get('/editVersion','App\AppController@editVersion')->name('edit_version');
         });
 
         Route::group(['as' => 'promotions.', 'prefix' => 'promotions'], function () {

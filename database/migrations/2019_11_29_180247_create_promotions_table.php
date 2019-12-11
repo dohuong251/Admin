@@ -16,6 +16,7 @@ class CreatePromotionsTable extends Migration
         Schema::create('promotions', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->text('content');
+            $table->string('notification_id');
             $table->timestamps();
             $table->softDeletes();
         });

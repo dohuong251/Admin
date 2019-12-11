@@ -44,6 +44,9 @@ class LoginController extends Controller
         if (Auth::guard('web')->check()) {
             return redirect()->route('admin.home');
         } else {
+            if(!session()->has('from')){
+                session()->put('from', url()->previous());
+            }
             return view('auth.login');
         }
 
@@ -70,7 +73,7 @@ class LoginController extends Controller
             );
 
             if (Auth::guard('web')->attempt($user_data)) {
-                return redirect()->route('admin.home');
+                return redirect(session()->pull('from',route('admin.home')));
             } else {
                 $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
                 return redirect()->back()->withInput()->withErrors($errors);

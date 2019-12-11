@@ -137,7 +137,8 @@ function getLink(link, rules) {
                                 let options = {
                                     uri: stage.Link,
                                     headers: {},
-                                    resolveWithFullResponse: true
+                                    resolveWithFullResponse: true,
+                                    gzip: true
                                 };
                                 let headers = stage.Headers;
                                 if (headers) {
@@ -205,7 +206,8 @@ function getLink(link, rules) {
                                     body: stage.Params.map((value, index) => {
                                         if (index % 2 === 0) return `${value}=`;
                                         else return `${value}&`;
-                                    }).join("")
+                                    }).join(""),
+                                    gzip: true
                                 };
 
                                 let postHeaders = stage.Headers;
@@ -296,7 +298,7 @@ function getLink(link, rules) {
                 }
             }
             return resolve({
-                stepResults:[{
+                stepResults: [{
                     step: "exception",
                     action: "",
                     result: "Rule not match",

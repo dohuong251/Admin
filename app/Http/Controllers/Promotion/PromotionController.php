@@ -32,11 +32,18 @@ class PromotionController extends Controller
      * @var string
      */
     private $ustvUpgradeGreetImg;
+    /**
+     * @var \GuzzleHttp\Client
+     */
+    private $notificationRequest;
 
     public function __construct()
     {
         $this->promoConfigFile = base_path() . "/config/mdcgate_config.json";
         $this->ustvUpgradeGreetImg = "/home/www/edge.mdcgate.com/html/sales/subscription/images/";
+        $this->notificationRequest = new \GuzzleHttp\Client([
+            'auth' => ['bkyiztnapgjblisicaim', 'oolwylifcbezouradtlw']
+        ]);
 //        $this->ustvUpgradeGreetImg = base_path()."/";
     }
 
@@ -170,28 +177,28 @@ We have just released a brand new IPTV application - IPTV Player. Please support
             }
         }
 
-        Promotion::query()->delete();
-        $prmotion = new Promotion();
-        $prmotion->content = json_encode($request->except('_token'));
-        $prmotion->save();
-
-        $createNotificationRequest = new \GuzzleHttp\Client();
+        $notificationIds = [];
 
         try {
-            $createNotificationRequest->request('POST', 'http://visearch.net/adminPromo/notification.php', [
-                'auth' => ['bkyiztnapgjblisicaim', 'oolwylifcbezouradtlw'],
+            // tạo notification
+            $notificationIds = $this->notificationRequest->request('POST', 'http://visearch.net/adminPromo/notification.php', [
                 'form_params' => [
                     'com_liveplayer_android' => $request->get('com_liveplayer_android'),
                     'com_mdc_iptvplayer_ios' => $request->get('com_mdc_iptvplayer_ios'),
                     'com_mdcmedia_liveplayer_ios' => $request->get('com_mdcmedia_liveplayer_ios'),
                     'com_ustv_player' => $request->get('com_ustv_player')
-                ],
-                'timeout' => 1
-            ]);
+                ]
+            ])->getBody()->getContents();
         } catch (\Exception $exception) {
             error_log($exception->getMessage());
         }
+        $this->removeOldPromoNotification();
 
+        Promotion::query()->delete();
+        $promotion = new Promotion();
+        $promotion->content = json_encode($request->except('_token'));
+        $promotion->notification_id = $notificationIds;
+        $promotion->save();
         return back();
     }
 
@@ -206,6 +213,7 @@ We have just released a brand new IPTV application - IPTV Player. Please support
             ->update(['value' => '']);
         Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'enable_promo']])
             ->update(['value' => 0]);
+        $this->removeOldPromoNotification();
         Promotion::query()->delete();
 
         if (file_exists($this->promoConfigFile) && ($fp = file_get_contents($this->promoConfigFile)) !== false) {
@@ -219,6 +227,28 @@ We have just released a brand new IPTV application - IPTV Player. Please support
         }
 
         return back();
+    }
+
+    function removeOldPromoNotification()
+    {
+        // xóa notification cũ
+        $oldNotificationIds = Promotion::select('notification_id')->pluck("notification_id");
+        $oldNotificationIds->transform(function ($item, $key) {
+            return json_decode($item);
+        });
+
+        if (!empty($oldNotificationIds->flatten()->toArray())) {
+            try {
+                // xóa notification cũ
+                $result = $this->notificationRequest->request('POST', 'http://visearch.net/adminPromo/delete_notification.php', [
+                    'form_params' => [
+                        'notification_ids' => json_encode($oldNotificationIds->flatten())
+                    ]
+                ])->getBody()->getContents();
+            } catch (\Exception $exception) {
+                error_log($exception->getMessage());
+            }
+        }
     }
     //
 

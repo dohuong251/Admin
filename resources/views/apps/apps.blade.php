@@ -14,10 +14,10 @@
             </li>
 
             <li class="ml-auto">
-                <button class="btn-success-custom">
+                <a href="{{route('admin.apps.create')}}" class="btn-success-custom">
                     <i class="fa fa-plus align-bottom"></i>
                     <span>Add new app</span>
-                </button>
+                </a>
             </li>
         </ol>
 
@@ -25,8 +25,8 @@
     <div class="peers">
         @if($apps)
             @foreach($apps as $app)
-                <div class="col-2 mB-15 mT-15">
-                    <a href="#" class="w-100 border shadow-sm position-relative pt-100p cur-p app-card d-block" title="{{$app->app_version_name??$app->app_name??""}}">
+                <div class="col-4 col-md-2 mB-15 mT-15">
+                    <a href="{{route('admin.apps.show',$app->app_id)}}" class="w-100 border shadow-sm position-relative pt-100p cur-p app-card d-block" title="{{$app->app_version_name??$app->app_name??""}}">
                         <div class="t-0 l-0 r-0 b-0 position-absolute text-center d-flex flex-column">
                             <div class="flex-grow-1 d-flex align-items-center">
                                 <div class="w-100">

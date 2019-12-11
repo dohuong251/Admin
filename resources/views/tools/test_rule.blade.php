@@ -1,7 +1,6 @@
 @extends('layouts.main')
 @section('title', 'Test Rules')
 @section('css')
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.2/dragula.min.css"/>
     <link rel="stylesheet" href="/css/vendors/select2.min.css"/>
     <link rel="stylesheet" href="/css/dist/fontawesome5.css"/>
     <style>
@@ -140,7 +139,7 @@
     </nav>
 
     <button class="position-fixed t-15 z-1 btn btn-primary centerX" title="Sync Rule" id="update-rule" data-url="{{route('admin.tools.testRule.update_rule')}}">
-        <i class="fas fa5-cloud-upload"></i>
+        <i class="fas fa5-sync-alt"></i>
     </button>
 
     <div>
