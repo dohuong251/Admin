@@ -25,7 +25,7 @@ $(document).ready(function () {
             align: 'center'
         },
         markers: {
-            size: 3
+            size: 0
         },
         xaxis: {
             type: 'datetime',
