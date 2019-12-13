@@ -19,21 +19,28 @@ $(document).ready(function () {
             enabled: false
         },
         series: [{
+            name: "Active Users",
             data: []
         }],
         title: {
             text: 'User Active Chart',
             align: 'center'
         },
-        // markers: {
-        //     size: 0
-        // },
+        markers: {
+            size: 6
+        },
         xaxis: {
             type: 'datetime',
         },
         legend: {
             show: false
         },
+        tooltip: {
+            x: {
+                show: true,
+                format:"HH:mm:ss"
+            }
+        }
     };
 
     var activeUserChart = new ApexCharts(
