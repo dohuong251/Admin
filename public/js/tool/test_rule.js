@@ -111,7 +111,6 @@ $(document).ready(function () {
         if (!$('#match')[0].reportValidity() || !$('#name')[0].reportValidity()) return;
 
         Swal.fire({
-            title: 'Are you sure?',
             text: "Đồng bộ luật với config hiện tại ?",
             icon: 'warning',
             showCancelButton: true,

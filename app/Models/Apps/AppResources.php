@@ -9,6 +9,7 @@ class AppResources extends Base
     //
     protected $table = 'app_resources';
     protected $primaryKey = 'app_resources_id';
+    protected $fillable = ['type', 'link'];
 
     public function appVersion()
     {

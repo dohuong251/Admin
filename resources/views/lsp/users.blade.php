@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title', 'Users')
 @section('js')
-    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+
     <script src="/js/vendors/spin.min.js"></script>
     <script src="/js/vendors/ladda.min.js"></script>
     <script src="/js/vendors/jquery.stickytableheaders.min.js"></script>

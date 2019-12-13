@@ -20,4 +20,36 @@ $(document).ready(function () {
             e.stopPropagation();
         }
     });
+
+    $(document).on('click', '.delete-version', function (e) {
+        if (!$(this).attr("data-href")) return;
+        Swal.fire({
+            text: `Xác nhận xóa ${$(this).siblings('a').text().toLowerCase()} ?`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Xác Nhận',
+            cancelButtonText: 'Hủy'
+        }).then((result) => {
+            if (result.value) {
+                $.ajax({
+                    url: $(this).attr("data-href"),
+                    type: "DELETE",
+                    beforeSend: () => {
+                        $(this).attr('disabled', true).siblings('a').attr('onclick', 'return false;');
+                    },
+                    success: (data) => {
+                        // xóa thành công
+                        $(this).closest('.app-version').remove();
+                        _.remove(apps, {
+                            app_version_id: Number.parseInt($(this).attr("data-version-id"))
+                        });
+                    },
+                    error: (xhr) => {
+                        // xóa thất bại
+                        $(this).attr('disabled', false).siblings('a').removeAttr('onclick');
+                    }
+                })
+            }
+        });
+    })
 });

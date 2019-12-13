@@ -35,7 +35,7 @@
                         method="post">
                         {{csrf_field()}}
                         <div class="col-12 clearfix card-title">
-                            <button type="submit" class="float-right btn-success-custom mr-1">
+                            <button type="submit" class="float-right btn btn-success mr-1">
                                 <i class="fa fa-check" style="font-size: 14px !important;"></i>
                             </button>
 

@@ -23,7 +23,7 @@
                 {{> configItem name=name value=value}}
                 {{/data}}
             </div>
-            <button class="btn-success-custom d-block mT-15 m-auto submit-config">
+            <button class="btn btn-success d-block mT-15 m-auto submit-config">
                 <i class="fa fa-check"></i>
             </button>
         </script>
@@ -68,7 +68,7 @@
     @endverbatim
     <script src="/js/dist/ajax_setup_loading.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonlint/1.6.0/jsonlint.min.js"></script>
-    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+
     <script src="/js/vendors/handlebars.min.js"></script>
     <script src="/js/tool/config.js"></script>
 @endsection
@@ -84,11 +84,11 @@
             </li>
 
             <li class="ml-auto">
-                <button class="btn-success-custom" id="add-app">
+                <button class="btn btn-success" id="add-app">
                     <i class="fa fa-plus align-bottom"></i>
                     <span>New app</span>
                 </button>
-                <button class="btn-success-custom" id="add-app-duplicate">
+                <button class="btn btn-success" id="add-app-duplicate">
                     <i class="fa fa-copy align-bottom"></i>
                     <span>New app current config</span>
                 </button>

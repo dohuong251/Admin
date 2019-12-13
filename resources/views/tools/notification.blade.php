@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="/css/vendors/animate.min.css"/>
 @endsection
 @section('js')
-    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+
     <script src="/js/vendors/spin.min.js"></script>
     <script src="/js/vendors/ladda.min.js"></script>
     <script src="/js/dist/delete.js"></script>
@@ -22,7 +22,7 @@
             </li>
 
             <li class="ml-auto">
-                <a href="{{route('admin.tools.notification.create')}}" class="btn-success-custom" title="add notification">
+                <a href="{{route('admin.tools.notification.create')}}" class="btn btn-success" title="add notification">
                     <i class="fa fa-plus"></i>
                 </a>
             </li>

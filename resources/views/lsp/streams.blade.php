@@ -6,7 +6,7 @@
 @endsection
 
 @section('js')
-    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+
     <script src="/js/vendors/spin.min.js"></script>
     <script src="/js/vendors/ladda.min.js"></script>
     <script src="/js/vendors/clipboard.min.js"></script>
@@ -22,13 +22,13 @@
         <ul class="breadcrumb bg-white border-bottom rounded-0">
             <li class="breadcrumb-item active" aria-current="page">Stream Management</li>
             <li class="breadcrumb-menu ml-auto mr-2">
-                <a class="btn-success-custom text-white" title="Thêm Stream" href="{{route('admin.lsp.streams.create')}}">
+                <a class="btn btn-success text-white" title="Thêm Stream" href="{{route('admin.lsp.streams.create')}}">
                     <i class="material-icons align-middle">add</i>
                 </a>
                 <a class="btn btn-warning text-white" title="Complain Stream" href="{{route('admin.lsp.streams.complain')}}">
                     <i class="material-icons align-middle">warning</i>
                 </a>
-                <a class="btn-primary-custom text-white" title="Feature Stream" href="{{route('admin.lsp.streams.feature')}}">
+                <a class="btn btn-primary text-white" title="Feature Stream" href="{{route('admin.lsp.streams.feature')}}">
                     <i class="material-icons align-middle">live_tv</i>
                 </a>
             </li>

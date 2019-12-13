@@ -20,7 +20,7 @@
     <script src="/js/vendors/moment_vi.js"></script>
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
-    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+
     <script src="/js/vendors/ladda.min.js"></script>
     <script src="/js/dist/delete.js"></script>
     <script src="/js/tool/notification_edit.js"></script>
@@ -122,7 +122,7 @@
             </div>
 
             <div>
-                <button type="submit" class="btn-success-custom m-auto">
+                <button type="submit" class="btn btn-success m-auto">
                     <i class="fa fa-check"></i>
                 </button>
             </div>

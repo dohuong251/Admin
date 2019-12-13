@@ -116,7 +116,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/js/vendors/handlebars.min.js"></script>
-    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonlint/1.6.0/jsonlint.min.js"></script>
     <script src="/js/dist/ajax_setup_loading.js"></script>
     <script src="/js/tool/test_rule.js"></script>
@@ -184,7 +184,7 @@
 
             </div>
 
-            <button type="submit" class="btn-success-custom mt-3 mb-3 w-100">Test</button>
+            <button type="submit" class="btn btn-success mt-3 mb-3 w-100">Test</button>
         </form>
 
         <div class="word-break-all" id="result"></div>

@@ -240,13 +240,27 @@
 <script type="text/javascript" src="/js/dist/vendor.js"></script>
 <script type="text/javascript" src="/js/dist/bundle.js"></script>
 <script src="/js/vendors/lazyload.min.js"></script>
+<script src="/js/vendors/sweetalert2.all.min.js"></script>
 <script src="/js/dist/main.js"></script>
 <script>
     let deleteOptions = {
         deleteUrl: "{!! $deleteUrlDetailPage ?? $deleteUrl ?? ""!!}",
         recordName: "{!! $recordNameDetailPage ?? $recordName ?? "" !!}",
-
-    }
+    };
+    @error('warningMessage')
+    $(document).ready(function () {
+        Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+        }).fire({
+            icon: 'error',
+            title: '{{session('errors')->first('warningMessage')}}',
+        });
+    });
+    @enderror
 </script>
 @yield('js')
 </body>

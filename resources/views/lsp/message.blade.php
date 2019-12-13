@@ -4,7 +4,7 @@
     <link rel="stylesheet" href="/css/vendors/select2.min.css"/>
 @endsection
 @section('js')
-    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+
     <script src="/js/vendors/select2.min.js"></script>
     <script src="/js/vendors/moment.min.js"></script>
     <script src="/js/vendors/moment_vi.js"></script>

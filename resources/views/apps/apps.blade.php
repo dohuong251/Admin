@@ -14,7 +14,7 @@
             </li>
 
             <li class="ml-auto">
-                <a href="{{route('admin.apps.create')}}" class="btn-success-custom">
+                <a href="{{route('admin.apps.create')}}" class="btn btn-success">
                     <i class="fa fa-plus align-bottom"></i>
                     <span>Add new app</span>
                 </a>

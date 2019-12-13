@@ -91,7 +91,7 @@
             ajaxSearchUrl = "{!! route('admin.lsp.analytic.statistics.search') !!}";
     </script>
     <script src="/js/dist/ajax_setup_loading.js"></script>
-    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+
     <script src="/js/vendors/apexcharts.min.js"></script>
     <script src="/js/vendors/moment.min.js"></script>
     <script src="/js/vendors/moment_vi.js"></script>
@@ -137,7 +137,7 @@
                 </div>
             </div>
             <div class="peer ml-2">
-                <button class="btn-success-custom" onclick="loadData()">
+                <button class="btn btn-success" onclick="loadData()">
                     <i class="fa fa-search"></i>
                 </button>
             </div>

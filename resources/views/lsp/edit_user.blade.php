@@ -13,10 +13,10 @@
             <option value="1" {{$role=="0"?"selected":""}}>Admin</option>
         </select>
 
-        <button type="button" title="Delete" class="btn-danger-custom float-right ml-1 btn-delete">
+        <button type="button" title="Delete" class="btn btn-danger float-right ml-1 btn-delete">
             <span><i class="fa fa-times"></i></span>
         </button>
-        <button type="submit" title="Edit" class="btn-success-custom float-right btn-edit">
+        <button type="submit" title="Edit" class="btn btn-success float-right btn-edit">
             <span><i class="fa fa-check"></i></span>
         </button>
     </div>

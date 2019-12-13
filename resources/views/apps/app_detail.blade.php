@@ -3,7 +3,9 @@
 @section('css')
 
 @endsection
+
 @section('js')
+
     <script src="/js/vendors/lodash.min.js"></script>
     <script src="/js/vendors/bootstrap.min.js"></script>
     <script src="/js/vendors/handlebars.min.js"></script>
@@ -18,14 +20,14 @@
         <div class="modal-body text-center">
             {{#data}}
             <div class="my-3">
-                <div class="btn-group">
+                <div class="btn-group app-version">
                     @endverbatim
-                    <button class="btn btn-primary" style="width: 200px" onclick="window.location='{{route('admin.apps.edit_version')}}?version_id=@{{app_version_id}}'">
+                    <a class="btn btn-primary" style="width: 200px" href="{{route('admin.apps.edit_version')}}?version_id=@{{app_version_id}}">
                         @verbatim
 
-                        Version {{version_name}}
-                    </button>
-                    <button class="btn btn-danger">
+                            Version {{version_name}}
+                    </a>
+                    <button class="btn btn-danger delete-version" data-href="/admin/apps/{{app_version_id}}" data-version-id="{{app_version_id}}">
                         <i class="fa fa-times"></i>
                     </button>
                 </div>
@@ -46,7 +48,7 @@
     <nav>
         <ol class="breadcrumb bg-white border-bottom rounded-0">
             <li class="breadcrumb-item justify-content-center">
-                Apps
+                <a href="{{route('admin.apps.index')}}">Apps</a>
             </li>
 
             <li class="ml-auto">

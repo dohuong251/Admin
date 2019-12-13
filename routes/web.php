@@ -117,17 +117,21 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 //        app
         Route::group(['as' => 'apps.', 'prefix' => 'apps'], function () {
             Route::get('/', 'App\AppController@index')->name('index');
-            Route::get('/create','App\AppController@create')->name('create');
+            Route::get('/create', 'App\AppController@create')->name('create');
+            Route::post('/', 'App\AppController@store')->name('store');
+            Route::delete('/{appVersionId}','App\AppController@destroy')->name('destroy');
 
+            Route::get('/editVersion', 'App\AppController@editVersion')->name('edit_version');
+            Route::put('/editVersion', 'App\AppController@update')->name('update');
             Route::get('/{appId}', 'App\AppController@show')->name('show');
-            Route::get('/{appId}/addVersion','App\AppController@addVersion')->name('add_version');
-            Route::get('/editVersion','App\AppController@editVersion')->name('edit_version');
+            Route::get('/{appId}/addVersion', 'App\AppController@addVersion')->name('add_version');
+            Route::post('/{appId}/addVersion', 'App\AppController@storeVersion')->name('store_version');
         });
 
         Route::group(['as' => 'promotions.', 'prefix' => 'promotions'], function () {
             Route::get('/', 'Promotion\PromotionController@index')->name('index');
-            Route::post('/start','Promotion\PromotionController@startPromo')->name('start');
-            Route::post('/stop','Promotion\PromotionController@stopPromo')->name('stop');
+            Route::post('/start', 'Promotion\PromotionController@startPromo')->name('start');
+            Route::post('/stop', 'Promotion\PromotionController@stopPromo')->name('stop');
         });
     });
 

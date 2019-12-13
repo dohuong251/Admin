@@ -21,7 +21,7 @@
 @endsection
 @section('js')
     <script src="/js/vendors/bs-custom-file-input.min.js"></script>
-    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+
     <script src="/js/promo/promo.js"></script>
 @endsection
 
@@ -32,7 +32,7 @@
             <li class="ml-auto">
                 <form id="stop-form" action="{{route('admin.promotions.stop')}}" method="post">
                     @csrf
-                    <button class="btn-danger-custom" title="Stop Current Promotion">
+                    <button class="btn btn-danger" title="Stop Current Promotion">
                         <i class="fa fa-times"></i>
                     </button>
                 </form>
@@ -201,6 +201,6 @@
             </div>
         </div>
 
-        <button type="submit" class="btn-success-custom mx-auto my-3">Start Promo</button>
+        <button type="submit" class="btn btn-success mx-auto my-3">Start Promo</button>
     </form>
 @endsection

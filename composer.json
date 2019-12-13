@@ -16,7 +16,8 @@
         "laravel/tinker": "^1.0",
         "yajra/laravel-datatables-oracle": "~9.0",
         "ext-dom": "*",
-        "ext-memcache": "*"
+        "ext-memcache": "*",
+      "ext-mysql_xdevapi": "*"
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.6",

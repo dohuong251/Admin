@@ -9,7 +9,7 @@
 @section('js')
     <script src="/js/vendors/spin.min.js"></script>
     <script src="/js/vendors/ladda.min.js"></script>
-    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+
     <script src="/js/vendors/moment.min.js"></script>
     <script src="/js/vendors/moment_vi.js"></script>
     <script
@@ -62,7 +62,7 @@
 
                             <div class="col-12 toggle-display-des information animated slideInLeft fast">
                                 <div class="float-right actionBtn mr-2">
-                                    <button type="button" class="btn-secondary-custom toggle-display">
+                                    <button type="button" class="btn btn-secondary toggle-display">
                                         <i class="fa fa-edit" style="font-size: 14px !important;"></i>
                                     </button>
                                 </div>
@@ -192,10 +192,10 @@
                                 @method('PUT')
                                 {{csrf_field()}}
                                 <div class="col-12 card-title clearfix">
-                                    <button type="button" class="float-right btn-danger-custom toggle-display">
+                                    <button type="button" class="float-right btn btn-danger toggle-display">
                                         <i class="fa fa-times" style="font-size: 14px !important;"></i>
                                     </button>
-                                    <button type="submit" class="float-right btn-success-custom mr-1">
+                                    <button type="submit" class="float-right btn btn-success mr-1">
                                         <i class="fa fa-check" style="font-size: 14px !important;"></i>
                                     </button>
 
