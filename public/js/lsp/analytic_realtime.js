@@ -13,16 +13,10 @@ $(document).ready(function () {
             },
             toolbar: {
                 show: false
-            },
-            zoom: {
-                enabled: false
             }
         },
         dataLabels: {
             enabled: false
-        },
-        stroke: {
-            curve: 'smooth'
         },
         series: [{
             data: []
@@ -65,6 +59,7 @@ $(document).ready(function () {
         });
     }
 
+    getActiveUserData();
     window.setInterval(function () {
         getActiveUserData();
     }, 30000);
