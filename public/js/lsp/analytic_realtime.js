@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     var activeUserChartOptions = {
-        colors: ['##28a745'],
+        colors: ['#28a745'],
         chart: {
             height: 350,
             type: 'line',
