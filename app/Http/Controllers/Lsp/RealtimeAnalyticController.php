@@ -76,11 +76,18 @@ class RealtimeAnalyticController extends Controller
         );
     }
 
-    public function test()
+    public function getRealTimeActiveUser()
     {
         $memcache = new Memcache;
         $memcache->connect('localhost', $port = 11211, 5);
-        dd($memcache->get('active_user'));
+        $activeUser = $memcache->get('active_user');
+        $memcache->close();
+        return array_map(function($count) {
+            return array(
+                'x' => $count['time'],
+                'y' => $count['total']
+            );
+        }, $activeUser);
     }
 
     function getMemcacheKeysV2($server, $port, $limit = 10000)

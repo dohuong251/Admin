@@ -85,7 +85,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
                 Route::get('/realtime', 'Lsp\RealtimeAnalyticController@index')->name('realtime');
                 Route::get('/realtime/filter', 'Lsp\RealtimeAnalyticController@filter')->name('realtime.filter');
-                Route::get('/realtime/test', 'Lsp\RealtimeAnalyticController@test');
+                Route::get('/realtime/activeUser', 'Lsp\RealtimeAnalyticController@getRealTimeActiveUser')->name('realtime.active_user');
             });
         });
 

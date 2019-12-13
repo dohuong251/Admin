@@ -1,6 +1,75 @@
 $(document).ready(function () {
 
-    let realTimeChartOptions = {
+    var activeUserChartOptions = {
+        chart: {
+            height: 350,
+            type: 'line',
+            animations: {
+                enabled: true,
+                easing: 'linear',
+                dynamicAnimation: {
+                    speed: 1000
+                }
+            },
+            toolbar: {
+                show: false
+            },
+            zoom: {
+                enabled: false
+            }
+        },
+        dataLabels: {
+            enabled: false
+        },
+        stroke: {
+            curve: 'smooth'
+        },
+        series: [{
+            data: []
+        }],
+        title: {
+            text: 'User Active Chart',
+            align: 'center'
+        },
+        // markers: {
+        //     size: 0
+        // },
+        xaxis: {
+            type: 'datetime',
+        },
+        legend: {
+            show: false
+        },
+    };
+
+    var activeUserChart = new ApexCharts(
+        document.querySelector("#active-user-chart"),
+        activeUserChartOptions
+    );
+
+    activeUserChart.render();
+
+    let activeUserRequest = null;
+    let activeUserRequestUrl = $('#active-user-chart').attr('data-href');
+
+    function getActiveUserData() {
+        if (activeUserRequest) activeUserRequest.abort();
+        activeUserRequest = $.ajax({
+            url: activeUserRequestUrl,
+            method: 'get',
+            success: function (activeUserData) {
+                activeUserChart.updateSeries([{
+                    data: activeUserData
+                }])
+            }
+        });
+    }
+
+    window.setInterval(function () {
+        getActiveUserData();
+    }, 30000);
+
+    let realTimeCardChartOptions = {
         chart: {
             width: 50,
             height: 35,
@@ -69,7 +138,7 @@ $(document).ready(function () {
             targetElement: $($(".realtime-chart")[0]),
             chart: new ApexCharts($(".realtime-chart")[0], {
                 colors: ['#9c27b0'],
-                ...realTimeChartOptions
+                ...realTimeCardChartOptions
             }),
             chartData: [],
         },
@@ -77,7 +146,7 @@ $(document).ready(function () {
             targetElement: $($(".realtime-chart")[1]),
             chart: new ApexCharts($(".realtime-chart")[1], {
                 colors: ['#f44336'],
-                ...realTimeChartOptions
+                ...realTimeCardChartOptions
             }),
             chartData: [],
         },
@@ -85,7 +154,7 @@ $(document).ready(function () {
             targetElement: $($(".realtime-chart")[2]),
             chart: new ApexCharts($(".realtime-chart")[2], {
                 colors: ['#2196f3'],
-                ...realTimeChartOptions
+                ...realTimeCardChartOptions
             }),
             chartData: [],
         },
@@ -93,7 +162,7 @@ $(document).ready(function () {
             targetElement: $($(".realtime-chart")[3]),
             chart: new ApexCharts($(".realtime-chart")[3], {
                 colors: ['#4caf50'],
-                ...realTimeChartOptions
+                ...realTimeCardChartOptions
             }),
             chartData: [],
         },

@@ -59,6 +59,10 @@
 
     </nav>
 
+    <div id="active-user-chart" data-href="{{route('admin.lsp.analytic.realtime.active_user')}}">
+
+    </div>
+
     <div class="gap-20">
         <div class="row gap-20">
             <div class="col-12 col-sm-3 realtime-card" id="channel-card">
