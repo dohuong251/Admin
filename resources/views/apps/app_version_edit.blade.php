@@ -14,6 +14,11 @@
             <li class="breadcrumb-item justify-content-center">
                 <a href="{{route('admin.apps.index')}}">Apps</a>
             </li>
+            @if($app && $app->App)
+                <li class="breadcrumb-item justify-content-center">
+                    <a href="{{route('admin.apps.show',$app->App->app_id)}}">{{$app->App->app_name}}</a>
+                </li>
+            @endif
             <li class="breadcrumb-item justify-content-center">
                 Edit App Version
             </li>

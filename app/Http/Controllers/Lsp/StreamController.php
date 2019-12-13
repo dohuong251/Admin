@@ -103,7 +103,7 @@ class StreamController extends Controller
 
         $suspendStream = Songs::find($request->get('SongId'));
         if ($suspendStream != null) {
-            DB::transaction(function () use ($request, $suspendStream) {
+            DB::connection('mysql_lsp_connection')->transaction(function () use ($request, $suspendStream) {
                 $suspendStream->Copyright = 1;
                 $suspendStream->save();
                 if ($request->has('Message') && $request->get('Message')) {

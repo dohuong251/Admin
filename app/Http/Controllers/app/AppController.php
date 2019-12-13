@@ -95,13 +95,13 @@ class AppController extends Controller
         $request->validated();
         $platformId = $request->get('platform');
         return DB::connection('mysql_mdc_apps_connection')->transaction(function () use ($request, $platformId, $appId) {
-            $appVersion = AppVersion::where(['app_id' => $appId, 'platform_id' => $platformId])->orderBy('last_update', 'desc')->take(1)->get()->first();
-            if ($appVersion == null) {
+            $app = Apps::find($appId);
+            if ($app == null) {
                 return back()->withInput()->withErrors(['warningMessage' => 'App Not Found']);
             }
-            $appVersion->app_id = $appId;
+            $appVersion = new AppVersion();
             $appVersion->fill($request->only(['platform_id', 'platform_id', 'icon_url', 'app_version_name', 'app_version_subname', 'package_name', 'version_name', 'size', 'ads_image', 'download_url', 'last_update', 'create_time', 'playstoreURL', 'appleUrl', 'amazoneUrl', 'portableUrl', 'requires', 'portuguese_requires', 'what_new', 'description', 'portuguese_what_new', 'portuguese_description']));
-            $appVersion->save();
+            $app->appVersions()->save($appVersion);
 
             if ($request->get('Video') != null) {
                 $appVersion->appResources()->save(new AppResources([
@@ -118,7 +118,7 @@ class AppController extends Controller
                 }
                 $appVersion->appResources()->createMany($images);
             }
-            return back();
+            return redirect(route('admin.apps.edit_version', ["version_id" => $appVersion->app_version_id]));
         });
     }
 

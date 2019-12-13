@@ -18,6 +18,14 @@
           <option name="port" value="2233" />
         </fileTransfer>
       </webServer>
+      <webServer id="e63023a0-3372-44f0-ae80-a0b5bc838c41" name="live.mdcgate.com_memcache" url="http://live.mdcgate.com">
+        <fileTransfer host="live.mdcgate.com" port="2233" rootFolder="/home/www/servers/livestreamplayer/MessageServer.php" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+          <option name="port" value="2233" />
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>
