@@ -12,9 +12,6 @@ $(document).ready(function () {
                     speed: 1000
                 }
             },
-            toolbar: {
-                show: false
-            }
         },
         dataLabels: {
             enabled: false
