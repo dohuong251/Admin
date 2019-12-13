@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     var activeUserChartOptions = {
+        colors: ['#4caf50'],
         chart: {
             height: 350,
             type: 'line',
