@@ -28,7 +28,11 @@
             </button>
         </script>
         <script id="config-item" type="text/text/x-handlebars-template">
-            <div class="config-group col-12 col-md-6 d-flex mT-15">
+            {{#isJSONField name}}
+            <div class="config-group col-12 d-flex mT-15">
+            {{else}}
+                <div class="config-group col-12 col-md-6 d-flex mT-15">
+            {{/isJSONField}}
                 <div class="input-group">
                     <textarea class="form-control name noresize" type="text" rows="1">{{name}}</textarea>
                     <textarea class="form-control value resize-vertical" type="text" rows="1">{{value}}</textarea>
@@ -41,7 +45,7 @@
         </script>
 
         <script id="json-config-content" type="text/text/x-handlebars-template">
-            <div class="col-12 col-md-6 json-config-group mT-15 pB-15 border border-success">
+            <div class="col-12 json-config-group mT-15 pB-15 border border-success">
                 <div class="peers mT-15">
                     <textarea class="form-control data-json-prefix noresize w-50" rows="1">{{prefix}}</textarea>
                     <button class="btn btn-success add-json-config ml-2">
