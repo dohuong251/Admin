@@ -30,13 +30,16 @@ $(document).ready(function () {
         xaxis: {
             type: 'datetime',
         },
+        yaxis: {
+            min: 0
+        },
         legend: {
             show: false
         },
         tooltip: {
             x: {
                 show: true,
-                format:"HH:mm:ss"
+                format: "HH:mm:ss"
             }
         }
     };

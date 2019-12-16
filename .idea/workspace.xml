@@ -4,6 +4,7 @@
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/RealtimeAnalyticController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/RealtimeAnalyticController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/lsp/analytic_realtime.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/lsp/analytic_realtime.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -347,7 +348,7 @@
       <workItem from="1576030114016" duration="21237000" />
       <workItem from="1576116439755" duration="20227000" />
       <workItem from="1576203332314" duration="25731000" />
-      <workItem from="1576463065809" duration="2380000" />
+      <workItem from="1576463065809" duration="4504000" />
     </task>
     <servers />
   </component>

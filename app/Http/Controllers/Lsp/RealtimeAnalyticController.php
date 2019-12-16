@@ -83,6 +83,7 @@ class RealtimeAnalyticController extends Controller
         $memcache = new Memcache;
         $memcache->connect('localhost', $port = 11211, 5);
         $activeUser = $memcache->get('active_user');
+        if (gettype($activeUser) != "array") $activeUser = [];
         $memcache->close();
         $serverTimeZone = new DateTimeZone(timezone_name_from_abbr(exec('date +%Z')));
         $clientTimeZone =  new DateTimeZone(date_default_timezone_get());
