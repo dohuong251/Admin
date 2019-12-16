@@ -8,6 +8,8 @@ use App\Models\Lsp\Users;
 use App\Models\Lsp\Views;
 use Cache;
 use Carbon\Carbon;
+use DateTime;
+use DateTimeZone;
 use DB;
 use Exception;
 use Illuminate\Http\Request;
@@ -82,9 +84,14 @@ class RealtimeAnalyticController extends Controller
         $memcache->connect('localhost', $port = 11211, 5);
         $activeUser = $memcache->get('active_user');
         $memcache->close();
-        return array_map(function($count) {
+        $serverTimeZone = new DateTimeZone(timezone_name_from_abbr(exec('date +%Z')));
+        $clientTimeZone =  new DateTimeZone(date_default_timezone_get());
+        $clientTimeFormat="Y-m-d H:i:s";
+        return array_map(function ($count) use ($clientTimeFormat, $clientTimeZone, $serverTimeZone) {
+            $count['time']=new DateTime($count['time'], $serverTimeZone);
+            $count['time']->setTimeZone($clientTimeZone);
             return array(
-                'x' => $count['time'],
+                'x' => $count['time']->format($clientTimeFormat),
                 'y' => $count['total']
             );
         }, $activeUser);
