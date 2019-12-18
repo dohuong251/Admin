@@ -166,24 +166,6 @@ class StreamController extends Controller
         return view('lsp.stream_feature', ['features' => $features]);
     }
 
-
-    public function filter(Request $request)
-    {
-        $startDate = $request->get('startDate');
-        $endDate = $request->get('endDate');
-        return array(
-            "LastOnline" => Songs::whereBetween('LastOnline', [$startDate, $endDate])
-                ->selectRaw('LastOnline as Date, count(*) as Total')
-                ->groupBy('LastOnline')
-                ->orderBy('LastOnline', 'asc')
-                ->get(),
-            "Published" => Songs::whereBetween('PublishedDate', [$startDate, $endDate])
-                ->selectRaw('PublishedDate as Date, count(*) as Total')
-                ->groupBy('PublishedDate')
-                ->orderBy('PublishedDate', 'asc')
-                ->get());
-    }
-
     protected function getDeleteClass()
     {
         // TODO: Implement getDeleteClass() method.

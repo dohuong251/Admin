@@ -14,14 +14,14 @@ $(document).ready(function () {
         },
         // "autoUpdateInput": false,
         "alwaysShowCalendars": true,
-        "startDate": moment(),
-        "endDate": moment(),
+        "startDate": moment().startOf('month'),
+        "endDate": moment().endOf('month'),
         "opens": "center",
         maxDate: moment(),
     }).on('apply.daterangepicker', function (ev, picker) {
         if (!picker) {
-            startDate = moment();
-            endDate = moment();
+            startDate = moment().startOf('month');
+            endDate = moment().endOf('month');
         } else {
             startDate = picker.startDate;
             endDate = picker.endDate;
@@ -30,11 +30,13 @@ $(document).ready(function () {
         $.get($(this).attr('data-url'), {
             startDate: startDate.format(serverDateFormat),
             endDate: endDate.format(serverDateFormat)
-        }, function (chartData) {
-            console.log(chartData);
-            if (Object.keys(chartData).length === 0) return;
-            if (!chartData.LastOnline || !chartData.Published) return;
-            let lastOnlineData = chartData.LastOnline, publishedData = chartData.Published, maxDate, minDate,
+        }, function (data) {
+            // update stream chart
+            let lspStreamChartData = data.LspStream;
+            if (Object.keys(lspStreamChartData).length === 0) return;
+            if (!lspStreamChartData.LastOnline || !lspStreamChartData.Published) return;
+            let lastOnlineData = lspStreamChartData.LastOnline, publishedData = lspStreamChartData.Published, maxDate,
+                minDate,
                 dateRange = [];
             minDate = moment.min(lastOnlineData[0] ? parseServerDate(lastOnlineData[0].Date) : moment(), publishedData[0] ? parseServerDate(publishedData[0].Date) : moment());
             maxDate = moment.max(lastOnlineData[lastOnlineData.length - 1] ? parseServerDate(lastOnlineData[lastOnlineData.length - 1].Date) : moment(0), publishedData[publishedData.length - 1] ? parseServerDate(publishedData[publishedData.length - 1].Date) : moment(0));
@@ -48,9 +50,9 @@ $(document).ready(function () {
             lastOnlineData = _.unionBy(lastOnlineData, dateRange, "Date");
             publishedData = _.unionBy(publishedData, dateRange, "Date");
 
-            options.series = [
+            streamChartOptions.series = [
                 {
-                    name: 'Last Online',
+                    name: 'Last Online Stream',
                     data: lastOnlineData.map(function (v) {
                         return {
                             x: v.Date,
@@ -59,7 +61,7 @@ $(document).ready(function () {
                     })
                 },
                 {
-                    name: 'Published',
+                    name: 'Published Stream',
                     data: publishedData.map(function (v) {
                         return {
                             x: v.Date,
@@ -69,7 +71,7 @@ $(document).ready(function () {
                 }
             ];
 
-            options.legend = {
+            streamChartOptions.legend = {
                 formatter: function (seriesName, opts) {
                     if (opts.seriesIndex === 0) {
                         return [seriesName, ": ", _.sum(_.map(lastOnlineData, 'Total')).toLocaleString()].join("");
@@ -78,12 +80,16 @@ $(document).ready(function () {
                     }
                 }
             };
-            chart.updateOptions(options);
+            streamChart.updateOptions(streamChartOptions);
+
+            // update order chart
         })
     });
-    inputDatePicker.trigger("apply.daterangepicker");
+    setTimeout(function () {
+        inputDatePicker.trigger("apply.daterangepicker")
+    }, 300);
 
-    let options = {
+    let streamChartOptions = {
         type: 'bar',
         width: '50%',
         chart: {
@@ -131,11 +137,138 @@ $(document).ready(function () {
             }
         }
     };
-
-    let chart = new ApexCharts(
+    let streamChart = new ApexCharts(
         document.querySelector("#lsp-chart"),
-        options
+        streamChartOptions
     );
+    streamChart.render();
 
-    chart.render();
+    let donutChartOption = {
+        chart: {
+            type: 'donut',
+        },
+        tooltip: {
+            enabled: true,
+            y: {
+                formatter: function (val) {
+                    if (val) return val.toLocaleString();
+                    return val;
+                },
+            }
+        },
+        legend: {
+            formatter: function (seriesName, opts) {
+                return [seriesName, ": ", opts.w.config.series[opts.seriesIndex].toLocaleString()].join("");
+            }
+        },
+        plotOptions: {
+            pie: {
+                donut: {
+                    labels: {
+                        show: true,
+                        total: {
+                            show: true,
+                            showAlways: true,
+                        }
+                    }
+
+                }
+            }
+        },
+        responsive: [{
+            breakpoint: 480,
+            options: {
+                // chart: {
+                //     width: 200
+                // },
+                plotOptions: {
+                    pie: {
+                        donut: {
+                            labels: {
+                                show: false,
+                                total: {
+                                    show: false,
+                                }
+                            }
+
+                        }
+                    }
+                },
+                legend: {
+                    position: 'bottom'
+                }
+            }
+        }]
+    };
+    let lspOrderChartOption = {
+        title: {
+            text:"Live Stream Player Orders",
+            align:'center'
+        },
+        series: _.map(lspOrder, "Total"),
+        labels: _.map(lspOrder, function (purchaseType) {
+            switch (purchaseType.PurchaseMethod) {
+                case 0:
+                    return "Key";
+                case 1:
+                    return "Paymall";
+                case 2:
+                    return "Phone Card";
+                case 3:
+                    return "Amazon";
+                case 4:
+                    return "Apple";
+                case 5:
+                    return "Paypal";
+                case 6:
+                    return "License Key";
+                case 7:
+                    return "MDC Admin";
+                default:
+                    purchaseType.PurchaseMethod;
+            }
+        }),
+        ...donutChartOption
+    };
+    let lspOrderChart = new ApexCharts(
+        document.querySelector("#lsp-order-chart"),
+        lspOrderChartOption
+    );
+    lspOrderChart.render();
+
+    let ustvOrderChartOption = {
+        title: {
+            text:"USTV Orders",
+            align:'center'
+        },
+        series: _.map(ustvOrder, "Total"),
+        labels: _.map(ustvOrder, function (purchaseType) {
+            switch (purchaseType.PurchaseMethod) {
+                case 0:
+                    return "Key";
+                case 1:
+                    return "Paymall";
+                case 2:
+                    return "Phone Card";
+                case 3:
+                    return "Amazon";
+                case 4:
+                    return "Apple";
+                case 5:
+                    return "Paypal";
+                case 6:
+                    return "License Key";
+                case 7:
+                    return "MDC Admin";
+                default:
+                    purchaseType.PurchaseMethod;
+            }
+        }),
+        ...donutChartOption
+    };
+    let ustvOrderChart = new ApexCharts(
+        document.querySelector("#ustv-order-chart"),
+        ustvOrderChartOption
+    );
+    ustvOrderChart.render();
 });

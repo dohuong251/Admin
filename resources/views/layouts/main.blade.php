@@ -113,7 +113,7 @@
                         <span class="title">Dashboard</span>
                     </a>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown{{Str::contains(Request()->route()->getPrefix(),"admin/livestreamplayer")?" open":""}}">
                     <a class="dropdown-toggle" href="javascript:void(0);">
                         <span class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span>
                         <span class="title">Live Stream Player</span>
@@ -145,7 +145,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown{{Request()->route()->getPrefix()=='admin/sales'? ' open':''}}">
                     <a class="dropdown-toggle" href="javascript:void(0);">
                         <span class="icon-holder"><i class="c-purple-500 ti-map"></i> </span>
                         <span class="title">Sales</span>
@@ -163,7 +163,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item dropdown">
+                <li class="nav-item dropdown{{Request()->route()->getPrefix()=='admin/tools'? ' open':''}}">
                     <a class="dropdown-toggle" href="javascript:void(0);">
                         <span class="icon-holder"><i class="c-red-500 ti-files"></i> </span>
                         <span class="title">Tools</span>
@@ -232,7 +232,7 @@
             </div>
         </main>
         <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
-            <span>Copyright © 2017 Designed by <a href="http://www.mdcgate.com/apps/" target="_blank" title="">MDC</a>. All rights reserved.</span>
+            <span>Copyright © 2019 Designed by <a href="http://www.mdcgate.com/apps/" target="_blank" title="">MDC</a>. All rights reserved.</span>
         </footer>
     </div>
 </div>

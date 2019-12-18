@@ -26,6 +26,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::middleware('auth')->group(function () {
         Route::get('/logout', 'Auth\LoginController@logOut')->name('logout');
         Route::get('/home', 'HomeController@index')->name('home');
+        Route::get('/home/statistic','HomeController@filter')->name('home.filter');
 
         /**
          * https://laravel.com/docs/5.7/controllers#resource-controllers
@@ -57,7 +58,6 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             Route::group(['as' => 'streams.', 'prefix' => 'streams'], function () {
                 Route::get('/', 'Lsp\StreamController@index')->name('index');
                 Route::get('/create', 'Lsp\StreamController@create')->name('create');
-                Route::get('/dashboard', 'Lsp\StreamController@filter')->name('dashboard');
                 Route::get('/complain', 'Lsp\StreamController@complain')->name('complain');
                 Route::get('/features', 'Lsp\StreamController@feature')->name('feature');
                 Route::get('/{songId}', 'Lsp\StreamController@show')->name('show');
