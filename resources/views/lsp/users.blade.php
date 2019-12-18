@@ -45,7 +45,7 @@
                     <th scope="col">Nickname</th>
                     <th scope="col">Email | FacebookId</th>
                     @if(isset($sort) && $sort == "Views")
-                        @if(strtolower($order) == "desc")
+                        @if(strtolower($order) == "asc")
                             <th class="sorting_asc">
                                 <a class=""
                                    href="{{route('admin.lsp.user.index',['sort'=>'Views','order'=>'asc'])}}">
@@ -70,7 +70,7 @@
                     @endif
 
                     @if(isset($sort) && $sort == "Streams")
-                        @if(strtolower($order) == "desc")
+                        @if(strtolower($order) == "asc")
                             <th class="sorting_asc">
                                 <a class=""
                                    href="{{route('admin.lsp.user.index',['sort'=>'Streams','order'=>'asc'])}}">

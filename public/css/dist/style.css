@@ -467,7 +467,7 @@ table thead .sorting, table thead .sorting_asc, table thead .sorting_desc, table
 }
 
 thead a, thead a:hover, thead a:focus {
-    color: #212529;
+    /*color: #212529;*/
 }
 
 table thead .sorting {

@@ -17,7 +17,7 @@ class StatisticsController extends Controller
     //
     public function index(Request $request)
     {
-        if ($request->get('streamId')) {
+        if ($request->get('streamId') != null) {
             $stream = Songs::find($request->get('streamId'));
         }
         return view('lsp.analytic_statistics', [

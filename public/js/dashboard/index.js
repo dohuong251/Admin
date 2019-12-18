@@ -11,7 +11,6 @@ $(document).ready(function () {
             'Năm Nay': [moment().startOf('year'), moment()],
             'Năm Trước': [moment().subtract(1, 'year').startOf('year'), moment().subtract(1, 'year').endOf('year')],
             // 'Tất cả': [moment(0), moment()],
-            'Test': [moment('7/1/2017'), moment('9/1/2017')],
         },
         // "autoUpdateInput": false,
         "alwaysShowCalendars": true,

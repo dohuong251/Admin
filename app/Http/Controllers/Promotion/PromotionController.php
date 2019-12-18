@@ -69,7 +69,7 @@ class PromotionController extends Controller
         ]);
 
         DB::connection('mysql_tool_connection')->transaction(function () use ($request) {
-            if ($request->get("com_liveplayer_android")["title"] || $request->get("com_liveplayer_android")["imageUrl"]) {
+            if ($request->get("com_liveplayer_android")["title"] != null || $request->get("com_liveplayer_android")["imageUrl"] != null) {
                 $promoConfig = array(
                     'type' => 1,
                     'button' =>
@@ -78,8 +78,8 @@ class PromotionController extends Controller
                             'link' => 'http://edge.mdcgate.com/sales/subscription/buy.php?HiddenButton=1&ApplicationId=Live%20Media%20Player&mode=licensekey',
                         ),
                 );
-                if ($request->get("com_liveplayer_android")["title"]) $promoConfig["title"] = $request->get("com_liveplayer_android")["title"];
-                if ($request->get("com_liveplayer_android")["imageUrl"]) {
+                if ($request->get("com_liveplayer_android")["title"] != null) $promoConfig["title"] = $request->get("com_liveplayer_android")["title"];
+                if ($request->get("com_liveplayer_android")["imageUrl"] != null) {
                     $imageUrl = $request->get("com_liveplayer_android")["imageUrl"];
                     $promoConfig["text"] = "<!DOCTYPE html><html>\r\n    <meta charset=\"utf-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n<body style=\"margin:0;\"><a href=\"http://edge.mdcgate.com/sales/subscription/buy.php?HiddenButton=1&ApplicationId=Live%20Media%20Player&mode=licensekey\"><img  src=\"$imageUrl\" alt=\"Smiley face\" width=\"100%\" height=\"100%\"></a></body>\r\n</html>";
                 }
@@ -94,7 +94,7 @@ class PromotionController extends Controller
                     ->update(['value' => ""]);
             }
 
-            if ($request->get('com_mdc_iptvplayer_ios')['imageUrl']) {
+            if ($request->get('com_mdc_iptvplayer_ios')['imageUrl'] != null) {
                 $promoConfig = array(
                     'type' => 1,
                 );
@@ -112,7 +112,7 @@ class PromotionController extends Controller
                     ->update(['value' => ""]);
             }
 
-            if ($request->get('com_mdcmedia_liveplayer_ios')['imageUrl']) {
+            if ($request->get('com_mdcmedia_liveplayer_ios')['imageUrl'] != null) {
                 $promoConfig = array(
                     'text' => 'Dear Users ,
 We have just released a brand new IPTV application - IPTV Player. Please support us by downloading this application now !',
@@ -143,7 +143,7 @@ We have just released a brand new IPTV application - IPTV Player. Please support
             Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'enable_promo']])
                 ->update(['value' => 1]);
 
-            if ($request->get('com_ustv_player')['imageUrl']) {
+            if ($request->get('com_ustv_player')['imageUrl'] != null) {
                 $promoConfig = array(
                     'type' => 1
                 );

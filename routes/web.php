@@ -91,9 +91,19 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
 //        sales
         Route::group(['as' => 'sales.', 'prefix' => 'sales'], function () {
-            Route::get('/order', 'Lsp\OrderController@index')->name('order');
-            Route::get('/subscription', 'Lsp\SubscriptionController@index')->name('subscription');
-            Route::get('/license', 'Lsp\LicenseController@index')->name('license');
+            Route::get('/order', 'Order\OrderController@index')->name('order');
+            Route::get('/order/customer', 'Order\OrderController@show')->name('order.show');
+            Route::get('/order/{orderId}', 'Order\OrderController@edit')->name('order.edit');
+            Route::put('/order/{orderId}', 'Order\OrderController@update')->name('order.update');
+            Route::delete('/order/{orderId}','Order\OrderController@destroy')->name('order.destroy');
+
+            Route::get('/subscription', 'Order\SubscriptionController@index')->name('subscription');
+            Route::get('/subscription/edit/{subscriptionId}', 'Order\SubscriptionController@edit')->name('subscription.edit');
+            Route::put('/subscription/edit/{subscriptionId}', 'Order\SubscriptionController@update')->name('subscription.update');
+            Route::delete('/subscription/{subscriptionId}', 'Order\SubscriptionController@destroy')->name('subscription.destroy');
+
+            Route::get('/license', 'Order\LicenseController@index')->name('license');
+            Route::delete('/license/{licenseId}', 'Order\LicenseController@destroy')->name('license.destroy');
         });
 
 //        tools
@@ -120,7 +130,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             Route::get('/', 'App\AppController@index')->name('index');
             Route::get('/create', 'App\AppController@create')->name('create');
             Route::post('/', 'App\AppController@store')->name('store');
-            Route::delete('/{appVersionId}','App\AppController@destroy')->name('destroy');
+            Route::delete('/{appVersionId}', 'App\AppController@destroy')->name('destroy');
 
             Route::get('/editVersion', 'App\AppController@editVersion')->name('edit_version');
             Route::put('/editVersion', 'App\AppController@update')->name('update');

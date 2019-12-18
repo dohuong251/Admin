@@ -83,7 +83,6 @@ $(document).ready(function () {
             'Tháng Này': [moment().startOf('month'), moment().endOf('month')],
             'Tháng Trước': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')],
             // 'Tất cả': [moment(0), moment()],
-            'Test': [moment('11/05/2019'), moment('11/05/2019')],
         },
         locale: {
             cancelLabel: 'Clear'
