@@ -91,6 +91,7 @@ $(document).ready(function () {
 
     function updateOrderLineChart({LspOrder, USTVOrder}) {
         if (LspOrder && USTVOrder) {
+
             dailyPurchaseChart.updateSeries([
                 {
                     name: "Live Stream Player",
@@ -299,9 +300,6 @@ $(document).ready(function () {
                     hour: 'HH:mm'
                 }
             }
-        },
-        yaxis: {
-            min: 0
         },
         markers: {
             size: 3

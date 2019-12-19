@@ -30,9 +30,9 @@ $(document).ready(function () {
         xaxis: {
             type: 'datetime',
         },
-        yaxis: {
-            min: 0
-        },
+        // yaxis: {
+        //     min: 0
+        // },
         legend: {
             show: false
         },

@@ -65,17 +65,17 @@ class HomeController extends Controller
             })->values()->all();
 
         return array(
-            "LspStream" => array(
-                "LastOnline" => Songs::whereBetween('LastOnline', [$startDate, $endDate])
-                    ->selectRaw('LastOnline as Date, count(*) as Total')
-                    ->groupBy('LastOnline')
-                    ->orderBy('LastOnline', 'asc')
-                    ->get(),
-                "Published" => Songs::whereBetween('PublishedDate', [$startDate, $endDate])
-                    ->selectRaw('PublishedDate as Date, count(*) as Total')
-                    ->groupBy('PublishedDate')
-                    ->orderBy('PublishedDate', 'asc')
-                    ->get()),
+//            "LspStream" => array(
+//                "LastOnline" => Songs::whereBetween('LastOnline', [$startDate, $endDate])
+//                    ->selectRaw('LastOnline as Date, count(*) as Total')
+//                    ->groupBy('LastOnline')
+//                    ->orderBy('LastOnline', 'asc')
+//                    ->get(),
+//                "Published" => Songs::whereBetween('PublishedDate', [$startDate, $endDate])
+//                    ->selectRaw('PublishedDate as Date, count(*) as Total')
+//                    ->groupBy('PublishedDate')
+//                    ->orderBy('PublishedDate', 'asc')
+//                    ->get()),
             "LspOrder" => $lspOrders,
             "USTVOrder" => Order::select(DB::raw('count(*) as Total, DATE(PurchaseDate) as PurchaseDate'))
                 ->where('ApplicationId', "USTV")
