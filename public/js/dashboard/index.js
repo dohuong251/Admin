@@ -91,7 +91,14 @@ $(document).ready(function () {
 
     function updateOrderLineChart({LspOrder, USTVOrder}) {
         if (LspOrder && USTVOrder) {
-
+            if(LspOrder.length && USTVOrder.length){
+                dailyPurchaseChart.updateOptions({
+                    ...dailyPurchaseChartOption,
+                    yaxis: {
+                        min: _.min([_.minBy(LspOrder,"y").y,_.minBy(USTVOrder,"y").y])
+                    },
+                });
+            }
             dailyPurchaseChart.updateSeries([
                 {
                     name: "Live Stream Player",
@@ -300,6 +307,9 @@ $(document).ready(function () {
                     hour: 'HH:mm'
                 }
             }
+        },
+        yaxis: {
+            min: 0
         },
         markers: {
             size: 3
