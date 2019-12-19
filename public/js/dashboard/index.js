@@ -32,77 +32,86 @@ $(document).ready(function () {
             endDate: endDate.format(serverDateFormat)
         }, function (data) {
             // update stream chart
-            let lspStreamChartData = data.LspStream;
-            if (Object.keys(lspStreamChartData).length === 0) return;
-            if (!lspStreamChartData.LastOnline || !lspStreamChartData.Published) return;
-            let lastOnlineData = lspStreamChartData.LastOnline, publishedData = lspStreamChartData.Published, maxDate,
-                minDate,
-                dateRange = [];
-            minDate = moment.min(lastOnlineData[0] ? parseServerDate(lastOnlineData[0].Date) : moment(), publishedData[0] ? parseServerDate(publishedData[0].Date) : moment());
-            maxDate = moment.max(lastOnlineData[lastOnlineData.length - 1] ? parseServerDate(lastOnlineData[lastOnlineData.length - 1].Date) : moment(0), publishedData[publishedData.length - 1] ? parseServerDate(publishedData[publishedData.length - 1].Date) : moment(0));
-            while (minDate.isBefore(maxDate)) {
-                dateRange.push({
-                    Date: minDate.format(serverDateFormat),
-                    Total: 0
-                });
-                minDate.add(1, 'day');
-            }
-            lastOnlineData = _.unionBy(lastOnlineData, dateRange, "Date");
-            publishedData = _.unionBy(publishedData, dateRange, "Date");
+            updateStreamChart(data.LspStream);
+            updateOrderLineChart(data);
+            // update order chart
+        });
+    });
 
-            streamChartOptions.series = [
+    function updateStreamChart(lspStreamChartData) {
+        if (!lspStreamChartData || Object.keys(lspStreamChartData).length === 0) return;
+        if (!lspStreamChartData.LastOnline || !lspStreamChartData.Published) return;
+        let lastOnlineData = lspStreamChartData.LastOnline, publishedData = lspStreamChartData.Published, maxDate,
+            minDate,
+            dateRange = [];
+        minDate = moment.min(lastOnlineData[0] ? parseServerDate(lastOnlineData[0].Date) : moment(), publishedData[0] ? parseServerDate(publishedData[0].Date) : moment());
+        maxDate = moment.max(lastOnlineData[lastOnlineData.length - 1] ? parseServerDate(lastOnlineData[lastOnlineData.length - 1].Date) : moment(0), publishedData[publishedData.length - 1] ? parseServerDate(publishedData[publishedData.length - 1].Date) : moment(0));
+        while (minDate.isBefore(maxDate)) {
+            dateRange.push({
+                Date: minDate.format(serverDateFormat),
+                Total: 0
+            });
+            minDate.add(1, 'day');
+        }
+        lastOnlineData = _.unionBy(lastOnlineData, dateRange, "Date");
+        publishedData = _.unionBy(publishedData, dateRange, "Date");
+
+        streamChartOptions.series = [
+            {
+                name: 'Last Online Stream',
+                data: lastOnlineData.map(function (v) {
+                    return {
+                        x: v.Date,
+                        y: v.Total
+                    }
+                })
+            },
+            {
+                name: 'Published Stream',
+                data: publishedData.map(function (v) {
+                    return {
+                        x: v.Date,
+                        y: v.Total
+                    }
+                })
+            }
+        ];
+
+        streamChartOptions.legend = {
+            formatter: function (seriesName, opts) {
+                if (opts.seriesIndex === 0) {
+                    return [seriesName, ": ", _.sum(_.map(lastOnlineData, 'Total')).toLocaleString()].join("");
+                } else {
+                    return [seriesName, ": ", _.sum(_.map(publishedData, 'Total')).toLocaleString()].join("");
+                }
+            }
+        };
+        streamChart.updateOptions(streamChartOptions);
+    }
+
+    function updateOrderLineChart({LspOrder, USTVOrder}) {
+        if (LspOrder && USTVOrder) {
+            dailyPurchaseChart.updateSeries([
                 {
-                    name: 'Last Online Stream',
-                    data: lastOnlineData.map(function (v) {
-                        return {
-                            x: v.Date,
-                            y: v.Total
-                        }
-                    })
+                    name: "Live Stream Player",
+                    data: LspOrder
                 },
                 {
-                    name: 'Published Stream',
-                    data: publishedData.map(function (v) {
-                        return {
-                            x: v.Date,
-                            y: v.Total
-                        }
-                    })
-                }
-            ];
+                    name: "USTV",
+                    data: USTVOrder
+                }])
+        }
+    }
 
-            streamChartOptions.legend = {
-                formatter: function (seriesName, opts) {
-                    if (opts.seriesIndex === 0) {
-                        return [seriesName, ": ", _.sum(_.map(lastOnlineData, 'Total')).toLocaleString()].join("");
-                    } else {
-                        return [seriesName, ": ", _.sum(_.map(publishedData, 'Total')).toLocaleString()].join("");
-                    }
-                }
-            };
-            streamChart.updateOptions(streamChartOptions);
-
-            // update order chart
-        })
-    });
     setTimeout(function () {
         inputDatePicker.trigger("apply.daterangepicker")
     }, 300);
 
     let streamChartOptions = {
-        type: 'bar',
-        width: '50%',
         chart: {
             height: 350,
             type: 'bar',
         },
-        // plotOptions: {
-        //     bar: {
-        //         // horizontal: false,
-        //         // columnWidth: '55%',
-        //         // endingShape: 'rounded'
-        //     },
-        // },
         dataLabels: {
             enabled: false
         },
@@ -123,11 +132,6 @@ $(document).ready(function () {
                 }
             }
         },
-        // yaxis: {
-        //     title: {
-        //         // text: '$ (thousands)'
-        //     }
-        // },
         fill: {
             opacity: 1
         },
@@ -202,8 +206,8 @@ $(document).ready(function () {
     };
     let lspOrderChartOption = {
         title: {
-            text:"Live Stream Player Orders",
-            align:'center'
+            text: "Live Stream Player Orders",
+            align: 'center'
         },
         series: _.map(lspOrder, "Total"),
         labels: _.map(lspOrder, function (purchaseType) {
@@ -238,8 +242,8 @@ $(document).ready(function () {
 
     let ustvOrderChartOption = {
         title: {
-            text:"USTV Orders",
-            align:'center'
+            text: "USTV Orders",
+            align: 'center'
         },
         series: _.map(ustvOrder, "Total"),
         labels: _.map(ustvOrder, function (purchaseType) {
@@ -271,4 +275,41 @@ $(document).ready(function () {
         ustvOrderChartOption
     );
     ustvOrderChart.render();
+
+    let dailyPurchaseChartOption = {
+        chart: {
+            height: 350,
+            type: 'line',
+        },
+        dataLabels: {
+            enabled: true,
+        },
+        series: [],
+        title: {
+            text: 'Daily Purchase',
+            align: 'center'
+        },
+        xaxis: {
+            type: 'datetime',
+            labels: {
+                datetimeFormatter: {
+                    year: 'yyyy',
+                    month: 'MM/yyyy',
+                    day: 'dd/MM',
+                    hour: 'HH:mm'
+                }
+            }
+        },
+        yaxis: {
+            min: 0
+        },
+        markers: {
+            size: 3
+        },
+    };
+    let dailyPurchaseChart = new ApexCharts(
+        document.querySelector("#daily-purchase-chart"),
+        dailyPurchaseChartOption
+    );
+    dailyPurchaseChart.render();
 });

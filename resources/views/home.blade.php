@@ -27,4 +27,6 @@
         <div id="lsp-order-chart" class="col-12 col-md-6"></div>
         <div id="ustv-order-chart" class="col-12 col-md-6"></div>
     </div>
+
+    <div id="daily-purchase-chart"></div>
 @endsection
