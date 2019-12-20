@@ -7,6 +7,7 @@ use App\Models\Lsp\Songs;
 use App\Models\Lsp\Users;
 use App\Models\Lsp\Views;
 use Cache;
+use Config;
 use DB;
 use Illuminate\Http\Request;
 use PDO;
@@ -49,7 +50,7 @@ class StatisticsController extends Controller
 
             $streamView = Views::with(['song', 'song.users'])->find($streamId);
             if (!$streamView) return abort(500);
-            foreach (json_decode($streamView->days_view) as $key => $view) {
+            foreach (json_decode($streamView->days_view) ?? [] as $key => $view) {
                 $currentDate = strtotime($key);
                 if ($currentDate >= $startTime && $currentDate <= $endTime) {
                     if (!array_key_exists($key, $viewsByDay)) {
@@ -131,7 +132,7 @@ class StatisticsController extends Controller
                 $totalStreamPlaybackDuration = 0;
                 $totalStreamBufferDuration = 0;
 
-                foreach (json_decode($streamView->days_view) as $key => $view) {
+                foreach (json_decode($streamView->days_view) ?? [] as $key => $view) {
                     $currentDate = strtotime($key);
                     if ($currentDate >= $startTime && $currentDate <= $endTime) {
                         if (!array_key_exists($key, $viewsByDay)) {
@@ -213,7 +214,11 @@ class StatisticsController extends Controller
             $query->select(['SongId', 'Code', 'Name', 'UserId']);
         }, 'song.users' => function ($query) {
             $query->select(['UserId', 'Nickname']);
-        }])->where('last_update', '>=', $startTime)->whereNotNull('days_view');
+        }])->where('last_update', '>=', $startTime)->where(function ($query) {
+            $query->whereNotNull('days_view')
+                ->orWhere('success_count', '>', 0);
+        });
+
 
         $startTime = strtotime($startTime);
         $endTime = strtotime($endTime);
@@ -224,7 +229,7 @@ class StatisticsController extends Controller
                 $totalStreamView = 0;
                 $totalStreamPlaybackDuration = 0;
                 $totalStreamBufferDuration = 0;
-                foreach (json_decode($streamView->days_view) as $key => $view) {
+                foreach (json_decode($streamView->days_view) ?? [] as $key => $view) {
                     $currentDate = strtotime($key);
                     if ($currentDate >= $startTime && $currentDate <= $endTime) {
                         if (!array_key_exists($key, $viewsByDay)) {
@@ -343,7 +348,7 @@ class StatisticsController extends Controller
 
     public function search(Request $request)
     {
-        $record_per_request = 10;
+        $record_per_request = Config::get("constant.AJAX_SELECT_SEARCH_RECORD_PER_PAGE");
         $query = $request->get('query');
         if ($request->get('type', 1) == 1) {
             //search stream

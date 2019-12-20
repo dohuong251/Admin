@@ -26,7 +26,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
     Route::middleware('auth')->group(function () {
         Route::get('/logout', 'Auth\LoginController@logOut')->name('logout');
         Route::get('/home', 'HomeController@index')->name('home');
-        Route::get('/home/statistic','HomeController@filter')->name('home.filter');
+        Route::get('/home/statistic', 'HomeController@filter')->name('home.filter');
 
         /**
          * https://laravel.com/docs/5.7/controllers#resource-controllers
@@ -95,7 +95,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             Route::get('/order/customer', 'Order\OrderController@show')->name('order.show');
             Route::get('/order/{orderId}', 'Order\OrderController@edit')->name('order.edit');
             Route::put('/order/{orderId}', 'Order\OrderController@update')->name('order.update');
-            Route::delete('/order/{orderId}','Order\OrderController@destroy')->name('order.destroy');
+            Route::delete('/order/{orderId}', 'Order\OrderController@destroy')->name('order.destroy');
 
             Route::get('/subscription', 'Order\SubscriptionController@index')->name('subscription');
             Route::get('/subscription/edit/{subscriptionId}', 'Order\SubscriptionController@edit')->name('subscription.edit');
@@ -143,6 +143,12 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             Route::get('/', 'Promotion\PromotionController@index')->name('index');
             Route::post('/start', 'Promotion\PromotionController@startPromo')->name('start');
             Route::post('/stop', 'Promotion\PromotionController@stopPromo')->name('stop');
+        });
+
+        Route::group(['as' => 'ustv.', 'prefix' => 'ustv'], function () {
+            Route::get('/dashboard', 'Ustv\Dashboard@index')->name('dashboard');
+            Route::get('/dashboard/search','Ustv\Dashboard@searchChannel')->name('dashboard.search');
+            Route::get('/dashboard/filter','Ustv\Dashboard@filter')->name('dashboard.filter');
         });
     });
 
