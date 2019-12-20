@@ -48,14 +48,14 @@
                         @if(strtolower($order) == "asc")
                             <th class="sorting_asc">
                                 <a class=""
-                                   href="{{route('admin.lsp.user.index',['sort'=>'Views','order'=>'asc'])}}">
+                                   href="{{route('admin.lsp.user.index',['sort'=>'Views','order'=>'desc'])}}">
                                     Σ Views of Streams
                                 </a>
                             </th>
                         @else
                             <th class="sorting_desc">
                                 <a class=""
-                                   href="{{route('admin.lsp.user.index',['sort'=>'Views','order'=>'desc'])}}">
+                                   href="{{route('admin.lsp.user.index',['sort'=>'Views','order'=>'asc'])}}">
                                     Σ Views of Streams
                                 </a>
                             </th>
@@ -73,14 +73,14 @@
                         @if(strtolower($order) == "asc")
                             <th class="sorting_asc">
                                 <a class=""
-                                   href="{{route('admin.lsp.user.index',['sort'=>'Streams','order'=>'asc'])}}">
+                                   href="{{route('admin.lsp.user.index',['sort'=>'Streams','order'=>'desc'])}}">
                                     Σ Streams &#9660;
                                 </a>
                             </th>
                         @else
                             <th class="sorting_desc">
                                 <a class=""
-                                   href="{{route('admin.lsp.user.index',['sort'=>'Streams','order'=>'desc'])}}">
+                                   href="{{route('admin.lsp.user.index',['sort'=>'Streams','order'=>'asc'])}}">
                                     Σ Streams &#9650;
                                 </a>
                             </th>

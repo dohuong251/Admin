@@ -1,9 +1,14 @@
 @extends('layouts.main')
 @section('title', 'Channels')
 @section('css')
-
+    <link rel="stylesheet" href="/css/vendors/ladda.min.css"/>
+    <link rel="stylesheet" href="/css/vendors/animate.min.css"/>
 @endsection
 @section('js')
+    <script src="/js/vendors/spin.min.js"></script>
+    <script src="/js/vendors/ladda.min.js"></script>
+    <script src="/js/vendors/sweetalert2.all.min.js"></script>
+    <script src="/js/dist/delete.js"></script>
     <script src="/js/ustv/channels.js"></script>
 @endsection
 @section('content')
@@ -49,12 +54,81 @@
                         <th scope="col">
                             <input type="checkbox" id="selectAll" class="align-middle">
                         </th>
-                        <th scope="col">Id</th>
-                        <th scope="col">Name</th>
+                        @if(isset($sort) && $sort == "id")
+                            @if(strtolower($order) == "asc")
+                                <th class="sorting_asc">
+                                    <a class=""
+                                       href="{{route('admin.ustv.channels',array_merge(Request()->all(),['sort'=>'id','order'=>'desc']))}}">
+                                        Id
+                                    </a>
+                                </th>
+                            @else
+                                <th class="sorting_desc">
+                                    <a class=""
+                                       href="{{route('admin.ustv.channels',array_merge(Request()->all(),['sort'=>'id','order'=>'asc']))}}">
+                                        Id
+                                    </a>
+                                </th>
+                            @endif
+                        @else
+                            <th class="sorting">
+                                <a class=""
+                                   href="{{route('admin.ustv.channels',array_merge(Request()->all(),['sort'=>'id','order'=>'desc']))}}">
+                                    Id
+                                </a>
+                            </th>
+                        @endif
+                        @if(isset($sort) && $sort == "symbol")
+                            @if(strtolower($order) == "asc")
+                                <th class="sorting_asc">
+                                    <a class=""
+                                       href="{{route('admin.ustv.channels',array_merge(Request()->all(),['sort'=>'symbol','order'=>'desc']))}}">
+                                        Name
+                                    </a>
+                                </th>
+                            @else
+                                <th class="sorting_desc">
+                                    <a class=""
+                                       href="{{route('admin.ustv.channels',array_merge(Request()->all(),['sort'=>'symbol','order'=>'asc']))}}">
+                                        Name
+                                    </a>
+                                </th>
+                            @endif
+                        @else
+                            <th class="sorting">
+                                <a class=""
+                                   href="{{route('admin.ustv.channels',array_merge(Request()->all(),['sort'=>'symbol','order'=>'desc']))}}">
+                                    Name
+                                </a>
+                            </th>
+                        @endif
                         <th scope="col">Description</th>
                         <th scope="col">URL</th>
                         <th scope="col">Thumbnail</th>
-                        <th scope="col">Total View</th>
+                        @if(isset($sort) && $sort == "watch_counter")
+                            @if(strtolower($order) == "asc")
+                                <th class="sorting_asc">
+                                    <a class=""
+                                       href="{{route('admin.ustv.channels',array_merge(Request()->all(),['sort'=>'watch_counter','order'=>'desc']))}}">
+                                        Total View
+                                    </a>
+                                </th>
+                            @else
+                                <th class="sorting_desc">
+                                    <a class=""
+                                       href="{{route('admin.ustv.channels',array_merge(Request()->all(),['sort'=>'watch_counter','order'=>'asc']))}}">
+                                        Total View
+                                    </a>
+                                </th>
+                            @endif
+                        @else
+                            <th class="sorting">
+                                <a class=""
+                                   href="{{route('admin.ustv.channels',array_merge(Request()->all(),['sort'=>'watch_counter','order'=>'desc']))}}">
+                                    Total View
+                                </a>
+                            </th>
+                        @endif
                         <th scope="col"></th>
                     </tr>
                     </thead>
@@ -62,11 +136,13 @@
                     @foreach($channels as $channel)
                         <tr>
                             <th scope="row" class="align-middle">
-                                <input type="checkbox" class="align-middle select-row">
+                                <input type="checkbox" class="align-middle select-row" data-id="{{$channel->id}}">
                             </th>
                             <td>{{$channel->id}}</td>
                             <td>{{$channel->symbol}}</td>
-                            <td><span class="ellipsis-2-row">{{$channel->description}}</span></td>
+                            <td>
+                                <span class="ellipsis-2-row">{{$channel->description}}</span>
+                            </td>
                             <td>{{$channel->url->count()??0}}</td>
                             <td>
                                 @if($channel->icon_name)
@@ -75,9 +151,15 @@
                             </td>
                             <td>{{number_format($channel->watch_counter)}}</td>
                             <td class="d-flex" style="letter-spacing: 5px">
-                                <i class="fa fa-eye"></i>
-                                <i class="fa fa-edit"></i>
-                                <i class="fa fa-trash"></i>
+                                <a class="text-info cur-p">
+                                    <i class="fa fa-eye"></i>
+                                </a>
+                                <a class="text-secondary cur-p">
+                                    <i class="fa fa-edit"></i>
+                                </a>
+                                <a class="text-danger cur-p">
+                                    <i class="fa fa-trash"></i>
+                                </a>
                             </td>
                         </tr>
                     @endforeach
@@ -91,4 +173,5 @@
             No Channels Found.
         @endif
     </div>
+    @include('layouts.deleteButton')
 @endsection

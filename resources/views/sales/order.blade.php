@@ -72,14 +72,14 @@
                         @if(strtolower($order) == "asc")
                             <th class="sorting_asc">
                                 <a class=""
-                                   href="{{route('admin.sales.order',array_merge(Request()->all(),['sort'=>'totalOrders','order'=>'asc','page'=>1]))}}">
+                                   href="{{route('admin.sales.order',array_merge(Request()->all(),['sort'=>'totalOrders','order'=>'desc','page'=>1]))}}">
                                     TotalOrders
                                 </a>
                             </th>
                         @else
                             <th class="sorting_desc">
                                 <a class=""
-                                   href="{{route('admin.sales.order',array_merge(Request()->all(),['sort'=>'totalOrders','order'=>'desc','page'=>1]))}}">
+                                   href="{{route('admin.sales.order',array_merge(Request()->all(),['sort'=>'totalOrders','order'=>'asc','page'=>1]))}}">
                                     TotalOrders
                                 </a>
                             </th>
@@ -97,14 +97,14 @@
                         @if(strtolower($order) == "asc")
                             <th class="sorting_asc">
                                 <a class=""
-                                   href="{{route('admin.sales.order',array_merge(Request()->all(),['sort'=>'PurchaseDate','order'=>'asc','page'=>1]))}}">
+                                   href="{{route('admin.sales.order',array_merge(Request()->all(),['sort'=>'PurchaseDate','order'=>'desc','page'=>1]))}}">
                                     LastPurchase
                                 </a>
                             </th>
                         @else
                             <th class="sorting_desc">
                                 <a class=""
-                                   href="{{route('admin.sales.order',array_merge(Request()->all(),['sort'=>'PurchaseDate','order'=>'desc','page'=>1]))}}">
+                                   href="{{route('admin.sales.order',array_merge(Request()->all(),['sort'=>'PurchaseDate','order'=>'asc','page'=>1]))}}">
                                     LastPurchase
                                 </a>
                             </th>

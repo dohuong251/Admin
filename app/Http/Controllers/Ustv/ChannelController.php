@@ -25,7 +25,9 @@ class ChannelController extends Controller
         }
 
         return view('ustv.channels', [
-            'channels' => $searchQuery->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE'))->appends(Request()->except('page'))
+            'channels' => $searchQuery->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE'))->appends(Request()->except('page')),
+            'order' => $order,
+            'sort' => $sort
         ]);
     }
 
@@ -76,6 +78,10 @@ class ChannelController extends Controller
     protected function getViewShareArray()
     {
         // TODO: Implement getViewShareArray() method.
+        return array(
+            "deleteUrl" => route("admin.ustv.channels.delete"),
+            "recordName" => "Kênh",
+        );
     }
 
     /**
@@ -84,5 +90,6 @@ class ChannelController extends Controller
     protected function getDeleteClass()
     {
         // TODO: Implement getDeleteClass() method.
+        return Channel::class;
     }
 }

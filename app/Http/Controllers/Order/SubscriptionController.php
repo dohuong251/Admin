@@ -19,6 +19,7 @@ class SubscriptionController extends Controller
         if ($request->get("query") != null) {
             $searchQuery->where($request->get("searchType"), 'like', "%" . $request->get('query') . "%");
         }
+        dd(array_merge(Request()->all(),['sort'=>'TransactionDate','order'=>'desc','page'=>1]));
 
         return view('sales.subscription', [
             'subscriptions' => $searchQuery->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE'))->appends(Request()->except('page')),

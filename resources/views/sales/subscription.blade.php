@@ -44,14 +44,14 @@
                         @if(strtolower($order) == "asc")
                             <th class="sorting_asc">
                                 <a class=""
-                                   href="{{route('admin.sales.subscription',array_merge(Request()->all(),['sort'=>'TransactionDate','order'=>'asc','page'=>1]))}}">
+                                   href="{{route('admin.sales.subscription',array_merge(Request()->all(),['sort'=>'TransactionDate','order'=>'desc','page'=>1]))}}">
                                     TransactionDate
                                 </a>
                             </th>
                         @else
                             <th class="sorting_desc">
                                 <a class=""
-                                   href="{{route('admin.sales.subscription',array_merge(Request()->all(),['sort'=>'TransactionDate','order'=>'desc','page'=>1]))}}">
+                                   href="{{route('admin.sales.subscription',array_merge(Request()->all(),['sort'=>'TransactionDate','order'=>'asc','page'=>1]))}}">
                                     TransactionDate
                                 </a>
                             </th>
