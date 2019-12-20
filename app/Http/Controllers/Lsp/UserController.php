@@ -69,7 +69,8 @@ class UserController extends Controller
                 }])
                 ->withCount(['songs as Streams'])
                 ->orderBy($sort, $order)
-                ->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE'));
+                ->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE'))
+                ->appends(Request()->except('page'));
         } else {
             /**
              * sắp xếp giảm dần: [user có stream, user không có stream]

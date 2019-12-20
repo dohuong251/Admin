@@ -21,7 +21,7 @@ class Channel extends Base
 
     public function url()
     {
-        return $this->belongsTo(Url::class, 'id_channel');
+        return $this->hasMany(Url::class, 'id_channel');
     }
 
     public function view()

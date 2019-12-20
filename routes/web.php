@@ -149,6 +149,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             Route::get('/dashboard', 'Ustv\Dashboard@index')->name('dashboard');
             Route::get('/dashboard/search','Ustv\Dashboard@searchChannel')->name('dashboard.search');
             Route::get('/dashboard/filter','Ustv\Dashboard@filter')->name('dashboard.filter');
+
+            Route::get('/channels','Ustv\ChannelController@allChannelIndex')->name('channels');
         });
     });
 

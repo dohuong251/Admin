@@ -8,6 +8,7 @@ use App\Models\Sale\LicenseKey;
 use App\Models\Sale\Order;
 use Config;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class OrderController extends Controller
 {
@@ -38,7 +39,7 @@ class OrderController extends Controller
         }
 
         return view('sales.order', [
-            'customers' => $searchQuery->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE')),
+            'customers' => $searchQuery->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE'))->appends(Request()->except('page')),
             'sort' => $sort,
             'order' => $order,
         ]);

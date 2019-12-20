@@ -29,7 +29,7 @@ class LicenseController extends Controller
         }
 
         return view('sales.license', [
-            'licenseKeys' => $searchQuery->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE')),
+            'licenseKeys' => $searchQuery->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE'))->appends(Request()->except('page')),
             'sort' => $sort,
             'order' => $order,
         ]);

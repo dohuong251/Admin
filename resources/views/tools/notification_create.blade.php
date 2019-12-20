@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Notification')
+@section('title', 'Create Notification')
 @section('css')
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css"/>

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Stream')
+@section('title', 'New Stream')
 @section('css')
     <link rel="stylesheet" href="/css/vendors/animate.min.css"/>
 @endsection

@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Trang chủ')
+@section('title', 'Home')
 @section('js')
     <script>let lspOrder = @json($LspOrder), ustvOrder = @json($USTVOrder)</script>
     <script src="/js/vendors/apexcharts.min.js"></script>

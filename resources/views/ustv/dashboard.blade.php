@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Statistics')
+@section('title', 'USTV Dashboard')
 @section('css')
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.css"/>
@@ -57,7 +57,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
     <script src="/js/vendors/select2.min.js"></script>
     <script src="/js/vendors/handlebars.min.js"></script>
-    <script src="/js/ustv/dashboard.js?$$REVISION$$"></script>
+    <script src="/js/ustv/dashboard.js"></script>
 @endsection
 @section('content')
     <nav>

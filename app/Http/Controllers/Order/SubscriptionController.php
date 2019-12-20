@@ -21,7 +21,7 @@ class SubscriptionController extends Controller
         }
 
         return view('sales.subscription', [
-            'subscriptions' => $searchQuery->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE')),
+            'subscriptions' => $searchQuery->paginate(Config::get('constant.PAGINATION_RECORD_PER_PAGE'))->appends(Request()->except('page')),
             'sort' => $sort,
             'order' => $order,
         ]);

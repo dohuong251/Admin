@@ -1,5 +1,5 @@
 @extends('layouts.main')
-@section('title', 'Streams')
+@section('title', 'Feature Streams')
 @section('css')
 @endsection
 

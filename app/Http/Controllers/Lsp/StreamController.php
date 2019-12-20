@@ -26,7 +26,7 @@ class StreamController extends Controller
             ->orWhere('URL', 'like', '%' . $query . '%')
             ->withCount('likes')
             ->orderBy('ViewByAll', 'desc')
-            ->paginate($record_per_page);
+            ->paginate($record_per_page)->appends(Request()->except('page'));
 //        $songs = Songs::with('users')->orderBy('ViewByAll', 'desc')->paginate($record_per_page);
         return view('lsp.streams', ['songs' => $songs]);
     }
@@ -84,7 +84,7 @@ class StreamController extends Controller
     public function complain()
     {
         $record_per_page = Config::get('constant.PAGINATION_RECORD_PER_PAGE');
-        $complainStreams = Complain::with('song')->selectRaw('*, count(*) as Num')->orderBy('Time', 'desc')->groupBy('ChannelCode')->paginate($record_per_page);
+        $complainStreams = Complain::with('song')->selectRaw('*, count(*) as Num')->orderBy('Time', 'desc')->groupBy('ChannelCode')->paginate($record_per_page)->appends(Request()->except('page'));
         return view('lsp.stream_complain', ['complainStreams' => $complainStreams]);
     }
 
@@ -160,7 +160,7 @@ class StreamController extends Controller
     public function feature()
     {
         $record_per_page = Config::get('constant.PAGINATION_RECORD_PER_PAGE');
-        $features = Features::has('songs')->withCount('likes')->paginate($record_per_page);
+        $features = Features::has('songs')->withCount('likes')->paginate($record_per_page)->appends(Request()->except('page'));
 //        dd($songs->flatten()->pluck('songs'));
 //        dd($songs, $songs->first()->songs);
         return view('lsp.stream_feature', ['features' => $features]);

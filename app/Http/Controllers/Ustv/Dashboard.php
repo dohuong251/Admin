@@ -12,14 +12,6 @@ class Dashboard extends Controller
 {
     public function index()
     {
-//        $streamViews = View::whereNotNull('days_view')->where('success_count', '>', 0)->get();
-//        $total = 0;
-//        foreach ($streamViews as $streamView) {
-//            foreach (json_decode($streamView->days_view) as $key => $view) {
-//                $total += $view->success;
-//            }
-//            $total += $streamView->success_count;
-//        }
         return view('ustv.dashboard');
     }
 
@@ -33,7 +25,11 @@ class Dashboard extends Controller
         } else {
             $results = Channel::where('symbol', 'like', "%$query%")->select(['symbol as text', 'id']);
         }
-        $results = $results->orderBy('watch_counter', 'desc')->paginate($record_per_request);
+        $results = $results->where("id_channel_type", 1)
+            ->whereIn('id_type_tv', [9, 12])
+            ->orderBy('watch_counter', 'desc')
+            ->paginate($record_per_request)
+            ->appends(Request()->except('page'));
         return array(
             "results" => $results->items(),
             "pagination" => array(
@@ -62,9 +58,14 @@ class Dashboard extends Controller
             $totalStreamBufferDuration = 0;
 
             $streamViews = View::with(['channel'])
+                ->join('channels', 'channels.id', '=', 'views.ChannelId')->where(function ($query) {
+                    $query->where("id_channel_type", 1)
+                        ->whereIn('id_type_tv', [9, 12]);
+                })
                 ->where('ChannelId', $channelId)
+                ->whereRaw("DATE(last_update) > $startTime")
                 ->get();
-            if (!$streamViews) return abort(500);
+            if (!$streamViews) return response("Channel Not Found!", 500);
             foreach ($streamViews as $streamView) {
                 foreach (json_decode($streamView->days_view) ?? [] as $key => $view) {
                     $currentDate = strtotime($key);
@@ -127,12 +128,17 @@ class Dashboard extends Controller
         $startTime = $request->get('start', date_format(now(), "Y-m-d"));
         $endTime = $request->get('end', date_format(now(), "Y-m-d"));
 
-        $streamViewsChunk = View::with(['channel'])
-            ->where('last_update', '>=', $startTime)
+        $streamViewsChunk = View::with('channel')
+            ->join('channels', 'channels.id', '=', 'views.ChannelId')
+            ->where(function ($query) {
+                $query->where("id_channel_type", 1)
+                    ->whereIn('id_type_tv', [9, 12]);
+            })
             ->where(function ($query) {
                 $query->whereNotNull('days_view')
                     ->orWhere('success_count', '>', 0);
-            });
+            })
+            ->whereRaw("DATE(last_update) > $startTime");
 
         $startTime = strtotime($startTime);
         $endTime = strtotime($endTime);
@@ -181,18 +187,17 @@ class Dashboard extends Controller
                 }
 
                 if ($totalStreamView > 0) {
-                    array_push($topStreams, array(
-                        "id" => $streamView->ChannelId,
-                        "successViews" => $totalStreamView,
-                        "PlaybackDuration" => $totalStreamPlaybackDuration,
-                        "BufferDuration" => $totalStreamBufferDuration,
-                        "symbol" => $streamView->channel->symbol ?? "",
-                    ));
-
-                    usort($topStreams, function ($a, $b) {
-                        return $a['successViews'] <= $b['successViews'];
-                    });
-                    $topStreams = array_slice($topStreams, 0, $TOP_RECORD_LIMIT);
+                    if (array_key_exists("$streamView->ChannelId", $topStreams)) {
+                        $topStreams["$streamView->ChannelId"]["successViews"] += $totalStreamView;
+                    } else {
+                        $topStreams["$streamView->ChannelId"] = array(
+                            "id" => $streamView->ChannelId,
+                            "successViews" => $totalStreamView,
+                            "PlaybackDuration" => $totalStreamPlaybackDuration,
+                            "BufferDuration" => $totalStreamBufferDuration,
+                            "symbol" => $streamView->channel->symbol ?? "",
+                        );
+                    }
                 }
             }
         });
@@ -201,6 +206,11 @@ class Dashboard extends Controller
         uksort($viewsByDay, function ($a, $b) {
             return strtotime($a) <= strtotime($b);
         });
+
+        usort($topStreams, function ($a, $b) {
+            return $a['successViews'] <= $b['successViews'];
+        });
+        $topStreams = array_slice($topStreams, 0, $TOP_RECORD_LIMIT);
 
         return array(
             "viewByDays" => $viewsByDay,

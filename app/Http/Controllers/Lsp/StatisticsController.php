@@ -49,7 +49,7 @@ class StatisticsController extends Controller
             $totalStreamBufferDuration = 0;
 
             $streamView = Views::with(['song', 'song.users'])->find($streamId);
-            if (!$streamView) return abort(500);
+            if (!$streamView) return response("Stream Not Found!",500);
             foreach (json_decode($streamView->days_view) ?? [] as $key => $view) {
                 $currentDate = strtotime($key);
                 if ($currentDate >= $startTime && $currentDate <= $endTime) {
@@ -118,7 +118,7 @@ class StatisticsController extends Controller
             $user = Users::with(['songs' => function ($query) {
                 $query->select(['SongId', 'Code', 'Name', 'UserId']);
             }, 'songs.view'])->find($userId);
-            if (!$user) return abort(500);
+            if (!$user) return response("User Not Found!",500);
 
             array_push($topUsers, $user->makeHidden(['songs', 'songs.view'])->toArray());
             $topUsers[0]["successViews"] = 0;
