@@ -170,6 +170,7 @@ We have just released a brand new IPTV application - IPTV Player. Please support
             $promoConfig["footerBackground"] = $request->get('mdc_store')['backgroundUrl'];
             $promoConfig["footerLeftImg"] = $request->get('mdc_store')['leftImgUrl'];
             $promoConfig["footerRightImg"] = $request->get('mdc_store')['rightImgUrl'];
+            $promoConfig["footerCenterImg"] = $request->get('mdc_store')['centerImgUrl'];
             $promoConfig["mobileKey"]["salePrice"] = $request->get('mdc_store')['mobile_sale_price'];
             $promoConfig["desktopKey"]["salePrice"] = $request->get('mdc_store')['desktop_sale_price'];
             file_put_contents("$this->promoConfigFile", json_encode($promoConfig, JSON_PRETTY_PRINT));

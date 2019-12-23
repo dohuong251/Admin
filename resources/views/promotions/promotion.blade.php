@@ -175,6 +175,10 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="mdcstore-center_url">Footer Center Image Url:</label>
+                        <input type="text" class="form-control" name="mdc_store[centerImgUrl]" id="mdcstore-center_url" value="{{$homePagePromotion->footerCenterImg??""}}" placeholder="mdcgate.com footer center image url">
+                    </div>
+                    <div class="form-group">
                         <label for="mdcstore-left_url">Footer Left Image Url:</label>
                         <i class="fa fa-question-circle text-info cur-p" data-toggle="tooltip" data-html="true" title="<img src='/images/promo_hint/home_page_footer_bg_left_hint.png' class='hint-image-desktop' alt='home page footer left image'>"></i>
                         <input type="text" class="form-control" name="mdc_store[leftImgUrl]" id="mdcstore-left_url" value="{{$homePagePromotion->footerLeftImg??""}}" placeholder="mdcgate.com footer left image url">
