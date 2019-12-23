@@ -56,6 +56,7 @@ class PromotionController extends Controller
         return view('promotions.promotion', [
             'current' => Promotion::withTrashed()->orderBy('id', 'desc')->first(),
             'homePagePromotion' => $promoConfig ?? null,
+            'isPromoRunning' => $promoConfig->promotion || Promotion::count() ?? false
         ]);
     }
 

@@ -107,7 +107,7 @@
                 <div class="layers h-100">
                     <div class="bdB layer w-100">
                         <input type="text" placeholder="Search config" name="configSearch" class="form-constrol p-15 bdrs-0 w-100 bdw-0">
-                        <select name="device" id="device" class="form-control mb-2" onchange="loadConfig()">
+                        <select name="device" id="device" class="custom-select mb-2" onchange="loadConfig()">
                             <option value="0" selected>Google</option>
                             <option value="1">Amazon</option>
                             <option value="2">Samsung</option>

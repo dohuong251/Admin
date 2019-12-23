@@ -54,7 +54,7 @@
                                             Thể Loại:
                                         </label>
                                     </div>
-                                    <select id="categoryId" name="CategoryId" class="form-control w-auto">
+                                    <select id="categoryId" name="CategoryId" class="custom-select w-auto">
                                         @foreach(\App\Models\Lsp\Categories::all() as $category)
                                             <option value="{{$category->CategoryId}}" {{$category->CategoryId==old('CategoryId')?'selected':''}}>{{$category->CategoryName}}</option>
                                         @endforeach
@@ -69,7 +69,7 @@
                                             Privacy
                                         </label>
                                     </div>
-                                    <select id="privacy" class="form-control w-auto" name="Privacy">
+                                    <select id="privacy" class="custom-select w-auto" name="Privacy">
                                         <option value="0" {{old('Privacy')==0?'selected':''}}>Public</option>
                                         <option value="1" {{old('Privacy')==1?'selected':''}}>Private</option>
                                     </select>
@@ -83,7 +83,7 @@
                                         </label>
                                     </div>
                                     <?php  $language = old('Language', "English") ?>
-                                    <select id="language" class="form-control w-auto" name="Language">
+                                    <select id="language" class="custom-select w-auto" name="Language">
                                         @include('layouts.language_select')
                                     </select>
                                     <div class="text-danger">{{ $errors->first('Language') }}</div>

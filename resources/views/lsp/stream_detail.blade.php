@@ -17,7 +17,7 @@
             </li>
 
             <li class="breadcrumb-menu ml-auto mr-2 d-flex">
-                <button class="btn btn-danger mr-2" type="submit" title="suspend" data-toggle="modal" data-target="#exampleModal">
+                <button class="btn btn-danger mr-2" type="submit" title="suspend" data-toggle="modal" data-target="#suspendModal">
                     <i class="fa fa-ban"></i>
                 </button>
 
@@ -49,11 +49,6 @@
                 </div>
                 <div class="d-flex overflow-hidden col-sm-9 col-12 py-2">
                     <div class="col-12 toggle-display-des information animated slideInLeft fast">
-                        <div class="float-right actionBtn mr-2">
-                            <button type="button" class="btn btn-secondary toggle-display">
-                                <i class="fa fa-edit" style="font-size: 14px !important;"></i>
-                            </button>
-                        </div>
                         <div>
                             <h5 class="card-title" title="{{$song->Name}}" style="padding-left: 15px">
                                 <span>{{$song->Name}}</span>
@@ -154,7 +149,12 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="actionBtn ta-c mt-2">
+                            <button type="button" class="btn btn-secondary toggle-display">
+                                <i class="fa fa-edit" style="font-size: 14px !important;"></i>
+                            </button>
                         </div>
                     </div>
 
@@ -167,13 +167,6 @@
                         @method('PUT')
                         {{csrf_field()}}
                         <div class="col-12 clearfix">
-                            <button type="button" class="float-right btn btn-danger toggle-display">
-                                <i class="fa fa-times" style="font-size: 14px !important;"></i>
-                            </button>
-                            <button type="submit" class="float-right btn btn-success mr-1">
-                                <i class="fa fa-check" style="font-size: 14px !important;"></i>
-                            </button>
-
                             <label for="nickname">Name:&nbsp;</label>
                             <input id="nickname" class="card-title form-control w-auto d-inline"
                                    style="padding-left: 15px" type="text"
@@ -210,7 +203,7 @@
                                             Thể Loại:
                                         </label>
                                     </div>
-                                    <select id="categoryId" name="CategoryId" class="form-control w-auto">
+                                    <select id="categoryId" name="CategoryId" class="custom-select w-auto">
                                         @foreach(\App\Models\Lsp\Categories::all() as $category)
                                             <option value="{{$category->CategoryId}}" {{$category->CategoryId==old('CategoryId',$song->CategoryId)?'selected':''}}>{{$category->CategoryName}}</option>
                                         @endforeach
@@ -224,7 +217,7 @@
                                             Privacy
                                         </label>
                                     </div>
-                                    <select id="privacy" class="form-control w-auto" name="Privacy">
+                                    <select id="privacy" class="custom-select w-auto" name="Privacy">
                                         <option value="0" {{old('Privacy',$song->Privacy)==0?'selected':''}}>Public</option>
                                         <option value="1" {{old('Privacy',$song->Privacy)==1?'selected':''}}>Private</option>
                                     </select>
@@ -240,7 +233,7 @@
                                             Copyright
                                         </label>
                                     </div>
-                                    <select id="copyright" class="form-control w-auto" name="Copyright">
+                                    <select id="copyright" class="custom-select w-auto" name="Copyright">
                                         <option value="0" {{old('Copyright',$song->Copyright)==0?'selected':''}}>0</option>
                                         <option value="1" {{old('Copyright',$song->Copyright)==1?'selected':''}}>1</option>
                                     </select>
@@ -269,6 +262,14 @@
 
                             </div>
 
+                        </div>
+                        <div class="mt-2 ta-c">
+                            <button type="button" class="btn btn-danger toggle-display">
+                                <i class="fa fa-times" style="font-size: 14px !important;"></i>
+                            </button>
+                            <button type="submit" class="btn btn-success mr-1">
+                                <i class="fa fa-check" style="font-size: 14px !important;"></i>
+                            </button>
                         </div>
                     </form>
                 </div>

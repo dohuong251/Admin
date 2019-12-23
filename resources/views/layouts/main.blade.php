@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no, user-scalable=0"/>
     <meta name="csrf-token" content="{{ csrf_token() }}"/>
     <title>@yield('title', 'Admin')</title>
     <style>
@@ -231,7 +231,7 @@
                 </div>
             </div>
         </main>
-        <footer class="bdT ta-c p-30 lh-0 fsz-sm c-grey-600">
+        <footer class="bdT ta-c pY-30 lh-0 fsz-sm c-grey-600">
             <span>Copyright © 2019 Designed by <a href="http://www.mdcgate.com/apps/" target="_blank" title="">MDC</a>. All rights reserved.</span>
         </footer>
     </div>

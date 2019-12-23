@@ -28,7 +28,9 @@
 @section('content')
     <nav aria-label="breadcrumb">
         <ul class="breadcrumb bg-white border-bottom rounded-0">
-            <li class="breadcrumb-item active" aria-current="page">Promotions</li>
+            <li class="breadcrumb-item active" aria-current="page" title="@if($isPromoRunning) Promotion running @else Promotion stopped @endif">Promotions
+                <i class="fa fa-circle @if($isPromoRunning) text-success @else text-danger @endif"></i>
+            </li>
             <li class="ml-auto">
                 <form id="stop-form" action="{{route('admin.promotions.stop')}}" method="post">
                     @csrf

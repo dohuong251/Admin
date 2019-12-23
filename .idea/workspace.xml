@@ -2,11 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Order/SubscriptionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Order/SubscriptionController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Ustv/ChannelController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Ustv/ChannelController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/ustv/channels.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/ustv/channels.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Promotion/PromotionController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/config/mdcgate_config.json" beforeDir="false" afterPath="$PROJECT_DIR$/config/mdcgate_config.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/tool/config.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/tool/config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/bootstrap.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/bootstrap.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/_variables.scss" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/sass/app.scss" beforeDir="false" afterPath="$PROJECT_DIR$/resources/sass/app.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/apps/create_form_select_group.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/apps/create_form_select_group.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/edit_user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/edit_user.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/layout_modal_suspend_stream.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/layout_modal_suspend_stream.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/message.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/message.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_create.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_create.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/stream_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/stream_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/user_detail.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/user_detail.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/promotions/promotion.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/promotions/promotion.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sales/license.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sales/license.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sales/order.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sales/order.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sales/order_edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sales/order_edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sales/subscription.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sales/subscription.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/sales/subscription_edit.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sales/subscription_edit.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/tools/config.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/tools/config.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/webpack.mix.js" beforeDir="false" afterPath="$PROJECT_DIR$/webpack.mix.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -190,6 +213,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;JSON&#10;JavaScript&#10;MySQL" />
+    <property name="javascript.nodejs.core.library.configured.version" value="12.9.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/ustv" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -202,7 +226,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="php.override.implement.member.chooser.php.doc" value="NONE" />
-    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.HTML" />
+    <property name="settings.editor.selected.configurable" value="settings.nodejs" />
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/public/js/app/index.js" />
   </component>
   <component name="RecentsManager">
@@ -354,7 +378,8 @@
       <workItem from="1576549081348" duration="27848000" />
       <workItem from="1576634760806" duration="20669000" />
       <workItem from="1576722606824" duration="24858000" />
-      <workItem from="1576807947460" duration="23962000" />
+      <workItem from="1576807947460" duration="24249000" />
+      <workItem from="1577068259622" duration="10487000" />
     </task>
     <servers />
   </component>
@@ -379,6 +404,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="273" y="28" key="#Deployment/0.0.1366.728@0.0.1366.728" timestamp="1576230716612" />
+    <state x="275" y="22" key="#Usage_Scope" timestamp="1577070423845">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="275" y="22" key="#Usage_Scope/0.0.1366.728@0.0.1366.728" timestamp="1577070423845" />
     <state x="444" y="166" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1575258842490">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -403,62 +432,62 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="461" y="113" key="FileChooserDialogImpl/0.0.1366.728@0.0.1366.728" timestamp="1576830349052" />
-    <state width="1282" height="321" key="GridCell.Tab.0.bottom" timestamp="1576827188562">
+    <state width="1282" height="167" key="GridCell.Tab.0.bottom" timestamp="1577068841436">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1576827188562" />
-    <state width="1282" height="321" key="GridCell.Tab.0.center" timestamp="1576827188562">
+    <state width="1282" height="167" key="GridCell.Tab.0.bottom/0.0.1366.728@0.0.1366.728" timestamp="1577068841436" />
+    <state width="1282" height="167" key="GridCell.Tab.0.center" timestamp="1577068841436">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1576827188562" />
-    <state width="1282" height="321" key="GridCell.Tab.0.left" timestamp="1576827188562">
+    <state width="1282" height="167" key="GridCell.Tab.0.center/0.0.1366.728@0.0.1366.728" timestamp="1577068841436" />
+    <state width="1282" height="167" key="GridCell.Tab.0.left" timestamp="1577068841435">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1576827188562" />
-    <state width="1282" height="321" key="GridCell.Tab.0.right" timestamp="1576827188562">
+    <state width="1282" height="167" key="GridCell.Tab.0.left/0.0.1366.728@0.0.1366.728" timestamp="1577068841435" />
+    <state width="1282" height="167" key="GridCell.Tab.0.right" timestamp="1577068841436">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1576827188562" />
-    <state width="1282" height="321" key="GridCell.Tab.1.bottom" timestamp="1576827188563">
+    <state width="1282" height="167" key="GridCell.Tab.0.right/0.0.1366.728@0.0.1366.728" timestamp="1577068841436" />
+    <state width="1282" height="321" key="GridCell.Tab.1.bottom" timestamp="1576840480889">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1576827188563" />
-    <state width="1282" height="321" key="GridCell.Tab.1.center" timestamp="1576827188562">
+    <state width="1282" height="321" key="GridCell.Tab.1.bottom/0.0.1366.728@0.0.1366.728" timestamp="1576840480889" />
+    <state width="1282" height="321" key="GridCell.Tab.1.center" timestamp="1576840480889">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1576827188562" />
-    <state width="1282" height="321" key="GridCell.Tab.1.left" timestamp="1576827188562">
+    <state width="1282" height="321" key="GridCell.Tab.1.center/0.0.1366.728@0.0.1366.728" timestamp="1576840480889" />
+    <state width="1282" height="321" key="GridCell.Tab.1.left" timestamp="1576840480888">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1576827188562" />
-    <state width="1282" height="321" key="GridCell.Tab.1.right" timestamp="1576827188563">
+    <state width="1282" height="321" key="GridCell.Tab.1.left/0.0.1366.728@0.0.1366.728" timestamp="1576840480888" />
+    <state width="1282" height="321" key="GridCell.Tab.1.right" timestamp="1576840480889">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1576827188563" />
-    <state width="1282" height="321" key="GridCell.Tab.2.bottom" timestamp="1576827188563">
+    <state width="1282" height="321" key="GridCell.Tab.1.right/0.0.1366.728@0.0.1366.728" timestamp="1576840480889" />
+    <state width="1282" height="321" key="GridCell.Tab.2.bottom" timestamp="1576840480889">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1576827188563" />
-    <state width="1282" height="321" key="GridCell.Tab.2.center" timestamp="1576827188563">
+    <state width="1282" height="321" key="GridCell.Tab.2.bottom/0.0.1366.728@0.0.1366.728" timestamp="1576840480889" />
+    <state width="1282" height="321" key="GridCell.Tab.2.center" timestamp="1576840480889">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1576827188563" />
-    <state width="1282" height="321" key="GridCell.Tab.2.left" timestamp="1576827188563">
+    <state width="1282" height="321" key="GridCell.Tab.2.center/0.0.1366.728@0.0.1366.728" timestamp="1576840480889" />
+    <state width="1282" height="321" key="GridCell.Tab.2.left" timestamp="1576840480889">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1576827188563" />
-    <state width="1282" height="321" key="GridCell.Tab.2.right" timestamp="1576827188563">
+    <state width="1282" height="321" key="GridCell.Tab.2.left/0.0.1366.728@0.0.1366.728" timestamp="1576840480889" />
+    <state width="1282" height="321" key="GridCell.Tab.2.right" timestamp="1576840480889">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state width="1282" height="321" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1576827188563" />
-    <state x="184" y="6" key="SettingsEditor" timestamp="1575949845692">
+    <state width="1282" height="321" key="GridCell.Tab.2.right/0.0.1366.728@0.0.1366.728" timestamp="1576840480889" />
+    <state x="184" y="6" key="SettingsEditor" timestamp="1577070427896">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1575949845692" />
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1576808030308">
+    <state x="184" y="6" key="SettingsEditor/0.0.1366.728@0.0.1366.728" timestamp="1577070427896" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog" timestamp="1577068269069">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1576808030308" />
+    <state x="379" y="187" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1577068269069" />
     <state x="0" y="0" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1576837912481">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
@@ -467,18 +496,18 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="242" y="105" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1366.728@0.0.1366.728" timestamp="1576808747686" />
-    <state x="391" y="132" width="814" height="559" key="find.popup" timestamp="1576840346227">
+    <state x="340" y="62" width="814" height="559" key="find.popup" timestamp="1577077971509">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="391" y="132" width="814" height="559" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1576840346227" />
-    <state x="339" y="164" key="run.anything.popup" timestamp="1576658871707">
+    <state x="340" y="62" width="814" height="559" key="find.popup/0.0.1366.728@0.0.1366.728" timestamp="1577077971509" />
+    <state x="339" y="164" key="run.anything.popup" timestamp="1577077102390">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="339" y="164" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1576658871707" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1576840179808">
+    <state x="339" y="164" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1577077102390" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1577077973352">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1576840179808" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1577077973352" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

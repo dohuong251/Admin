@@ -24,7 +24,7 @@
             <li class="breadcrumb-menu ml-auto mr-2">
                 <form method="get" action="{{route('admin.sales.order')}}">
                     <div class="input-group">
-                        <select class="form-control" name="appid">
+                        <select class="custom-select" name="appid">
                             <option value="">Select App</option>
                             <option value="Live Media Player" {{Request()->get('appid')=="Live Media Player"? "selected" : ""}}>
                                 Live Media Player

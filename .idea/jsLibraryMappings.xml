@@ -2,5 +2,6 @@
 <project version="4">
   <component name="JavaScriptLibraryMappings">
     <file url="PROJECT" libraries="{apexcharts, bootstrap, daterangepicker, dragula, handlebars, jquery, jsonlint, ladda, moment, pace, spin, sweetalert, sweetalert2.all, vi}" />
+    <includedPredefinedLibrary name="Node.js Core" />
   </component>
 </project>

@@ -12,7 +12,7 @@
         <script id="send-new-license-key-form" type="text/text/x-handlebars-template">
             <div class="form-group">
                 <label for="ApplicationId" class="control-label">ApplicationId:</label>
-                <select name="ApplicationId" class="form-control" id="ApplicationId">
+                <select name="ApplicationId" class="custom-select" id="ApplicationId">
                     {{#each apps}}
                     <option value="{{@key}}" {{#ifEqual this appid}} selected {{/ifEqual}}>{{this}}</option>
                     {{/each}}
@@ -29,7 +29,7 @@
         <script id="resend-license-key-form" type="text/text/x-handlebars-template">
             <div class="form-group">
                 <label for="ApplicationId" class="control-label">ApplicationId:</label>
-                <select name="ApplicationId" class="form-control" id="ApplicationId" disabled>
+                <select name="ApplicationId" class="custom-select" id="ApplicationId" disabled>
                     {{#each apps}}
                     <option value="{{@key}}" {{#ifEqual this appid}} selected {{/ifEqual}}>{{this}}</option>
                     {{/each}}
@@ -68,13 +68,13 @@
             <li class="breadcrumb-menu ml-auto mr-2">
                 <form action="{{route('admin.sales.license')}}" method="get">
                     <div class="input-group">
-                        <select class="form-control" name="appid">
+                        <select class="custom-select" name="appid">
                             <option value="">Select App</option>
                             @foreach(\App\Models\Sale\LicenseKey::distinct()->select('ApplicationId')->orderBy('ApplicationId')->get() as $app)
                                 <option value="{{$app->ApplicationId}}" {{Request()->get('appid')==$app->ApplicationId?"selected":""}}>{{$app->ApplicationId}}</option>
                             @endforeach
                         </select>
-                        <select name="searchType" class="form-control">
+                        <select name="searchType" class="custom-select">
                             <option value="CustomerEmail" {{Request()->get('searchType')=="CustomerEmail"?"selected":""}}>CustomerEmail</option>
                             <option value="LicenseId" {{Request()->get('searchType')=="LicenseId"?"selected":""}}>LicenseId</option>
                             <option value="OrderId" {{Request()->get('searchType')=="OrderId"?"selected":""}}>OrderId</option>
@@ -163,7 +163,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="ApplicationId" class="control-label">ApplicationId:</label>
-                        <select name="ApplicationId" class="form-control" id="ApplicationId" disabled>
+                        <select name="ApplicationId" class="custom-select" id="ApplicationId" disabled>
                             @foreach($apps as $key => $value)
                                 <option value="{{$key}}">{{$value}}</option>
                             @endforeach

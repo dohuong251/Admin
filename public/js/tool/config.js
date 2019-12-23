@@ -1,4 +1,5 @@
 $(document).ready(function () {
+
     $('#mainContent > div').addClass('px-0');
 
     $('input[name=configSearch]').keyup(function () {
@@ -140,7 +141,7 @@ $(document).ready(function () {
     }).on('click', '.preview-html', function () {
         let previewWindow = window.open("", "", "width=375,height=667");
         previewWindow.document.write($(this).closest('.config-group').find('.json-value').val())
-    });
+    })
 });
 
 let loadConfigAjax,
@@ -180,6 +181,9 @@ function loadConfig() {
             if (data && data.hasOwnProperty('id') && data.hasOwnProperty('data')) {
                 $('#config-name').text(data.id);
                 $('.config-content').html(configContentRender(data));
+                $('textarea.value').each(function () {
+                    $(this).height(75)
+                })
             }
         },
     });

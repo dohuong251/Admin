@@ -117,8 +117,8 @@
                                             <div class="peer peer-greed ord-0">
                                                 <div class="layers ai-fe gapY-10">
                                                     <div class="layer message-box">
-                                                        <div class="peers fxw-nw ai-c pY-3 pX-10  bdrs-2 lh-3/2" data-toggle="tooltip" data-placement="right" title="" data-original-title="{{date_format(date_create($message->Time),'H:i d/m/Y')}}">
-                                                            <span class="text-break whs-pl">{{$message->Message}}</span>
+                                                        <div class="peers fxw-nw ai-c pY-3 pX-10  bdrs-2 lh-3/2">
+                                                            <span class="text-break whs-pl">{{date_format(date_create($message->Time),'H:i d/m/Y')}} - {{$message->Message}}</span>
                                                             <i class="fa fa-trash text-danger fsz-xs ml-2 cur-p delete-message" data-id="{{$message->MessageId}}"></i>
                                                         </div>
                                                     </div>
@@ -137,9 +137,9 @@
                                             <div class="peer peer-greed">
                                                 <div class="layers ai-fs gapY-5">
                                                     <div class="layer message-box">
-                                                        <div class="peers fxw-nw ai-c pY-3 pX-10 bdrs-2 lh-3/2" data-toggle="tooltip" data-placement="right" title="" data-original-title="{{date_format(date_create($message->Time),'H:i d/m/Y')}}">
+                                                        <div class="peers fxw-nw ai-c pY-3 pX-10 bdrs-2 lh-3/2">
                                                             <i class="fa fa-trash text-danger fsz-xs mr-2 cur-p delete-message" data-id="{{$message->MessageId}}"></i>
-                                                            <span class="text-break whs-pl">{{$message->Message}}</span>
+                                                            <span class="text-break whs-pl">{{$message->Message}} - {{date_format(date_create($message->Time),'H:i d/m/Y')}}</span>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -81,7 +81,7 @@
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="status">Status:</label>
-                        <select class="form-control" id="status" name="Status">
+                        <select class="custom-select" id="status" name="Status">
                             <option value="0" {{old('Status',$order->Status)==0?"selected":""}}>Normal</option>
                             <option value="1" {{old('Status',$order->Status)==1?"selected":""}}>Locked</option>
                         </select>

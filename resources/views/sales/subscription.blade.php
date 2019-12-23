@@ -17,7 +17,7 @@
             <li class="breadcrumb-menu ml-auto mr-2">
                 <form action="{{route('admin.sales.subscription')}}" method="get">
                     <div class="input-group">
-                        <select name="searchType" class="form-control">
+                        <select name="searchType" class="custom-select">
                             <option value="Email" {{Request()->get('searchType')=="Email"?"selected":""}}>Email</option>
                             <option value="FacebookID" {{Request()->get('searchType')=="FacebookID"?"selected":""}}>Facebook Id</option>
                             <option value="DeviceID" {{Request()->get('searchType')=="DeviceID"?"selected":""}}>Device Id</option>

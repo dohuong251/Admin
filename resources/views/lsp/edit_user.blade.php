@@ -7,7 +7,7 @@
         <input id="password" class="form-control w-auto d-inline" type="password"
                placeholder="New password" title="Password">
 
-        <select id="role" class="form-control w-auto d-inline-block" name="role">
+        <select id="role" class="custom-select w-auto d-inline-block" name="role">
             <?php $role = $user->Type;?>
             <option value="0" {{$role=="1"?"selected":""}}>User</option>
             <option value="1" {{$role=="0"?"selected":""}}>Admin</option>

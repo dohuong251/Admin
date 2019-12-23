@@ -51,7 +51,7 @@
                 <div class="col-12 col-md-6">
                     <div class="form-group">
                         <label for="account-type">Account Type:</label>
-                        <select class="form-control {{$errors->has('AccountType')?'is-invalid':''}}" id="account-type" name="AccountType">
+                        <select class="custom-select {{$errors->has('AccountType')?'is-invalid':''}}" id="account-type" name="AccountType">
                             <option value="0" {{old("AccountType",$subscription->AccountType)=="0"?"selected":""}}>Email</option>
                             <option value="1" {{old("AccountType",$subscription->AccountType)=="1"?"selected":""}}>Facebook</option>
                             <option value="2" {{old("AccountType",$subscription->AccountType)=="2"?"selected":""}}>Device</option>
@@ -63,7 +63,7 @@
                     </div>
                     <div class="form-group">
                         <label for="payment-method">Payment Method:</label>
-                        <select class="form-control {{$errors->has('PaymentMethod')?'is-invalid':''}}" id="PaymentMethod" name="PaymentMethod">
+                        <select class="custom-select {{$errors->has('PaymentMethod')?'is-invalid':''}}" id="PaymentMethod" name="PaymentMethod">
                             <option value="0" {{old('PaymentMethod',$subscription->PaymentMethod)=="0"?"selected":""}}>Key</option>
                             <option value="1" {{old('PaymentMethod',$subscription->PaymentMethod)=="1"?"selected":""}}>Paymall</option>
                             <option value="2" {{old('PaymentMethod',$subscription->PaymentMethod)=="2"?"selected":""}}>Phone Card</option>

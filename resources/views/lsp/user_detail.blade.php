@@ -61,11 +61,6 @@
                         <div class="d-flex overflow-hidden col-sm-9 col-12 py-2 {{count($errors)>0?'justify-content-end':''}}">
 
                             <div class="col-12 toggle-display-des information animated slideInLeft fast">
-                                <div class="float-right actionBtn mr-2">
-                                    <button type="button" class="btn btn-secondary toggle-display">
-                                        <i class="fa fa-edit" style="font-size: 14px !important;"></i>
-                                    </button>
-                                </div>
                                 <div>
                                     <h5 class="card-title" title="{{$user->Nickname}}" style="padding-left: 15px">
                                         <span>{{$user->Nickname}}</span>
@@ -181,6 +176,11 @@
                                     </div>
 
                                 </div>
+                                <div class="actionBtn mt-2 ta-c">
+                                    <button type="button" class="btn btn-secondary toggle-display">
+                                        <i class="fa fa-edit" style="font-size: 14px !important;"></i>
+                                    </button>
+                                </div>
                             </div>
 
                             {{-- edit form --}}
@@ -192,13 +192,6 @@
                                 @method('PUT')
                                 {{csrf_field()}}
                                 <div class="col-12 card-title clearfix">
-                                    <button type="button" class="float-right btn btn-danger toggle-display">
-                                        <i class="fa fa-times" style="font-size: 14px !important;"></i>
-                                    </button>
-                                    <button type="submit" class="float-right btn btn-success mr-1">
-                                        <i class="fa fa-check" style="font-size: 14px !important;"></i>
-                                    </button>
-
                                     <label for="nickname">Nick Name:&nbsp;</label>
                                     <input id="nickname" class="form-control w-auto d-inline" type="text"
                                            value="{{old('Nickname',$user->Nickname)}}" name="Nickname" placeholder="Nhập nickname">
@@ -277,7 +270,7 @@
                                                     Status:
                                                 </label>
                                             </div>
-                                            <select id="status" class="form-control w-auto" name="Status">
+                                            <select id="status" class="custom-select w-auto" name="Status">
                                                 <option value="0" {{old('Status', $user->Status)==0?'selected':''}}>0</option>
                                                 <option value="1" {{old('Status', $user->Status)==1?'selected':''}}>1</option>
                                             </select>
@@ -291,7 +284,7 @@
                                                     Type:
                                                 </label>
                                             </div>
-                                            <select id="type" class="form-control w-auto" name="Type">
+                                            <select id="type" class="custom-select w-auto" name="Type">
                                                 <option value="0" {{old('Type', $user->Type)==0?'selected':''}}>Email</option>
                                                 <option value="1" {{old('Type', $user->Type)==1?'selected':''}}>Facebook</option>
                                             </select>
@@ -305,7 +298,7 @@
                                                     Role:
                                                 </label>
                                             </div>
-                                            <select id="role" class="form-control w-auto" name="Role">
+                                            <select id="role" class="custom-select w-auto" name="Role">
                                                 <option value="0" {{old('Role', $user->Role)==0?'selected':''}}>Admin</option>
                                                 <option value="1" {{old('Role', $user->Role)==1?'selected':''}}>User</option>
                                             </select>
@@ -313,6 +306,14 @@
                                         </div>
                                     </div>
 
+                                </div>
+                                <div class="mt-2 ta-c">
+                                    <button type="button" class="btn btn-danger toggle-display">
+                                        <i class="fa fa-times" style="font-size: 14px !important;"></i>
+                                    </button>
+                                    <button type="submit" class="btn btn-success mr-1">
+                                        <i class="fa fa-check" style="font-size: 14px !important;"></i>
+                                    </button>
                                 </div>
                             </form>
 

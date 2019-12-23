@@ -6,7 +6,7 @@
                 <input name="SongId" value="{{$song->SongId??""}}" type="hidden">
                 <div class="form-group">
                     <label for="reason" class="control-label">Suspend Reason</label>
-                    <select class="form-control" name="Reason" id="reason">
+                    <select class="custom-select" name="Reason" id="reason">
                         <option value="Copyright">Copyright</option>
                         <option value="Nudity or sexual content">Nudity or sexual content</option>
                         <option value="Violent or graphic content">Violent or graphic content</option>
