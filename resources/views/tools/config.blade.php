@@ -2,6 +2,16 @@
 @section('title', 'Config')
 @section('css')
     <link rel="stylesheet" href="/css/dist/fontawesome5.css">
+    <link rel="stylesheet" href="/css/vendors/select2.min.css"/>
+    <style>
+        .select2-selection.select2-selection--single, .select2-selection__arrow {
+            height: 35px !important;
+        }
+
+        span.select2-selection__rendered {
+            line-height: 35px !important;
+        }
+    </style>
 @endsection
 @section('js')
     {{--                {{#isJSONField name}}--}}
@@ -30,18 +40,18 @@
         <script id="config-item" type="text/text/x-handlebars-template">
             {{#isJSONField name}}
             <div class="config-group col-12 d-flex mT-15">
-            {{else}}
+                {{else}}
                 <div class="config-group col-12 col-md-6 d-flex mT-15">
-            {{/isJSONField}}
-                <div class="input-group">
-                    <textarea class="form-control name noresize" type="text" rows="1">{{name}}</textarea>
-                    <textarea class="form-control value resize-vertical" type="text" rows="1">{{value}}</textarea>
+                    {{/isJSONField}}
+                    <div class="input-group">
+                        <textarea class="form-control name noresize" type="text" rows="1">{{name}}</textarea>
+                        <textarea class="form-control value resize-vertical" type="text" rows="1">{{value}}</textarea>
+                    </div>
+                    <div class="d-flex">
+                        <i class="fa fa-times ml-2 cur-p remove-config cH-red-200" title="remove"></i>
+                        <i class="fa5 fa5-brackets-curly cur-p ml-2 mark-json cH-blue-200" title="mark as json"></i>
+                    </div>
                 </div>
-                <div class="d-flex">
-                    <i class="fa fa-times ml-2 cur-p remove-config cH-red-200" title="remove"></i>
-                    <i class="fa5 fa5-brackets-curly cur-p ml-2 mark-json cH-blue-200" title="mark as json"></i>
-                </div>
-            </div>
         </script>
 
         <script id="json-config-content" type="text/text/x-handlebars-template">
@@ -71,6 +81,7 @@
         </script>
     @endverbatim
     <script src="/js/dist/ajax_setup_loading.js"></script>
+    <script src="/js/vendors/select2.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jsonlint/1.6.0/jsonlint.min.js"></script>
 
     <script src="/js/vendors/handlebars.min.js"></script>
@@ -102,56 +113,35 @@
     </nav>
 
     @if($configApps)
-        <div class="peers flex-nowrap">
-            <div class="peer bdR" id="chat-sidebar">
-                <div class="layers h-100">
-                    <div class="bdB layer w-100">
-                        <input type="text" placeholder="Search config" name="configSearch" class="form-constrol p-15 bdrs-0 w-100 bdw-0">
-                        <select name="device" id="device" class="custom-select mb-2" onchange="loadConfig()">
-                            <option value="0" selected>Google</option>
-                            <option value="1">Amazon</option>
-                            <option value="2">Samsung</option>
-                            <option value="3">MDC</option>
-                            <option value="4">AppleTV</option>
-                        </select>
-                    </div>
-                    <div class="layer w-100 fxg-1 scrollable pos-r">
+        <div>
+            <div class="d-flex flex-wrap">
+                <div class="col-12 col-sm-6 pr-sm-0">
+                    <select class="custom-select" name="configSearch">
                         @foreach($configApps as $app)
-                            @if($app)
-                                <div class="peers fxw-nw ai-c p-20 bgc-white bgcH-grey-50 cur-p config-name">
-                                    <span>{{$app->id_application??""}}</span>
-                                </div>
-                            @endif
+                            <option value="{{$app->id_application}}">{{$app->id_application}}</option>
                         @endforeach
-                    </div>
+                    </select>
+                </div>
+                <div class="col-12 col-sm-6 mt-2 mt-sm-0">
+                    <select name="device" id="device" class="custom-select mb-2" onchange="loadConfig()">
+                        <option value="0" selected>Google</option>
+                        <option value="1">Amazon</option>
+                        <option value="2">Samsung</option>
+                        <option value="3">MDC</option>
+                        <option value="4">AppleTV</option>
+                    </select>
                 </div>
             </div>
-            <div class="peer peer-greed">
-                <div class="layers h-100 message-content">
-                    <div class="layer w-100 shadow-sm">
-                        <div class="peers fxw-nw jc-sb ai-c pY-20 pX-30 bgc-white">
-                            <div class="peers ai-c">
-                                <div class="peer d-n@md+">
-                                    <a href="" title="" class="td-n c-grey-900 cH-blue-500 mR-30 chat-sidebar-toggle">
-                                        <i class="ti-menu"></i>
-                                    </a>
-                                </div>
 
-                                <div class="peer">
-                                    <h6 class="lh-1 mB-0" id="config-name"></h6>
-                                    <form onsubmit="return false;">
-                                        <input class="form-control d-none" value="" id="config-name-input" placeholder="new application id" required/>
-                                        <input type="submit" hidden/>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="layer w-100 fxg-1 scrollable pos-r ps">
-                        <div class="config-content p-20"></div>
-                    </div>
-                </div>
+            <div class="peer col-12 mt-2">
+                <form onsubmit="return false;">
+                    <input class="form-control d-none" value="" id="config-name-input" placeholder="new application id" required/>
+                    <input type="submit" hidden/>
+                </form>
             </div>
+
+            <div class="config-content p-20"></div>
         </div>
+
     @endif
 @endsection

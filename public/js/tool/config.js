@@ -1,27 +1,5 @@
 $(document).ready(function () {
-
     $('#mainContent > div').addClass('px-0');
-
-    $('input[name=configSearch]').keyup(function () {
-        let searchVal = $(this).val().trim().toLowerCase();
-        $('.config-name span').each(function () {
-            // tìm chuỗi nhập vào trong thông tin contact (tên, email, facebookid), ẩn contact không khớp
-            if ($(this).text().trim().toLowerCase().includes(searchVal)) {
-                $(this).parent().removeClass('d-none').addClass('peers');
-            } else {
-                $(this).parent().addClass('d-none').removeClass('peers');
-            }
-        });
-        $('.config-name').parent().scrollTop(0);
-    });
-
-    $('.config-name').click(function () {
-        isAddApp = false;
-        $(this).addClass('active').siblings('.config-name').removeClass('active');
-        $('#config-name-input').addClass('d-none');
-        $('#config-name').removeClass('d-none');
-        loadConfig();
-    }).first().click();
 
     $('body').on('click', '.submit-config', function () {
         let config = $('.config-content').find('.input-group').each(function () {
@@ -78,8 +56,8 @@ $(document).ready(function () {
                 url: '',
                 method: 'put',
                 data: {
-                    id: $('.config-content input[name=appid]').val(),
-                    device: $('.config-content input[name=device]').val(),
+                    id: $('select[name=configSearch]').val(),
+                    device: $('select[name=device]').val(),
                     config: config,
                 },
                 success: function (response) {
@@ -141,7 +119,11 @@ $(document).ready(function () {
     }).on('click', '.preview-html', function () {
         let previewWindow = window.open("", "", "width=375,height=667");
         previewWindow.document.write($(this).closest('.config-group').find('.json-value').val())
-    })
+    }).on('change', '[name=configSearch]', function () {
+        loadConfig()
+    });
+    $('select[name=configSearch]').select2().trigger('change');
+    $('select[name=device]').select2();
 });
 
 let loadConfigAjax,
@@ -167,19 +149,19 @@ Handlebars.registerHelper('isJSONField', function (str, options) {
  * }
  */
 function loadConfig() {
-    if (isAddApp) return;
+    isAddApp = false;
+    $('#config-name-input').addClass('d-none');
     if (loadConfigAjax && loadConfigAjax.hasOwnProperty('abort')) loadConfigAjax.abort();
     // $('.config-content').empty();
     $('.config-content').html("");
     loadConfigAjax = $.ajax({
         url: '',
         data: {
-            id_application: $('.config-name.active span').text(),
+            id_application: $('[name=configSearch]').val(),
             device: $('#device').val()
         },
         success: function (data) {
             if (data && data.hasOwnProperty('id') && data.hasOwnProperty('data')) {
-                $('#config-name').text(data.id);
                 $('.config-content').html(configContentRender(data));
                 $('textarea.value').each(function () {
                     $(this).height(75)

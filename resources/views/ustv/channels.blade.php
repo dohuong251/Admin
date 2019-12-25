@@ -20,6 +20,9 @@
             <li class="breadcrumb-item justify-content-center">
                 Channels
             </li>
+            <li class="ml-auto">
+                <a class="btn btn-success" href="{{route('admin.ustv.channels.create')}}">Add Chanel</a>
+            </li>
         </ol>
     </nav>
 

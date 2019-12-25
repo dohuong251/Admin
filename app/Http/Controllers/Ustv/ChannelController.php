@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Ustv;
 
 use App\Http\Controllers\model;
+use App\Http\Requests\UstvChannelRequest;
+use App\Http\Requests\UstvUrlRequest;
 use App\Models\Ustv\Channel;
 use Config;
 use Illuminate\Http\Request;
@@ -38,30 +40,40 @@ class ChannelController extends Controller
 
     public function create()
     {
-
+        return view('ustv.channel_create');
     }
 
-    public function store()
+    public function store(UstvChannelRequest $request)
+    {
+        $request->validated();
+        $channel = Channel::create([
+            "symbol" => $request->get("symbol"),
+            "description" => $request->get("description") ?? "",
+            "icon_name" => $request->get("icon_name"),
+            "id_type_tv" => $request->get("id_type_tv"),
+        ]);
+
+        return redirect(route('admin.ustv.channels.edit', $channel->id));
+    }
+
+    public function edit($channelId)
+    {
+        return view('ustv.channel_edit', [
+            'channel' => Channel::find($channelId)
+        ]);
+    }
+
+    public function update($channelId, UstvChannelRequest $request)
     {
 
     }
 
-    public function edit()
+    public function storeUrl(UstvUrlRequest $request)
     {
 
     }
 
-    public function update()
-    {
-
-    }
-
-    public function storeUrl()
-    {
-
-    }
-
-    public function updateUrl()
+    public function updateUrl(UstvUrlRequest $request)
     {
 
     }

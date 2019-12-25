@@ -147,11 +147,19 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
         Route::group(['as' => 'ustv.', 'prefix' => 'ustv'], function () {
             Route::get('/dashboard', 'Ustv\Dashboard@index')->name('dashboard');
-            Route::get('/dashboard/search','Ustv\Dashboard@searchChannel')->name('dashboard.search');
-            Route::get('/dashboard/filter','Ustv\Dashboard@filter')->name('dashboard.filter');
+            Route::get('/dashboard/search', 'Ustv\Dashboard@searchChannel')->name('dashboard.search');
+            Route::get('/dashboard/filter', 'Ustv\Dashboard@filter')->name('dashboard.filter');
 
-            Route::get('/channels','Ustv\ChannelController@allChannelIndex')->name('channels');
-            Route::delete('/channels','Ustv\ChannelController@delete')->name('channels.delete');
+            Route::get('/channels', 'Ustv\ChannelController@allChannelIndex')->name('channels');
+            Route::post('/channels', 'Ustv\ChannelController@store')->name('channels.store');
+            Route::get('/channels/create', 'Ustv\ChannelController@create')->name('channels.create');
+            Route::get('/channels/{channelId}', 'Ustv\ChannelController@edit')->name('channels.edit');
+            Route::put('/channels/{channelId}', 'Ustv\ChannelController@update')->name('channels.update');
+            Route::delete('/channels', 'Ustv\ChannelController@delete')->name('channels.delete');
+
+            Route::post('/channels/url', 'Ustv\ChannelController@storeUrl')->name('url.store');
+            Route::put('/channels/url/{urlId}', 'Ustv\ChannelController@updateUrl')->name('url.update');
+            Route::delete('/channels/url/{urlId}', 'Ustv\ChannelController@deleteUrl')->name('url.delete');
         });
     });
 

@@ -8,6 +8,7 @@ class Channel extends Base
 {
     //
     protected $table = "channels";
+    protected $fillable = ["symbol", "description", "icon_name", "id_type_tv"];
 
     public function typeTv()
     {
