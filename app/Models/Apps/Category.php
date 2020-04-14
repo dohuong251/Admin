@@ -12,7 +12,7 @@ class Category extends Base
 
     public function apps()
     {
-        return $this->hasMany('App\Models\APPS\Apps', 'category_id');
+        return $this->hasMany('App\Models\Apps\Apps', 'category_id');
     }
 
     public function parentCategory()

@@ -6,6 +6,7 @@ use App\Http\Controllers\model;
 use App\Http\Requests\UstvChannelRequest;
 use App\Http\Requests\UstvUrlRequest;
 use App\Models\Ustv\Channel;
+use App\Models\Ustv\Url;
 use Config;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -73,9 +74,13 @@ class ChannelController extends Controller
 
     }
 
-    public function updateUrl(UstvUrlRequest $request)
+    public function updateUrl($urlId, UstvUrlRequest $request)
     {
-
+        $request->validated();
+        $url = Url::find($urlId);
+        if ($url != null && $url->fill($request->only(['url', 'priority', 'cache_video', 'website']))->save()) {
+            return response(null);
+        } else return response("Update Url Error", 500);
     }
 
     public function deleteUrl()

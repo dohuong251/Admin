@@ -12,11 +12,11 @@ class Platform extends Base
 
     public function appVersion()
     {
-        return $this->hasMany('App\Models\APPS\AppVersion', 'platform_id');
+        return $this->hasMany('App\Models\Apps\AppVersion', 'platform_id');
     }
 
     public function gcm()
     {
-        return $this->belongsTo('App\Models\APPS\GCM', 'platform_id');
+        return $this->belongsTo('App\Models\Apps\GCM', 'platform_id');
     }
 }

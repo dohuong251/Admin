@@ -12,11 +12,11 @@ class UserApp extends Base
 
     public function user()
     {
-        return $this->belongsTo('App\Models\APPS\User', 'user_id');
+        return $this->belongsTo('App\Models\Apps\User', 'user_id');
     }
 
     public function app()
     {
-        return $this->hasMany('App\Models\APPS\Apps', 'app_id');
+        return $this->hasMany('App\Models\Apps\Apps', 'app_id');
     }
 }

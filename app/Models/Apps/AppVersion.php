@@ -16,26 +16,26 @@ class AppVersion extends Base
 
     public function appDownloadDays()
     {
-        return $this->hasMany('App\Models\APPS\AppDownloadDay', 'app_version_id');
+        return $this->hasMany('App\Models\Apps\AppDownloadDay', 'app_version_id');
     }
 
     public function appResources()
     {
-        return $this->hasMany('App\Models\APPS\AppResources', 'app_version_id');
+        return $this->hasMany('App\Models\Apps\AppResources', 'app_version_id');
     }
 
     public function app()
     {
-        return $this->belongsTo('App\Models\APPS\Apps', 'app_id');
+        return $this->belongsTo('App\Models\Apps\Apps', 'app_id');
     }
 
     public function platform()
     {
-        return $this->belongsTo('App\Models\APPS\Platform', 'platform_id');
+        return $this->belongsTo('App\Models\Apps\Platform', 'platform_id');
     }
 
     public function comments()
     {
-        return $this->hasMany('App\Models\APPS\Comment', 'app_version_id');
+        return $this->hasMany('App\Models\Apps\Comment', 'app_version_id');
     }
 }

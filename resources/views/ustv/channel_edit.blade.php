@@ -61,14 +61,14 @@
                         <textarea class="form-control" name="notes" placeholder="" id="channel-notes">{{old('notes',$channel->notes)}}</textarea>
                     </div>
                 </div>
-                <div class="ta-c mb-2">
+                <div class="ta-c mb-4">
                     <button type="submit" class="btn btn-success">Cập Nhật Kênh</button>
                 </div>
             </form>
         </div>
 
         @foreach($channel->url as $url)
-            <div class="col-12 col-lg-8 m-auto">
+            <div class="col-12 col-lg-8 m-auto mt-2">
                 <div class="border-bottom border-dark ta-c">
                     <b class="pb-2 pX-30 d-block">#{{$loop->index+1}} - ID: {{$url->id}}</b>
                 </div>
@@ -90,7 +90,9 @@
                         <span>Port Publish</span>
                     </div>
                 </div>
-                <form>
+                <form action="{{route('admin.ustv.url.update',$url->id)}}" method="post">
+                    @csrf
+                    @method('PUT')
                     <div class="form-group row">
                         <label class="col-sm-2" for="url-rtmfp">RTMFP link:</label>
                         <div class="col-sm-10">
@@ -100,7 +102,7 @@
                     <div class="form-group row">
                         <label class="col-sm-2" for="url">URL:</label>
                         <div class="col-sm-10">
-                            <input class="form-control" placeholder="url" id="url" value="{{old('url',$url->url)}}" required/>
+                            <input class="form-control" placeholder="url" name="url" id="url" value="{{old('url',$url->url)}}" required/>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -119,13 +121,27 @@
                         <label class="col-sm-2" for="cache_video">Cache Video:</label>
                         <div class="col-sm-10">
                             <select class="custom-select" name="cache_video" id="cache_video">
-                                <option value="-1" @if(old('priority',$url->priority)==-1) selected @endif>-1</option>
-                                <option value="0" @if(old('priority',$url->priority)==0) selected @endif>0</option>
-                                <option value="1" @if(old('priority',$url->priority)==1) selected @endif>1</option>
-                                <option value="2" @if(old('priority',$url->priority)==2) selected @endif>2</option>
-                                <option value="3" @if(old('priority',$url->priority)==3) selected @endif>3</option>
+                                <option value="0" @if(old('cache_video',$url->cache_video)==0) selected @endif>No Caching</option>
+                                <option value="1" @if(old('cache_video',$url->cache_video)==1) selected @endif>RTMFP Caching</option>
+                                <option value="2" @if(old('cache_video',$url->cache_video)==2) selected @endif>Local Caching</option>
                             </select>
                         </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2" for="last_update">Last Update:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="" id="last_update" value="{{old('last_update',$url->last_update)}}" disabled/>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2" for="website">Website:</label>
+                        <div class="col-sm-10">
+                            <input class="form-control" placeholder="website" id="website" name="website" value="{{old('website',$url->website)}}"/>
+                        </div>
+                    </div>
+                    <div class="form-group row jc-fe mx-0">
+                        <button type="submit" class="btn btn-primary">Lưu</button>
+                        <button type="button" class="btn btn-danger ml-2">Xóa</button>
                     </div>
                 </form>
             </div>

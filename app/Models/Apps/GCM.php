@@ -12,11 +12,11 @@ class GCM extends Base
 
     public function app()
     {
-        return $this->belongsTo('App\Models\APPS\Apps', 'app_id');
+        return $this->belongsTo('App\Models\Apps\Apps', 'app_id');
     }
 
     public function platform()
     {
-        return $this->belongsTo('App\Models\APPS\Platform', 'platform_id');
+        return $this->belongsTo('App\Models\Apps\Platform', 'platform_id');
     }
 }

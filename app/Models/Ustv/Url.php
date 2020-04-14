@@ -8,6 +8,7 @@ class Url extends Base
 {
     //
     protected $table = "urls";
+    protected $fillable = ['url', 'priority', 'cache_video', 'website'];
 
     public function channel()
     {

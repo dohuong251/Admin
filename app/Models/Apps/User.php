@@ -12,11 +12,11 @@ class User extends Base
 
     public function comments()
     {
-        return $this->belongsTo('App\Models\APPS\Comment', 'user_id');
+        return $this->belongsTo('App\Models\Apps\Comment', 'user_id');
     }
 
     public function userApp()
     {
-        return $this->belongsTo('App\Models\APPS\UserApp', 'user_id');
+        return $this->belongsTo('App\Models\Apps\UserApp', 'user_id');
     }
 }

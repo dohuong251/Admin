@@ -157,7 +157,7 @@
                                 <a class="text-info cur-p">
                                     <i class="fa fa-eye"></i>
                                 </a>
-                                <a class="text-secondary cur-p">
+                                <a href="{{route('admin.ustv.channels.edit',$channel->id)}}" class="text-secondary cur-p">
                                     <i class="fa fa-edit"></i>
                                 </a>
                                 <a class="text-danger cur-p">

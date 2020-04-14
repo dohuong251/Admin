@@ -12,11 +12,11 @@ class Comment extends Base
 
     public function appVersion()
     {
-        return $this->belongsTo('App\Models\APPS\AppVersion', 'app_version_id');
+        return $this->belongsTo('App\Models\Apps\AppVersion', 'app_version_id');
     }
 
     public function user()
     {
-        return $this->belongsTo('App\Models\APPS\User', 'user_id');
+        return $this->belongsTo('App\Models\Apps\User', 'user_id');
     }
 }
