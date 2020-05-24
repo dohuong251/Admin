@@ -11,6 +11,7 @@ class User extends \Eloquent implements Authenticatable
 {
     use Notifiable;
     use AuthenticableTrait;
+    public $timestamps = false;
 
     /**
      * The attributes that are mass assignable.
