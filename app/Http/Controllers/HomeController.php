@@ -27,6 +27,7 @@ class HomeController extends Controller
      */
     public function index()
     {
+        return redirect(route("admin.lsp.analytic.realtime"));
         $lspOrders = Order::select('PurchaseMethod', DB::raw('count(*) as Total'))->whereIn('ApplicationId', ["Live Media Player", "Live Stream Player", "Live Stream Player AndroidTV"])->groupBy('PurchaseMethod')->get()->toArray();
         foreach ($lspOrders as &$lspOrder) {
             if ($lspOrder["PurchaseMethod"] == 6) {

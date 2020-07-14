@@ -1,3 +1,36 @@
+.sidebar {
+    background: #0c7ce3 !important;
+}
+
+.sidebar * {
+    color: white !important;
+}
+
+.sidebar li.nav-item {
+    background: linear-gradient(90deg, #2486e2 2.96%, #1d8bf0);
+}
+
+.sidebar li.active:not(.dropdown) {
+    background: #007bff linear-gradient(270.21deg, #7bc0ff .05%, #56a9f5 99.98%);
+}
+
+.sidebar ul.dropdown-menu li:not(.dropdown):hover, .sidebar li.nav-item.dropdown:hover > a, .sidebar .sidebar-menu > li:hover > a {
+    background: #007bff linear-gradient(270.21deg, #7bc0ff .05%, #56a9f5 99.98%);
+}
+
+
+.sidebar ul.dropdown-menu {
+    padding-left: 0 !important;
+}
+
+.sidebar ul.dropdown-menu > li {
+    padding-left: 50px !important;
+}
+
+.sidebar li.dropdown.open > .dropdown-menu .dropdown-menu > li {
+    padding-left: 20px !important;
+}
+
 /* media query */
 @media (max-width: 576px) {
     .information-form > div:not(:first-child) > div:first-child {

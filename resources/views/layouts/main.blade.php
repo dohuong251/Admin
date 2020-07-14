@@ -59,7 +59,7 @@
         }
     </style>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="/css/dist/style.css" rel="stylesheet">
+    <link href="/css/dist/style.css?1" rel="stylesheet">
     @yield('css')
 </head>
 <body class="app ovY-a pr-0">
@@ -107,38 +107,38 @@
                 </div>
             </div>
             <ul class="sidebar-menu scrollable pos-r">
-                <li class="nav-item mT-30 actived">
-                    <a class="sidebar-link" href="{{route('admin.home')}}">
-                        <span class="icon-holder"><i class="c-blue-500 ti-home"></i> </span>
-                        <span class="title">Dashboard</span>
-                    </a>
-                </li>
+{{--                <li class="nav-item mT-30 actived">--}}
+{{--                    <a class="sidebar-link" href="{{route('admin.home')}}">--}}
+{{--                        <span class="icon-holder"><i class="c-white-500 ti-home"></i> </span>--}}
+{{--                        <span class="title">Dashboard</span>--}}
+{{--                    </a>--}}
+{{--                </li>--}}
                 <li class="nav-item dropdown{{Str::contains(Request()->route()->getPrefix(),"admin/livestreamplayer")?" open":""}}">
                     <a class="dropdown-toggle" href="javascript:void(0);">
-                        <span class="icon-holder"><i class="c-orange-500 ti-layout-list-thumb"></i> </span>
+                        <span class="icon-holder"><i class="c-white-500 ti-layout-list-thumb"></i> </span>
                         <span class="title">Live Stream Player</span>
                         <span class="arrow"><i class="ti-angle-right"></i></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.lsp.user")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.lsp.user.index')}}">Users</a>
                         </li>
-                        <li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.lsp.streams")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.lsp.streams.index')}}">Streams</a>
                         </li>
-                        <li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.lsp.messages")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.lsp.messages.index')}}">Messages</a>
                         </li>
-                        <li class="nav-item dropdown">
+                        <li class="nav-item dropdown {{strpos(request()->route()->getName(),"admin.lsp.analytic")===0?'active open':''}}">
                             <a href="javascript:void(0);">
                                 <span>Analytics</span>
                                 <span class="arrow"><i class="ti-angle-right"></i></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>
+                                <li class="{{strpos(request()->route()->getName(),"admin.lsp.analytic.statistics")===0?'active':''}}">
                                     <a href="{{route('admin.lsp.analytic.statistics')}}">Statistics</a>
                                 </li>
-                                <li>
+                                <li class="{{strpos(request()->route()->getName(),"admin.lsp.analytic.realtime")===0?'active':''}}">
                                     <a href="{{route('admin.lsp.analytic.realtime')}}">Realtime</a>
                                 </li>
                             </ul>
@@ -147,52 +147,52 @@
                 </li>
                 <li class="nav-item dropdown{{Request()->route()->getPrefix()=='admin/sales'? ' open':''}}">
                     <a class="dropdown-toggle" href="javascript:void(0);">
-                        <span class="icon-holder"><i class="c-purple-500 ti-map"></i> </span>
+                        <span class="icon-holder"><i class="c-white-500 ti-map"></i> </span>
                         <span class="title">Sales</span>
                         <span class="arrow"><i class="ti-angle-right"></i></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.sales.order")===0?'active':''}}">
                             <a href="{{route('admin.sales.order')}}">Orders</a>
                         </li>
-                        <li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.sales.subscription")===0?'active':''}}">
                             <a href="{{route('admin.sales.subscription')}}">Subscription</a>
                         </li>
-                        <li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.sales.license")===0?'active':''}}">
                             <a href="{{route('admin.sales.license')}}">License</a>
                         </li>
                     </ul>
                 </li>
                 <li class="nav-item dropdown{{Request()->route()->getPrefix()=='admin/tools'? ' open':''}}">
                     <a class="dropdown-toggle" href="javascript:void(0);">
-                        <span class="icon-holder"><i class="c-red-500 ti-files"></i> </span>
+                        <span class="icon-holder"><i class="c-white-500 ti-files"></i> </span>
                         <span class="title">Tools</span>
                         <span class="arrow"><i class="ti-angle-right"></i></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.tools.config")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.tools.config')}}">Configs</a>
                         </li>
-                        <li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.tools.sendBroadcast")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.tools.sendBroadcast')}}">Send Broadcast</a>
                         </li>
-                        <li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.tools.notification")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.tools.notification')}}">Notification</a>
                         </li>
-                        <li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.tools.testRule")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.tools.testRule')}}">Test Rules</a>
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{strpos(request()->route()->getName(),"admin.apps")===0?'active':''}}">
                     <a class="sidebar-link" href="{{route('admin.apps.index')}}">
-                        <span class="icon-holder"><i class="c-brown-500 ti-email"></i> </span>
+                        <span class="icon-holder"><i class="c-white-500 ti-email"></i> </span>
                         <span class="title">Apps</span>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item {{strpos(request()->route()->getName(),"admin.promotions")===0?'active':''}}">
                     <a class="sidebar-link" href="{{route('admin.promotions.index')}}">
-                        <span class="icon-holder"><i class="c-brown-500 ti-package"></i> </span>
+                        <span class="icon-holder"><i class="c-white-500 ti-package"></i> </span>
                         <span class="title">Promo</span>
                     </a>
                 </li>

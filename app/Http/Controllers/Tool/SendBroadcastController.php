@@ -9,7 +9,7 @@ class SendBroadcastController extends Controller
     //
     public function index()
     {
-        return view('tools.send_broadcast');
+        return view('tools.broadcast');
     }
 
     protected function getDeleteClass()

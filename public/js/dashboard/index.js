@@ -149,11 +149,11 @@ $(document).ready(function () {
             }
         }
     };
-    let streamChart = new ApexCharts(
-        document.querySelector("#lsp-chart"),
-        streamChartOptions
-    );
-    streamChart.render();
+    // let streamChart = new ApexCharts(
+    //     document.querySelector("#lsp-chart"),
+    //     streamChartOptions
+    // );
+    // streamChart.render();
 
     let donutChartOption = {
         chart: {
@@ -242,11 +242,11 @@ $(document).ready(function () {
         }),
         ...donutChartOption
     };
-    let lspOrderChart = new ApexCharts(
-        document.querySelector("#lsp-order-chart"),
-        lspOrderChartOption
-    );
-    lspOrderChart.render();
+    // let lspOrderChart = new ApexCharts(
+    //     document.querySelector("#lsp-order-chart"),
+    //     lspOrderChartOption
+    // );
+    // lspOrderChart.render();
 
     let ustvOrderChartOption = {
         title: {
@@ -278,11 +278,11 @@ $(document).ready(function () {
         }),
         ...donutChartOption
     };
-    let ustvOrderChart = new ApexCharts(
-        document.querySelector("#ustv-order-chart"),
-        ustvOrderChartOption
-    );
-    ustvOrderChart.render();
+    // let ustvOrderChart = new ApexCharts(
+    //     document.querySelector("#ustv-order-chart"),
+    //     ustvOrderChartOption
+    // );
+    // ustvOrderChart.render();
 
     let dailyPurchaseChartOption = {
         chart: {
@@ -315,9 +315,9 @@ $(document).ready(function () {
             size: 3
         },
     };
-    let dailyPurchaseChart = new ApexCharts(
-        document.querySelector("#daily-purchase-chart"),
-        dailyPurchaseChartOption
-    );
-    dailyPurchaseChart.render();
+    // let dailyPurchaseChart = new ApexCharts(
+    //     document.querySelector("#daily-purchase-chart"),
+    //     dailyPurchaseChartOption
+    // );
+    // dailyPurchaseChart.render();
 });
