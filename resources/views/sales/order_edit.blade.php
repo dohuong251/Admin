@@ -77,6 +77,10 @@
                         <label for="purchase-info">Purchase Info:</label>
                         <input class="form-control" id="purchase-info" value="{{$order->PurchaseInfo}}" disabled/>
                     </div>
+                    <div class="form-group">
+                        <label for="purchase-info">OrderType:</label>
+                        <input class="form-control" id="order-type" value="{{$order->OrderType?$order->OrderType:"OLD"}}" disabled/>
+                    </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="form-group">

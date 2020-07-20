@@ -31,6 +31,7 @@
                 <tr>
                     <th scope="col">OrderId</th>
                     <th scope="col">Application</th>
+                    <th scope="col">OrderType</th>
                     <th scope="col">Purchase Date</th>
                     <th scope="col">Expired Date</th>
                     <th scope="col">Purchase Method</th>
@@ -44,6 +45,7 @@
                     <tr>
                         <td>{{$order->OrderId}}</td>
                         <td>{{$order->ApplicationId}}</td>
+                        <td>{{$order->OrderType?$order->OrderType:"OLD"}}</td>
                         <td>{{$order->PurchaseDate}}</td>
                         <td>{{$order->ExpiredDate}}</td>
                         <td>
