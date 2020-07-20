@@ -106,6 +106,7 @@
                     <th scope="col">CustomerName</th>
                     <th scope="col">CustomerEmail</th>
                     <th scope="col">LicenseKey</th>
+                    <th scope="col">KeyType</th>
                     <th scope="col">State</th>
                     <th scope="col">PriceKey</th>
                     <th scope="col">PurchaseDate</th>
@@ -125,6 +126,7 @@
                         <td class="text-nowrap">{{$licenseKey->CustomerName}}</td>
                         <td>{{$licenseKey->CustomerEmail}}</td>
                         <td class="text-nowrap">{{$licenseKey->LicenseKey}}</td>
+                        <td>{{$licenseKey->KeyType?$licenseKey->KeyType:"OLD"}}</td>
                         <td>
                             <a class="td-u-hover" href="{{route('admin.sales.license',array_merge(Request()->all(),['state'=>$licenseKey->State,'page'=>1]))}}">{{$licenseKey->State==0?"unused":"used"}}</a>
                         </td>

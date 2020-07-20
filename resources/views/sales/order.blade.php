@@ -68,6 +68,7 @@
                     <th scope="col">CustomerId</th>
                     <th scope="col">CustomerName</th>
                     <th scope="col">PurchasedApps</th>
+                    <th scope="col">OrderType</th>
                     @if(isset($sort) && $sort == "totalOrders")
                         @if(strtolower($order) == "asc")
                             <th class="sorting_asc">
@@ -128,6 +129,7 @@
                         <td>{{$customer->CustomerId}}</td>
                         <td>{{$customer->CustomerName}}</td>
                         <td>{{$customer->ApplicationPurchases}}</td>
+                        <td>{{$customer->OrderType?$customer->OrderType:"OLD"}}</td>
                         <td>{{$customer->totalOrders}}</td>
                         <td>{{$customer->PurchaseDate}}</td>
                         <td title="{{$customer->OrderIds}}"><span class="ellipsis-2-row">{{$customer->OrderIds}}</span></td>

@@ -90,7 +90,7 @@
                             <div class="peers ai-c fxw-nw">
                                 <div class="peer">
                                     <div class="logo">
-                                        <img style="width: 65px;height: 65px;object-fit: contain;" src="/images/icon/mdc.png" alt="">
+                                        <img style="width: 65px;height: 65px;object-fit: contain;" src="/images/icon/mdc.png?1" alt="">
                                     </div>
                                 </div>
                                 <div class="peer peer-greed"><h5 class="lh-1 mB-0 logo-text">Adminator</h5></div>
