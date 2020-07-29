@@ -128,6 +128,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 //        app
         Route::group(['as' => 'apps.', 'prefix' => 'apps'], function () {
             Route::get('/', 'App\AppController@index')->name('index');
+            Route::get('/overview', 'App\AppController@overview')->name('overview');
             Route::get('/create', 'App\AppController@create')->name('create');
             Route::post('/', 'App\AppController@store')->name('store');
             Route::delete('/{appVersionId}', 'App\AppController@destroy')->name('destroy');

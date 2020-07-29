@@ -18,7 +18,21 @@ class AppController extends Controller
     //
     public function index()
     {
+        //return "hello";
         return view('apps.apps', [
+            'apps' => Apps::join('app_version', function ($join) {
+                $join->on('app_version.app_id', '=', 'app.app_id');
+            })
+                ->groupBy('app.app_id')
+                ->orderBy('show', 'desc')
+                ->orderBy('last_update', 'desc')
+                ->get(),
+
+        ]);
+    }
+
+    public function overview(){
+        return view('apps.overview', [
             'apps' => Apps::join('app_version', function ($join) {
                 $join->on('app_version.app_id', '=', 'app.app_id');
             })
