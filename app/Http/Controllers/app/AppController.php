@@ -52,7 +52,7 @@ class AppController extends Controller
             $query = Connections::where('id_application',$app_id);
             if($selected_version == "0"){}
             else $query = $query->where('Version',$selected_version);
-            $query = $query->where('Time','like',"$day%");
+            $query = $query->whereBetween('Time',[$day.' 00:00:00',$day.' 23:59:59']);
             $active_count[] = $query->count();
             // new user
             $new_user_count[] = $query->where('NewUser',1)->count();
