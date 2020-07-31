@@ -56,11 +56,11 @@ class AppController extends Controller
             $query_clone = clone $query;
             $query_clone = $query_clone->whereBetween('Time',[$day.' 00:00:00',$day.' 23:59:59']);
             //return $query->toSql();
-            $active_count[] = $query_clone->get()->count();
-            //$active_count[] = 0;
+            //$active_count[] = $query_clone->get()->count();
+            $active_count[] = 0;
             // new user
-            $new_user_count[] = $query_clone->where('NewUser',1)->get()->count();
-            //$new_user_count[] = 0;
+            //$new_user_count[] = $query_clone->where('NewUser',1)->get()->count();
+            $new_user_count[] = 0;
         }
 
         // top country
