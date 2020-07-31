@@ -62,7 +62,7 @@ class AppController extends Controller
         $query = DB::connection('mysql_tool_connection')
                     ->table('connections')->select(DB::raw('count(*) as country_count,Country'))
                     ->where('id_application',$app_id)
-                    ->whereBetween('Time',[$filter_days[count($filter_days)-1],$filter_days[0]])
+                    ->whereBetween('Time',[$filter_days[0],$filter_days[count($filter_days)-1]])
                     ->groupBy('Country')
                     ->orderBy('country_count','desc')
                     ->limit(10);

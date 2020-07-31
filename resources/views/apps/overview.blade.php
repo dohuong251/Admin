@@ -64,7 +64,7 @@
                 <div class="card w-100 h-100">
                     <div class="card-header bg-white">
                         <div class="header-home-title">Daily Active User</div>
-                        <div class="header-home-subtitle">{{$active_count[0]}} Active User</div>
+                        <div class="header-home-subtitle">{{$active_count[count($active_count)-1]}} Active User</div>
                     </div>
                     <div id="daily_active_user_chart"></div>
                 </div>
@@ -73,7 +73,7 @@
                 <div class="card w-100 h-100">
                     <div class="card-header bg-white">
                         <div class="header-home-title">Monthly New User</div>
-                        <div class="header-home-subtitle">{{$new_user_count[0]}} New User</div>
+                        <div class="header-home-subtitle">{{$new_user_count[count($new_user_count)-1]}} New User</div>
                     </div>
                     <div id="daily_new_user_chart"></div>
                 </div>
