@@ -53,13 +53,11 @@ class AppController extends Controller
             if($selected_version == "0"){}
             else $query = $query->where('Version',$selected_version);
             $query = $query->whereBetween('Time',[$day.' 00:00:00',$day.' 23:59:59']);
+            return $query->toSql();
             $active_count[] = $query->count();
-
             // new user
             $new_user_count[] = $query->where('NewUser',1)->count();
         }
-
-        return $new_user_count;
 
         // top country
         $query = DB::connection('mysql_tool_connection')
