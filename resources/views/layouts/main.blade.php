@@ -192,11 +192,11 @@
                     </a>
 
                     <ul class="dropdown-menu">
-                        <li class="{{strpos(request()->route()->getName(),"admin.apps.index")===0?'active':''}}">
-                            <a class="sidebar-link" href="{{route('admin.apps.index')}}">Manage Apps</a>
-                        </li>
                         <li class="{{strpos(request()->route()->getName(),"admin.apps.overview")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.apps.overview')}}">Overview</a>
+                        </li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.apps.index")===0?'active':''}}">
+                            <a class="sidebar-link" href="{{route('admin.apps.index')}}">Manage Apps</a>
                         </li>
                     </ul>
 
