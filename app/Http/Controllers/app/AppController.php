@@ -54,9 +54,12 @@ class AppController extends Controller
             else $query = $query->where('Version',$selected_version);
             $query = $query->whereBetween('Time',[$day.' 00:00:00',$day.' 23:59:59']);
             $active_count[] = $query->count();
+
             // new user
             $new_user_count[] = $query->where('NewUser',1)->count();
         }
+
+        return $new_user_count;
 
         // top country
         $query = DB::connection('mysql_tool_connection')
@@ -79,7 +82,7 @@ class AppController extends Controller
 
         // top version
         $all_versions = $this->getVersions($app_id);
-
+        return $all_versions;
         return view('apps.overview', ['app_id'=>$app_id,
                                             'selected_version'=>$selected_version,
                                             'versions'=>$all_versions,
