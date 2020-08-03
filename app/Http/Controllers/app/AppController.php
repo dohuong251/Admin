@@ -56,21 +56,20 @@ class AppController extends Controller
             $query_clone = clone $query;
             $query_clone = $query_clone->whereBetween('Time',[$day.' 00:00:00',$day.' 23:59:59']);
             //return $query->toSql();
-            //$active_count[] = $query_clone->get()->count();
-            $active_count[] = 0;
+            $active_count[] = $query_clone->count();
             // new user
-            //$new_user_count[] = $query_clone->where('NewUser',1)->get()->count();
-            $new_user_count[] = 0;
+            $new_user_count[] = $query_clone->where('NewUser',1)->count();
+            error_log("$day done");
         }
 
         // top country
         $query = DB::connection('mysql_tool_connection')
-                    ->table('connections')->select(DB::raw('count(*) as country_count,Country'))
-                    ->where('id_application',$app_id)
-                    ->whereBetween('Time',[$filter_days[0],$filter_days[count($filter_days)-1]])
-                    ->groupBy('Country')
-                    ->orderBy('country_count','desc')
-                    ->limit(10);
+            ->table('connections')->select(DB::raw('count(*) as country_count,Country'))
+            ->where('id_application',$app_id)
+            ->whereBetween('Time',[$filter_days[0]. ' 00:00:00',$filter_days[count($filter_days)-1] . ' 23:59:59'])
+            ->groupBy('Country')
+            ->orderBy('country_count','desc')
+            ->limit(10);
         if($selected_version == "0"){}
         else $query = $query->where('Version',$selected_version);
         $top_countries = $query->get();
@@ -82,18 +81,22 @@ class AppController extends Controller
             $countries_percent[] = intval($top_country->country_count/$allCountryCount * 100);
         }
 
-        // top version
+        //return $countries_name;
+        error_log("get top country done");
+
+        // all version
         $all_versions = $this->getVersions($app_id);
+        error_log("get all version done");
         return view('apps.overview', ['app_id'=>$app_id,
-                                            'selected_version'=>$selected_version,
-                                            'versions'=>$all_versions,
-                                            'countries_name'=>$countries_name,
-                                            'countries_percent'=>$countries_percent,
-                                            'filter_days'=>$filter_days,
-                                            'new_user_count'=>$new_user_count,
-                                            'active_count'=>$active_count,
-                                            'start_date'=>$filter_days[0],
-                                            'end_date'=>$filter_days[count($filter_days)-1]]);
+            'selected_version'=>$selected_version,
+            'versions'=>$all_versions,
+            'countries_name'=>$countries_name,
+            'countries_percent'=>$countries_percent,
+            'filter_days'=>$filter_days,
+            'new_user_count'=>$new_user_count,
+            'active_count'=>$active_count,
+            'start_date'=>$filter_days[0],
+            'end_date'=>$filter_days[count($filter_days)-1]]);
 
     }
 
