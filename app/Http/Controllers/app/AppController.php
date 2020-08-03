@@ -105,6 +105,7 @@ class AppController extends Controller
             ->table('connections')
             ->select('Version')
             ->where('id_application',$app_id)
+            ->orderBy('Version','desc')
             ->groupBy('Version')
             ->pluck('Version');
     }
