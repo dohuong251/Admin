@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Lsp;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lsp\Complain;
+use App\Models\Lsp\Copyrightstreams;
 use App\Models\Lsp\Features;
 use App\Models\Lsp\Messages;
 use App\Models\Lsp\Songs;
@@ -24,6 +25,25 @@ class StreamController extends Controller
             ->orWhere('Code', 'like', '%' . $query . '%')
             ->orWhere('SongId', 'like', '%' . $query . '%')
             ->orWhere('URL', 'like', '%' . $query . '%')
+            ->withCount('likes')
+            ->orderBy('ViewByAll', 'desc')
+            ->paginate($record_per_page)->appends(Request()->except('page'));
+//        $songs = Songs::with('users')->orderBy('ViewByAll', 'desc')->paginate($record_per_page);
+        return view('lsp.streams', ['songs' => $songs]);
+    }
+
+    public function reviewStreams(Request $request){
+        $songIds = Copyrightstreams::pluck('SongId')->toArray();
+
+
+        $query = $request->get('query');
+        $record_per_page = Config::get('constant.PAGINATION_RECORD_PER_PAGE');
+        $songs = Songs::with('users')
+            ->where('Name', 'like', '%' . $query . '%')
+            ->orWhere('Code', 'like', '%' . $query . '%')
+            ->orWhere('SongId', 'like', '%' . $query . '%')
+            ->orWhere('URL', 'like', '%' . $query . '%')
+            ->whereIn('SongId',$songIds)
             ->withCount('likes')
             ->orderBy('ViewByAll', 'desc')
             ->paginate($record_per_page)->appends(Request()->except('page'));

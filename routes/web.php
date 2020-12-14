@@ -54,6 +54,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::delete('/', 'Lsp\UserController@delete')->name('delete');
             });
 
+            // review stream
+            Route::get('/review-streams','Lsp\StreamController@reviewStreams')->name('review_streams');
+
             // streams
             Route::group(['as' => 'streams.', 'prefix' => 'streams'], function () {
                 Route::get('/', 'Lsp\StreamController@index')->name('index');

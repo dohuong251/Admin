@@ -126,6 +126,9 @@
                         <li class="{{strpos(request()->route()->getName(),"admin.lsp.streams")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.lsp.streams.index')}}">Streams</a>
                         </li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.lsp.review_streams")===0?'active':''}}">
+                            <a class="sidebar-link" href="{{route('admin.lsp.review_streams')}}">Review Copyright Streams</a>
+                        </li>
                         <li class="{{strpos(request()->route()->getName(),"admin.lsp.messages")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.lsp.messages.index')}}">Messages</a>
                         </li>
