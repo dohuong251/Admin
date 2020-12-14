@@ -39,10 +39,6 @@ class StreamController extends Controller
         $query = $request->get('query');
         $record_per_page = Config::get('constant.PAGINATION_RECORD_PER_PAGE');
         $songs = Songs::with('users')
-            ->where('Name', 'like', '%' . $query . '%')
-            ->orWhere('Code', 'like', '%' . $query . '%')
-            ->orWhere('SongId', 'like', '%' . $query . '%')
-            ->orWhere('URL', 'like', '%' . $query . '%')
             ->whereIn('SongId',$songIds)
             ->withCount('likes')
             ->orderBy('ViewByAll', 'desc')
