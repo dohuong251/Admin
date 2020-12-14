@@ -37,10 +37,10 @@ class StreamController extends Controller
         $query = $request->get('query');
         $record_per_page = Config::get('constant.PAGINATION_RECORD_PER_PAGE');
         $songs = Songs::with('users')
-            ->where('Name', 'like', '%' . $query . '%')
-            ->whereIn('SongId',$songIds)
+            ->innerJoin('copyrightstreams','copyrightstreams.SongId','=','songs.SongId')
+            ->where('songs.Name', 'like', '%' . $query . '%')
             ->withCount('likes')
-            ->orderBy('ViewByAll', 'desc')
+            ->orderBy('copyrightstreams.DeleteDate', 'desc')
             ->paginate($record_per_page)->appends(Request()->except('page'));
 //        $songs = Songs::with('users')->orderBy('ViewByAll', 'desc')->paginate($record_per_page);
         return view('lsp.review-streams', ['songs' => $songs]);

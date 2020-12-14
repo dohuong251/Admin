@@ -77,8 +77,11 @@
                         <td>{{$song->AverageRating}}</td>
                         <td>{{$song->Language}}</td>
                         <td>{{number_format($song->likes_count)}}</td>
-                        <td class="except-redirect" data-toggle="modal" data-target="#suspendModal" data-id="{{$song->SongId}}" title="suspend stream">
-                            <i class="fa fa-ban"></i>
+                        <td>
+                            @if($song->Copyright == 0)
+                                <a href="{{route('admin.lsp.streams.suspend',['SongId'=>$song->SongId])}}"><i class="fa fa-ban"></i></a>
+                            @endif
+                            <i class="fa fa-window-restore"></i>
                         </td>
                     </tr>
                 @endforeach
