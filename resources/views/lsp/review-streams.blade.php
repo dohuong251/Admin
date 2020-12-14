@@ -78,12 +78,10 @@
                         <td>{{$song->Language}}</td>
                         <td>{{number_format($song->likes_count)}}</td>
                         <td>
-                            <div class="d-flex flex-row">
-                                @if($song->Copyright == 0)
-                                    <a href="{{route('admin.lsp.streams.suspend',['SongId'=>$song->SongId])}}"><i class="fa fa-ban"></i></a>
-                                @endif
-                                <a href="{{route('admin.lsp.streams.suspend',['SongId'=>$song->SongId])}}"><i class="fa fa5-trash-restore"></i></a>
-                            </div>
+                            @if($song->Copyright == 0)
+                                <a href="{{route('admin.lsp.streams.suspend',['SongId'=>$song->SongId])}}"><i class="fa fa-ban"></i></a>
+                            @endif
+                            <a href="{{route('admin.lsp.streams.suspend',['SongId'=>$song->SongId])}}"><i class="fa fa-history"></i></a>
                         </td>
                     </tr>
                 @endforeach
