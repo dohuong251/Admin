@@ -1,7 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="BranchesTreeState">
+    <expand>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="LOCAL_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:composer" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:composer" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:symfony" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:npm_and_yarn" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+      <path>
+        <item name="ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="REMOTE_ROOT" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:origin" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:dependabot" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:npm_and_yarn" type="e8cecc67:BranchNodeDescriptor" />
+        <item name="GROUP_NODE:TestRule" type="e8cecc67:BranchNodeDescriptor" />
+      </path>
+    </expand>
+    <select />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="cập nhật sidebar">
+      <change afterPath="$PROJECT_DIR$/resources/views/lsp/review-streams.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StreamController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StreamController.php" afterDir="false" />
     </list>
@@ -178,6 +233,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1PPDizZXpYHfPtmALFaGDApoWea" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -395,86 +453,14 @@
     <option name="LAST_COMMIT_MESSAGE" value="đăng nhập fix username, pass" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="585" y="114" key="CommitChangelistDialog2" timestamp="1594721578844">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="783" y="453" key="NewPhpFileDialog" timestamp="1607934261404">
+      <screen x="0" y="23" width="1920" height="999" />
     </state>
-    <state x="624" y="122" key="CommitChangelistDialog2/0.0.2048.1112@0.0.2048.1112" timestamp="1590307486883" />
-    <state x="585" y="114" key="CommitChangelistDialog2/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594721578844" />
-    <state x="585" y="114" key="CommitChangelistDialog2/340.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586849006012" />
-    <state width="1877" height="187" key="GridCell.Tab.0.bottom" timestamp="1594717290597">
-      <screen x="0" y="0" width="1920" height="1040" />
+    <state x="783" y="453" key="NewPhpFileDialog/0.23.1920.999@0.23.1920.999" timestamp="1607934261404" />
+    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1607934233843">
+      <screen x="0" y="23" width="1920" height="999" />
     </state>
-    <state width="2005" height="420" key="GridCell.Tab.0.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.0.bottom/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290597" />
-    <state width="1877" height="187" key="GridCell.Tab.0.center" timestamp="1594717290597">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.0.center/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.0.center/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290597" />
-    <state width="1877" height="187" key="GridCell.Tab.0.left" timestamp="1594717290596">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.0.left/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583008" />
-    <state width="1877" height="187" key="GridCell.Tab.0.left/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290596" />
-    <state width="1877" height="187" key="GridCell.Tab.0.right" timestamp="1594717290597">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.0.right/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.0.right/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290597" />
-    <state width="1877" height="187" key="GridCell.Tab.1.bottom" timestamp="1594717290598">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.1.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.1.bottom/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290598" />
-    <state width="1877" height="187" key="GridCell.Tab.1.center" timestamp="1594717290597">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.1.center/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.1.center/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290597" />
-    <state width="1877" height="187" key="GridCell.Tab.1.left" timestamp="1594717290597">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.1.left/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.1.left/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290597" />
-    <state width="1877" height="187" key="GridCell.Tab.1.right" timestamp="1594717290598">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.1.right/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.1.right/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290598" />
-    <state width="1877" height="187" key="GridCell.Tab.2.bottom" timestamp="1594717290598">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.2.bottom/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.2.bottom/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290598" />
-    <state width="1877" height="187" key="GridCell.Tab.2.center" timestamp="1594717290598">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.2.center/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.2.center/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290598" />
-    <state width="1877" height="187" key="GridCell.Tab.2.left" timestamp="1594717290598">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.2.left/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.2.left/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290598" />
-    <state width="1877" height="187" key="GridCell.Tab.2.right" timestamp="1594717290598">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state width="2005" height="420" key="GridCell.Tab.2.right/0.0.2048.1112@0.0.2048.1112" timestamp="1590307583009" />
-    <state width="1877" height="187" key="GridCell.Tab.2.right/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594717290598" />
-    <state x="589" y="271" key="Vcs.Push.Dialog.v2" timestamp="1590307500766">
-      <screen x="0" y="0" width="2048" height="1112" />
-    </state>
-    <state x="589" y="271" key="Vcs.Push.Dialog.v2/0.0.2048.1112@0.0.2048.1112" timestamp="1590307500766" />
-    <state x="552" y="253" key="Vcs.Push.Dialog.v2/340.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586849010165" />
-    <state x="643" y="252" width="763" height="536" key="find.popup" timestamp="1594721231056">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="643" y="252" width="763" height="536" key="find.popup/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594721231056" />
-    <state x="643" y="252" width="763" height="536" key="find.popup/340.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1586848978549" />
-    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup" timestamp="1594721262318">
-      <screen x="0" y="0" width="1920" height="1040" />
-    </state>
-    <state x="616" y="173" width="672" height="676" key="search.everywhere.popup/306.1080.1366.728/0.0.1920.1040@0.0.1920.1040" timestamp="1594721262318" />
+    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1920.999@0.23.1920.999" timestamp="1607934233843" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
