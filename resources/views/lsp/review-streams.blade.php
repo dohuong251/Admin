@@ -69,8 +69,9 @@
                         <td>
                             @if($song->Copyright == 0)
                                 <a href="{{route('admin.lsp.review_copyright',['SongId'=>$song->SongId,'Copyright'=>1])}}"><i class="fa fa-ban"></i></a>
+                            @else
+                                <a href="{{route('admin.lsp.review_copyright',['SongId'=>$song->SongId,'Copyright'=>0])}}"><i class="fa fa-history"></i></a>
                             @endif
-                            <a href="{{route('admin.lsp.review_copyright',['SongId'=>$song->SongId,'Copyright'=>0])}}"><i class="fa fa-history"></i></a>
                         </td>
                     </tr>
                 @endforeach
