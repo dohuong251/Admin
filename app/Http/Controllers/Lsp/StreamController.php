@@ -37,7 +37,7 @@ class StreamController extends Controller
         $record_per_page = Config::get('constant.PAGINATION_RECORD_PER_PAGE');
         $songs = Songs::select(['songs.*','copyrightstreams.DeleteDate','copyrightstreams.Reason','users.Nickname as Reporter'])->with('users')
             ->join('copyrightstreams','copyrightstreams.SongId','=','songs.SongId')
-            ->join('users','copyrightstreams.UserId','=','users.UserId')
+            ->join('users','copyrightstreams.OwnerId','=','users.UserId')
             ->where('songs.Name', 'like', '%' . $query . '%')
             ->withCount('likes')
             ->orderBy('copyrightstreams.DeleteDate', 'desc')
