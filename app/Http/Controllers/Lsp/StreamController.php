@@ -167,13 +167,14 @@ class StreamController extends Controller
         if($song && $copyrightStreams){
             if($copyright == 0){
                 $song->Copyright = 0;
-                $copyrightStreams->UnderReview = 1;
+                $copyrightStreams->delete();
+                $song->save();
             }else{
                 $song->Copyright = 1;
                 $copyrightStreams->UnderReview = 0;
+                $song->save();
+                $copyrightStreams->save();
             }
-            $song->save();
-            $copyrightStreams->save();
         }
         return back();
     }
