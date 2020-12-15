@@ -8,6 +8,7 @@ class Copyrightstreams extends Base
 {
     //
     //protected $primaryKey = 'CommentId';
+    protected $primaryKey = null;
 
     // user phát stream bị report
     public function reportedUsers()
