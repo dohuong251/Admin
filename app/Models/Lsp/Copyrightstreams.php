@@ -7,8 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Copyrightstreams extends Base
 {
     //
-    //protected $primaryKey = 'CommentId';
-    protected $primaryKey = null;
+    protected $primaryKey = 'Id';
 
     // user phát stream bị report
     public function reportedUsers()
