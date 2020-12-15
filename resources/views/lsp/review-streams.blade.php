@@ -34,7 +34,6 @@
                     <th scope="col">Thumbnail</th>
                     <th scope="col">Code</th>
                     <th scope="col" class="text-nowrap">Channel Name</th>
-                    <th scope="col">URL</th>
                     <th scope="col">Owner</th>
                     <th scope="col">Views</th>
                     <th scope="col">Reporter</th>
@@ -57,16 +56,6 @@
                         <td class="ellipsis-cell" title="{{$song->Name}}">
                             {{$song->Name}}
                             {{--                            <a href="{{route('admin.lsp.stream',$song->SongId)}}">{{$song->Name}}</a>--}}
-                        </td>
-                        <td>
-                            <div class="d-flex">
-                                <span class="ellipsis-text" id="clipboard-{{$song->Code}}" title="{{$song->URL}}">{{$song->URL}}</span>
-                                <span class="except-redirect">
-                                <button class="btn clipboard" type="button" data-clipboard-demo="" data-clipboard-target="#clipboard-{{$song->Code}}">
-                                    <img data-src="/images/icon/clippy.svg" width="13" alt="Copy to clipboard">
-                                </button>
-                            </span>
-                            </div>
                         </td>
                         <td>
                             @if($song->users)
