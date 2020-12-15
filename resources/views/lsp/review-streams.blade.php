@@ -74,7 +74,7 @@
                             @endif
                         </td>
                         <td>{{number_format($song->ViewByAll)}}</td>
-                        <td>{{$song->Nickname}}</td>
+                        <td>{{$song->Reporter}}</td>
                         <td>{{$song->Reason}}</td>
                         <td>{{$song->DeleteDate}}</td>
                         <td>
