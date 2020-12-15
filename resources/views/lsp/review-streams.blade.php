@@ -37,9 +37,9 @@
                     <th scope="col">URL</th>
                     <th scope="col">Owner</th>
                     <th scope="col">Views</th>
-                    <th scope="col">Rate</th>
-                    <th scope="col">Language</th>
-                    <th scope="col">Likes</th>
+                    <th scope="col">Reporter</th>
+                    <th scope="col">Reason</th>
+                    <th scope="col">Time</th>
                     <th scope="col"></th>
                 </tr>
                 </thead>
@@ -74,9 +74,9 @@
                             @endif
                         </td>
                         <td>{{number_format($song->ViewByAll)}}</td>
-                        <td>{{$song->AverageRating}}</td>
-                        <td>{{$song->Language}}</td>
-                        <td>{{number_format($song->likes_count)}}</td>
+                        <td>{{$song->Nickname}}</td>
+                        <td>{{$song->Reason}}</td>
+                        <td>{{$song->DeleteDate}}</td>
                         <td>
                             @if($song->Copyright == 0)
                                 <a href="{{route('admin.lsp.review_copyright',['SongId'=>$song->SongId,'Copyright'=>1])}}"><i class="fa fa-ban"></i></a>

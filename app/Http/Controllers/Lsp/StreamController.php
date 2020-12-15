@@ -40,9 +40,9 @@ class StreamController extends Controller
             ->join('users','copyrightstreams.UserId','=','users.UserId')
             ->where('songs.Name', 'like', '%' . $query . '%')
             ->withCount('likes')
-            ->orderBy('copyrightstreams.DeleteDate', 'desc');
-            //->paginate($record_per_page)->appends(Request()->except('page'));
-        return json_encode($songs->get()->toArray());
+            ->orderBy('copyrightstreams.DeleteDate', 'desc')
+            ->paginate($record_per_page)->appends(Request()->except('page'));
+//        return json_encode($songs->get()->toArray());
 //        $songs = Songs::with('users')->orderBy('ViewByAll', 'desc')->paginate($record_per_page);
         return view('lsp.review-streams', ['songs' => $songs]);
     }
