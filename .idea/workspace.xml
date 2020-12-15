@@ -56,8 +56,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="cập nhật sidebar">
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StreamController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StreamController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/Lsp/Copyrightstreams.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/Lsp/Copyrightstreams.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/lsp/review-streams.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/review-streams.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,7 +254,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.permissions" value="false" />
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;JSON&#10;JavaScript&#10;MySQL" />
-    <property name="javascript.nodejs.core.library.configured.version" value="12.9.0" />
+    <property name="javascript.nodejs.core.library.configured.version" value="14.7.0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/lsp" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
@@ -413,6 +417,7 @@
       <workItem from="1590306976934" duration="598000" />
       <workItem from="1593742871035" duration="10337000" />
       <workItem from="1594716624971" duration="4218000" />
+      <workItem from="1608013068028" duration="1561000" />
     </task>
     <task id="LOCAL-00001" summary="fix model namespace">
       <created>1586849007167</created>
@@ -456,10 +461,18 @@
       <screen x="0" y="23" width="1920" height="999" />
     </state>
     <state x="783" y="453" key="NewPhpFileDialog/0.23.1920.999@0.23.1920.999" timestamp="1607934261404" />
-    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1607934233843">
+    <state x="690" y="261" width="540" height="524" key="StructurePopup" timestamp="1608013769037">
       <screen x="0" y="23" width="1920" height="999" />
     </state>
-    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1920.999@0.23.1920.999" timestamp="1607934233843" />
+    <state x="690" y="261" width="540" height="524" key="StructurePopup/0.23.1920.999@0.23.1920.999" timestamp="1608013769037" />
+    <state x="667" y="277" width="586" height="490" key="find.popup" timestamp="1608013744790">
+      <screen x="0" y="23" width="1920" height="999" />
+    </state>
+    <state x="667" y="277" width="586" height="490" key="find.popup/0.23.1920.999@0.23.1920.999" timestamp="1608013744790" />
+    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1608014529130">
+      <screen x="0" y="23" width="1920" height="999" />
+    </state>
+    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1920.999@0.23.1920.999" timestamp="1608014529130" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

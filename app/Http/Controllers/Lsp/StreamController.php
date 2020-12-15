@@ -159,6 +159,26 @@ class StreamController extends Controller
         return back();
     }
 
+    public function reviewCopyright(Request $request){
+        $songId = $request->get("SongId");
+        $song = Songs::find($songId);
+        $copyrightStreams = Copyrightstreams::where('SongId',$songId)->first();
+        $copyright = intval($request->get("Copyright"));
+        if($song && $copyrightStreams){
+            if($copyright == 0){
+                $song->Copyright = 0;
+                $song->save();
+                $copyrightStreams->delete();
+            }else{
+                $song->Copyright = 1;
+                $copyrightStreams->UnderReview = 0;
+                $song->save();
+                $copyrightStreams->save();
+            }
+        }
+        return back();
+    }
+
     public function destroy($songId)
     {
         $deleteSong = Songs::find($songId);

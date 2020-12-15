@@ -56,6 +56,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
             // review stream
             Route::get('/review-streams','Lsp\StreamController@reviewStreams')->name('review_streams');
+            Route::get('review-streams/review-copyright','Lsp\StreamController@reviewCopyright')->name('review_copyright');
 
             // streams
             Route::group(['as' => 'streams.', 'prefix' => 'streams'], function () {

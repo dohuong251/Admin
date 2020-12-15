@@ -79,9 +79,9 @@
                         <td>{{number_format($song->likes_count)}}</td>
                         <td>
                             @if($song->Copyright == 0)
-                                <a href="{{route('admin.lsp.streams.suspend',['SongId'=>$song->SongId])}}"><i class="fa fa-ban"></i></a>
+                                <a href="{{route('admin.lsp.review_copyright',['SongId'=>$song->SongId,'Copyright'=>1])}}"><i class="fa fa-ban"></i></a>
                             @endif
-                            <a href="{{route('admin.lsp.streams.suspend',['SongId'=>$song->SongId])}}"><i class="fa fa-history"></i></a>
+                            <a href="{{route('admin.lsp.review_copyright',['SongId'=>$song->SongId,'Copyright'=>0])}}"><i class="fa fa-history"></i></a>
                         </td>
                     </tr>
                 @endforeach
