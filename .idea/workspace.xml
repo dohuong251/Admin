@@ -57,7 +57,7 @@
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="cập nhật sidebar">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/StatisticsController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Console/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Kernel.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -416,7 +416,7 @@
       <workItem from="1608013068028" duration="2906000" />
       <workItem from="1608016189160" duration="3241000" />
       <workItem from="1608611313931" duration="484000" />
-      <workItem from="1609295860433" duration="1192000" />
+      <workItem from="1609295860433" duration="3058000" />
     </task>
     <task id="LOCAL-00001" summary="fix model namespace">
       <created>1586849007167</created>
@@ -468,10 +468,10 @@
       <screen x="0" y="23" width="1920" height="999" />
     </state>
     <state x="667" y="277" width="821" height="638" key="find.popup/0.23.1920.999@0.23.1920.999" timestamp="1608611368369" />
-    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1608016935855">
+    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1609299108815">
       <screen x="0" y="23" width="1920" height="999" />
     </state>
-    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1920.999@0.23.1920.999" timestamp="1608016935855" />
+    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1920.999@0.23.1920.999" timestamp="1609299108815" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
