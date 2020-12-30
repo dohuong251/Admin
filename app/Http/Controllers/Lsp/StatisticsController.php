@@ -223,7 +223,7 @@ class StatisticsController extends Controller
         $startTime = strtotime($startTime);
         $endTime = strtotime($endTime);
         $viewsByDay = array();
-        $TOP_RECORD_LIMIT = 3;
+        $TOP_RECORD_LIMIT = 10;
         $streamViewsChunk->chunk(5000, function ($streamViews) use (&$topUsers, &$TOP_RECORD_LIMIT, &$viewsByDay, &$endTime, &$startTime, &$topStreams) {
             foreach ($streamViews as $streamView) {
                 $totalStreamView = 0;
