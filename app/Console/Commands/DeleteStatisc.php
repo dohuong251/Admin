@@ -48,9 +48,9 @@ class DeleteStatisc extends Command
                     $deleteSongId[] = $songId;
                 }
             }
-            echo "tìm thấy " . count($deleteSongId) . "\n";
+            //echo "tìm thấy " . count($deleteSongId) . "\n";
             // Xoa songId trong bang views
-            $deleted = Views::whereIn('SongId',$deleteSongId)->delete();
+            $deleted = Views::destroy($deleteSongId);
             echo "Đã xóa " . $deleted ;
         }
     }
