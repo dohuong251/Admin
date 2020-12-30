@@ -50,8 +50,12 @@ class DeleteStatisc extends Command
             }
             //echo "tìm thấy " . count($deleteSongId) . "\n";
             // Xoa songId trong bang views
-            $deleted = Views::destroy($deleteSongId);
-            echo "Đã xóa " . $deleted ;
+            // chunk songId
+            foreach (array_chunk($deleteSongId,1000) as $t)
+            {
+                $deleted = Views::destroy($t);
+                echo "Đã xóa " . $deleted . "\n" ;
+            }
         }
     }
 }
