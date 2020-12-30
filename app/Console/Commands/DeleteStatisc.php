@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Lsp\Songs;
 use App\Models\Lsp\Views;
 use Illuminate\Console\Command;
 
@@ -39,6 +40,18 @@ class DeleteStatisc extends Command
     public function handle()
     {
         $songIds = Views::pluck('SongId')->toArray();
-        echo json_encode($songIds);
+        $deleteSongId = array();
+        if($songIds){
+            foreach ($songIds as $songId){
+                if(Songs::find($songId)){}
+                else {
+                    $deleteSongId[] = $songId;
+                }
+            }
+            echo "tìm thấy " . count($deleteSongId) . "\n";
+            // Xoa songId trong bang views
+            //$deleted = Views::whereIn('SongId',$deleteSongId)->delete();
+            //echo "Đã xóa " . $deleted ;
+        }
     }
 }
