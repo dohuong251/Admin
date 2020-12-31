@@ -26,8 +26,7 @@
                     <th scope="col">Stream Name</th>
                     <th scope="col">Owner</th>
                     <th scope="col">Success Views</th>
-                    <th scope="col">Playback Duration</th>
-                    <th scope="col">Buffer Duration</th>
+                    <th scope="col">Country</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -52,8 +51,7 @@
                     <td>{{Owner}}</td>
                     {{/if}}
                     <td>{{number_format successViews}}</td>
-                    <td>{{number_format_duration PlaybackDuration}}</td>
-                    <td>{{number_format_duration BufferDuration}}</td>
+                    <td>{{CountryDes}}</td>
                 </tr>
                 {{/topStreams}}
                 </tbody>
@@ -140,17 +138,6 @@
                 <button class="btn btn-success" onclick="loadData()">
                     <i class="fa fa-search"></i>
                 </button>
-            </div>
-        </div>
-
-        <div class="layer w-100 mT-15">
-            <h5 class="mB-5" id="successViewCount"></h5>
-            <small class="fw-600 c-grey-700">Success Views</small>
-            <span class="pull-right c-grey-600 fsz-sm" id="successViewRatio"></span>
-            <div class="progress mT-10">
-                <div class="progress-bar bgc-green-500" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
-                    {{--                    <span class="sr-only">80% Complete</span>--}}
-                </div>
             </div>
         </div>
 

@@ -301,18 +301,20 @@ protected $iso_array = array(
             $song = Songs::find($streamId);
             $maxView = 0;
             $minView = 0;
-            $totalView = array();
+            $totalViewByCountry = array();
+            $successView = 0;
 
             if($countryStatistic && $song){
                 foreach ($countryStatistic->DayStatistic ?? [] as $day => $views){
                     $currentDate = strtotime($day);
                     if ($currentDate >= $startTime && $currentDate <= $endTime) {
                         foreach ($views ?? [] as $isoCode => $numView){
-                            if(isset($totalView[$isoCode])){
-                                $totalView[$isoCode] = $totalView[$isoCode] + $numView;
-                            }else $totalView[$isoCode] = $numView;
+                            if(isset($totalViewByCountry[$isoCode])){
+                                $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
+                            }else $totalViewByCountry[$isoCode] = $numView;
                             if($numView > $maxView) $maxView = $numView;
                             if($numView < $minView) $minView = $numView;
+                            $successView = $successView + $numView;
                         }
                         $viewsByDay[$day] = $views;
                     }
@@ -324,9 +326,10 @@ protected $iso_array = array(
                         foreach ($countryStatistic->LastDayStatistic ?? [] as $isoCode => $numView){
                             if($numView > $maxView) $maxView = $numView;
                             if($numView < $minView) $minView = $numView;
-                            if(isset($totalView[$isoCode])){
-                                $totalView[$isoCode] = $totalView[$isoCode] + $numView;
-                            }else $totalView[$isoCode] = $numView;
+                            if(isset($totalViewByCountry[$isoCode])){
+                                $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
+                            }else $totalViewByCountry[$isoCode] = $numView;
+                            $successView = $successView + $numView;
                         }
                         $viewsByDay[$countryStatistic->LastUpdate] = $countryStatistic->LastDayStatistic;
                     }
@@ -334,14 +337,21 @@ protected $iso_array = array(
             }else {
                 return response("Stream Or Statistic Not Found!",500);
             }
+
+            // sort totalViewByCountry
+            usort($totalViewByCountry, function ($a, $b) {
+                return $a <= $b;
+            });
+
             return [
               "viewByDays"=>$viewsByDay,
               "topStreams"=>array(array(
                   "SongId"=>$streamId,
-                  "TotalView"=>$totalView,
+                  "TotalViewByCountry"=>$totalViewByCountry,
                   "Code" => $countryStatistic->song->Code ?? "",
                   "Name" => $countryStatistic->song->Name ?? "",
                   "Owner" => $countryStatistic->song->users->Nickname ?? "",
+                  "successViews"=>$successView
               )),
               "user" => $countryStatistic->song->users ?? null,
             ];
