@@ -2,9 +2,7 @@
 
 namespace App\Models\Lsp;
 
-use Illuminate\Database\Eloquent\Model;
-
-class CountryStatistic extends Model
+class CountryStatistic extends Base
 {
     protected $table = 'statistic_country';
     protected $primaryKey = 'Id';
