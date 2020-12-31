@@ -343,6 +343,12 @@ protected $iso_array = array(
                 return $a <= $b;
             });
 
+            // tạo CountryDes
+            $CountryDes = "";
+            foreach ($totalViewByCountry as $isoKey => $numView){
+                $CountryDes = $CountryDes . $isoKey . ": " . $numView . "<br/>";
+            }
+
             return [
               "viewByDays"=>$viewsByDay,
               "topStreams"=>array(array(
@@ -351,7 +357,8 @@ protected $iso_array = array(
                   "Code" => $countryStatistic->song->Code ?? "",
                   "Name" => $countryStatistic->song->Name ?? "",
                   "Owner" => $countryStatistic->song->users->Nickname ?? "",
-                  "successViews"=>$successView
+                  "successViews"=>$successView,
+                  "CountryDes"=>$CountryDes
               )),
               "user" => $countryStatistic->song->users ?? null,
             ];
