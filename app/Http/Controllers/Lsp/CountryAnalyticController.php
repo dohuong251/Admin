@@ -311,9 +311,9 @@ protected $iso_array = array(
                     if ($currentDate >= $startTime && $currentDate <= $endTime) {
                         foreach ($views ?? [] as $isoCode => $numView){
                             $debug['isoCode'.$isoCode] = $isoCode;
-                            if(isset($totalViewByCountry[$isoCode])){
-                                $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
-                            }else $totalViewByCountry[$isoCode] = $numView;
+                            if(isset($totalViewByCountry[$isoCode.""])){
+                                $totalViewByCountry[$isoCode.""] = $totalViewByCountry[$isoCode.""] + $numView;
+                            }else $totalViewByCountry[$isoCode.""] = $numView;
                             if($numView > $maxView) $maxView = $numView;
                             if($numView < $minView) $minView = $numView;
                             $successView = $successView + $numView;

@@ -56,7 +56,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="cập nhật sidebar">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/CountryAnalyticController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/CountryAnalyticController.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -417,7 +416,7 @@
       <workItem from="1608016189160" duration="3241000" />
       <workItem from="1608611313931" duration="484000" />
       <workItem from="1609295860433" duration="12989000" />
-      <workItem from="1609388066624" duration="9239000" />
+      <workItem from="1609388066624" duration="9583000" />
     </task>
     <task id="LOCAL-00001" summary="fix model namespace">
       <created>1586849007167</created>
