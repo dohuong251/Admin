@@ -303,12 +303,14 @@ protected $iso_array = array(
             $minView = 0;
             $totalViewByCountry = array();
             $successView = 0;
+            $debug = array();
 
             if($countryStatistic && $song){
                 foreach ($countryStatistic->DayStatistic ?? [] as $day => $views){
                     $currentDate = strtotime($day);
                     if ($currentDate >= $startTime && $currentDate <= $endTime) {
                         foreach ($views ?? [] as $isoCode => $numView){
+                            $debug['isoCode'.$isoCode] = $isoCode;
                             if(isset($totalViewByCountry[$isoCode])){
                                 $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
                             }else $totalViewByCountry[$isoCode] = $numView;
@@ -346,7 +348,7 @@ protected $iso_array = array(
             // tạo CountryDes
             $CountryDes = "";
             foreach ($totalViewByCountry as $isoKey => $numView){
-                $CountryDes = $CountryDes . $isoKey . ": " . $numView . "<br/>";
+                $CountryDes = $CountryDes . $isoKey . ": " . $numView . "\n";
             }
 
             return [
@@ -361,6 +363,7 @@ protected $iso_array = array(
                   "CountryDes"=>$CountryDes
               )),
               "user" => $countryStatistic->song->users ?? null,
+              "debug"=>$debug
             ];
         }
 
