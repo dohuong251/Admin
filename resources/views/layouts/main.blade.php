@@ -144,6 +144,9 @@
                                 <li class="{{strpos(request()->route()->getName(),"admin.lsp.analytic.realtime")===0?'active':''}}">
                                     <a href="{{route('admin.lsp.analytic.realtime')}}">Realtime</a>
                                 </li>
+                                <li class="{{strpos(request()->route()->getName(),"admin.lsp.analytic.country")===0?'active':''}}">
+                                    <a href="{{route('admin.lsp.analytic.country')}}">Country</a>
+                                </li>
                             </ul>
                         </li>
                     </ul>

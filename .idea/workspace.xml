@@ -56,8 +56,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="cập nhật sidebar">
+      <change afterPath="$PROJECT_DIR$/resources/views/lsp/analytic_country.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Console/Commands/DeleteStatisc.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Console/Commands/DeleteStatisc.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/layouts/main.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +253,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;JSON&#10;JavaScript&#10;MySQL" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.7.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/lsp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/storage/app" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -267,19 +269,19 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/public/js/app/index.js" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/storage/app" />
+      <recent name="$PROJECT_DIR$/resources/views/lsp" />
+      <recent name="E:\MDCAdmin\Admin\resources\views\ustv" />
+      <recent name="E:\MDCAdmin\Admin\public\js\vendors" />
+      <recent name="E:\MDCAdmin\Admin\resources\views\sales" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\Order" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\tool" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\app" />
       <recent name="E:\MDCAdmin\Admin\app\Models" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\lsp" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/resources/views/lsp" />
-      <recent name="E:\MDCAdmin\Admin\resources\views\ustv" />
-      <recent name="E:\MDCAdmin\Admin\public\js\vendors" />
-      <recent name="E:\MDCAdmin\Admin\resources\views\sales" />
-      <recent name="E:\MDCAdmin\Admin\public\js\sale" />
     </key>
   </component>
   <component name="RunManager" selected="PHP Web Page.debug laravel">
@@ -416,7 +418,8 @@
       <workItem from="1608013068028" duration="2906000" />
       <workItem from="1608016189160" duration="3241000" />
       <workItem from="1608611313931" duration="484000" />
-      <workItem from="1609295860433" duration="5089000" />
+      <workItem from="1609295860433" duration="12989000" />
+      <workItem from="1609388066624" duration="6348000" />
     </task>
     <task id="LOCAL-00001" summary="fix model namespace">
       <created>1586849007167</created>
@@ -456,22 +459,26 @@
     <option name="LAST_COMMIT_MESSAGE" value="đăng nhập fix username, pass" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="698" y="284" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1609388936228">
+      <screen x="0" y="23" width="1920" height="999" />
+    </state>
+    <state x="698" y="284" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/0.23.1920.999@0.23.1920.999" timestamp="1609388936228" />
     <state x="783" y="453" key="NewPhpFileDialog" timestamp="1607934261404">
       <screen x="0" y="23" width="1920" height="999" />
     </state>
     <state x="783" y="453" key="NewPhpFileDialog/0.23.1920.999@0.23.1920.999" timestamp="1607934261404" />
-    <state x="690" y="261" width="540" height="524" key="StructurePopup" timestamp="1608018121558">
+    <state x="690" y="261" width="549" height="524" key="StructurePopup" timestamp="1609396452456">
       <screen x="0" y="23" width="1920" height="999" />
     </state>
-    <state x="690" y="261" width="540" height="524" key="StructurePopup/0.23.1920.999@0.23.1920.999" timestamp="1608018121558" />
-    <state x="667" y="277" width="821" height="638" key="find.popup" timestamp="1608611368369">
+    <state x="690" y="261" width="549" height="524" key="StructurePopup/0.23.1920.999@0.23.1920.999" timestamp="1609396452456" />
+    <state x="667" y="277" width="821" height="638" key="find.popup" timestamp="1609388889765">
       <screen x="0" y="23" width="1920" height="999" />
     </state>
-    <state x="667" y="277" width="821" height="638" key="find.popup/0.23.1920.999@0.23.1920.999" timestamp="1608611368369" />
-    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1609299108815">
+    <state x="667" y="277" width="821" height="638" key="find.popup/0.23.1920.999@0.23.1920.999" timestamp="1609388889765" />
+    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1609398257605">
       <screen x="0" y="23" width="1920" height="999" />
     </state>
-    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1920.999@0.23.1920.999" timestamp="1609299108815" />
+    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1920.999@0.23.1920.999" timestamp="1609398257605" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
