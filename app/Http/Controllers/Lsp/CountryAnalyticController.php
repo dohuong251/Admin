@@ -307,18 +307,20 @@ protected $iso_array = array(
 
             if($countryStatistic && $song){
                 foreach ($countryStatistic->DayStatistic ?? [] as $day => $views){
-                    $currentDate = strtotime($day);
-                    if ($currentDate >= $startTime && $currentDate <= $endTime) {
-                        foreach ($views ?? [] as $isoCode => $numView){
-                            if(isset($totalViewByCountry[$isoCode])){
-                                $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
-                            }else $totalViewByCountry[$isoCode] = $numView;
-                            if($numView > $maxView) $maxView = $numView;
-                            if($numView < $minView) $minView = $numView;
-                            $successView = $successView + $numView;
+                    if($views != NULL){
+                        $currentDate = strtotime($day);
+                        if ($currentDate >= $startTime && $currentDate <= $endTime) {
+                            foreach ($views ?? [] as $isoCode => $numView){
+                                if(isset($totalViewByCountry[$isoCode])){
+                                    $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
+                                }else $totalViewByCountry[$isoCode] = $numView;
+                                if($numView > $maxView) $maxView = $numView;
+                                if($numView < $minView) $minView = $numView;
+                                $successView = $successView + $numView;
+                            }
+                            arsort($view);
+                            $viewsByDay[$day] = $views;
                         }
-                        arsort($view);
-                        $viewsByDay[$day] = $views;
                     }
                 }
                 // kiểm tra lastupdate có nằm trong khoảng thời gian cần lấy về

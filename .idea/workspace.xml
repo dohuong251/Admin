@@ -56,10 +56,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="cập nhật sidebar">
-      <change afterPath="$PROJECT_DIR$/public/js/lsp/country.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/CountryAnalyticController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/CountryAnalyticController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/lsp/analytic_country.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/analytic_country.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -420,7 +418,7 @@
       <workItem from="1608611313931" duration="484000" />
       <workItem from="1609295860433" duration="12989000" />
       <workItem from="1609388066624" duration="10426000" />
-      <workItem from="1609725629327" duration="3705000" />
+      <workItem from="1609725629327" duration="3895000" />
     </task>
     <task id="LOCAL-00001" summary="fix model namespace">
       <created>1586849007167</created>
