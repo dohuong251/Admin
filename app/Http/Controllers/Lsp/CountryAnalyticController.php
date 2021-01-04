@@ -472,7 +472,8 @@ protected $iso_array = array(
                                     }else $totalViewByCountry[$isoCode] = $numView;
                                     $successView = $successView + $numView;
                                 }
-                                $copyViews = $this->addDayView($viewsByDay[$day],$copyViews);
+                                if(isset($viewsByDay[$day]))
+                                    $copyViews = $this->addDayView($viewsByDay[$day],$copyViews);
                                 arsort( $copyViews);
                                 $viewsByDay[$day] = $copyViews;
                             }
@@ -491,7 +492,8 @@ protected $iso_array = array(
                                 }else $totalViewByCountry[$isoCode] = $numView;
                                 $successView = $successView + $numView;
                             }
-                            $copyLastDayStatistic = $this->addDayView($viewsByDay[$countryStatistic->LastUpdate],$copyLastDayStatistic);
+                            if(isset($viewsByDay[$countryStatistic->LastUpdate]))
+                                $copyLastDayStatistic = $this->addDayView($viewsByDay[$countryStatistic->LastUpdate],$copyLastDayStatistic);
                             arsort($copyLastDayStatistic);
                             $viewsByDay[$countryStatistic->LastUpdate] = $copyLastDayStatistic;
                         }
