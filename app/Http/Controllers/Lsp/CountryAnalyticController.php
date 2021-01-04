@@ -574,7 +574,7 @@ protected $iso_array = array(
                 "topStreams"=>$topStreams,
                 "user" => $countryStatistic->song->users ?? null,
                 "debug"=>$debug,
-                "topUsers"=>array_merge()
+                "topUsers"=>$topUsers
             ];
         }
 
