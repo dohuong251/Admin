@@ -31,7 +31,7 @@
                 </thead>
                 <tbody>
                 {{#topStreams}}
-                <tr title="StreamId: {{SongId}}" {{#if (reach_limit @index)}}class="d-none slide-up"{{/if}}>
+                <tr title="{{CountryDes}}" {{#if (reach_limit @index)}}class="d-none slide-up"{{/if}}>
                     <th scope="row">{{increase @index}}</th>
                     {{#if StreamUrl}}
                     <td>
@@ -70,12 +70,12 @@
                 </thead>
                 <tbody>
                 {{#topUsers}}
-                <tr title="UserId: {{UserId}}">
+                <tr title="{{CountryDes}}">
                     <th scope="row">{{increase @index}}</th>
                     <td>{{Nickname}}</td>
                     <td>{{number_format successViews}}</td>
                     <td>{{number_format Streams}}</td>
-                    <td><pre>{{CountryDes}}</pre></td>
+                    <td><pre>{{CountryDesShort}}</pre></td>
                 </tr>
                 {{/topUsers}}
                 </tbody>

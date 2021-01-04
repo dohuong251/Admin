@@ -300,6 +300,8 @@ protected $iso_array = array(
         return $currentView;
     }
 
+
+
     public function filter(Request $request)
     {
         DB::disableQueryLog();
@@ -535,10 +537,16 @@ protected $iso_array = array(
                 arsort($userTotalViewByCountry);
                 // tạo CountryDes
                 $userCountryDes = "";
+                $userCountryDesShort = "";
+                $userCountryDesCount = 0;
                 foreach ($userTotalViewByCountry as $isoKey => $numView){
                     $userCountryDes = $userCountryDes . $isoKey . ": " . $numView . "\n";
+                    if($userCountryDesCount < 5)
+                        $userCountryDesShort = $userCountryDesShort . $isoKey . ": " . $numView . "\n";
+                    $userCountryDesCount ++;
                 }
                 $topUser['CountryDes'] = $userCountryDes;
+                $topUser['CountryDesShort'] = $userCountryDesShort;
                 $topUsers[] = $topUser;
             }
             else {
