@@ -625,7 +625,6 @@ protected $iso_array = array(
         return [
             "topStreams"=>$topStreams,
             "user"=>[],
-            "viewByDays"=>[],
             "allCountry"=>[]
 
         ];

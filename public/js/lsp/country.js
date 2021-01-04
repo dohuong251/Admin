@@ -234,6 +234,7 @@ function loadData() {
 }
 
 function drawChart(data) {
+    if(!data.viewByDays) return;
     viewChartOptions.xaxis = {categories:Object.keys(data.viewByDays)};
     let series = data.allCountry.map(function (item) {
         return {
