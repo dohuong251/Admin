@@ -28,18 +28,11 @@ let startDate = moment(), endDate = moment(), userId, streamId, viewChart, viewC
             }
         }
     },
-    yaxis: [{
-        decimalsInFloat: 0,
-        title: {
-            text: 'Country Views',
-        },
-        labels: {
-            formatter: value => {
-                if (value) return `${value.toLocaleString()}`;
-                else return value;
-            }
-        }
-    }],
+    legend: {
+        position: 'right',
+        offsetX: 0,
+        offsetY: 50
+    },
     fill: {
         opacity: 1
     },
