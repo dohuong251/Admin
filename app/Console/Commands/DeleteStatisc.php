@@ -39,23 +39,6 @@ class DeleteStatisc extends Command
      */
     public function handle()
     {
-        $songIds = Views::pluck('SongId')->toArray();
-        $deleteSongId = array();
-        if($songIds){
-            foreach ($songIds as $songId){
-                if(Songs::find($songId)){}
-                else {
-                    $deleteSongId[] = $songId;
-                }
-            }
-            //echo "tìm thấy " . count($deleteSongId) . "\n";
-            // Xoa songId trong bang views
-            // chunk songId
-            foreach (array_chunk($deleteSongId,1000) as $t)
-            {
-                $deleted = Views::destroy($t);
-                echo "Đã xóa " . $deleted . "\n" ;
-            }
-        }
+
     }
 }

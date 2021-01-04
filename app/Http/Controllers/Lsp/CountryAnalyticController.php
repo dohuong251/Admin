@@ -310,10 +310,9 @@ protected $iso_array = array(
                     $currentDate = strtotime($day);
                     if ($currentDate >= $startTime && $currentDate <= $endTime) {
                         foreach ($views ?? [] as $isoCode => $numView){
-                            $debug['isoCode'.$isoCode] = $isoCode;
-                            if(isset($totalViewByCountry[$isoCode."abc"])){
-                                $totalViewByCountry[$isoCode."abc"] = $totalViewByCountry[$isoCode."abc"] + $numView;
-                            }else $totalViewByCountry[$isoCode."abc"] = $numView;
+                            if(isset($totalViewByCountry[$isoCode])){
+                                $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
+                            }else $totalViewByCountry[$isoCode] = $numView;
                             if($numView > $maxView) $maxView = $numView;
                             if($numView < $minView) $minView = $numView;
                             $successView = $successView + $numView;
@@ -341,9 +340,7 @@ protected $iso_array = array(
             }
 
             // sort totalViewByCountry
-//            usort($totalViewByCountry, function ($a, $b) {
-//                return $a <= $b;
-//            });
+            arsort($totalViewByCountry);
 
             // tạo CountryDes
             $CountryDes = "";
