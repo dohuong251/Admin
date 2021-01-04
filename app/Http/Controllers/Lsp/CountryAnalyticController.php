@@ -356,9 +356,10 @@ protected $iso_array = array(
                     $oth = 0;
                     $count = 0;
                     foreach ($views as $iso => $numViews){
-                        if($count < 2)
+                        if($count < 2){
+                            $allCountry[] = $iso;
                             $newViews[$iso] = $numViews;
-                        else $oth = $oth + $numViews;
+                        }else $oth = $oth + $numViews;
                         $count ++;
                     }
                     $newViews['OTH'] = $oth;
