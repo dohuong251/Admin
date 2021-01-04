@@ -617,12 +617,17 @@ protected $iso_array = array(
         // lấy về 100 kênh được chơi nhiều nhất
         $streamIds = CountryStatistic::orderBy("TotalView","desc")->limit(100)->pluck("SongId")->toArray();
         $topStreams = array();
+        $user = NULL;
         if($streamIds){
             foreach ($streamIds as $streamId)
                 $topStreams[] = $this->getStreamInfo($streamId,$startTime,$endTime)['topStreams'][0];
         }
         return [
-            "topStreams"=>$topStreams
+            "topStreams"=>$topStreams,
+            "user"=>[],
+            "viewByDays"=>[],
+            "allCountry"=>[]
+
         ];
     }
 

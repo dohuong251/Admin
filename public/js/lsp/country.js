@@ -194,7 +194,7 @@ function loadData() {
         },
         success: function (data) {
             let successCount = 0, failCount = 0;
-            for (let date in data.viewByDays) {
+            for (let date in data.viewByDays ?? []) {
                 if (data.viewByDays[date].successCount) successCount += data.viewByDays[date].successCount;
                 if (data.viewByDays[date].failCount) failCount += data.viewByDays[date].failCount;
             }
