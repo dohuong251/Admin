@@ -310,7 +310,9 @@ protected $iso_array = array(
                     if($views != NULL){
                         $currentDate = strtotime($day);
                         if ($currentDate >= $startTime && $currentDate <= $endTime) {
+                            $copyViews = array();
                             foreach ($views ?? [] as $isoCode => $numView){
+                                $copyViews[$isoCode] = $numView;
                                 if(isset($totalViewByCountry[$isoCode])){
                                     $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
                                 }else $totalViewByCountry[$isoCode] = $numView;
@@ -318,8 +320,8 @@ protected $iso_array = array(
                                 if($numView < $minView) $minView = $numView;
                                 $successView = $successView + $numView;
                             }
-                            arsort($view);
-                            $viewsByDay[$day] = $views;
+                            arsort( $copyViews);
+                            $viewsByDay[$day] = $copyViews;
                         }
                     }
                 }
