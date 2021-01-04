@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Models\Lsp\Songs;
 use App\Models\Lsp\Views;
 use Illuminate\Console\Command;
+use phpDocumentor\Reflection\Types\Array_;
 
 class DeleteStatisc extends Command
 {
@@ -39,6 +40,8 @@ class DeleteStatisc extends Command
      */
     public function handle()
     {
-
+        $array = array("a"=>1,"b"=>2);
+        unset($array["a"]);
+        echo json_encode($array);
     }
 }
