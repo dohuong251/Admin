@@ -448,18 +448,19 @@ protected $iso_array = array(
             $viewsByDay = array();
             $streamIds = Songs::where('UserId',$userId)->pluck('SongId')->toArray();
             $countryStatistics = CountryStatistic::with(['song', 'song.users'])->whereIn('SongId',$streamIds)->get();
-            $successView = 0;
             $debug = array();
             $allCountry = array();
             $topUsers = array();
             $topStreams = array();
             $userTotalViewByCountry = array();
+            $userSuccessView = 0;
 
             if($countryStatistics){
                 $topUser = $countryStatistics[0]->song->users;
                 $topUser['Streams'] = count($streamIds);
                 foreach ($countryStatistics as $countryStatistic){
                     $totalViewByCountry = array();
+                    $successView = 0;
                     foreach ($countryStatistic->DayStatistic ?? [] as $day => $views){
                         if($views != NULL){
                             $currentDate = strtotime($day);
@@ -502,7 +503,6 @@ protected $iso_array = array(
 
                     // sort totalViewByCountry
                     arsort($totalViewByCountry);
-
                     // lưu totalViewByCountry vào userTotalVieByCountry
                     foreach ($totalViewByCountry as $isoCode => $numView){
                         if(isset($userTotalViewByCountry[$isoCode])){
@@ -526,8 +526,11 @@ protected $iso_array = array(
                         "CountryDes"=>$CountryDes
                     );
 
+                    // lưu userSuccessView
+                    $userSuccessView = $userSuccessView + $successView;
+
                 }
-                $topUser['successViews'] = $successView;
+                $topUser['successViews'] = $userSuccessView;
                 // sort totalViewByCountry
                 arsort($userTotalViewByCountry);
                 // tạo CountryDes
