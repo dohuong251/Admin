@@ -51,7 +51,7 @@
                     <td>{{Owner}}</td>
                     {{/if}}
                     <td>{{number_format successViews}}</td>
-                    <td><pre>{{CountryDes}}</pre></td>
+                    <td class="h-100 overflow-auto"><pre>{{CountryDes}}</pre></td>
                 </tr>
                 {{/topStreams}}
                 </tbody>
@@ -75,7 +75,7 @@
                     <td>{{Nickname}}</td>
                     <td>{{number_format successViews}}</td>
                     <td>{{number_format Streams}}</td>
-                    <td><pre>{{CountryDesShort}}</pre></td>
+                    <td class="h-100 overflow-auto"><pre>{{CountryDes}}</pre></td>
                 </tr>
                 {{/topUsers}}
                 </tbody>
