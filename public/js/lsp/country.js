@@ -1,5 +1,4 @@
 let startDate = moment(), endDate = moment(), userId, streamId, viewChart, viewChartOptions = {
-    width: '50%',
     markers: {
         size: 4,
         hover: {
@@ -11,9 +10,6 @@ let startDate = moment(), endDate = moment(), userId, streamId, viewChart, viewC
         height: 350,
         stacked: true,
         stackType: '100%'
-    },
-    dataLabels: {
-        enabled: false
     },
     stroke: {
         show: true,

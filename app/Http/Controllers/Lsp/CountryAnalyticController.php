@@ -279,6 +279,12 @@ protected $iso_array = array(
         ]);
     }
 
+    public function isoToName($iso){
+        if(isset($this->iso_array[$iso]))
+            return $this->iso_array[$iso];
+        return "No Country";
+    }
+
     public function filter(Request $request)
     {
         DB::disableQueryLog();
@@ -312,6 +318,7 @@ protected $iso_array = array(
                         if ($currentDate >= $startTime && $currentDate <= $endTime) {
                             $copyViews = array();
                             foreach ($views ?? [] as $isoCode => $numView){
+                                $isoCode = $this->isoToName($isoCode);
                                 $copyViews[$isoCode] = $numView;
                                 if(isset($totalViewByCountry[$isoCode])){
                                     $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
@@ -331,6 +338,7 @@ protected $iso_array = array(
                     if ($currentDate >= $startTime && $currentDate <= $endTime) {
                         $copyLastDayStatistic = array();
                         foreach ($countryStatistic->LastDayStatistic ?? [] as $isoCode => $numView){
+                            $isoCode = $this->isoToName($isoCode);
                             $copyLastDayStatistic[$isoCode] = $numView;
                             if($numView > $maxView) $maxView = $numView;
                             if($numView < $minView) $minView = $numView;
