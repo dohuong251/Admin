@@ -395,6 +395,7 @@ protected $iso_array = array(
             }
 
             return [
+                "allCountry"=>$allCountry,
               "viewByDays"=>$viewsByDay,
               "topStreams"=>array(array(
                   "SongId"=>$streamId,
