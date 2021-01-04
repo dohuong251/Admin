@@ -500,15 +500,15 @@ protected $iso_array = array(
                         }
                     }
 
+                    // sort totalViewByCountry
+                    arsort($totalViewByCountry);
+
                     // lưu totalViewByCountry vào userTotalVieByCountry
                     foreach ($totalViewByCountry as $isoCode => $numView){
                         if(isset($userTotalViewByCountry[$isoCode])){
                             $userTotalViewByCountry[$isoCode] = $userTotalViewByCountry[$isoCode] + $numView;
                         }else $userTotalViewByCountry[$isoCode] = $numView;
                     }
-
-                    // sort totalViewByCountry
-                    arsort($totalViewByCountry);
 
                     // tạo CountryDes
                     $CountryDes = "";
