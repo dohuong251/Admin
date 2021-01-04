@@ -240,41 +240,16 @@ function loadData() {
 }
 
 function drawChart(data) {
-    viewChartOptions.labels = Object.keys(data.viewByDays);
-    viewChartOptions.series = [
-        {
-            name: 'Country Views',
-            type: 'column',
-            data: Object.keys(data.viewByDays).map(function (date) {
-                return data.viewByDays[date].successCount
-            })
-        },
-        {
-            name: 'Success Rate',
-            type: 'line',
-            data: Object.keys(data.viewByDays).map(function (date) {
-                let successRatio = 0, successCount = data.viewByDays[date].successCount,
-                    failCount = data.viewByDays[date].failCount;
-                if (failCount) {
-                    successRatio = (100 * successCount / (successCount + failCount)).toFixed(2);
-                } else {
-                    if (failCount === 0 && successCount !== 0) {
-                        successRatio = 100;
-                    }
-                }
-                return parseFloat(successRatio);
+    viewChartOptions.xaxis = {categories:Object.keys(data.viewByDays)};
+    let series = data.allCountry.map(function (item) {
+        return {
+            name:item,
+            data:Object.keys(data.viewByDays).map(function (date) {
+                return data.viewByDays[date][item]
             })
         }
-        // {
-        //     name: 'Published',
-        //     data: publishedData.map(function (v) {
-        //         return {
-        //             x: v.Date,
-        //             y: v.Total
-        //         }
-        //     })
-        // }
-    ];
+    })
+    viewChartOptions.series = series;
 
     // viewChartOptions.legend = {
     //     formatter: function (seriesName, opts) {
