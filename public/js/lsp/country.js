@@ -28,11 +28,6 @@ let startDate = moment(), endDate = moment(), userId, streamId, viewChart, viewC
             }
         }
     },
-    legend: {
-        position: 'right',
-        offsetX: 0,
-        offsetY: 50
-    },
     fill: {
         opacity: 1
     },

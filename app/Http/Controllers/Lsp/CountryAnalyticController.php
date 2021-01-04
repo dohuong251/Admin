@@ -299,6 +299,130 @@ protected $iso_array = array(
         }
         return $currentView;
     }
+    public function getStreamInfo($streamId,$startTime,$endTime){
+        $startTime = strtotime($startTime);
+        $endTime = strtotime($endTime);
+        $viewsByDay = array();
+        $countryStatistic = CountryStatistic::with(['song', 'song.users'])->where('SongId',$streamId)->first();
+        $song = Songs::find($streamId);
+        $maxView = 0;
+        $minView = 0;
+        $totalViewByCountry = array();
+        $successView = 0;
+        $debug = array();
+
+        if($countryStatistic && $song){
+            foreach ($countryStatistic->DayStatistic ?? [] as $day => $views){
+                if($views != NULL){
+                    $currentDate = strtotime($day);
+                    if ($currentDate >= $startTime && $currentDate <= $endTime) {
+                        $copyViews = array();
+                        foreach ($views ?? [] as $isoCode => $numView){
+                            $isoCode = $this->isoToName($isoCode);
+                            $copyViews[$isoCode] = $numView;
+                            if(isset($totalViewByCountry[$isoCode])){
+                                $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
+                            }else $totalViewByCountry[$isoCode] = $numView;
+                            if($numView > $maxView) $maxView = $numView;
+                            if($numView < $minView) $minView = $numView;
+                            $successView = $successView + $numView;
+                        }
+                        arsort( $copyViews);
+                        $viewsByDay[$day] = $copyViews;
+                    }
+                }
+            }
+            // kiểm tra lastupdate có nằm trong khoảng thời gian cần lấy về
+            if($countryStatistic->LastUpdate && $countryStatistic->LastDayStatistic){
+                $currentDate = strtotime($countryStatistic->LastUpdate);
+                if ($currentDate >= $startTime && $currentDate <= $endTime) {
+                    $copyLastDayStatistic = array();
+                    foreach ($countryStatistic->LastDayStatistic ?? [] as $isoCode => $numView){
+                        $isoCode = $this->isoToName($isoCode);
+                        $copyLastDayStatistic[$isoCode] = $numView;
+                        if($numView > $maxView) $maxView = $numView;
+                        if($numView < $minView) $minView = $numView;
+                        if(isset($totalViewByCountry[$isoCode])){
+                            $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
+                        }else $totalViewByCountry[$isoCode] = $numView;
+                        $successView = $successView + $numView;
+                    }
+                    arsort($copyLastDayStatistic);
+                    $viewsByDay[$countryStatistic->LastUpdate] = $copyLastDayStatistic;
+                }
+            }
+        }
+        else {
+            return response("Stream Or Statistic Not Found!",500);
+        }
+
+        // Lấy 2 đất nước top đầu và gom các nước còn lại và 1 (OTH = Other)
+        $sortViewsByDay = array();
+        $allCountry = array();
+        foreach ($viewsByDay as $day => $views){
+            if(count($views)>4){
+                $newViews = array();
+                $oth = 0;
+                $count = 0;
+                foreach ($views as $iso => $numViews){
+                    if($count < 2){
+                        if(!in_array($iso,$allCountry))
+                            $allCountry[] = $iso;
+                        $newViews[$iso] = $numViews;
+                    }else $oth = $oth + $numViews;
+                    $count ++;
+                }
+                $newViews['OTH'] = $oth;
+                if(!in_array('OTH',$allCountry))
+                    $allCountry[] = 'OTH';
+                $sortViewsByDay[$day] = $newViews;
+            }else {
+                foreach ($views as $iso => $numViews){
+                    if(!in_array($iso,$allCountry))
+                        $allCountry[] = $iso;
+                }
+                $sortViewsByDay[$day] = $views;
+            }
+        }
+        $viewsByDay = $sortViewsByDay;
+
+        // thêm những giá trị = 0 nếu như ngày đó không có
+        $fullViewsByDay = array();
+        foreach ($viewsByDay as $day => $views){
+            $newViews = array();
+            foreach($allCountry as $country)
+                if(!isset($views[$country])){
+                    $newViews[$country] = 0;
+                }
+            $fullViewsByDay[$day] = array_merge($views,$newViews);
+        }
+        $viewsByDay = $fullViewsByDay;
+
+        // sort totalViewByCountry
+        arsort($totalViewByCountry);
+
+        // tạo CountryDes
+        $CountryDes = "";
+        foreach ($totalViewByCountry as $isoKey => $numView){
+            $CountryDes = $CountryDes . $isoKey . ": " . $numView . "\n";
+        }
+
+        return [
+            "allCountry"=>$allCountry,
+            "viewByDays"=>$viewsByDay,
+            "topStreams"=>array(array(
+                "SongId"=>$streamId,
+                "TotalViewByCountry"=>$totalViewByCountry,
+                "Code" => $countryStatistic->song->Code ?? "",
+                "Name" => $countryStatistic->song->Name ?? "",
+                "Owner" => $countryStatistic->song->users->Nickname ?? "",
+                "successViews"=>$successView,
+                "CountryDes"=>$CountryDes
+            )),
+            "user" => $countryStatistic->song->users ?? null,
+            "debug"=>$debug
+        ];
+    }
 
 
 
@@ -310,135 +434,11 @@ protected $iso_array = array(
         $endTime = $request->get('end', date_format(now(), "Y-m-d"));
         $userId = $request->get('userId');
         $streamId = $request->get('streamId');
-
-        $topStreams = array();
-        $topUsers = array();
         /**
          * thông tin về view của 1 stream cụ thể
          */
         if ($streamId) {
-            $startTime = strtotime($startTime);
-            $endTime = strtotime($endTime);
-            $viewsByDay = array();
-            $countryStatistic = CountryStatistic::with(['song', 'song.users'])->where('SongId',$streamId)->first();
-            $song = Songs::find($streamId);
-            $maxView = 0;
-            $minView = 0;
-            $totalViewByCountry = array();
-            $successView = 0;
-            $debug = array();
-
-            if($countryStatistic && $song){
-                foreach ($countryStatistic->DayStatistic ?? [] as $day => $views){
-                    if($views != NULL){
-                        $currentDate = strtotime($day);
-                        if ($currentDate >= $startTime && $currentDate <= $endTime) {
-                            $copyViews = array();
-                            foreach ($views ?? [] as $isoCode => $numView){
-                                $isoCode = $this->isoToName($isoCode);
-                                $copyViews[$isoCode] = $numView;
-                                if(isset($totalViewByCountry[$isoCode])){
-                                    $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
-                                }else $totalViewByCountry[$isoCode] = $numView;
-                                if($numView > $maxView) $maxView = $numView;
-                                if($numView < $minView) $minView = $numView;
-                                $successView = $successView + $numView;
-                            }
-                            arsort( $copyViews);
-                            $viewsByDay[$day] = $copyViews;
-                        }
-                    }
-                }
-                // kiểm tra lastupdate có nằm trong khoảng thời gian cần lấy về
-                if($countryStatistic->LastUpdate && $countryStatistic->LastDayStatistic){
-                    $currentDate = strtotime($countryStatistic->LastUpdate);
-                    if ($currentDate >= $startTime && $currentDate <= $endTime) {
-                        $copyLastDayStatistic = array();
-                        foreach ($countryStatistic->LastDayStatistic ?? [] as $isoCode => $numView){
-                            $isoCode = $this->isoToName($isoCode);
-                            $copyLastDayStatistic[$isoCode] = $numView;
-                            if($numView > $maxView) $maxView = $numView;
-                            if($numView < $minView) $minView = $numView;
-                            if(isset($totalViewByCountry[$isoCode])){
-                                $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
-                            }else $totalViewByCountry[$isoCode] = $numView;
-                            $successView = $successView + $numView;
-                        }
-                        arsort($copyLastDayStatistic);
-                        $viewsByDay[$countryStatistic->LastUpdate] = $copyLastDayStatistic;
-                    }
-                }
-            }
-            else {
-                return response("Stream Or Statistic Not Found!",500);
-            }
-
-            // Lấy 2 đất nước top đầu và gom các nước còn lại và 1 (OTH = Other)
-            $sortViewsByDay = array();
-            $allCountry = array();
-            foreach ($viewsByDay as $day => $views){
-                if(count($views)>4){
-                    $newViews = array();
-                    $oth = 0;
-                    $count = 0;
-                    foreach ($views as $iso => $numViews){
-                        if($count < 2){
-                            if(!in_array($iso,$allCountry))
-                                $allCountry[] = $iso;
-                            $newViews[$iso] = $numViews;
-                        }else $oth = $oth + $numViews;
-                        $count ++;
-                    }
-                    $newViews['OTH'] = $oth;
-                    if(!in_array('OTH',$allCountry))
-                        $allCountry[] = 'OTH';
-                    $sortViewsByDay[$day] = $newViews;
-                }else {
-                    foreach ($views as $iso => $numViews){
-                        if(!in_array($iso,$allCountry))
-                            $allCountry[] = $iso;
-                    }
-                    $sortViewsByDay[$day] = $views;
-                }
-            }
-            $viewsByDay = $sortViewsByDay;
-
-            // thêm những giá trị = 0 nếu như ngày đó không có
-            $fullViewsByDay = array();
-            foreach ($viewsByDay as $day => $views){
-                $newViews = array();
-                foreach($allCountry as $country)
-                    if(!isset($views[$country])){
-                        $newViews[$country] = 0;
-                    }
-                $fullViewsByDay[$day] = array_merge($views,$newViews);
-            }
-            $viewsByDay = $fullViewsByDay;
-
-            // sort totalViewByCountry
-            arsort($totalViewByCountry);
-
-            // tạo CountryDes
-            $CountryDes = "";
-            foreach ($totalViewByCountry as $isoKey => $numView){
-                $CountryDes = $CountryDes . $isoKey . ": " . $numView . "\n";
-            }
-
-            return [
-                "allCountry"=>$allCountry,
-                "viewByDays"=>$viewsByDay,
-              "topStreams"=>array(array(
-                  "SongId"=>$streamId,
-                  "TotalViewByCountry"=>$totalViewByCountry,
-                  "Code" => $countryStatistic->song->Code ?? "",
-                  "Name" => $countryStatistic->song->Name ?? "",
-                  "Owner" => $countryStatistic->song->users->Nickname ?? "",
-                  "successViews"=>$successView,
-                  "CountryDes"=>$CountryDes
-              )),
-              "user" => $countryStatistic->song->users ?? null,
-              "debug"=>$debug
-            ];
+            return $this->getStreamInfo($streamId,$startTime,$endTime);
         }
 
         /**
@@ -613,143 +613,17 @@ protected $iso_array = array(
         /**
          * thông tin chung lọc theo ngày
          */
-        $startTime = $request->get('start', date_format(now(), "Y-m-d"));
-        $endTime = $request->get('end', date_format(now(), "Y-m-d"));
 
-        $streamViewsChunk = Views::with(['song' => function ($query) {
-            $query->select(['SongId', 'Code', 'Name', 'UserId']);
-        }, 'song.users' => function ($query) {
-            $query->select(['UserId', 'Nickname']);
-        }])->where('last_update', '>=', $startTime)->where(function ($query) {
-            $query->whereNotNull('days_view')
-                ->orWhere('success_count', '>', 0);
-        });
-
-
-        $startTime = strtotime($startTime);
-        $endTime = strtotime($endTime);
-        $viewsByDay = array();
-        $TOP_RECORD_LIMIT = 10;
-        $streamViewsChunk->chunk(5000, function ($streamViews) use (&$topUsers, &$TOP_RECORD_LIMIT, &$viewsByDay, &$endTime, &$startTime, &$topStreams) {
-            foreach ($streamViews as $streamView) {
-                $totalStreamView = 0;
-                $totalStreamPlaybackDuration = 0;
-                $totalStreamBufferDuration = 0;
-                foreach (json_decode($streamView->days_view) ?? [] as $key => $view) {
-                    $currentDate = strtotime($key);
-                    if ($currentDate >= $startTime && $currentDate <= $endTime) {
-                        if (!array_key_exists($key, $viewsByDay)) {
-                            $viewsByDay[$key] = array(
-                                "successCount" => 0,
-                                "failCount" => 0
-                            );
-                        }
-
-                        // đếm số lượng view của 1 stream cụ thể trong khoảng thời gian từ startTime đến endTime
-                        $totalStreamView += $view->success;
-                        $totalStreamPlaybackDuration += $view->playback_duration ?? 0;
-                        $totalStreamBufferDuration += $view->buffer_duration ?? 0;
-
-                        // đếm số lượng view success và fail trong khoảng thời gian từ startTime đến endTime
-                        $viewsByDay[$key]["successCount"] += $view->success;
-                        $viewsByDay[$key]["failCount"] += $view->fail;
-                    }
-                }
-
-                $lastUpdate = strtotime($streamView->last_update);
-                if ($lastUpdate >= $startTime && $lastUpdate <= $endTime) {
-                    if (!array_key_exists($streamView->last_update, $viewsByDay)) {
-                        $viewsByDay[$streamView->last_update] = array(
-                            "successCount" => 0,
-                            "failCount" => 0
-                        );
-                    }
-                    $totalStreamView += $streamView->success_count;
-                    $totalStreamPlaybackDuration += $streamView->playback_duration ?? 0;
-                    $totalStreamBufferDuration += $streamView->buffer_duration ?? 0;
-
-                    $viewsByDay[$streamView->last_update]["successCount"] += $streamView->success_count;
-                    $viewsByDay[$streamView->last_update]["failCount"] += $streamView->fail_count;
-                }
-
-                if ($totalStreamView > 0) {
-                    array_push($topStreams, array(
-                        "SongId" => $streamView->SongId,
-                        "successViews" => $totalStreamView,
-                        "PlaybackDuration" => $totalStreamPlaybackDuration,
-                        "BufferDuration" => $totalStreamBufferDuration,
-                        "StreamView" => $streamView,
-//                    "StreamUrl" => $streamView->song->SongId ?? null ? route('admin.lsp.streams.show', $streamView->song->SongId) : null,
-//                    "Code" => $streamView->song->Code ?? "",
-//                    "Name" => $streamView->song->Name ?? "",
-//                    "Owner" => $streamView->song->users->Nickname ?? "",
-//                    "OwnerUrl" => $streamView->song->users->UserId ?? null ? route('admin.lsp.user.show', $streamView->song->users->UserId) : null,
-                    ));
-
-                    usort($topStreams, function ($a, $b) {
-                        return $a['successViews'] <= $b['successViews'];
-                    });
-                    $topStreams = array_slice($topStreams, 0, $TOP_RECORD_LIMIT);
-
-                    if ($streamView->song && $streamView->song->users) {
-                        $currentUserId = $streamView->song->users->UserId;
-                    } else {
-                        $currentUserId = -1;
-                    }
-
-                    if ($currentUserId != -1) {
-                        if (array_key_exists($currentUserId, $topUsers)) {
-                            $topUsers[$currentUserId]["successViews"] += $totalStreamView;
-                            $topUsers[$currentUserId]["PlaybackDuration"] += $totalStreamPlaybackDuration;
-                            $topUsers[$currentUserId]["BufferDuration"] += $totalStreamBufferDuration;
-                            $topUsers[$currentUserId]["Streams"]++;
-
-                        } else {
-                            $topUsers[$currentUserId] = array(
-                                "UserId" => $currentUserId,
-                                "StreamView" => $streamView,
-//                        "Nickname" => $streamView->song->users->Nickname ?? "",
-                                "successViews" => $totalStreamView,
-                                "Streams" => 1,
-                                "PlaybackDuration" => $totalStreamPlaybackDuration,
-                                "BufferDuration" => $totalStreamBufferDuration,
-                            );
-                        }
-                    }
-                }
-            }
-        });
-        // sắp xếp theo successViews giảm dần
-        usort($topUsers, function ($a, $b) {
-            return $a['successViews'] <= $b['successViews'];
-        });
-        $topUsers = array_slice($topUsers, 0, $TOP_RECORD_LIMIT);
-
-        // thêm các trường trước khi gửi về client
-        foreach ($topUsers as &$topUser) {
-            $streamView = $topUser["StreamView"];
-            $topUser["Nickname"] = $streamView->song->users->Nickname ?? "";
-            unset($topUser["StreamView"]);
+        // lấy về 100 kênh được chơi nhiều nhất
+        $streamIds = CountryStatistic::orderBy("TotalView","desc")->limit(100)->pluck("SongId")->toArray();
+        $topStreams = array();
+        if($streamIds){
+            foreach ($streamIds as $streamId)
+                $topStreams[] = $this->getStreamInfo($streamId,$startTime,$endTime);
         }
-
-        foreach ($topStreams as &$topStream) {
-            $streamView = $topStream["StreamView"];
-            $topStream["Code"] = $streamView->song->Code ?? "";
-            $topStream["Name"] = $streamView->song->Name ?? "";
-            $topStream["Owner"] = $streamView->song->users->Nickname ?? "";
-            unset($topStream["StreamView"]);
-        }
-
-        // sắp xếp theo thời gian
-        uksort($viewsByDay, function ($a, $b) {
-            return strtotime($a) <= strtotime($b);
-        });
-
-        return array(
-            "viewByDays" => $viewsByDay,
-            "topStreams" => $topStreams,
-            "topUsers" => $topUsers,
-        );
+        return [
+            "topStreams"=>$topStreams
+        ];
     }
 
     public function search(Request $request)
