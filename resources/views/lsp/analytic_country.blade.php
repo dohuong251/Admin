@@ -65,8 +65,7 @@
                     <th scope="col">Nickname</th>
                     <th scope="col">SuccessViews</th>
                     <th scope="col">Streams</th>
-                    <th scope="col">Playback Duration</th>
-                    <th scope="col">Buffer Duration</th>
+                    <th scope="col">Country Views</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -76,8 +75,7 @@
                     <td>{{Nickname}}</td>
                     <td>{{number_format successViews}}</td>
                     <td>{{number_format Streams}}</td>
-                    <td>{{number_format_duration PlaybackDuration}}</td>
-                    <td>{{number_format_duration BufferDuration}}</td>
+                    <td><pre>{{CountryDes}}</pre></td>
                 </tr>
                 {{/topUsers}}
                 </tbody>

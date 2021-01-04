@@ -453,6 +453,7 @@ protected $iso_array = array(
             $allCountry = array();
             $topUsers = array();
             $topStreams = array();
+            $userTotalViewByCountry = array();
 
             if($countryStatistics){
                 $topUser = $countryStatistics[0]->song->users;
@@ -499,6 +500,13 @@ protected $iso_array = array(
                         }
                     }
 
+                    // lưu totalViewByCountry vào userTotalVieByCountry
+                    foreach ($totalViewByCountry as $isoCode => $numView){
+                        if(isset($userTotalViewByCountry[$isoCode])){
+                            $userTotalViewByCountry[$isoCode] = $userTotalViewByCountry[$isoCode] + $numView;
+                        }else $userTotalViewByCountry[$isoCode] = $numView;
+                    }
+
                     // sort totalViewByCountry
                     arsort($totalViewByCountry);
 
@@ -520,6 +528,14 @@ protected $iso_array = array(
 
                 }
                 $topUser['successViews'] = $successView;
+                // sort totalViewByCountry
+                arsort($userTotalViewByCountry);
+                // tạo CountryDes
+                $userCountryDes = "";
+                foreach ($userTotalViewByCountry as $isoKey => $numView){
+                    $userCountryDes = $userCountryDes . $isoKey . ": " . $numView . "\n";
+                }
+                $topUser['CountryDes'] = $userCountryDes;
                 $topUsers[] = $topUser;
             }
             else {
@@ -567,6 +583,10 @@ protected $iso_array = array(
             }
             $viewsByDay = $fullViewsByDay;
 
+            // sắp xếp stream theo successViews giảm dần
+            usort($topStreams, function ($a, $b) {
+                return $a['successViews'] <= $b['successViews'];
+            });
 
             return [
                 "allCountry"=>$allCountry,
