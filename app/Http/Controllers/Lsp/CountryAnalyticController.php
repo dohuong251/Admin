@@ -349,6 +349,7 @@ protected $iso_array = array(
 
             // Lấy 2 đất nước top đầu và gom các nước còn lại và 1 (OTH = Other)
             $sortViewsByDay = array();
+            $allCountry = array();
             foreach ($viewsByDay as $day => $views){
                 if(count($views)>4){
                     $newViews = array();
@@ -361,12 +362,28 @@ protected $iso_array = array(
                         $count ++;
                     }
                     $newViews['OTH'] = $oth;
+                    $allCountry[] = 'OTH';
                     $sortViewsByDay[$day] = $newViews;
                 }else {
+                    foreach ($views as $iso => $numViews){
+                        $allCountry[] = $iso;
+                    }
                     $sortViewsByDay[$day] = $views;
                 }
             }
             $viewsByDay = $sortViewsByDay;
+
+            // thêm những giá trị = 0 nếu như ngày đó không có
+            $fullViewsByDay = array();
+            foreach ($viewsByDay as $day => $views){
+                $newViews = array();
+                foreach($allCountry as $country)
+                    if(!isset($views[$country])){
+                        $newViews[$country] = 0;
+                    }
+                $fullViewsByDay[$day] = array_merge($views,$newViews);
+            }
+            $viewsByDay = $fullViewsByDay;
 
             // sort totalViewByCountry
             arsort($totalViewByCountry);
