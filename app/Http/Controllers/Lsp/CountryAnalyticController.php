@@ -341,9 +341,9 @@ protected $iso_array = array(
             }
 
             // sort totalViewByCountry
-            usort($totalViewByCountry, function ($a, $b) {
-                return $a <= $b;
-            });
+//            usort($totalViewByCountry, function ($a, $b) {
+//                return $a <= $b;
+//            });
 
             // tạo CountryDes
             $CountryDes = "";
