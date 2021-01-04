@@ -357,17 +357,20 @@ protected $iso_array = array(
                     $count = 0;
                     foreach ($views as $iso => $numViews){
                         if($count < 2){
-                            $allCountry[] = $iso;
+                            if(!in_array($iso,$allCountry))
+                                $allCountry[] = $iso;
                             $newViews[$iso] = $numViews;
                         }else $oth = $oth + $numViews;
                         $count ++;
                     }
                     $newViews['OTH'] = $oth;
-                    $allCountry[] = 'OTH';
+                    if(!in_array('OTH',$allCountry))
+                        $allCountry[] = 'OTH';
                     $sortViewsByDay[$day] = $newViews;
                 }else {
                     foreach ($views as $iso => $numViews){
-                        $allCountry[] = $iso;
+                        if(!in_array($iso,$allCountry))
+                            $allCountry[] = $iso;
                     }
                     $sortViewsByDay[$day] = $views;
                 }

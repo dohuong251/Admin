@@ -7,8 +7,10 @@ let startDate = moment(), endDate = moment(), userId, streamId, viewChart, viewC
         }
     },
     chart: {
+        type: 'bar',
         height: 350,
-        type: 'line',
+        stacked: true,
+        stackType: '100%'
     },
     dataLabels: {
         enabled: false
@@ -38,17 +40,6 @@ let startDate = moment(), endDate = moment(), userId, streamId, viewChart, viewC
         labels: {
             formatter: value => {
                 if (value) return `${value.toLocaleString()}`;
-                else return value;
-            }
-        }
-    }, {
-        opposite: true,
-        title: {
-            text: 'Success Rate'
-        },
-        labels: {
-            formatter: value => {
-                if (value) return `${value} %`;
                 else return value;
             }
         }
