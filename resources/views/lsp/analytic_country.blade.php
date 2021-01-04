@@ -97,7 +97,7 @@
         src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-daterangepicker/3.0.5/daterangepicker.min.js"></script>
     <script src="/js/vendors/select2.min.js"></script>
     <script src="/js/vendors/handlebars.min.js"></script>
-    <script src="/js/lsp/statistics.js"></script>
+    <script src="/js/lsp/country.js"></script>
 @endsection
 @section('content')
     <nav>

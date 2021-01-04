@@ -317,6 +317,7 @@ protected $iso_array = array(
                             if($numView < $minView) $minView = $numView;
                             $successView = $successView + $numView;
                         }
+                        arsort($view);
                         $viewsByDay[$day] = $views;
                     }
                 }
@@ -332,12 +333,33 @@ protected $iso_array = array(
                             }else $totalViewByCountry[$isoCode] = $numView;
                             $successView = $successView + $numView;
                         }
+                        arsort($countryStatistic->LastDayStatistic);
                         $viewsByDay[$countryStatistic->LastUpdate] = $countryStatistic->LastDayStatistic;
                     }
                 }
             }else {
                 return response("Stream Or Statistic Not Found!",500);
             }
+
+            // Lấy 2 đất nước top đầu và gom các nước còn lại và 1 (OTH = Other)
+            $sortViewsByDay = array();
+            foreach ($viewsByDay as $day => $views){
+                if(count($views)>4){
+                    $newViews = array();
+                    $oth = 0;
+                    $count = 0;
+                    foreach ($views as $iso => $numViews){
+                        if($count < 2)
+                            $newViews[$iso] = $numViews;
+                        else $oth = $oth + $numViews;
+                    }
+                    $newViews['OTH'] = $oth;
+                    $sortViewsByDay[$day] = $newViews;
+                }else {
+                    $sortViewsByDay[$day] = $views;
+                }
+            }
+            $viewsByDay = $sortViewsByDay;
 
             // sort totalViewByCountry
             arsort($totalViewByCountry);
