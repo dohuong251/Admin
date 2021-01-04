@@ -329,7 +329,9 @@ protected $iso_array = array(
                 if($countryStatistic->LastUpdate && $countryStatistic->LastDayStatistic){
                     $currentDate = strtotime($countryStatistic->LastUpdate);
                     if ($currentDate >= $startTime && $currentDate <= $endTime) {
+                        $copyLastDayStatistic = array();
                         foreach ($countryStatistic->LastDayStatistic ?? [] as $isoCode => $numView){
+                            $copyLastDayStatistic[$isoCode] = $numView;
                             if($numView > $maxView) $maxView = $numView;
                             if($numView < $minView) $minView = $numView;
                             if(isset($totalViewByCountry[$isoCode])){
@@ -337,8 +339,8 @@ protected $iso_array = array(
                             }else $totalViewByCountry[$isoCode] = $numView;
                             $successView = $successView + $numView;
                         }
-                        arsort($countryStatistic->LastDayStatistic);
-                        $viewsByDay[$countryStatistic->LastUpdate] = $countryStatistic->LastDayStatistic;
+                        arsort($copyLastDayStatistic);
+                        $viewsByDay[$countryStatistic->LastUpdate] = $copyLastDayStatistic;
                     }
                 }
             }else {
