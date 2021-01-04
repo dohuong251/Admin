@@ -619,7 +619,7 @@ protected $iso_array = array(
         $topStreams = array();
         if($streamIds){
             foreach ($streamIds as $streamId)
-                $topStreams[] = $this->getStreamInfo($streamId,$startTime,$endTime);
+                $topStreams[] = $this->getStreamInfo($streamId,$startTime,$endTime)['topStreams'][0];
         }
         return [
             "topStreams"=>$topStreams
