@@ -248,22 +248,8 @@ function loadData() {
             country:$('#countrySelect').val()
         },
         success: function (data) {
-            let successCount = 0, failCount = 0;
-            for (let date in data.viewByDays ?? []) {
-                if (data.viewByDays[date].successCount) successCount += data.viewByDays[date].successCount;
-                if (data.viewByDays[date].failCount) failCount += data.viewByDays[date].failCount;
-            }
-
-            $('#successViewCount').text(successCount.toLocaleString());
-            let successRatio = 0;
-            if (failCount) {
-                successRatio = (100 * successCount / (successCount + failCount)).toFixed(2);
-            } else {
-                if (failCount === 0 && successCount !== 0) {
-                    successRatio = 100;
-                }
-            }
-            $('#successViewRatio').text(`${successRatio}%`).siblings('.progress').find(".progress-bar").css('width', `${successRatio}%`);
+            console.log("response")
+            console.log(data)
             drawChart(data);
 
             let userTable = $('#user-rank');
