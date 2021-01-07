@@ -141,6 +141,12 @@ $(document).ready(function () {
         })
         .trigger('apply.daterangepicker');
 
+    $('#countrySelect').select2({
+        width: '100%',
+        placeholder: "Chọn Quốc Gia",
+        allowClear: true,
+    })
+
     $('#userSearch').select2({
         width: '100%',
         placeholder: "Tìm theo tên thành viên",
@@ -297,8 +303,7 @@ function loadData() {
 }
 
 function drawChart(data) {
-    if(!data || !data.viewByDays || data.allCountry.length === 0){
-        viewChart.clear();
+    if(!data || !data.viewByDays){
         return;
     } else{
         viewChartOptions.xaxis = {categories:Object.keys(data.viewByDays)};
@@ -310,7 +315,9 @@ function drawChart(data) {
                 })
             }
         })
-        viewChartOptions.series = series?series:[];
+        if(series.length === 0)
+            series = [{name:"",data:0}]
+        viewChartOptions.series = series;
     }
 
     // viewChartOptions.legend = {
