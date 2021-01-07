@@ -312,7 +312,7 @@ class CountryAnalyticController extends Controller
         $totalViewByCountry = array();
         $successView = 0;
         $debug = array();
-        $topCountries = arrray();
+        $topCountries = array();
 
         if($countryStatistic && $song){
             foreach ($countryStatistic->DayStatistic ?? [] as $day => $views){
