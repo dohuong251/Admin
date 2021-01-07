@@ -101,11 +101,11 @@ $(document).ready(function () {
     })
 
     // init stream chart
-    // viewChart = new ApexCharts(
-    //     document.querySelector(".stream-chart"),
-    //     viewChartOptions
-    // );
-    // viewChart.render();
+    viewChart = new ApexCharts(
+        document.querySelector(".stream-chart"),
+        viewChartOptions
+    );
+    viewChart.render();
 
     // loadData();
 
@@ -205,7 +205,8 @@ $(document).ready(function () {
 
 let loadDataRequest, MAX_STREAM_DISPLAY = 50,
     rankStreamTemplate = Handlebars.compile(document.getElementById("stream-rank-template").innerHTML),
-    rankUserTemplate = Handlebars.compile(document.getElementById("user-rank-template").innerHTML);
+    rankUserTemplate = Handlebars.compile(document.getElementById("user-rank-template").innerHTML),
+    rankCountryTemplate = Handlebars.compile(document.getElementById("country-rank-template").innerHTML);
 
 Handlebars.registerHelper('number_format_duration', function (duration) {
 
@@ -262,7 +263,7 @@ function loadData() {
                 }
             }
             $('#successViewRatio').text(`${successRatio}%`).siblings('.progress').find(".progress-bar").css('width', `${successRatio}%`);
-            //drawChart(data);
+            drawChart(data);
             if (data.topStreams) {
                 $('#stream-rank').html(rankStreamTemplate(data));
             } else {
@@ -273,6 +274,10 @@ function loadData() {
             } else {
                 $('#user-rank').html('');
             }
+
+            if(data.topCountries){
+                $('#country-rank').html(rankCountryTemplate(data));
+            }else $('#country-rank').html('');
 
             Swal.mixin({
                 toast: true,
@@ -308,6 +313,6 @@ function drawChart(data) {
     //         }
     //     }
     // };
-    //viewChart.updateOptions(viewChartOptions);
+    viewChart.updateOptions(viewChartOptions);
 }
 

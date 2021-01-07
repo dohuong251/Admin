@@ -266,7 +266,10 @@ class CountryAnalyticController extends Controller
         'ZWE'=>'Zimbabwe',
         'OTH'=>"Other Country"
         );
-
+    protected $iso_cpm = array(
+        "GBR"=>2,
+        "USA"=>1
+    );
 
     public function index(Request $request)
     {
@@ -309,6 +312,7 @@ class CountryAnalyticController extends Controller
         $totalViewByCountry = array();
         $successView = 0;
         $debug = array();
+        $topCountries = arrray();
 
         if($countryStatistic && $song){
             foreach ($countryStatistic->DayStatistic ?? [] as $day => $views){
@@ -320,11 +324,11 @@ class CountryAnalyticController extends Controller
                             if($country && $country === $isoCode){
 
                             }else if($country) continue;
-                            $isoCode = $this->isoToName($isoCode);
-                            $copyViews[$isoCode] = $numView;
                             if(isset($totalViewByCountry[$isoCode])){
                                 $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
                             }else $totalViewByCountry[$isoCode] = $numView;
+                            $isoCode = $this->isoToName($isoCode);
+                            $copyViews[$isoCode] = $numView;
                             if($numView > $maxView) $maxView = $numView;
                             if($numView < $minView) $minView = $numView;
                             $successView = $successView + $numView;
@@ -343,13 +347,13 @@ class CountryAnalyticController extends Controller
                         if($country && $country === $isoCode){
 
                         }else if($country) continue;
+                        if(isset($totalViewByCountry[$isoCode])){
+                            $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
+                        }else $totalViewByCountry[$isoCode] = $numView;
                         $isoCode = $this->isoToName($isoCode);
                         $copyLastDayStatistic[$isoCode] = $numView;
                         if($numView > $maxView) $maxView = $numView;
                         if($numView < $minView) $minView = $numView;
-                        if(isset($totalViewByCountry[$isoCode])){
-                            $totalViewByCountry[$isoCode] = $totalViewByCountry[$isoCode] + $numView;
-                        }else $totalViewByCountry[$isoCode] = $numView;
                         $successView = $successView + $numView;
                     }
                     arsort($copyLastDayStatistic);
@@ -406,6 +410,16 @@ class CountryAnalyticController extends Controller
         // sort totalViewByCountry
         arsort($totalViewByCountry);
 
+        // danh sách country
+        foreach ($totalViewByCountry as $iso => $numViews){
+            $topCountries[] = array(
+                "iso"=>$iso,
+                "successViews"=>$numViews,
+                "Country"=>$this->iso_array[$iso],
+                "Amount"=>($this->iso_cpm?$this->iso_cpm[$iso] * $numViews:0)
+            );
+        }
+
         // tạo CountryDes
         $CountryDes = "";
         foreach ($totalViewByCountry as $isoKey => $numView){
@@ -425,7 +439,8 @@ class CountryAnalyticController extends Controller
                 "CountryDes"=>$CountryDes
             )),
             "user" => $countryStatistic->song->users ?? null,
-            "debug"=>$debug
+            "debug"=>$debug,
+            "topCountries"=>$topCountries
         ];
     }
     public function getUserInfo($userId,$startTime,$endTime,$country){

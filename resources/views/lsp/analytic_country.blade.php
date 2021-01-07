@@ -26,7 +26,6 @@
                     <th scope="col">Stream Name</th>
                     <th scope="col">Owner</th>
                     <th scope="col">Success Views</th>
-                    <th scope="col">Country</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,7 +50,6 @@
                     <td>{{Owner}}</td>
                     {{/if}}
                     <td>{{number_format successViews}}</td>
-                    <td style="height: 100px; overflow: scroll;"><div style="height: 100px;"><pre>{{CountryDes}}</pre></div></td>
                 </tr>
                 {{/topStreams}}
                 </tbody>
@@ -65,7 +63,6 @@
                     <th scope="col">Nickname</th>
                     <th scope="col">SuccessViews</th>
                     <th scope="col">Streams</th>
-                    <th scope="col">Country Views</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -75,12 +72,35 @@
                     <td>{{Nickname}}</td>
                     <td>{{number_format successViews}}</td>
                     <td>{{number_format Streams}}</td>
-                    <td style="height: 100px; overflow: scroll;"><div style="height: 100px;"><pre>{{CountryDes}}</pre></div></td>
                 </tr>
                 {{/topUsers}}
                 </tbody>
             </table>
         </script>
+
+        <script id="country-rank-template" type="text/x-handlebars-template">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Country</th>
+                    <th scope="col">SuccessViews</th>
+                    <th scope="col">Amount</th>
+                </tr>
+                </thead>
+                <tbody>
+                {{#topCountries}}
+                <tr>
+                    <th scope="row">{{increase @index}}</th>
+                    <td>{{Country}}</td>
+                    <td>{{number_format successViews}}</td>
+                    <td>{{number_format Amount}}</td>
+                </tr>
+                {{/topCountries}}
+                </tbody>
+            </table>
+        </script>
+
     @endverbatim
     <script>
         let ajaxUrl = "{!! route('admin.lsp.analytic.country.filter') !!}",
@@ -152,6 +172,8 @@
             <button type="button" class="btn btn-light ml-2" id="btn-select-stream">Kênh</button>
             <button type="button" class="btn btn-light ml-2" id="btn-select-country">Quốc Gia</button>
         </div>
+
+        <div class="stream-chart"></div>
 
         <div id="rank">
             <div id="user-rank"></div>
