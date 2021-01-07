@@ -298,8 +298,7 @@ function loadData() {
 
 function drawChart(data) {
     if(!data || !data.viewByDays || data.allCountry.length === 0){
-        viewChartOptions.series = null;
-        viewChartOptions.xaxis = null;
+        viewChart.clear();
         return;
     } else{
         viewChartOptions.xaxis = {categories:Object.keys(data.viewByDays)};
