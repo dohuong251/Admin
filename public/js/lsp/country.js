@@ -311,17 +311,21 @@ function loadData() {
 }
 
 function drawChart(data) {
-    if(!data.viewByDays) return;
-    viewChartOptions.xaxis = {categories:Object.keys(data.viewByDays)};
-    let series = data.allCountry.map(function (item) {
-        return {
-            name:item,
-            data:Object.keys(data.viewByDays).map(function (date) {
-                return data.viewByDays[date][item]
-            })
-        }
-    })
-    viewChartOptions.series = series;
+    if(data || !data.viewByDays){
+        viewChartOptions.series = [];
+        viewChartOptions.xaxis = [];
+    } else{
+        viewChartOptions.xaxis = {categories:Object.keys(data.viewByDays)};
+        let series = data.allCountry.map(function (item) {
+            return {
+                name:item,
+                data:Object.keys(data.viewByDays).map(function (date) {
+                    return data.viewByDays[date][item]
+                })
+            }
+        })
+        viewChartOptions.series = series;
+    }
 
     // viewChartOptions.legend = {
     //     formatter: function (seriesName, opts) {
