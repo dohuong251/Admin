@@ -310,7 +310,7 @@ function drawChart(data) {
                 })
             }
         })
-        viewChartOptions.series = series;
+        viewChartOptions.series = series?series:[];
     }
 
     // viewChartOptions.legend = {
