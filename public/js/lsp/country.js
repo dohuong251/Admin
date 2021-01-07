@@ -1,3 +1,5 @@
+let viewMode = 1; // 1: người dùng 2: Kênh 3: thành phố
+
 let startDate = moment(), endDate = moment(), userId, streamId, viewChart, viewChartOptions = {
     markers: {
         size: 4,
@@ -49,6 +51,55 @@ let startDate = moment(), endDate = moment(), userId, streamId, viewChart, viewC
 };
 
 $(document).ready(function () {
+    let btnSelectUser = $('#btn-select-user');
+    let btnSelectStream = $('#btn-select-stream');
+    let btnSelectCountry = $('#btn-select-country');
+    let userTable = $('#user-rank');
+    let streamTable = $('#stream-rank');
+    let countryTable = $('#country-rank');
+
+    btnSelectUser.click(function () {
+        viewMode = 1;
+        btnSelectUser.removeClass("btn-light")
+        btnSelectUser.addClass("btn-primary")
+        btnSelectStream.removeClass("btn-primary")
+        btnSelectStream.addClass("btn-light")
+        btnSelectCountry.removeClass("btn-primary")
+        btnSelectCountry.addClass("btn-light")
+
+        userTable.removeClass("d-none")
+        streamTable.addClass("d-none")
+        countryTable.addClass("d-none")
+    })
+
+    btnSelectStream.click(function () {
+        viewMode = 2;
+        btnSelectUser.removeClass("btn-primary")
+        btnSelectUser.addClass("btn-light")
+        btnSelectStream.removeClass("btn-light")
+        btnSelectStream.addClass("btn-primary")
+        btnSelectCountry.removeClass("btn-primary")
+        btnSelectCountry.addClass("btn-light")
+
+        userTable.addClass("d-none")
+        streamTable.removeClass("d-none")
+        countryTable.addClass("d-none")
+    })
+
+    btnSelectCountry.click(function () {
+        viewMode = 3;
+        btnSelectUser.removeClass("btn-primary")
+        btnSelectUser.addClass("btn-light")
+        btnSelectStream.removeClass("btn-primary")
+        btnSelectStream.addClass("btn-light")
+        btnSelectCountry.removeClass("btn-light")
+        btnSelectCountry.addClass("btn-primary")
+
+        userTable.addClass("d-none")
+        streamTable.addClass("d-none")
+        countryTable.removeClass("d-none")
+    })
+
     // init stream chart
     viewChart = new ApexCharts(
         document.querySelector(".stream-chart"),
@@ -191,6 +242,8 @@ function loadData() {
             end: endDate.format(serverDateFormat),
             userId: $('#userSearch').val() || null,
             streamId: $('#streamSearch').val() || null,
+            viewMode:viewMode,
+            country:$('#countrySelect').val()
         },
         success: function (data) {
             let successCount = 0, failCount = 0;
@@ -209,7 +262,7 @@ function loadData() {
                 }
             }
             $('#successViewRatio').text(`${successRatio}%`).siblings('.progress').find(".progress-bar").css('width', `${successRatio}%`);
-            drawChart(data);
+            //drawChart(data);
             if (data.topStreams) {
                 $('#stream-rank').html(rankStreamTemplate(data));
             } else {
