@@ -101,11 +101,11 @@ $(document).ready(function () {
     })
 
     // init stream chart
-    viewChart = new ApexCharts(
-        document.querySelector(".stream-chart"),
-        viewChartOptions
-    );
-    viewChart.render();
+    // viewChart = new ApexCharts(
+    //     document.querySelector(".stream-chart"),
+    //     viewChartOptions
+    // );
+    // viewChart.render();
 
     // loadData();
 
@@ -308,6 +308,6 @@ function drawChart(data) {
     //         }
     //     }
     // };
-    viewChart.updateOptions(viewChartOptions);
+    //viewChart.updateOptions(viewChartOptions);
 }
 
