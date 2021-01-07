@@ -459,7 +459,7 @@ class CountryAnalyticController extends Controller
         $startTime = strtotime($startTime);
         $endTime = strtotime($endTime);
         $viewsByDay = array();
-        $countryStatistics = CountryStatistic::with(['song', 'song.users'])->orderBy("TotalView",'desc')->limit(100)->get();
+        $countryStatistics = CountryStatistic::with(['song', 'song.users'])->orderBy("TotalView",'desc')->get();
         $debug = array();
         $allCountry = array();
         $topUsers = array();
