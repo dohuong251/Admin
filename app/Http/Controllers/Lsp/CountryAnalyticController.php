@@ -320,7 +320,7 @@ class CountryAnalyticController extends Controller
         $debug = array();
         $topCountries = array();
         $topUser = $countryStatistic->song->users;
-        $topUser['Stream'] = Songs::where('UserId',$topUser['UserId'])->count();
+        $topUser['Streams'] = Songs::where('UserId',$topUser['UserId'])->count();
 
         if($countryStatistic && $song){
             foreach ($countryStatistic->DayStatistic ?? [] as $day => $views){
