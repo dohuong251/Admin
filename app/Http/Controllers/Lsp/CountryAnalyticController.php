@@ -288,6 +288,12 @@ class CountryAnalyticController extends Controller
         return "No Country";
     }
 
+    public function isoToCPM($iso){
+        if(isset($this->iso_cpm[$iso]))
+            return $this->iso_cpm[$iso];
+        return 0.2;
+    }
+
     public function addDayView($currentView,$dayView){
         if($currentView){}
         else $currentView = array();
@@ -313,6 +319,8 @@ class CountryAnalyticController extends Controller
         $successView = 0;
         $debug = array();
         $topCountries = array();
+        $topUser = $countryStatistic->song->users;
+        $topUser['Stream'] = Songs::where('UserId',$topUser['UserId'])->count();
 
         if($countryStatistic && $song){
             foreach ($countryStatistic->DayStatistic ?? [] as $day => $views){
@@ -365,6 +373,8 @@ class CountryAnalyticController extends Controller
             return response("Stream Or Statistic Not Found!",500);
         }
 
+        $topUser['successViews'] = $successView;
+
         // Lấy 2 đất nước top đầu và gom các nước còn lại và 1 (OTH = Other)
         $sortViewsByDay = array();
         $allCountry = array();
@@ -416,7 +426,7 @@ class CountryAnalyticController extends Controller
                 "iso"=>$iso,
                 "successViews"=>$numViews,
                 "Country"=>$this->isoToName($iso),
-                "Amount"=>(isset($this->iso_cpm[$iso])?$this->iso_cpm[$iso] * $numViews:0)
+                "Amount"=>($this->isoToCPM($iso) * $numViews)
             );
         }
 
@@ -440,7 +450,8 @@ class CountryAnalyticController extends Controller
             )),
             "user" => $countryStatistic->song->users ?? null,
             "debug"=>$debug,
-            "topCountries"=>$topCountries
+            "topCountries"=>$topCountries,
+            "topUsers"=>array($topUser)
         ];
     }
     public function getUserInfo($userId,$startTime,$endTime,$country){
@@ -550,7 +561,7 @@ class CountryAnalyticController extends Controller
                     "iso"=>$iso,
                     "successViews"=>$numViews,
                     "Country"=>$this->isoToName($iso),
-                    "Amount"=>(isset($this->iso_cpm[$iso])?$this->iso_cpm[$iso] * $numViews:0)
+                    "Amount"=>$this->isoToCPM($iso)
                 );
             }
 
