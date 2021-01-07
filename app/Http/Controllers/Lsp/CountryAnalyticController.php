@@ -415,7 +415,7 @@ class CountryAnalyticController extends Controller
             $topCountries[] = array(
                 "iso"=>$iso,
                 "successViews"=>$numViews,
-                "Country"=>$this->iso_array[$iso],
+                "Country"=>$this->isoToName($iso),
                 "Amount"=>(isset($this->iso_cpm[$iso])?$this->iso_cpm[$iso] * $numViews:0)
             );
         }
@@ -549,7 +549,7 @@ class CountryAnalyticController extends Controller
                 $topCountries[] = array(
                     "iso"=>$iso,
                     "successViews"=>$numViews,
-                    "Country"=>$this->iso_array[$iso],
+                    "Country"=>$this->isoToName($iso),
                     "Amount"=>(isset($this->iso_cpm[$iso])?$this->iso_cpm[$iso] * $numViews:0)
                 );
             }
