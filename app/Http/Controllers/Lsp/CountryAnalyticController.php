@@ -469,7 +469,6 @@ class CountryAnalyticController extends Controller
         $topCountries = array();
 
         if($countryStatistics){
-            $topUser = $countryStatistics[0]->song->users;
             foreach ($countryStatistics as $countryStatistic){
                 $streamId = $countryStatistic['SongId'];
                 $totalViewByCountry = array();
@@ -546,11 +545,22 @@ class CountryAnalyticController extends Controller
                     "CountryDes"=>$CountryDes
                 );
 
+                $user = $countryStatistic->song->users;
+                if($user){
+                    if(isset($topUsers["UserId".$user['UserId']])){
+                        $topUsers["UserId".$user['UserId']]['successViews'] = $topUsers["UserId".$user['UserId']]['successViews'] + $successView;
+                    }else{
+                        $user['successViews'] = $successView;
+                        $user['Streams'] = Songs::where('UserId',$user['UserId'])->count();
+                        $topUsers["UserId".$user['UserId']] = $user;
+                    }
+                }
+
+
                 // lưu userSuccessView
                 $userSuccessView = $userSuccessView + $successView;
 
             }
-            $topUser['successViews'] = $userSuccessView;
             // sort totalViewByCountry
             arsort($userTotalViewByCountry);
 
@@ -574,9 +584,6 @@ class CountryAnalyticController extends Controller
                     $userCountryDesShort = $userCountryDesShort . $isoKey . ": " . $numView . "\n";
                 $userCountryDesCount ++;
             }
-            $topUser['CountryDes'] = $userCountryDes;
-            $topUser['CountryDesShort'] = $userCountryDesShort;
-            $topUsers[] = $topUser;
         }
         else {
             return response("Stream Or Statistic Not Found!",500);
@@ -634,8 +641,8 @@ class CountryAnalyticController extends Controller
             "topStreams"=>$topStreams,
             "user" => $countryStatistic->song->users ?? null,
             "debug"=>$debug,
-            "topUsers"=>$topUsers,
-            "topCountries"=>$topCountries
+            "topUsers"=>array_values($topUsers),
+            "topCountries"=>$topCountries,
         ];
     }
 
