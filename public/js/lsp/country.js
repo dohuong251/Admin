@@ -311,7 +311,7 @@ function loadData() {
 }
 
 function drawChart(data) {
-    if(data || !data.viewByDays){
+    if(!data || !data?.viewByDays){
         viewChartOptions.series = [];
         viewChartOptions.xaxis = [];
     } else{
