@@ -634,6 +634,13 @@ class CountryAnalyticController extends Controller
         usort($topStreams, function ($a, $b) {
             return $a['successViews'] <= $b['successViews'];
         });
+        $topStreams = array_slice($topStreams,0,100);
+
+        // sort $topUsers
+        usort($topUsers, function ($a, $b) {
+            return $a['successViews'] <= $b['successViews'];
+        });
+        $topUsers = array_slice($topUsers,0,100);
 
         return [
             "allCountry"=>$allCountry,
