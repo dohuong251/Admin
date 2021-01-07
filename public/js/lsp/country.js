@@ -70,6 +70,7 @@ $(document).ready(function () {
         userTable.removeClass("d-none")
         streamTable.addClass("d-none")
         countryTable.addClass("d-none")
+
     })
 
     btnSelectStream.click(function () {
@@ -264,6 +265,24 @@ function loadData() {
             }
             $('#successViewRatio').text(`${successRatio}%`).siblings('.progress').find(".progress-bar").css('width', `${successRatio}%`);
             drawChart(data);
+
+            let userTable = $('#user-rank');
+            let streamTable = $('#stream-rank');
+            let countryTable = $('#country-rank');
+            if(viewMode === 1){
+                userTable.removeClass("d-none")
+                streamTable.addClass("d-none")
+                countryTable.addClass("d-none")
+            }else if(viewMode === 2){
+                userTable.addClass("d-none")
+                streamTable.removeClass("d-none")
+                countryTable.addClass("d-none")
+            }else {
+                userTable.addClass("d-none")
+                streamTable.addClass("d-none")
+                countryTable.removeClass("d-none")
+            }
+
             if (data.topStreams) {
                 $('#stream-rank').html(rankStreamTemplate(data));
             } else {
