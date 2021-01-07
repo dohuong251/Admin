@@ -297,7 +297,7 @@ function loadData() {
 }
 
 function drawChart(data) {
-    if(!data || !data?.viewByDays){
+    if(!data || !data?.viewByDays || data.allCountry.length === 0){
         viewChartOptions.series = [];
         viewChartOptions.xaxis = [];
     } else{
