@@ -10,7 +10,8 @@ $(document).ready(function () {
                 apps: apps,
                 appid: $(e.relatedTarget).attr('data-applicationid'),
                 email: $(e.relatedTarget).attr('data-email'),
-                licenseKey: $(e.relatedTarget).attr('data-license')
+                licenseKey: $(e.relatedTarget).attr('data-license'),
+
             }));
         } else {
             // send new key form
