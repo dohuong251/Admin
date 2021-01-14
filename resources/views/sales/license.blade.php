@@ -20,6 +20,17 @@
             </div>
 
             <div class="form-group">
+                <label for="Feature" class="control-label">Feature</label>
+                <select name="Feature" class="custom-select" id="feature">
+                    <option value="PREMIUM">PREMIUM</option>
+                    <option value="ADFREE">ADFREE</option>
+                    <option value="CHROMECAST">CHROMECAST</option>
+                    <option value="PIP">PIP</option>
+                    <option value="RECORD">RECORD</option>
+                </select>
+            </div>
+
+            <div class="form-group">
                 <label for="resend_email" class="control-label">Customer Email</label>
                 <input class="form-control" id="resend_email" name="Email" required="true">
             </div>
