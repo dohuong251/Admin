@@ -173,7 +173,7 @@
                     </div>
                     <div class="form-group">
                         <label for="Feature" class="control-label">Feature</label>
-                        <select name="Feature" class="form-control" id="feature">
+                        <select name="Feature" class="custom-select" id="feature">
                             <option value="PREMIUM">PREMIUM</option>
                             <option value="ADFREE">ADFREE</option>
                             <option value="CHROMECAST">CHROMECAST</option>
