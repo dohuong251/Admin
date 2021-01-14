@@ -179,7 +179,7 @@
                             <option value="CHROMECAST">CHROMECAST</option>
                             <option value="PIP">PIP</option>
                             <option value="RECORD">RECORD</option>
-                        </select><br />
+                        </select>
                     </div>
 
                     <input class="form-control" id="resend_applicationid" name="ApplicationId" readonly="true" type="hidden" value="3">
