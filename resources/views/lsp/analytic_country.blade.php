@@ -152,6 +152,7 @@
                     </div>
                     <div class="col-3 px-0">
                         <select class="custom-select w-auto rounded-0" id="countrySelect">
+                            <option></option>
                             @foreach($countries as $iso => $name)
                                 <option value="{{$iso}}">{{$name}}</option>
                             @endforeach

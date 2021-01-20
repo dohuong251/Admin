@@ -880,7 +880,6 @@ class CountryAnalyticController extends Controller
         /**
          * thông tin chung lọc theo ngày
          */
-
         return $this->getStreamsInfo($startTime,$endTime,$country);
     }
 
