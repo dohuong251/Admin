@@ -81,16 +81,7 @@
         element.onerror = null;
     }</script>
 <div>
-    <div class="page-container">
-        <main class="main-content bgc-grey-100">
-            <div id="mainContent">
-                <div class="container-fluid bg-white bd">
-                    <div class="loading-icon" style="display: none"></div>
-                    @yield('content')
-                </div>
-            </div>
-        </main>
-    </div>
+    @yield('content')
 </div>
 <script src="/js/vendors/jquery.min.js"></script>
 <script type="text/javascript" src="/js/dist/vendor.js"></script>
