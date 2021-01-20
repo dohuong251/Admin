@@ -16,6 +16,8 @@ Route::get('/', function () {
 });
 
 Route::get('livestreamplayer/analytic/country-user/{userId}', 'Lsp\CountryAnalyticController@countryForUser')->name('country-for-user');
+Route::get('admin/livestreamplayer/analytic/country/filter', 'Lsp\CountryAnalyticController@filter')->name('admin.lsp.analytic.country.filter');
+Route::get('admin/livestreamplayer/analytic/country/search', 'Lsp\CountryAnalyticController@search')->name('admin.lsp.analytic.country.search');
 
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
@@ -89,8 +91,6 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::get('/statistics/filter', 'Lsp\StatisticsController@filter')->name('statistics.filter');
                 Route::get('/statistics/search', 'Lsp\StatisticsController@search')->name('statistics.search');
                 Route::get('/country', 'Lsp\CountryAnalyticController@index')->name('country');
-                Route::get('/country/filter', 'Lsp\CountryAnalyticController@filter')->name('country.filter');
-                Route::get('/country/search', 'Lsp\CountryAnalyticController@search')->name('country.search');
                 Route::get('/realtime', 'Lsp\RealtimeAnalyticController@index')->name('realtime');
                 Route::get('/realtime/filter', 'Lsp\RealtimeAnalyticController@filter')->name('realtime.filter');
                 Route::get('/realtime/activeUser', 'Lsp\RealtimeAnalyticController@getRealTimeActiveUser')->name('realtime.active_user');
