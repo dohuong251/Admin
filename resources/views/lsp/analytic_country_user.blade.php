@@ -136,7 +136,7 @@
                     <input class="form-control border-left-0 border-top-0 border-bottom-0 border-right col-3" id="date-picker">
                     <div class="col-3 px-0 border-right">
                         <select class="custom-select w-auto rounded-0" id="userSearch" disabled>
-                            <option value="{{$userName}}">{{$userName}}</option>
+                            <option value="{{$userId}}">{{$userName}}</option>
                         </select>
                     </div>
                     <div class="col-3 px-0">
