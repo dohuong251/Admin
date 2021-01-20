@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.main_lite')
 @section('title', 'Country')
 @section('css')
     <link rel="stylesheet"

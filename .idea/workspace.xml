@@ -56,8 +56,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="cập nhật sidebar">
+      <change afterPath="$PROJECT_DIR$/resources/views/layouts/main_lite.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/lsp/analytic_country_user.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/lsp/analytic_country_user.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -251,7 +252,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;JSON&#10;JavaScript&#10;MySQL" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.7.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/lsp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/layouts" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -268,11 +269,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/layouts" />
       <recent name="$PROJECT_DIR$/resources/views/lsp" />
       <recent name="$PROJECT_DIR$/public/js/lsp" />
       <recent name="$PROJECT_DIR$/storage/app" />
       <recent name="E:\MDCAdmin\Admin\resources\views\ustv" />
-      <recent name="E:\MDCAdmin\Admin\public\js\vendors" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\Order" />
@@ -425,7 +426,7 @@
       <workItem from="1610186967878" duration="607000" />
       <workItem from="1610596706763" duration="3693000" />
       <workItem from="1611038089193" duration="9277000" />
-      <workItem from="1611114675537" duration="3542000" />
+      <workItem from="1611114675537" duration="4242000" />
     </task>
     <task id="LOCAL-00001" summary="fix model namespace">
       <created>1586849007167</created>
