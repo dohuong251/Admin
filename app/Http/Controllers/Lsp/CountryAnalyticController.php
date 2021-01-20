@@ -285,7 +285,7 @@ class CountryAnalyticController extends Controller
     public function countryForUser(Request $request,$userId){
         $user = Users::where('UserId',$userId)->first();
         return view('lsp.analytic_country_user',[
-            'userName' => $user->Nickname,
+            'userName' =>  $user ? $user->Nickname:"",
             'countries'=>$this->iso_array
         ]);
     }
