@@ -87,6 +87,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::get('/statistics/filter', 'Lsp\StatisticsController@filter')->name('statistics.filter');
                 Route::get('/statistics/search', 'Lsp\StatisticsController@search')->name('statistics.search');
                 Route::get('/country', 'Lsp\CountryAnalyticController@index')->name('country');
+                Route::get('/country/{userId}', 'Lsp\CountryAnalyticController@countryForUser')->name('country-for-user');
                 Route::get('/country/filter', 'Lsp\CountryAnalyticController@filter')->name('country.filter');
                 Route::get('/country/search', 'Lsp\CountryAnalyticController@search')->name('country.search');
                 Route::get('/realtime', 'Lsp\RealtimeAnalyticController@index')->name('realtime');

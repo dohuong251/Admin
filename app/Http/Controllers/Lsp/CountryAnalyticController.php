@@ -282,6 +282,14 @@ class CountryAnalyticController extends Controller
         ]);
     }
 
+    public function countryForUser(Request $request,$userId){
+        $user = Users::where('UserId',$userId)->first();
+        return view('lsp.analytic_country_user',[
+            'userName' => $user->Nickname,
+            'countries'=>$this->iso_array
+        ]);
+    }
+
     public function isoToName($iso){
         if(isset($this->iso_array[$iso]))
             return $this->iso_array[$iso];

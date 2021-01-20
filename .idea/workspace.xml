@@ -56,8 +56,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="740d8613-8ae5-483b-a2ed-57faf47608ea" name="Default Changelist" comment="cập nhật sidebar">
+      <change afterPath="$PROJECT_DIR$/resources/views/lsp/analytic_country_user.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/sales/license.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/sales/license.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Lsp/CountryAnalyticController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Lsp/CountryAnalyticController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,9 +243,9 @@
   </component>
   <component name="PropertiesComponent">
     <property name="DatabaseDriversLRU" value="mysql" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="WebServerToolWindowFactoryState" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.mappings" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.highlight.symlinks" value="true" />
     <property name="WebServerToolWindowPanel.toolwindow.show.date" value="false" />
@@ -251,7 +253,7 @@
     <property name="WebServerToolWindowPanel.toolwindow.show.size" value="false" />
     <property name="com.intellij.ide.scratch.LRUPopupBuilder$1/New Scratch File" value="PHP&#10;JSON&#10;JavaScript&#10;MySQL" />
     <property name="javascript.nodejs.core.library.configured.version" value="14.7.0" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/js/lsp" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/views/lsp" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
@@ -267,19 +269,19 @@
     <property name="two.files.diff.last.used.file" value="$PROJECT_DIR$/public/js/app/index.js" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/resources/views/lsp" />
+      <recent name="$PROJECT_DIR$/public/js/lsp" />
+      <recent name="$PROJECT_DIR$/storage/app" />
+      <recent name="E:\MDCAdmin\Admin\resources\views\ustv" />
+      <recent name="E:\MDCAdmin\Admin\public\js\vendors" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\Order" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\tool" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\app" />
       <recent name="E:\MDCAdmin\Admin\app\Models" />
       <recent name="E:\MDCAdmin\Admin\app\Http\Controllers\lsp" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/public/js/lsp" />
-      <recent name="$PROJECT_DIR$/storage/app" />
-      <recent name="$PROJECT_DIR$/resources/views/lsp" />
-      <recent name="E:\MDCAdmin\Admin\resources\views\ustv" />
-      <recent name="E:\MDCAdmin\Admin\public\js\vendors" />
     </key>
   </component>
   <component name="RunManager" selected="PHP Web Page.debug laravel">
@@ -423,7 +425,9 @@
       <workItem from="1609898566322" duration="3363000" />
       <workItem from="1609983517481" duration="20493000" />
       <workItem from="1610186967878" duration="607000" />
-      <workItem from="1610596706763" duration="2854000" />
+      <workItem from="1610596706763" duration="3693000" />
+      <workItem from="1611038089193" duration="9277000" />
+      <workItem from="1611114675537" duration="867000" />
     </task>
     <task id="LOCAL-00001" summary="fix model namespace">
       <created>1586849007167</created>
@@ -463,6 +467,18 @@
     <option name="LAST_COMMIT_MESSAGE" value="đăng nhập fix username, pass" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="560" y="188" key="#Deployment" timestamp="1611039990022">
+      <screen x="0" y="23" width="1920" height="999" />
+    </state>
+    <state x="560" y="188" key="#Deployment/0.23.1920.999@0.23.1920.999" timestamp="1611039990022" />
+    <state x="544" y="175" key="#SSH_Configurations" timestamp="1611039920599">
+      <screen x="0" y="23" width="1920" height="999" />
+    </state>
+    <state x="544" y="175" key="#SSH_Configurations/0.23.1920.999@0.23.1920.999" timestamp="1611039920599" />
+    <state x="667" y="331" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1611041221426">
+      <screen x="0" y="23" width="1920" height="999" />
+    </state>
+    <state x="667" y="331" key="#com.intellij.fileTypes.FileTypeChooser/0.23.1920.999@0.23.1920.999" timestamp="1611041221426" />
     <state x="698" y="284" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1609388936228">
       <screen x="0" y="23" width="1920" height="999" />
     </state>
@@ -483,14 +499,22 @@
       <screen x="0" y="23" width="1920" height="999" />
     </state>
     <state x="690" y="261" width="549" height="524" key="StructurePopup/0.23.1920.999@0.23.1920.999" timestamp="1610005983884" />
-    <state x="667" y="277" width="821" height="638" key="find.popup" timestamp="1610599062864">
+    <state x="824" y="364" key="WebDeployment.AddServerDialog.v.1" timestamp="1611039857972">
       <screen x="0" y="23" width="1920" height="999" />
     </state>
-    <state x="667" y="277" width="821" height="638" key="find.popup/0.23.1920.999@0.23.1920.999" timestamp="1610599062864" />
-    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1610599401984">
+    <state x="824" y="364" key="WebDeployment.AddServerDialog.v.1/0.23.1920.999@0.23.1920.999" timestamp="1611039857972" />
+    <state x="667" y="277" width="821" height="638" key="find.popup" timestamp="1611048133610">
       <screen x="0" y="23" width="1920" height="999" />
     </state>
-    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1920.999@0.23.1920.999" timestamp="1610599401984" />
+    <state x="667" y="277" width="821" height="638" key="find.popup/0.23.1920.999@0.23.1920.999" timestamp="1611048133610" />
+    <state x="867" y="260" width="341" height="525" key="ftp.server.browser" timestamp="1611039978156">
+      <screen x="0" y="23" width="1920" height="999" />
+    </state>
+    <state x="867" y="260" width="341" height="525" key="ftp.server.browser/0.23.1920.999@0.23.1920.999" timestamp="1611039978156" />
+    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup" timestamp="1611115064202">
+      <screen x="0" y="23" width="1920" height="999" />
+    </state>
+    <state x="625" y="173" width="670" height="676" key="search.everywhere.popup/0.23.1920.999@0.23.1920.999" timestamp="1611115064202" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
