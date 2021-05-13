@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Tool;
 
 use App\Console\Commands\CheckParseUrl;
 use App\Http\Controllers\Controller;
+use App\Jobs\CheckRuleJob;
 use App\Models\ReportRule;
 use App\Models\Tool\Config;
 use Artisan;
@@ -103,7 +104,7 @@ class TestRuleController extends Controller
 
     public function startCheckRule(Request $request)
     {
-        Artisan::queue("check:rules", []);
+        CheckRuleJob::dispatch();
     }
 
     protected function getDeleteClass()
