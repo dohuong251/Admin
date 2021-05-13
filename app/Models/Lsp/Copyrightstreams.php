@@ -5,7 +5,7 @@ namespace App\Models\Lsp;
 class Copyrightstreams extends Base
 {
     //
-    protected $primaryKey = 'CommentId';
+    protected $primaryKey = 'Id';
 
     // user phát stream bị report
     public function reportedUsers()

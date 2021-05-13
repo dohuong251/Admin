@@ -1,0 +1,164 @@
+.top-home{
+    padding-right: 20px;
+}
+
+.middle-home{
+    //margin-top: 20px;
+}
+
+
+.card-home{
+    height:120px !important;
+    margin-left: 20px;
+    /* white */
+    background: #FFFFFF;
+    border: 1px solid #E9E9E9;
+    box-sizing: border-box;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    border-radius: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 20px;
+    padding: 20px;
+
+
+}
+
+.card-home-title{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 32px;
+    line-height: 39px;
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.3px;
+
+    /* Main Color */
+
+    color: #444444;
+    margin-top: 7px;
+}
+
+.card-home-des{
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 17px;
+    /* identical to box height */
+
+    display: flex;
+    align-items: center;
+    letter-spacing: 0.3px;
+
+    /* Tittle */
+
+    color: #5C6078;
+
+}
+
+.card-header {
+    border-bottom: 1px solid #EBEFF2;
+}
+
+.card {
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    box-sizing: border-box;
+    /* box shadow */
+
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    border-radius: 4px;
+    height: 1000px;
+}
+
+.card-member-chart{
+    background: #FFFFFF;
+    border: 1px solid #E5E5E5;
+    border-radius-top-left: 4px;
+    border-radius-bottom-left: 4px;
+    box-sizing: border-box;
+    /* box shadow */
+    padding-left: 7.5px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+}
+
+.card-member-count{
+    border-top: 1px solid #E5E5E5;
+    border-right: 1px solid #E5E5E5;
+
+    background: #FFFFFF;
+    border-radius-top-right: 4px;
+    border-radius-bottom-right: 4px;
+    box-sizing: border-box;
+    /* box shadow */
+    padding-right: 7.5px;
+    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.06);
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-member-count-bottom{
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid #E5E5E5;
+}
+
+.card-container{
+    /*margin-top: 20px;*/
+    height: auto;
+}
+
+.home-company-detail{
+    font-style: normal;
+    font-weight: bold;
+    font-size: 13px;
+    line-height: 18px;
+    /* identical to box height */
+
+    text-align: right;
+    letter-spacing: 0.01em;
+
+    /* feature */
+
+    color: #2F9BFF;
+}
+
+.header-home-title{
+    font-style: normal;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height */
+
+    letter-spacing: 0.01em;
+
+    /* black */
+
+    color: #192A3E;
+}
+
+.header-home-subtitle{
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 20px;
+    /* identical to box height */
+
+    letter-spacing: 0.01em;
+
+    /* black */
+
+    color: #192A3E;
+}
+
+.icon{
+    width: 50px;
+    height: 50px;
+}
+
+
+

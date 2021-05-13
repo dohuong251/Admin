@@ -1,9 +1,9 @@
 {
-    "promotion": true,
-    "footerBackground": "\/apps\/public\/images\/backfriday\/background.png",
-    "footerLeftImg": "\/apps\/public\/images\/backfriday\/left.png",
-    "footerRightImg": "\/apps\/public\/images\/backfriday\/right.png",
-    "footerCenterImg": "\/apps\/public\/images\/backfriday\/center.png1",
+    "promotion": false,
+    "footerBackground": "\/apps\/upload\/images\/newyear2020\/main_background.jpg",
+    "footerLeftImg": "\/apps\/upload\/images\/newyear2020\/website_left.jpg",
+    "footerRightImg": "\/apps\/upload\/images\/newyear2020\/website_right.jpg",
+    "footerCenterImg": "\/apps\/upload\/images\/newyear2020\/website_middle.jpg",
     "mobileKey": {
         "price": "4.99",
         "salePrice": "3.49"

@@ -126,6 +126,9 @@
                         <li class="{{strpos(request()->route()->getName(),"admin.lsp.streams")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.lsp.streams.index')}}">Streams</a>
                         </li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.lsp.review_streams")===0?'active':''}}">
+                            <a class="sidebar-link" href="{{route('admin.lsp.review_streams')}}">Review Copyright Streams</a>
+                        </li>
                         <li class="{{strpos(request()->route()->getName(),"admin.lsp.messages")===0?'active':''}}">
                             <a class="sidebar-link" href="{{route('admin.lsp.messages.index')}}">Messages</a>
                         </li>
@@ -140,6 +143,9 @@
                                 </li>
                                 <li class="{{strpos(request()->route()->getName(),"admin.lsp.analytic.realtime")===0?'active':''}}">
                                     <a href="{{route('admin.lsp.analytic.realtime')}}">Realtime</a>
+                                </li>
+                                <li class="{{strpos(request()->route()->getName(),"admin.lsp.analytic.country")===0?'active':''}}">
+                                    <a href="{{route('admin.lsp.analytic.country')}}">Country</a>
                                 </li>
                             </ul>
                         </li>
@@ -184,11 +190,22 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item {{strpos(request()->route()->getName(),"admin.apps")===0?'active':''}}">
-                    <a class="sidebar-link" href="{{route('admin.apps.index')}}">
+                <li class="nav-item dropdown {{strpos(request()->route()->getName(),"admin.apps")===0 && strpos(request()->route()->getName(),"admin.apps.overview")===0 ?'open':''}}">
+                    <a class="dropdown-toggle" href="javascript:void(0);">
                         <span class="icon-holder"><i class="c-white-500 ti-email"></i> </span>
                         <span class="title">Apps</span>
+                        <span class="arrow"><i class="ti-angle-right"></i></span>
                     </a>
+
+                    <ul class="dropdown-menu">
+                        <li class="{{strpos(request()->route()->getName(),"admin.apps.overview")===0?'active':''}}">
+                            <a class="sidebar-link" href="{{route('admin.apps.overview')}}">Overview</a>
+                        </li>
+                        <li class="{{strpos(request()->route()->getName(),"admin.apps.index")===0?'active':''}}">
+                            <a class="sidebar-link" href="{{route('admin.apps.index')}}">Manage Apps</a>
+                        </li>
+                    </ul>
+
                 </li>
                 <li class="nav-item {{strpos(request()->route()->getName(),"admin.promotions")===0?'active':''}}">
                     <a class="sidebar-link" href="{{route('admin.promotions.index')}}">

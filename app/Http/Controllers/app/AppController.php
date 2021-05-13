@@ -8,6 +8,8 @@ use App\Models\Apps\AppResources;
 use App\Models\Apps\Apps;
 use App\Models\Apps\AppVersion;
 use App\Models\Apps\Category;
+use App\Models\Apps\Connections;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use mysql_xdevapi\Exception;
@@ -18,6 +20,7 @@ class AppController extends Controller
     //
     public function index()
     {
+        //return "hello";
         return view('apps.apps', [
             'apps' => Apps::join('app_version', function ($join) {
                 $join->on('app_version.app_id', '=', 'app.app_id');
@@ -28,6 +31,105 @@ class AppController extends Controller
                 ->get(),
 
         ]);
+    }
+
+    public function overview(Request $request){
+        if($request->has('type_time')) $type_time = intval($request->get('type_time'));
+        $app_id = 'com.ustv.v2';
+        if($request->has('app_id')) $app_id = $request->get('app_id');
+        $selected_version = "0";
+        if($request->has('selected_version')) $selected_version = $request->get('selected_version');
+        if($request->has('start_date') && $request->has('end_date')){
+            $filter_days = $this->getBetweenDays($request->get('start_date'),$request->get('end_date'));
+        }else $filter_days = $this->getLastDays(7);
+
+        //return $filter_days;
+
+        // truy vấn database
+        $active_count = array();
+        $new_user_count = array();
+        $query = Connections::where('id_application',$app_id);
+        if($selected_version == "0"){}
+        else $query = $query->where('Version',$selected_version);
+
+        foreach($filter_days as $day){
+            $query_clone = clone $query;
+            $query_clone = $query_clone->whereBetween('Time',[$day.' 00:00:00',$day.' 23:59:59']);
+            //return $query->toSql();
+            $active_count[] = $query_clone->count();
+            // new user
+            $new_user_count[] = $query_clone->where('NewUser',1)->count();
+            error_log("$day done");
+        }
+
+        // top country
+        $query = DB::connection('mysql_tool_connection')
+            ->table('connections')->select(DB::raw('count(*) as country_count,Country'))
+            ->where('id_application',$app_id)
+            ->whereBetween('Time',[$filter_days[0]. ' 00:00:00',$filter_days[count($filter_days)-1] . ' 23:59:59'])
+            ->groupBy('Country')
+            ->orderBy('country_count','desc')
+            ->limit(10);
+        if($selected_version == "0"){}
+        else $query = $query->where('Version',$selected_version);
+        $top_countries = $query->get();
+        $allCountryCount = $top_countries->sum('country_count');
+        $countries_name = array();
+        $countries_percent = array();
+        foreach ($top_countries as $top_country){
+            $countries_name[] = $top_country->Country;
+            $countries_percent[] = intval($top_country->country_count/$allCountryCount * 100);
+        }
+
+        //return $countries_name;
+        error_log("get top country done");
+
+        // all version
+        $all_versions = $this->getVersions($app_id);
+        error_log("get all version done");
+        return view('apps.overview', ['app_id'=>$app_id,
+            'selected_version'=>$selected_version,
+            'versions'=>$all_versions,
+            'countries_name'=>$countries_name,
+            'countries_percent'=>$countries_percent,
+            'filter_days'=>$filter_days,
+            'new_user_count'=>$new_user_count,
+            'active_count'=>$active_count,
+            'start_date'=>$filter_days[0],
+            'end_date'=>$filter_days[count($filter_days)-1]]);
+
+    }
+
+    public function getVersions($app_id){
+        return DB::connection('mysql_tool_connection')
+            ->table('connections')
+            ->select('Version')
+            ->where('id_application',$app_id)
+            ->orderBy('Version','desc')
+            ->groupBy('Version')
+            ->pluck('Version');
+    }
+
+    public function getBetweenDays($start_date,$end_date){
+        $days = array();
+        $endCarbon = Carbon::parse($end_date);
+        while (true){
+            $loopDay = $endCarbon->format('Y-m-d');;
+            $days[] = $loopDay;
+            $endCarbon->subDay();
+            if($start_date == $loopDay) break;
+        }
+        return array_reverse($days);
+    }
+
+    public function getLastDays($count){
+        $days = array();
+        $cbToday = Carbon::now();
+        for ($i=0;$i<$count;$i++){
+            $days[] = $cbToday->format('Y-m-d');
+            $cbToday->subDay();
+        }
+        return array_reverse($days);
     }
 
     public function show($appId)

@@ -15,6 +15,10 @@ Route::get('/', function () {
     return redirect()->route('admin.home');
 });
 
+Route::get('livestreamplayer/analytic/country-user/{userId}', 'Lsp\CountryAnalyticController@countryForUser')->name('country-for-user');
+Route::get('admin/livestreamplayer/analytic/country/filter', 'Lsp\CountryAnalyticController@filter')->name('admin.lsp.analytic.country.filter');
+Route::get('admin/livestreamplayer/analytic/country/search', 'Lsp\CountryAnalyticController@search')->name('admin.lsp.analytic.country.search');
+
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 
@@ -54,6 +58,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::delete('/', 'Lsp\UserController@delete')->name('delete');
             });
 
+            // review stream
+            Route::get('/review-streams','Lsp\StreamController@reviewStreams')->name('review_streams');
+            Route::get('review-streams/review-copyright','Lsp\StreamController@reviewCopyright')->name('review_copyright');
+
             // streams
             Route::group(['as' => 'streams.', 'prefix' => 'streams'], function () {
                 Route::get('/', 'Lsp\StreamController@index')->name('index');
@@ -82,7 +90,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
                 Route::get('/statistics', 'Lsp\StatisticsController@index')->name('statistics');
                 Route::get('/statistics/filter', 'Lsp\StatisticsController@filter')->name('statistics.filter');
                 Route::get('/statistics/search', 'Lsp\StatisticsController@search')->name('statistics.search');
-
+                Route::get('/country', 'Lsp\CountryAnalyticController@index')->name('country');
                 Route::get('/realtime', 'Lsp\RealtimeAnalyticController@index')->name('realtime');
                 Route::get('/realtime/filter', 'Lsp\RealtimeAnalyticController@filter')->name('realtime.filter');
                 Route::get('/realtime/activeUser', 'Lsp\RealtimeAnalyticController@getRealTimeActiveUser')->name('realtime.active_user');
@@ -131,6 +139,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
 //        app
         Route::group(['as' => 'apps.', 'prefix' => 'apps'], function () {
             Route::get('/', 'App\AppController@index')->name('index');
+            Route::get('/overview', 'App\AppController@overview')->name('overview');
             Route::get('/create', 'App\AppController@create')->name('create');
             Route::post('/', 'App\AppController@store')->name('store');
             Route::delete('/{appVersionId}', 'App\AppController@destroy')->name('destroy');

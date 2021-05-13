@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Lsp;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lsp\Complain;
+use App\Models\Lsp\Copyrightstreams;
 use App\Models\Lsp\Features;
 use App\Models\Lsp\Messages;
 use App\Models\Lsp\Songs;
@@ -29,6 +30,21 @@ class StreamController extends Controller
             ->paginate($record_per_page)->appends(Request()->except('page'));
 //        $songs = Songs::with('users')->orderBy('ViewByAll', 'desc')->paginate($record_per_page);
         return view('lsp.streams', ['songs' => $songs]);
+    }
+
+    public function reviewStreams(Request $request){
+        $query = $request->get('query');
+        $record_per_page = Config::get('constant.PAGINATION_RECORD_PER_PAGE');
+        $songs = Songs::select(['songs.*','copyrightstreams.DeleteDate','copyrightstreams.Reason','users.Nickname as Reporter'])->with('users')
+            ->join('copyrightstreams','copyrightstreams.SongId','=','songs.SongId')
+            ->join('users','copyrightstreams.OwnerId','=','users.UserId')
+            ->where('songs.Name', 'like', '%' . $query . '%')
+            ->withCount('likes')
+            ->orderBy('copyrightstreams.DeleteDate', 'desc')
+            ->paginate($record_per_page)->appends(Request()->except('page'));
+//        return json_encode($songs->get()->toArray());
+//        $songs = Songs::with('users')->orderBy('ViewByAll', 'desc')->paginate($record_per_page);
+        return view('lsp.review-streams', ['songs' => $songs]);
     }
 
     public function show($songId)
@@ -140,6 +156,25 @@ class StreamController extends Controller
                 ]);
 
             }, 5);
+        }
+        return back();
+    }
+
+    public function reviewCopyright(Request $request){
+        $songId = $request->get("SongId");
+        $song = Songs::find($songId);
+        $copyrightStreams = Copyrightstreams::where('SongId',$songId)->first();
+        $copyright = intval($request->get("Copyright"));
+        if($song && $copyrightStreams){
+            if($copyright == 0){
+                $song->Copyright = 0;
+                $copyrightStreams->UnderReview = 1;
+            }else{
+                $song->Copyright = 1;
+                $copyrightStreams->UnderReview = 0;
+            }
+            $song->save();
+            $copyrightStreams->save();
         }
         return back();
     }
