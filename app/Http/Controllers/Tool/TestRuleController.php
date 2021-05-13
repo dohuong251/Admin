@@ -103,7 +103,7 @@ class TestRuleController extends Controller
 
     public function startCheckRule(Request $request)
     {
-        Artisan::call("check:rules", []);
+        Artisan::queue("check:rules", []);
     }
 
     protected function getDeleteClass()
