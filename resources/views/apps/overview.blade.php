@@ -33,7 +33,8 @@
 
             <select class="form-control align-items-center" name="app_id" style="width: 200px; margin-left: 20px;">
                 <option value="com.ustv.v2" {{$app_id=='com.ustv.v2'?'selected':''}}>USTV</option>
-                <option value="com.liveplayer.v2" {{$app_id=='com.liveplayer.v2'?'selected':''}}>Live Stream Player</option>
+                <option value="com.liveplayer.v2" {{$app_id=='com.liveplayer.v2'?'selected':''}}>Live Stream Player V2</option>
+                <option value="com.liveplayer.v3" {{$app_id=='com.liveplayer.v3'?'selected':''}}>Live Stream Player V3</option>
             </select>
 
             <div id="reportrange" style="background: #fff; cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; margin-left: 20px;">
