@@ -21,7 +21,7 @@ $(document).ready(function () {
     }).on('apply.daterangepicker', function (ev, picker) {
         startDate = picker.startDate;
         endDate = picker.endDate;
-        $(this).val(startDate.format(locacleDateFormat) + ' - ' + endDate.format(locacleDateFormat))
+        $(this).val(startDate.format(localeDateFormat) + ' - ' + endDate.format(localeDateFormat))
             .siblings("[name=start]").val(startDate.format(serverDateFormat))
             .siblings("[name=end]").val(endDate.format(serverDateFormat));
     }).on('cancel.daterangepicker', function () {

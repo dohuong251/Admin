@@ -2,13 +2,12 @@
 
 namespace App\Models\Apps;
 
-use Illuminate\Database\Eloquent\Model;
-
 class GCM extends Base
 {
     //
     protected $table = 'gcm';
     protected $primaryKey = ['gcm_id', 'app_id'];
+    public $incrementing = false;
 
     public function app()
     {

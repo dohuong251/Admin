@@ -2,8 +2,6 @@
 
 namespace App\Models\Lsp;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Playlists extends Base
 {
     //
@@ -19,7 +17,8 @@ class Playlists extends Base
         return $this->hasMany('App\Models\Lsp\Likes', 'TargetId');
     }
 
-    public function playlistSongs(){
-        return $this->hasMany('App\Models\Lsp\Playlistsongs','PlaylistId');
+    public function playlistSongs()
+    {
+        return $this->hasMany('App\Models\Lsp\Playlistsongs', 'PlaylistId');
     }
 }

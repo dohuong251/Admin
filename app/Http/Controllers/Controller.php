@@ -2,13 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lsp\Users;
+use App\Models\ReportRule;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
-use Illuminate\Foundation\Validation\ValidatesRequests;
-use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
-use PhpParser\Builder\Class_;
 use View;
 
 abstract class Controller extends BaseController
@@ -22,6 +21,13 @@ abstract class Controller extends BaseController
                 View::share($key, $value);
             }
         }
+
+        $ruleCheckingNotifications = ReportRule::whereIn("status", [2, 3])->orderByDesc("status")->orderByDesc("created_at")->get();
+        View::share("notifications", $ruleCheckingNotifications);
+//        $GLOBALS["parse_rule_checking"] = true;
+//        Artisan::call("check:rules", []);
+//        $parseRuleReport
+//        View::share();
     }
 
 
@@ -38,7 +44,7 @@ abstract class Controller extends BaseController
     // xóa hàng loạt bản ghi (request ajax)
     public function delete(Request $request)
     {
-        if ($this->getDeleteClass() == null) return response('getDeleteClass required',500);
+        if ($this->getDeleteClass() == null) return response('getDeleteClass required', 500);
         $request->validate([
             "Id" => "required"
         ]);

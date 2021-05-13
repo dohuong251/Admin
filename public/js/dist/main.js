@@ -1,7 +1,7 @@
 let images = document.querySelectorAll("img"), loadingIcon = $('.loading-icon');
 lazyload(images);
 
-let locacleDateFormat = "DD/MM/YYYY";
+let localeDateFormat = "DD/MM/YYYY";
 let serverDateFormat = "YYYY-MM-DD";
 
 $(document).ready(function () {

@@ -2,12 +2,11 @@
 
 namespace App\Models\Lsp;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Rating extends Base
 {
     //
     protected $primaryKey = ['UserId', 'SongId'];
+    public $incrementing = false;
 
     public function users()
     {
@@ -16,6 +15,6 @@ class Rating extends Base
 
     public function songs()
     {
-        return $this->belongsTo('App\Models\Rating\Songs', 'SongId');
+        return $this->belongsTo('App\Models\Lsp\Songs', 'SongId');
     }
 }

@@ -4,8 +4,6 @@
 
 @endsection
 @section('js')
-    <script src="/js/vendors/popper.min.js"></script>
-    <script src="/js/vendors/bootstrap.min.js"></script>
     <script src="/js/app/create.js"></script>
 @endsection
 @section('content')

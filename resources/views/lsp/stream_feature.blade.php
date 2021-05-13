@@ -5,8 +5,6 @@
 
 @section('js')
     <script src="/js/vendors/clipboard.min.js"></script>
-    <script src="/js/vendors/popper.min.js"></script>
-    <script src="/js/vendors/bootstrap.min.js"></script>
     <script src="/js/vendors/jquery.stickytableheaders.min.js"></script>
     <script src="/js/lsp/streams.js"></script>
 @endsection

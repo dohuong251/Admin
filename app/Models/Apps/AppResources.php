@@ -2,8 +2,6 @@
 
 namespace App\Models\Apps;
 
-use Illuminate\Database\Eloquent\Model;
-
 class AppResources extends Base
 {
     //

@@ -2,8 +2,6 @@
 
 namespace App\Models\Apps;
 
-use Illuminate\Database\Eloquent\Model;
-
 class User extends Base
 {
     //

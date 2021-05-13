@@ -1,4 +1,4 @@
 {
-    "/js/app.js": "/js/app.js?id=86e0bfb48d321bbe4c67",
-    "/css/app.css": "/css/app.css?id=43c5fc47f5f2748f45f5"
+    "/js/vendors/modal.js": "/js/vendors/modal.js",
+    "/js/vendors/tooltip.js": "/js/vendors/tooltip.js"
 }

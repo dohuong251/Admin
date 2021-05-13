@@ -97,7 +97,7 @@ $(document).ready(function () {
                 if (picker.endDate) endDate = picker.endDate;
             }
 
-            $(this).val(startDate.format(locacleDateFormat) + ' - ' + endDate.format(locacleDateFormat));
+            $(this).val(startDate.format(localeDateFormat) + ' - ' + endDate.format(localeDateFormat));
         })
         .on('cancel.daterangepicker', function (ev, picker) {
             $(this).val('');

@@ -2,13 +2,11 @@
 
 namespace App\Models\Lsp;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Broadcasts extends Base
 {
     //
 
-    protected $primaryKey = ['BroadcastId'];
+    protected $primaryKey = 'BroadcastId';
 
     public function users()
     {

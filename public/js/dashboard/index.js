@@ -26,7 +26,7 @@ $(document).ready(function () {
             startDate = picker.startDate;
             endDate = picker.endDate;
         }
-        $(this).val(startDate.format(locacleDateFormat) + ' - ' + endDate.format(locacleDateFormat));
+        $(this).val(startDate.format(localeDateFormat) + ' - ' + endDate.format(localeDateFormat));
         $.get($(this).attr('data-url'), {
             startDate: startDate.format(serverDateFormat),
             endDate: endDate.format(serverDateFormat)

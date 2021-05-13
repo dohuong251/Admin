@@ -2,12 +2,11 @@
 
 namespace App\Models\Lsp;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Subscribe extends Base
 {
     //
     protected $primaryKey = ['UserId', 'TargetUserId'];
+    public $incrementing = false;
 
     public function user()
     {

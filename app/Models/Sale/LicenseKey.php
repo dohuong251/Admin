@@ -2,13 +2,11 @@
 
 namespace App\Models\Sale;
 
-use Illuminate\Database\Eloquent\Model;
-
 class LicenseKey extends Base
 {
     //
     protected $primaryKey = "LicenseId";
-    protected $table="licensekey";
+    protected $table = "licensekey";
 
 //    public function order()
 //    {

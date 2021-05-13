@@ -11,10 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-   .sass('resources/sass/app.scss', 'public/css');
-// mix.webpackConfig({
-//     externals: {
-//         "jquery": "jQuery"
-//     }
-// });
+mix.js('resources/js/vendor/tooltip.js', 'public/js/vendors/')
+    .js('resources/js/vendor/modal.js', 'public/js/vendors/')
+   // .sass('resources/sass/app.scss', 'public/css');
+mix.webpackConfig({
+    externals: {
+        "jquery": "jQuery"
+    }
+});

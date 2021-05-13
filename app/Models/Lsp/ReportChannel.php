@@ -2,12 +2,11 @@
 
 namespace App\Models\Lsp;
 
-use Illuminate\Database\Eloquent\Model;
-
 class ReportChannel extends Base
 {
     //
     protected $primaryKey = ['ChannelId', 'ReportedUserId'];
+    public $incrementing = false;
 
     public function users()
     {

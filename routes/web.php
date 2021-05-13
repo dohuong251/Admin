@@ -122,6 +122,9 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin'], function () {
             Route::get('/sendBroadcast', 'Tool\SendBroadcastController@index')->name('sendBroadcast');
 
             Route::get('/testRule', 'Tool\TestRuleController@index')->name('testRule');
+            Route::post('/testRule/logs', 'Tool\TestRuleController@getReportRuleLogs')->name('getRuleLogs');
+            Route::get('/testRule/checkParseRuleServiceState', 'Tool\TestRuleController@checkParseRuleServiceState')->name('checkParseRuleServiceState');
+            Route::post('/testRule/startCheckRule', 'Tool\TestRuleController@startCheckRule')->name('startCheckRule');
             Route::post('/testRule', 'Tool\TestRuleController@decryptUrl')->name('decrypt_url');
             Route::put('/testRule', 'Tool\TestRuleController@updateRule')->name('testRule.update_rule');
         });

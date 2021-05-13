@@ -2,8 +2,6 @@
 
 namespace App\Models\Lsp;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Categories extends Base
 {
     //

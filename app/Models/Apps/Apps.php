@@ -2,8 +2,6 @@
 
 namespace App\Models\Apps;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Apps extends Base
 {
     //
@@ -22,7 +20,7 @@ class Apps extends Base
 
     public function gcm()
     {
-        return $this->belongsTo('App\Models\Apps\GCM', 'app_id');
+        return $this->hasMany('App\Models\Apps\GCM', 'app_id');
     }
 
     public function userApp()

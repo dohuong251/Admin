@@ -51,7 +51,6 @@
         </script>
     @endverbatim
     <script src="/js/vendors/handlebars.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="/js/vendors/jquery.stickytableheaders.min.js"></script>
     <script src="/js/vendors/sweetalert2.all.min.js"></script>
     <script src="/js/dist/ajax_setup_loading.js"></script>

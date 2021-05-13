@@ -9,6 +9,7 @@ class Promotion extends Model
 {
     //
     use SoftDeletes;
+
     protected $table = 'promotions';
     protected $primaryKey = 'id';
 }

@@ -5,7 +5,6 @@
 @endsection
 @section('js')
 
-    <script src="/js/vendors/bootstrap.min.js"></script>
     <script>
         $(document).ready(function () {
             $('.modal').on('shown.bs.modal', function (e) {

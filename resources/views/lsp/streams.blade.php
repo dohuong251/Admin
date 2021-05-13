@@ -10,8 +10,6 @@
     <script src="/js/vendors/spin.min.js"></script>
     <script src="/js/vendors/ladda.min.js"></script>
     <script src="/js/vendors/clipboard.min.js"></script>
-    <script src="/js/vendors/popper.min.js"></script>
-    <script src="/js/vendors/bootstrap.min.js"></script>
     <script src="/js/vendors/jquery.stickytableheaders.min.js"></script>
     <script src="/js/dist/delete.js"></script>
     <script src="/js/lsp/streams.js"></script>

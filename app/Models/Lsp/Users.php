@@ -2,8 +2,6 @@
 
 namespace App\Models\Lsp;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Users extends Base
 {
     protected $table = 'users';
@@ -117,11 +115,13 @@ class Users extends Base
         return $this->hasMany('App\Models\Lsp\Messages', 'ToUserId');
     }
 
-    public function subscriber(){
-        return $this->hasMany('App\Models\Lsp\Subscribe','UserId');
+    public function subscriber()
+    {
+        return $this->hasMany('App\Models\Lsp\Subscribe', 'UserId');
     }
 
-    public function subscribing(){
-        return $this->hasMany('App\Models\Lsp\Subscribe','TargetUserId');
+    public function subscribing()
+    {
+        return $this->hasMany('App\Models\Lsp\Subscribe', 'TargetUserId');
     }
 }

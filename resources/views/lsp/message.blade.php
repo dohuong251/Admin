@@ -9,8 +9,6 @@
     <script src="/js/vendors/moment.min.js"></script>
     <script src="/js/vendors/moment_vi.js"></script>
     <script src="/js/vendors/jquery.form.min.js"></script>
-    <script src="/js/vendors/popper.min.js"></script>
-    <script src="/js/vendors/bootstrap.min.js"></script>
     <script src="/js/lsp/message.js"></script>
 @endsection
 

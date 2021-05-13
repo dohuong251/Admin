@@ -2,12 +2,11 @@
 
 namespace App\Models\Lsp;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Likes extends Base
 {
     //
     protected $primaryKey = ['UserId', 'Type', 'TargetId'];
+    public $incrementing = false;
 //    protected $appends = array('like_type');
 //
 //    public function getLikeTypeAttribute()

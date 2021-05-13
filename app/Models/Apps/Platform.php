@@ -2,8 +2,6 @@
 
 namespace App\Models\Apps;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Platform extends Base
 {
     //
@@ -17,6 +15,6 @@ class Platform extends Base
 
     public function gcm()
     {
-        return $this->belongsTo('App\Models\Apps\GCM', 'platform_id');
+        return $this->hasMany('App\Models\Apps\GCM', 'platform_id');
     }
 }

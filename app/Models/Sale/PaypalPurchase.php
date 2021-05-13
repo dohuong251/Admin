@@ -2,8 +2,6 @@
 
 namespace App\Models\Sale;
 
-use Illuminate\Database\Eloquent\Model;
-
 class PaypalPurchase extends Base
 {
     //

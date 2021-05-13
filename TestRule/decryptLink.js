@@ -80,6 +80,7 @@ function getLink(link, rules) {
                                 });
 
                                 eval(`${stage.Result.match(/\w+/)[0]} = ${JSON.stringify(stage.Targets.join(""))}`);
+                                console.log(JSON.stringify(stage.Targets.join("")));
 
                                 stepResults.push({
                                     step: stage.Id,
@@ -92,8 +93,10 @@ function getLink(link, rules) {
                                 if (stage.String.match(/^\$\w+$/)) {
                                     stage.String = eval(stage.String.match(/\w+/)[0]);
                                 } else stage.String = eval(stage.String);
+                                console.log(stage.String);
                                 tempResult = eval(stage.String);
                                 eval(`${stage.Result.match(/\w+/)[0]} = ${JSON.stringify(tempResult)}`);
+                                console.log(tempResult);
 
                                 stepResults.push({
                                     step: stage.Id,
@@ -123,6 +126,7 @@ function getLink(link, rules) {
                                     action: stage.Action,
                                     result: `${stage.Result.match(/\w+/)[0]} = ${JSON.stringify(tempResult)}`,
                                 });
+                                console.log(tempResult);
                                 break;
 
                             case "GET":
@@ -205,9 +209,9 @@ function getLink(link, rules) {
                                     headers: {},
                                     body: stage.Params.map((value, index) => {
                                         if (index % 2 === 0) return `${value}=`;
-                                        else return `${value}&`;
+                                        else return `${value}${index === stage.Params.length - 1 ? "" : "&"}`;
                                     }).join(""),
-                                    gzip: true
+                                    gzip: true,
                                 };
 
                                 let postHeaders = stage.Headers;
@@ -279,6 +283,7 @@ function getLink(link, rules) {
                                     matchId++;
                                 }
 
+                                console.log(tempResult);
                                 eval(`${stage.Result.match(/\w+/)[0]} = ${JSON.stringify(tempResult)}`);
 
                                 stepResults.push({
@@ -301,7 +306,7 @@ function getLink(link, rules) {
                 stepResults: [{
                     step: "exception",
                     action: "",
-                    result: "Rule not match",
+                    result: "Không tìm thấy luật",
                 }]
             });
         } catch (e) {

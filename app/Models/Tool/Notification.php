@@ -2,8 +2,6 @@
 
 namespace App\Models\Tool;
 
-use Illuminate\Database\Eloquent\Model;
-
 class Notification extends Base
 {
     //

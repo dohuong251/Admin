@@ -2,11 +2,12 @@
 
 namespace App\Http\Controllers\Tool;
 
+use App\Console\Commands\CheckParseUrl;
 use App\Http\Controllers\Controller;
+use App\Models\ReportRule;
 use App\Models\Tool\Config;
+use Artisan;
 use Illuminate\Http\Request;
-use Str;
-use Validator;
 
 class TestRuleController extends Controller
 {
@@ -26,104 +27,83 @@ class TestRuleController extends Controller
             "url" => "required",
             "rules" => "required|json"
         ]);
-//        $validator = Validator::make($request->all(), [
-//            "url" => "required",
-//            "rules" => "required|json"
-//        ]);
-
-//        $validator->after(function ($validator) {
-//            if(!json_decode($validator->getData()["rules"])){
-//                return $validator->errors()->add('rules', "Rules field in json rule invalid");
-//            }
-//            $rules = json_decode($validator->getData()["rules"])->Rules;
-//            if (!$rules) {
-//                return $validator->errors()->add('rules', "Rules field in json rule can't be empty");
-//            } else if (!is_array($rules)) {
-//                return $validator->errors()->add('rules', "Rules field in json rule must be array");
-//            } else if (!count($rules) > 0) {
-//                return $validator->errors()->add('rules', "Rules field in json rule can't be empty");
-//            }
-//        });
-
-//        if ($validator->fails()) {
-//            return response($validator->,422);
-//        }
-
-//        $resultPerStage = collect();
-
-//        $Link = $request->get('url');
-//        $rules = json_decode($request->get('rules'))->Rules;
 
         $client = new \GuzzleHttp\Client();
 
         try {
-            return $client->request('POST', 'localhost:3000/parseUrl', [
-                'form_params' => [
+            return $client->request('POST', env("PARSE_RULE_NODEJS_SERVER_URL"), [
+                'json' => [
                     'url' => $request->get('url'),
-                    'rules' => json_encode(array(
-                        "Rules" => [json_decode($request->get('rules'), JSON_PRETTY_PRINT)]
-                    )),
+                    'rules' => $request->get('rules'),
                 ]
             ])->getBody()->getContents();
         } catch (\Exception $exception) {
             return response($exception->getMessage(), 500);
         }
-
-//        $result = "testResult";
-//        dd("\$a = \"" .($rules[0]->Stages[0]->Link) . "\";");
-//        eval("\$a = \"" . str_replace("\$", "\\\$", str_replace("\"", "\\\"", str_replace("\\", "\\\\", $rules[0]->Stages[0]->Link))) . "\";");
-//        dd($rules[0]->Stages[0]->Link, $a, "\$a = " . str_replace("$", "\$", $rules[0]->Stages[0]->Link) . ";", str_replace("$", "\$", $rules[0]->Stages[0]->Link));
-
-//        foreach ($rules as $pageRule) {
-//            if (Str::contains($Link, $pageRule->Match)) {
-//                error_log($pageRule->Name);
-//                foreach ($pageRule->Stages as $stage) {
-//                    if (isset($goto) && $goto && $stage->Id != $goto) continue;
-//                    $goto = false;
-//                    error_log($stage->Id . " \t " . $stage->Action);
-//                    switch ($stage->Action) {
-//                        case "GOTO":
-//                            eval("\$goto = " . $stage->Stage . ";");
-//                            break;
-//
-//                        case "CONCAT":
-//                            // duyệt mảng thay các chuỗi bắt đầu bằng giá trị biến
-//                            forEach ($stage->Targets as $index => &$target) {
-//                                if ($this->isVariableOnly($target)) {
-//                                    eval("\$target = " . $target . ";");
-//                                } else {
-//                                    eval("\$target = \"" . $this->escapeString($target) . "\";");
-//                                }
-//                            }
-//                            eval("\$stage->Result = \"" . $this->escapeString(join($stage->Targets)) . "\";");
-//                            break;
-//
-//                        case "EVAL":
-//                            eval("$stage->String = ");
-//                            break;
-//                    }
-//                }
-//            }
-//        }
     }
-
-//    function isVariableOnly($string)
-//    {
-//        return preg_match("/^\\$\\w+$/", $string);
-//    }
-//
-//    function escapeString($string)
-//    {
-//        return str_replace("\$", "\\\$", str_replace("\"", "\\\"", str_replace("\\", "\\\\", $string)));
-//    }
 
     function updateRule(Request $request)
     {
         $request->validate([
             'rule' => 'required|json',
         ]);
-        return Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'parser_rules']])
-            ->update(['value' => $request->get('rule')]);
+        $rule = json_decode($request->get("rule"), true);
+
+//        $originRule = json_decode(Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'parser_rules']])->first()->value ?? null, true);
+//        if ($originRule) {
+//            Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'parser_rules']])
+//                ->update(['value' => json_encode(array_replace_recursive($originRule, $rule))]);
+//        } else {
+//            Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'parser_rules']])
+//                ->update(['value' => $request->get("rule")]);
+//        }
+
+        Config::where([['id_application', 'com.mdcmedia.liveplayer.ios'], ['device', 0], ['name', 'parser_rules']])
+            ->update(['value' => $request->get("rule")]);
+
+//        $originAndroidRule = [];
+//        if (env("PARSE_RULE_ANDROID_FILE_PATH") && file_exists(env("PARSE_RULE_ANDROID_FILE_PATH"))) {
+//            $originAndroidRule = json_decode(base64_decode(file_get_contents(env("PARSE_RULE_ANDROID_FILE_PATH"))), true);
+//        }
+//        $ruleFile = fopen(env("PARSE_RULE_ANDROID_FILE_PATH"), "w");
+//        fwrite($ruleFile, base64_encode(json_encode(array_replace_recursive($originAndroidRule, $rule))));
+//        fclose($ruleFile);
+
+
+        $ruleFile = fopen(env("PARSE_RULE_ANDROID_FILE_PATH"), "w");
+        fwrite($ruleFile, base64_encode(json_encode($rule)));
+        fclose($ruleFile);
+
+        return response()->json([
+            "result" => 1,
+        ]);
+    }
+
+    public function getReportRuleLogs(Request $request)
+    {
+        $request->validate([
+            "id" => "required|exists:report_rule",
+        ]);
+
+        $report = ReportRule::find($request->get("id"));
+        return response()->json([
+            "result" => 1,
+            "logs" => is_array($report->log) ? array_values($report->log) : [],
+            "name" => $report->name,
+        ]);
+    }
+
+    public function checkParseRuleServiceState(Request $request)
+    {
+        return response()->json([
+            "result" => 1,
+            "running" => CheckParseUrl::isTaskRunning(),
+        ]);
+    }
+
+    public function startCheckRule(Request $request)
+    {
+        Artisan::call("check:rules", []);
     }
 
     protected function getDeleteClass()

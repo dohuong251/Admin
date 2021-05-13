@@ -7,7 +7,6 @@
 @section('js')
 
     <script src="/js/vendors/lodash.min.js"></script>
-    <script src="/js/vendors/bootstrap.min.js"></script>
     <script src="/js/vendors/handlebars.min.js"></script>
     <script id="edit-modal-content" type="text/x-handlebars-template">
         @verbatim
