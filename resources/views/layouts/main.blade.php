@@ -461,6 +461,9 @@
             $.ajax({
                 method: "post",
                 url: "{{route("admin.tools.startCheckRule")}}",
+                beforeSend: () => {
+                    refreshRuleBtn.find("i").addClass("fa-spin");
+                },
                 success: function () {
                     checkParseRuleState();
                 }
@@ -469,6 +472,7 @@
 
         @if(\App\Console\Commands\CheckParseUrl::isTaskRunning())
         checkParseRuleState();
+        refreshRuleBtn.find("i").addClass("fa-spin");
         @endif
     });
 </script>
