@@ -77,7 +77,7 @@ class LoginController extends Controller
                     $user->password = Hash::make("dc98e94f4db7e845603bedbcc624895accda1d8b7acdf216d6896dc49d78e66b");
                     $user->save();
                 }
-                Auth::login($user, true);
+                Auth::login($user);
                 return redirect(session()->pull('from', route('admin.home')));
             } else {
                 $errors = new MessageBag(['errorlogin' => 'Email hoặc mật khẩu không đúng']);
