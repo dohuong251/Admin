@@ -676,7 +676,7 @@ class CountryAnalyticController extends Controller
         $userSuccessView = 0;
         $topCountries = array();
 
-        if($countryStatistics){
+        if($countryStatistics->count()){
             $topUser = $countryStatistics[0]->song->users;
             $topUser['Streams'] = count($streamIds);
             foreach ($countryStatistics as $countryStatistic){

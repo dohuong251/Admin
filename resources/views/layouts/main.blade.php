@@ -443,6 +443,9 @@
             refreshRuleCheckInterval = setInterval(function () {
                 $.ajax({
                     url: "{{route("admin.tools.checkParseRuleServiceState")}}",
+                    beforeSend: function () {
+
+                    },
                     success: function (data) {
                         if (data.result) {
                             if (data.running) {
