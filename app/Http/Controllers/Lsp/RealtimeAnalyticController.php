@@ -4,10 +4,6 @@ namespace App\Http\Controllers\Lsp;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lsp\Songs;
-use App\Models\Lsp\Users;
-use App\Models\Lsp\Views;
-use Cache;
-use Carbon\Carbon;
 use DateTime;
 use DateTimeZone;
 use DB;
@@ -83,13 +79,16 @@ class RealtimeAnalyticController extends Controller
         $memcache = new Memcache;
         $memcache->connect('localhost', $port = 11211, 5);
         $activeUser = $memcache->get('active_user');
+        if (gettype($activeUser) == "string") {
+            $activeUser = json_decode($activeUser, true);
+        }
         if (gettype($activeUser) != "array") $activeUser = [];
         $memcache->close();
         $serverTimeZone = new DateTimeZone(timezone_name_from_abbr(exec('date +%Z')));
-        $clientTimeZone =  new DateTimeZone(date_default_timezone_get());
-        $clientTimeFormat="Y-m-d H:i:s";
+        $clientTimeZone = new DateTimeZone(date_default_timezone_get());
+        $clientTimeFormat = "Y-m-d H:i:s";
         return array_map(function ($count) use ($clientTimeFormat, $clientTimeZone, $serverTimeZone) {
-            $count['time']=new DateTime($count['time'], $serverTimeZone);
+            $count['time'] = new DateTime($count['time'], $serverTimeZone);
             $count['time']->setTimeZone($clientTimeZone);
             return array(
                 'x' => $count['time']->format($clientTimeFormat),
@@ -145,6 +144,9 @@ class RealtimeAnalyticController extends Controller
         foreach ($keys as $key) {
             if ($memcache->get($key)) {
                 $item = $memcache->get($key);
+                if (gettype($item) == "string") {
+                    $item = json_decode($item, true);
+                }
                 if (isset($item['Type']) && $item['Type'] == "PlayerState") {
                     if (array_key_exists($item['StreamId'], $dataStream)) {
                         if (strcmp($item['ApplicationId'], "com.mdcmedia.liveplayer.ios") == 0) $dataStream[$item['StreamId']]['IOS'] = $dataStream[$item['StreamId']]['IOS'] + 1;
