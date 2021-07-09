@@ -78,7 +78,11 @@ class RealtimeAnalyticController extends Controller
     {
         $memcache = new Memcache;
         $memcache->connect('localhost', $port = 11211, 5);
-        $activeUser = $memcache->get('active_user');
+        try {
+            $activeUser = $memcache->get('active_user');
+        } catch (\Exception $exception) {
+            \Log::debug($exception);
+        }
         if (gettype($activeUser) == "string") {
             $activeUser = json_decode($activeUser, true);
         }
@@ -142,42 +146,46 @@ class RealtimeAnalyticController extends Controller
         $dataStream = array();
 
         foreach ($keys as $key) {
-            if ($memcache->get($key)) {
-                $item = $memcache->get($key);
-                if (gettype($item) == "string") {
-                    $item = json_decode($item, true);
-                }
-                if (isset($item['Type']) && $item['Type'] == "PlayerState") {
-                    if (array_key_exists($item['StreamId'], $dataStream)) {
-                        if (strcmp($item['ApplicationId'], "com.mdcmedia.liveplayer.ios") == 0) $dataStream[$item['StreamId']]['IOS'] = $dataStream[$item['StreamId']]['IOS'] + 1;
-                        if (strcmp($item['ApplicationId'], "com.liveplayer.android") == 0) $dataStream[$item['StreamId']]['Android'] = $dataStream[$item['StreamId']]['Android'] + 1;
-                        if ($item['State'] == 'PLAYING') {
-                            $dataStream[$item['StreamId']]['PLAYING'] = $dataStream[$item['StreamId']]['PLAYING'] + 1;
-                        }
-                        if ($item['State'] == 'BUFFERING') {
-                            $dataStream[$item['StreamId']]['BUFFERING'] = $dataStream[$item['StreamId']]['BUFFERING'] + 1;
-                        }
-                        if ($item['State'] == 'CONNECTING') {
-                            $dataStream[$item['StreamId']]['CONNECTING'] = $dataStream[$item['StreamId']]['CONNECTING'] + 1;
-                        }
-                    } else {
-                        $playing = $buffering = $connecting = 0;
-                        if ($item['State'] == 'PLAYING') {
-                            $playing = 1;
-                        } else if ($item['State'] == 'BUFFERING') {
-                            $buffering = 1;
-                        } else  $connecting = 1;
-                        $dataStream[$item['StreamId']] = array(
-                            'Code' => $item['StreamCode'],
-                            'PLAYING' => $playing,
-                            'BUFFERING' => $buffering,
-                            'CONNECTING' => $connecting,
-                            'IOS' => 0,
-                            'Android' => 0
-                        );
+            try {
+                if ($memcache->get($key)) {
+                    $item = $memcache->get($key);
+                    if (gettype($item) == "string") {
+                        $item = json_decode($item, true);
                     }
-                }
+                    if (isset($item['Type']) && $item['Type'] == "PlayerState") {
+                        if (array_key_exists($item['StreamId'], $dataStream)) {
+                            if (strcmp($item['ApplicationId'], "com.mdcmedia.liveplayer.ios") == 0) $dataStream[$item['StreamId']]['IOS'] = $dataStream[$item['StreamId']]['IOS'] + 1;
+                            if (strcmp($item['ApplicationId'], "com.liveplayer.android") == 0) $dataStream[$item['StreamId']]['Android'] = $dataStream[$item['StreamId']]['Android'] + 1;
+                            if ($item['State'] == 'PLAYING') {
+                                $dataStream[$item['StreamId']]['PLAYING'] = $dataStream[$item['StreamId']]['PLAYING'] + 1;
+                            }
+                            if ($item['State'] == 'BUFFERING') {
+                                $dataStream[$item['StreamId']]['BUFFERING'] = $dataStream[$item['StreamId']]['BUFFERING'] + 1;
+                            }
+                            if ($item['State'] == 'CONNECTING') {
+                                $dataStream[$item['StreamId']]['CONNECTING'] = $dataStream[$item['StreamId']]['CONNECTING'] + 1;
+                            }
+                        } else {
+                            $playing = $buffering = $connecting = 0;
+                            if ($item['State'] == 'PLAYING') {
+                                $playing = 1;
+                            } else if ($item['State'] == 'BUFFERING') {
+                                $buffering = 1;
+                            } else  $connecting = 1;
+                            $dataStream[$item['StreamId']] = array(
+                                'Code' => $item['StreamCode'],
+                                'PLAYING' => $playing,
+                                'BUFFERING' => $buffering,
+                                'CONNECTING' => $connecting,
+                                'IOS' => 0,
+                                'Android' => 0
+                            );
+                        }
+                    }
 
+                }
+            } catch (\Exception $exception) {
+                \Log::debug($exception);
             }
         }
         return $dataStream;
