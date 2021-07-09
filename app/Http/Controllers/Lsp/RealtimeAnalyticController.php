@@ -79,7 +79,8 @@ class RealtimeAnalyticController extends Controller
         $memcache = new Memcache;
         $memcache->connect('localhost', $port = 11211, 5);
         try {
-            $activeUser = $memcache->get('active_user');
+            $activeUser = $memcache->get('active_users');
+            if (!$activeUser && !is_array($activeUser)) $activeUser = $memcache->get('active_user');
         } catch (\Exception $exception) {
             \Log::debug($exception);
         }
