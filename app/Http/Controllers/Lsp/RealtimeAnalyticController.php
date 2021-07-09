@@ -155,16 +155,19 @@ class RealtimeAnalyticController extends Controller
                     }
                     if (isset($item['Type']) && $item['Type'] == "PlayerState") {
                         if (array_key_exists($item['StreamId'], $dataStream)) {
-                            if (strcmp($item['ApplicationId'], "com.mdcmedia.liveplayer.ios") == 0) $dataStream[$item['StreamId']]['IOS'] = $dataStream[$item['StreamId']]['IOS'] + 1;
-                            if (strcmp($item['ApplicationId'], "com.liveplayer.android") == 0) $dataStream[$item['StreamId']]['Android'] = $dataStream[$item['StreamId']]['Android'] + 1;
+                            if (strcmp($item['ApplicationId'], "com.mdcmedia.liveplayer.ios") == 0) {
+                                $dataStream[$item['StreamId']]['IOS']++;
+                            } else {
+                                $dataStream[$item['StreamId']]['Android']++;
+                            }
                             if ($item['State'] == 'PLAYING') {
-                                $dataStream[$item['StreamId']]['PLAYING'] = $dataStream[$item['StreamId']]['PLAYING'] + 1;
+                                $dataStream[$item['StreamId']]['PLAYING']++;
                             }
                             if ($item['State'] == 'BUFFERING') {
-                                $dataStream[$item['StreamId']]['BUFFERING'] = $dataStream[$item['StreamId']]['BUFFERING'] + 1;
+                                $dataStream[$item['StreamId']]['BUFFERING']++;
                             }
                             if ($item['State'] == 'CONNECTING') {
-                                $dataStream[$item['StreamId']]['CONNECTING'] = $dataStream[$item['StreamId']]['CONNECTING'] + 1;
+                                $dataStream[$item['StreamId']]['CONNECTING']++;
                             }
                         } else {
                             $playing = $buffering = $connecting = 0;
